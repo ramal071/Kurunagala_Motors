@@ -27,3 +27,6 @@ Route::prefix('admins')->group(function (){
 
 Route::resource('cashier', 'CashierController');
 
+Route::resource('role' , 'RoleController');
+
+Route::resource('employee', 'EmployeeController');

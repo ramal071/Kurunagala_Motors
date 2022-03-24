@@ -143,7 +143,7 @@ $rtl = array('ar','he','ur', 'arc', 'az', 'dv', 'ku', 'fa'); //make a list of rt
               
             </li>
             <!-- User Account: style can be found in dropdown.less -->
-            <li><a href="{{ url('/') }}" target="_blank" class="visit site" >{{ __('adminstaticword.VisitSite') }}</a></li>
+            <li><a href="{{ url('/') }}" target="_blank" class="visit site" >{{ __('adminstaticword.visit') }}</a></li>
 
 
             
@@ -182,7 +182,7 @@ $rtl = array('ar','he','ur', 'arc', 'az', 'dv', 'ku', 'fa'); //make a list of rt
                     <a class="btn btn-default btn-flat" href="{{ route('logout') }}"
                    onclick="event.preventDefault();
                      document.getElementById('logout-form-1').submit();">
-                    {{ __('adminstaticword.Logout') }}
+                    {{ __('adminstaticword.logout') }}
                     </a>
 
                     <form id="logout-form-1" action="{{ route('logout') }}" method="POST">
@@ -198,7 +198,7 @@ $rtl = array('ar','he','ur', 'arc', 'az', 'dv', 'ku', 'fa'); //make a list of rt
                  <a class="dropdown-item" href="{{ route('logout') }}"
                    onclick="event.preventDefault();
                      document.getElementById('logout-form-2').submit();">
-                    {{ __('adminstaticword.Logout') }}
+                    {{ __('adminstaticword.logout') }}
                 </a>
 
                 <form id="logout-form-2" action="{{ route('logout') }}" method="POST">

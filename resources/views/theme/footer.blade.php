@@ -109,7 +109,7 @@
                             <div class="widget_title">
                                 <h4>About</h4>
                             </div>
-                            <p>Need some inspiration for your About Us page? Check out these 25 awesome examples that make a great impression on visitors.</p>
+                            <p>We are Sri Lanka’s best automobile care specialists – with state-of- the-art service centers located across the country. Each center is extremely committed to providing our clients with the very best services.</p>
                             <ul class="social">
                                 <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
                                 <li><a href="#"><i class="fab fa-twitter"></i></a></li>
@@ -125,7 +125,7 @@
                             <ul>
                                 <li><a href="#">About Us</a></li>
                                 <li><a href="/#services">Services</a></li>
-                                <li><a href="">Instructors</a></li>
+                                <li><a href="">Employee</a></li>
                                 <li><a href="">Forum</a></li>
                                 <li><a href="">FAQ's</a></li>
                                 <li><a href="">Contact Us</a></li>
@@ -143,8 +143,8 @@
                                         <i class="fas fa-phone"></i>
                                     </div>
                                     <div class="info">
-                                        <p><a href="tel:+919246147999">1800-121-3637</a></p>
-                                        <p><a href="tel:+919246147999">+91 924-614-7999</a></p>
+                                        <p><a href="tel:+94711234567">071 123 4567</a></p>
+                                        <p><a href="tel:+94719876543">+9471 987 6543</a></p>
                                     </div>
                                 </div>
                                 <div class="single_info">
@@ -152,8 +152,8 @@
                                         <i class="fas fa-envelope"></i>
                                     </div>
                                     <div class="info">
-                                        <p><a href="mailto:info@deneb.com">info@deneb.com</a></p>
-                                        <p><a href="mailto:services@deneb.com">services@deneb.com</a></p>
+                                        <p><a href="mailto:info@deneb.com">info@kmmoters.com</a></p>
+                                        <p><a href="mailto:services@deneb.com">kmmoters@gmail.com</a></p>
                                     </div>
                                 </div>
                                 <div class="single_info">

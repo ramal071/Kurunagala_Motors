@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Employee;
 use Illuminate\Http\Request;
 use Auth;
 
-
-class CashierController extends Controller
+class EmployeeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class CashierController extends Controller
      */
     public function index()
     {
-        if(Auth::User()->role == "cashier")
+        if (Auth::User()-> role == "Admin")
         {
-        return view('cashier.dashboard');
+            return view('admin.employee.index');
         }
         else
         {
@@ -49,10 +49,10 @@ class CashierController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Cashier  $cashier
+     * @param  \App\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function show(Cashier $cashier)
+    public function show(Employee $employee)
     {
         //
     }
@@ -60,10 +60,10 @@ class CashierController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Cashier  $cashier
+     * @param  \App\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function edit(Cashier $cashier)
+    public function edit(Employee $employee)
     {
         //
     }
@@ -72,10 +72,10 @@ class CashierController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Cashier  $cashier
+     * @param  \App\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cashier $cashier)
+    public function update(Request $request, Employee $employee)
     {
         //
     }
@@ -83,10 +83,10 @@ class CashierController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Cashier  $cashier
+     * @param  \App\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cashier $cashier)
+    public function destroy(Employee $employee)
     {
         //
     }

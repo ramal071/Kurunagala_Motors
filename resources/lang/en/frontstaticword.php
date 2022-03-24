@@ -2,11 +2,12 @@
 
 return [
 
- 
+    'findcashier' => 'Find Cashier',
+    'Searchforfindcashier'=> 'Search For Find Cashier',
+    'CashierDashboard' => 'Cashier Dashboard',
 
     
     'Categories' => 'Categories',
-    'SearchforInstructors' => 'Find Instructors',
     'BecomeAnInstructor' => 'Become An Instructor',
     'Signup' => 'Signup',
     'Login' => 'Login',

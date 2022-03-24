@@ -14,7 +14,9 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
-
+    'cashier' => env('CASHIER', 'cashier'),
+    'user' => env('USER', 'user'),
+    'admin' => env('ADMIN', 'admin'),
     /*
     |--------------------------------------------------------------------------
     | Application Environment
@@ -67,8 +69,8 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
-
+    // 'timezone' => 'UTC',
+    'timezone' => 'Asia/Colombo',
     /*
     |--------------------------------------------------------------------------
     | Application Locale Configuration
@@ -171,7 +173,7 @@ return [
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
+         App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
