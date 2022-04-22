@@ -31,7 +31,7 @@
             </div>
             <div class="col-lg-4 col-4">
                 <div class="Login-btn txt-rgt">
-                    <a href="{{ route('register') }}" class="btn btn-primary" title="signup">{{ __('frontstaticword.Signup') }}</a>
+                    <a href="{{ route('register') }}" class="btn btn-primary" title="signup">{{ __('frontstaticword.signup') }}</a>
                 </div> 
             </div>
             
@@ -80,19 +80,11 @@
                             </span>
                         @endif
                     </div>
-                    <div class="form-group">                       
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                            <label class="form-check-label" for="remember">
-                                {{ __('Remember Me') }}
-                            </label>
-                        </div>
-                    </div>
+     
 
                     <div class="form-group">
                         <button type="submit"  class="btn btn-primary">
-                            {{ __('frontstaticword.Login') }}
+                            {{ __('frontstaticword.login') }}
                         </button>
                         <br>
                         <br>
@@ -102,12 +94,9 @@
 
                     </div>
 
-
-                    <div class="signin-link text-center btm-20">
-                       {{ __('frontstaticword.Bysigningup') }} <a href="{{url('terms_condition')}}" title="Policy">{{ __('frontstaticword.Terms&Condition') }} </a>, <a href="{{url('privacy_policy')}}" title="Policy">{{ __('frontstaticword.PrivacyPolicy') }}.</a>
-                    </div>
                     <hr>
-                    <div class="sign-up text-center">{{ __('frontstaticword.Donothaveanaccount') }}?<a href="{{ route('register') }}" title="sign-up"> {{ __('frontstaticword.Signup') }}</a>
+                    
+                    <div class="sign-up text-center">{{ __('frontstaticword.Donothaveanaccount') }}?<a href="{{ route('register') }}" title="sign-up"> {{ __('frontstaticword.signup') }}</a>
                     </div>
                             
                 </form>

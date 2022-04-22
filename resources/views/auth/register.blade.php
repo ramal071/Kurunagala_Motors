@@ -22,8 +22,7 @@
                     <div class="logo text-center">
                         @php $logo = App\Setting::first(); @endphp
                        
-                        <a href="{{ url('/') }}"
-                            ><b
+                        <a href="{{ url('/') }}"><b
                                 ><div class="logotext">
                                     {{ $logo->project_title }}
                                 </div></b
@@ -105,42 +104,7 @@
                         <i class="fa fa-lock" aria-hidden="true"></i> 
                         <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password" required>
                     </div>
-
-
-
-                    
-                    {{-- @if($gsetting->captcha_enable == 1)
-
-
-                    <div class="{{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
-
-                        <div class="text-center">
-
-                            {!! app('captcha')->display() !!}
-                            @if ($errors->has('g-recaptcha-response'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
-                                </span>
-                            @endif
-                        </div>
-                    <br>
-                    <br>
-                    @endif
-                    
-                    <div class="form-group">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="term" id="term" required>
-
-                            <label class="form-check-label" for="term">
-                                <div class="signin-link text-center btm-20">
-                                    <b>{{ __('I agree to ') }}<a href="{{url('terms_condition')}}" title="Policy">{{ __('frontstaticword.Terms&Condition') }} </a>, <a href="{{url('privacy_policy')}}" title="Policy">{{ __('frontstaticword.PrivacyPolicy') }}.</a></b>
-                                </div>
-                            </label>
-
-                           
-                        </div>
-                    </div> --}}
-                    
+               
 
                     
                     <button type="submit" title="Sign Up" class="btn btn-primary btm-20">{{ __('frontstaticword.Signup') }}</button> 

@@ -11,8 +11,7 @@ class User extends Authenticatable
     use Notifiable;
 
     protected $fillable = [
-        'name', 'email','fname','lname','password','notification_preference','status','email_verified_at','facebook_id',
-        'google_id','role','contact'
+        'name', 'email','fname','lname','password','status','email_verified_at','role','contact'
     ];
 
     protected $hidden = [
@@ -21,7 +20,6 @@ class User extends Authenticatable
 
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'notification_preference' => 'array',
         'status' => 'boolean'
     ];
 }

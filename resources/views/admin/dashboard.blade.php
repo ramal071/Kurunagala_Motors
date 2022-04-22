@@ -25,17 +25,7 @@
           <div class="small-box bg-aqua">
             <div class="inner">
               <h3>
-              	@php
-              		$user = App\User::get();
-              		if(count($user)>0){
-
-              			echo count($user);
-              		}
-              		else{
-
-              			echo "0";
-              		}
-              	@endphp
+             800
               </h3>
               <p>{{ __('adminstaticword.Users') }}</p>
             </div>
@@ -52,9 +42,7 @@
           <div class="small-box bg-green">
             <div class="inner">
               <h3>
-              	@php
-                  echo "0";
-                @endphp
+              70
               </h3>
               <p>{{ __('adminstaticword.brand') }}</p>
             </div>
@@ -71,9 +59,7 @@
           <div class="small-box bg-yellow">
             <div class="inner">
               <h3>
-              	@php
-              		echo "0";
-              	@endphp 
+              320
               </h3>
               <p>{{ __('adminstaticword.model') }}</p>
             </div>
@@ -90,9 +76,7 @@
           <div class="small-box bg-red">
             <div class="inner">
               <h3>
-              	@php
-              			echo "0";
-              	@endphp
+              670
               </h3>
               <p>{{ __('adminstaticword.customer') }}</p>
             </div>
@@ -109,9 +93,7 @@
           <div class="small-box bg-purple">
             <div class="inner">
               <h3>
-              	@php
-                echo (0);
-              	@endphp
+              5
               </h3>
               <p>{{ __('adminstaticword.employee') }}</p>
             </div>
@@ -127,11 +109,9 @@
           <div class="small-box bg-orange">
             <div class="inner">
               <h3>
-                @php
-              	echo "0";
-              	@endphp
+              20
               </h3>
-              <p>{{ __('adminstaticword.employee') }}</p>
+              <p>{{ __('adminstaticword.income') }}</p>
             </div>
             <div class="icon">
              <i class="flaticon-report"></i>
@@ -145,11 +125,9 @@
           <div class="small-box bg-green">
             <div class="inner">
               <h3>
-                @php
-              			echo "0";
-              	@endphp 
+                10
               </h3>
-              <p>{{ __('adminstaticword.employee') }}</p>
+              <p>{{ __('adminstaticword.profit') }}</p>
             </div>
             <div class="icon">
              <i class="flaticon-teacher"></i>
@@ -163,16 +141,14 @@
           <div class="small-box bg-blue">
             <div class="inner">
               <h3>
-                @php
-              			echo "0";
-              	@endphp
+               0
               </h3>
-              <p>{{ __('adminstaticword.employee') }}</p>
+              <p>{{ __('adminstaticword.proformance') }}</p>
             </div>
             <div class="icon">
              <i class="flaticon-customer-1"></i>
             </div>
-            <a href="{{url('employee')}}" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -180,28 +156,7 @@
     <!-- /.row -->
 
 
-
-    <div class="row">
-      <div class="col-md-12">
-        <div class="box box-solid">
-          <div class="box-body">
-            {{-- {!! $usersChart->container() !!} --}}
-          </div>
-        </div>
-      </div>
-    </div>
-
 @endif
 
 @endsection
 
-{{-- @section('scripts')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/6.0.6/highcharts.js" charset="utf-8"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
-
-{!! $usersChart->script() !!}
-{!! $userEnrolled->script() !!}
-{!! $pieChart->script() !!}
-
-@endsection --}}

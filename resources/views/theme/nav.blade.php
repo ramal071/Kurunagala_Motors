@@ -1,116 +1,31 @@
-@auth
-@php
-if(auth()->user()->role == config('app.instructor'))
-$insActive = App\Instructor::select('is_approve')->where('user_id',auth()->user()->id)->get()->toArray();
-//dd($insActive);
-if(auth()->user()->role == config('app.institute'))
-$insActive = App\Institute::select('is_approve')->where('user_id',auth()->user()->id)->get()->toArray();
 
-@endphp
-
-@if(auth()->user()->role ==config('app.instructor') || auth()->user()->role ==config('app.institute') )
-@if($insActive[0]['is_approve'] == false)
-<div id="promo-outer">
-    <div id="promo-inner">
-        <a href="">Your Request is Active Very Soon.</a>
-        <span id="close">x</span>
-    </div>
-</div>
-<div id="promo-tab" class="display-none">SHOW</div>
-@endif
-@endif
-@endauth
 
 
 <section id="nav-bar" class="nav-bar-main-block">
     <div class="container">
+
         <!-- start mobile navigation -->
         <div class="navigation fullscreen-search-block">
             <span style="font-size:30px;cursor:pointer" onclick="openNav()" class="hamburger">&#9776; </span>
-            <div class="logo">
-            @if($gsetting->logo)
-                    <a href="{{ url('/') }}" ><img src="{{ asset('images/logo/'.$gsetting->logo) }}" class="img-fluid" alt="logo"></a>
-                @else()
-                    <a href="{{ url('/') }}"><b><div class="logotext">{{ $gsetting->project_title }}</div></b></a>
-                @endif
+            <div class="logo">           
+                    <a href="{{ url('/') }}"><b><div class="logotext">{{ $gsetting->project_title }}</div></b></a>           
             </div>
-            <div class="nav-search nav-wishlist">
-                
+            <div class="nav-search nav-wishlist">                
                 <a href="#find"><i class="fa fa-search"></i></a>
             </div>
-            @auth
 
-            <div class="nav-wishlist">
-                <div id="notification_li">
-                    <a href="" id="notificationLinkk" title="Notification"><i class="fa fa-bell"></i></a>
-                    <span class="red-menu-badge red-bg-success">
-                        {{ Auth()->user()->unreadNotifications->count() }}
-                    </span>
-                    <div id="notificationContainerr">
-                    <div id="notificationTitle">{{ __('frontstaticword.Notifications') }}</div>
-                    <div id="notificationsBody" class="notifications">
-                        <ul>
-                            @foreach(Auth()->user()->unreadNotifications as $notification)
-                                <li class="unread-notification">
-                                    <a href="{{route('markAsRead',$notification->id)}}">          
-                                    <div class="notification-image">
-                                        @php
-                                        $userimg = \App\User::select('id')->with('image')
-                                                    ->where('id',$notification->data['id'])
-                                                    ->get()->toArray();
-                                        @endphp
-                                        @if(!empty($userimg[0]['image']))
-                                            <img src="{{ asset('images/user_img/'.$userimg[0]['image']['url']) }}" alt="user image" class="img-fluid rounded-circle" >
-                                        @else
-                                            <img src="{{ asset('images/default/user.jpg') }}" alt="user image" class="img-fluid rounded-circle">
-                                        @endif
-                                    </div>
-                                    <div class="notification-data">
-                                        {{ str_limit($notification->data['data'], $limit = 50, $end = '...') }}
-                                    </div>
-                                    </a>
-                                </li>
-                            @endforeach
-
-                            @foreach(Auth()->user()->readNotifications as $notification)
-                                <li>
-                                    <a href="">
-                                    <div class="notification-image">
-                                       @php
-                                        $userimg = \App\User::select('id')->with('image')
-                                                    ->where('id',$notification->data['id'])
-                                                    ->get()->toArray();
-                                        @endphp
-                                        @if(!empty($userimg[0]['image']))
-                                            <img src="{{ asset('images/user_img/'.$userimg[0]['image']['url']) }}" alt="user image" class="img-fluid rounded-circle" >
-                                        @else
-                                            <img src="{{ asset('images/default/user.jpg') }}" alt="user image" class="img-fluid rounded-circle">
-                                        @endif
-                                    </div>
-                                    <div class="notification-data">
-                                        {{ str_limit($notification->data['data'], $limit = 50, $end = '...') }}
-                                    </div>
-                                    </a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    <div id="notificationFooter"><a href="">{{ __('frontstaticword.ClearAll') }}</a></div>
-                    </div>
-                </div>
+           {{-- @auth
+             <div class="nav-wishlist">                
             </div>
             @endauth
-            
+             --}}
 
             <div id="mySidenav" class="sidenav">
               <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                 @guest
                 <div class="login-block">
-                    <a href="{{ route('register') }}" class="btn btn-primary" title="register">{{ __('frontstaticword.Signup') }}</a>
-                    <a href="{{ route('login') }}" class="btn btn-secondary" title="login">{{ __('frontstaticword.Login') }}</a>
-
-                    <a href="" title="Find An Instructor"><i class="fas fa-chalkboard-teacher"></i>{{ __('frontstaticword.FindInstructor') }}</a>
-                    <a href=""><i class="fas fa-user-friends"></i>{{ __('frontstaticword.Forum') }}</a>
+                    <a href="{{ route('register') }}" class="btn btn-primary" title="register">{{ __('frontstaticword.signup') }}</a>
+                    <a href="{{ route('login') }}" class="btn btn-secondary" title="login">{{ __('frontstaticword.login') }}</a>
                 </div>
                 @endguest
                 @auth
@@ -153,21 +68,15 @@ $insActive = App\Institute::select('is_approve')->where('user_id',auth()->user()
                          @if(Auth::User()->role == "admin" )
                         <a target="_blank" href="{{ url('/admins') }}"><li><i class="fa fa-dashboard"></i>{{ __('frontstaticword.AdminDashboard') }}</li></a>
                         @endif
-                        @if(Auth::User()->role == "instructor")
+                        @if(Auth::User()->role == "cashier")
 
-                        <a target="_blank" href="{{ url('/instructor') }}"><li><i class="fa fa-dashboard"></i>{{ __('frontstaticword.InstructorDashboard') }}</li></a>
+                        <a target="_blank" href="{{ url('/cashier') }}"><li><i class="fa fa-dashboard"></i>{{ __('frontstaticword.cashierdashboard') }}</li></a>
                         @endif
                         <a href=""><li><i class="fa fa-diamond"></i>{{ __('frontstaticword.Forum') }}</li></a>
-                        <a href=""><li><i class="fa fa-heart"></i>{{ __('frontstaticword.MyWishlist') }}</li></a>
+                        <a href=""><li><i class="fa fa-heart"></i>{{ __('frontstaticword.myservice') }}</li></a>
                         <a href=""><li><i class="fa fa-users"></i>{{ __('frontstaticword.GoToForum') }}</li></a>
-                        <a href=""><li ><i class="fa fa-user"></i>{{ __('frontstaticword.UserProfile') }}</li></a>
-                                    
-                        {{-- @if($gsetting->instructor_enable == 1)
-                            <a href="{{ route('front.instructors') }}" title="Find An Instructor"><li><i class="fas fa-chalkboard-teacher"></i>{{ __('frontstaticword.FindInstructor') }}</li></a>
-                            @endif --}}
-
-                       
-                    </ul>
+                        <a href=""><li ><i class="fa fa-user"></i>{{ __('frontstaticword.userprofile') }}</li></a>
+                     </ul>
                 </div>
                 
                
@@ -180,23 +89,16 @@ $insActive = App\Institute::select('is_approve')->where('user_id',auth()->user()
             <div class="col-lg-5">
                 <div class="row">
                     <div class="col-lg-6 col-md-4 col-sm-12">
-                        <div class="logo">
-                        
-                        {{-- @if($gsetting->logo_type == 'L')
-                                <a href="{{ url('/') }}" ><img src="{{ asset('images/logo/'.$gsetting->logo) }}" class="img-fluid" alt="logo"></a>
-                            @else()
-                                <a href="{{ url('/') }}"><b><div class="logotext">{{ $gsetting->project_title }}</div></b></a>
-                            @endif --}}
-
+                        <div class="logo">  
+                                <a href="{{ url('/') }}"><b><div class="logotext">{{ $gsetting->project_title }}</div></b></a>                   
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-4 col-sm-12">
                         <div class="navigation">
                             <div id="cssmenu">
                                 <ul>
-                                    <li><a href="#" title="Categories"><i class="flaticon-grid"></i>{{ __('frontstaticword.Categories') }}</a>
-                                     
-                                        </li>
+                                    <li><a href="#" title=""><i class="flaticon-grid"></i>{{ __('frontstaticword.service') }}</a>                                    
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -206,20 +108,24 @@ $insActive = App\Institute::select('is_approve')->where('user_id',auth()->user()
             <div class="col-lg-7">
                 @guest
                 <div class="row">
-                    <div class="col-lg-3 col-md-3 col-6">
+                    <div class="col-lg-6 col-md-6 col-6">
                         <div class="learning-business learning-business-two">
-                                              
-                        {{-- @if($gsetting->instructor_enable == 1)
-                                    <a href="{{ route('front.instructors') }}" class="btn btn-link" title="Find An Instructor">{{ __('frontstaticword.FindInstructor') }}</a>
-                                @endif --}}
+                           
+                                    <div class="logo text-center">
+                                        @php
+                                            $logo = App\Setting::first();
+                                        @endphp                    
+                                       <a href="{{ url('/') }}"><b><div class="logotext">{{ $logo->project_title }}</div></b></a>
+                                     
+                                    </div>
+                               
+
+
+                                {{--  --}}
 
                         </div>
                     </div>
-                    <div class="col-lg-2 col-md-2 col-6">
-                        <div class="learning-business">
-                            <a href="" class="btn btn-link" title="Go to Forum">{{ __('frontstaticword.Forum') }}</a>
-                        </div>
-                    </div>
+               
                     <div class="col-lg-1">
                     </div>
                     <div class="col-lg-1">
@@ -233,16 +139,15 @@ $insActive = App\Institute::select('is_approve')->where('user_id',auth()->user()
                             </form>
                         </div>
                     </div>
+
                     <div class="col-lg-4">
-                        <div class="Login-btn">
-                            
-                            
-                            {{-- <a href="#find" class="nav-search nav-wishlist"><i class="fa fa-search"></i></a> --}}
-                            <a href="{{ route('login') }}" class="btn btn-secondary" title="login">{{ __('frontstaticword.Login') }}</a>
-                            <a href="{{ route('register') }}" class="btn btn-primary" title="register">{{ __('frontstaticword.Signup') }}</a>
+                        <div class="Login-btn">                            
+                            <a href="{{ route('login') }}" class="btn btn-secondary" title="login">{{ __('frontstaticword.login') }}</a>
+                            <a href="{{ route('register') }}" class="btn btn-primary" title="register">{{ __('frontstaticword.signup') }}</a>
                             
                         </div> 
                     </div>
+
                 @endguest
 
                 @auth

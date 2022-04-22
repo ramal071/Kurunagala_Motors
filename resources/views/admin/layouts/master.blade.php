@@ -143,11 +143,7 @@ $rtl = array('ar','he','ur', 'arc', 'az', 'dv', 'ku', 'fa'); //make a list of rt
               
             </li>
             <!-- User Account: style can be found in dropdown.less -->
-            <li><a href="{{ url('/') }}" target="_blank" class="visit site" >{{ __('adminstaticword.visit') }}</a></li>
-
-
-            
-
+    
             <li class="dropdown user user-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 @if(Auth()->User()['user_img'] != null && Auth()->User()['user_img'] !='' && @file_get_contents('images/user_img/'.Auth::user()['user_img']))

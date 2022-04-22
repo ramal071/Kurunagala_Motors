@@ -40,7 +40,20 @@
             </ul>
           </li> 
 
-         
+          <ul class="sidebar-menu" data-widget="tree">
+            <li class="{{ Nav::isRoute('cashier.index') }}"><a href="{{route('cashier.index')}}"><i class="flaticon-web-browser" aria-hidden="true">
+              </i><span>{{ __('adminstaticword.brand') }}</span></a></li>                                
+          </ul>
+
+          <ul class="sidebar-menu" data-widget="tree">
+            <li class="{{ Nav::isRoute('cashier.index') }}"><a href="{{route('cashier.index')}}"><i class="flaticon-web-browser" aria-hidden="true">
+              </i><span>{{ __('adminstaticword.model') }}</span></a></li>                                
+          </ul>
+
+          <ul class="sidebar-menu" data-widget="tree">
+            <li class="{{ Nav::isRoute('cashier.index') }}"><a href="{{route('cashier.index')}}"><i class="flaticon-web-browser" aria-hidden="true">
+              </i><span>{{ __('adminstaticword.customer') }}</span></a></li>                                
+          </ul>
 
         </ul>
       @endif

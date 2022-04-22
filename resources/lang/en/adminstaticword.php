@@ -21,5 +21,10 @@ return [
     'brand' => 'Brand',
     'model' => 'Model',
     'view' => 'View All',    
+    'total' => 'Total',
+    'stock' => 'Stock',
+    'proformance' => 'Employee Proformance',
+    'profit' => 'Profit',
+    'income' => 'Income',
 
 ];

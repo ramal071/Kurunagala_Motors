@@ -29,19 +29,4 @@ class Setting extends Model
       'appointment_enable'=>'boolean'
     ];
 
-    // public function getFbLoginEnableAttribute()
-    // {
-    // if($this->fb_login_enable ==1) return true;
-    // else return false;
-    // }
-    // public function getGoogleLoginEnableAttribute()
-    // {
-    // if($this->google_login_enable ==1) return true;
-    // else return false;
-    // }
-    // public function getInstructorEnableAttribute()
-    // {
-    // if($this->instructor_enable ==1) return true;
-    // else return false;
-    // }
 }
