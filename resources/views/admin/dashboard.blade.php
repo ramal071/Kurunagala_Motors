@@ -7,12 +7,12 @@
 
 <section class="content-header">
   <h1>
-    {{ __('adminstaticword.Dashboard') }}
+    {{ __('adminstaticword.dashboard') }}
     <small>{{ $project_title }}</small>
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i>{{ __('adminstaticword.home') }}</a></li>
-    <li class="active">{{ __('adminstaticword.Dashboard') }}</li>
+    <li class="active">{{ __('adminstaticword.dashboard') }}</li>
   </ol>
 </section>
 
@@ -27,7 +27,7 @@
               <h3>
              800
               </h3>
-              <p>{{ __('adminstaticword.Users') }}</p>
+              <p>{{ __('adminstaticword.users') }}</p>
             </div>
             <div class="icon">
               <i class="flaticon-user"></i>

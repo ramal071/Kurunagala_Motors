@@ -8,13 +8,19 @@ return [
     'Alreadyhaveanaccount' => 'All ready have an account',
     'LogIntoYour' => 'Log Into Your',
     'Account' => 'Account',
+    'password' =>'Password',
+    'confirmpassword' => 'Confirm Password',
     'ForgotPassword' => 'Forgot Password',
     'Donothaveanaccount' => 'Do Not Have an Account',
+    'resetpassword' => 'Reset Password',
+    'emailaddress' => 'E-mail Address',
+    'sendpasswordresetlink' => 'Send Password Reset Link',
 
     'findcashier' => 'Find Cashier',
     'Searchforfindcashier'=> 'Search For Find Cashier',
     'CashierDashboard' => 'Cashier Dashboard',
     'service' => 'Service',
+
 
     'userprofile' => 'User Profile',
     'search' =>'Search',

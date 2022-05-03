@@ -15,14 +15,9 @@ class CreateCashiersTable extends Migration
     {
         Schema::create('cashiers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('fname');
-            $table->string('lname');
-            $table->string( 'nick_name');
-            $table->string( 'phone');
-            $table->string( 'address');
-            $table->string( 'emp_image');
-            $table->string( 'id_front');
-            $table->string( 'id_back');
+            $table->string('name');
+            $table->string( 'idno');
+            $table->string( 'email');
             $table->boolean('status')->default(1);
             $table->timestamps();
         });

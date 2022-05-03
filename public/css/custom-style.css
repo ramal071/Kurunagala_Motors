@@ -219,7 +219,7 @@
 ---------------------*/
 .feature-box-1 {
   padding: 32px;
-  box-shadow: 0 0 30px rgba(31, 45, 61, 0.125);
+  box-shadow: 0 0 30px rgba(17, 26, 36, 0.125);
   margin: 15px 0;
   position: relative;
   z-index: 1;
@@ -267,7 +267,7 @@
   right: 0;
   border-radius: 10px;
   width: 0;
-  background: #38c3af;
+  background: #061f1c;
   z-index: -1;
   -moz-transition: ease all 0.35s;
   -o-transition: ease all 0.35s;
@@ -314,7 +314,7 @@ background-color: #09e0b1;
 clip-path: ellipse(129% 100% at 50% 0%);
 }
 
-//accordion
+/* //accordion */
 .panel-title a {
     display: block;
     position: relative;

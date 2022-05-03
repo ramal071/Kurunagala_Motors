@@ -16,17 +16,7 @@ class AdminController extends Controller
     public function index()
     {
         if(Auth::User()->role == "admin")
-        {        
-
-            
-            // $admin = User::where('role', '=', 'admin')->count();
-            // $instructor = User::where('role', '=', 'cashier')->count();
-            // $user = User::where('role', '=', 'user')->count();
-
-            // $data = [$admin, $instructor, $user];
-
-
-                     
+        {                         
 
             return view('admin.dashboard');
         }

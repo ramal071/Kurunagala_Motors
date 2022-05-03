@@ -6,12 +6,12 @@
 
 <section class="content-header">
   <h1>
-    {{ __('adminstaticword.Dashboard') }}
+    {{ __('adminstaticword.dashboard') }}
     <small>{{ __('adminstaticword.Cashier') }}</small>
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> {{ __('adminstaticword.home') }}</a></li>
-    <li class="active">{{ __('adminstaticword.Dashboard') }}</li>
+    <li class="active">{{ __('adminstaticword.dashboard') }}</li>
   </ol>
 </section>
 

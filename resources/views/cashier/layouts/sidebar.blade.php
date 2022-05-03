@@ -20,9 +20,9 @@
 
       @if(Auth::User()->role == "cashier")
         <ul class="sidebar-menu" data-widget="tree">
-          <li class="header">{{ __('adminstaticword.Navigation') }} </li>
+          <li class="header">{{ __('adminstaticword.navigation') }} </li>
           <li class="{{ Nav::isRoute('cashier.index') }}"><a href="{{route('cashier.index')}}"><i class="flaticon-web-browser" aria-hidden="true">
-            </i><span>{{ __('adminstaticword.Dashboard') }}</span></a></li>                                
+            </i><span>{{ __('adminstaticword.dashboard') }}</span></a></li>                                
         </ul>
 
         <ul class="sidebar-menu" data-widget="tree">

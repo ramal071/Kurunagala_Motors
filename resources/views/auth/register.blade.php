@@ -37,7 +37,7 @@
                             href="{{ route('login') }}"
                             class="btn btn-secondary"
                             title="login"
-                            >{{ __("frontstaticword.Login") }}</a
+                            >{{ __("frontstaticword.login") }}</a
                         >
                     </div>
                 </div>
@@ -79,17 +79,17 @@
                             </span>
                         @endif
                     </div>
-                    @if($gsetting->mobile_enable == 1)
+            
                     <div class="form-group">
                         <i class="fa fa-phone" aria-hidden="true"></i>
-                        <input type="text" class="form-control{{ $errors->has('mobile') ? ' is-invalid' : '' }}" name="mobile" value="{{ old('mobile') }}" id="mobile" placeholder="Mobile">
-                        @if($errors->has('mobile'))
+                        <input type="text" class="form-control{{ $errors->has('contact') ? ' is-invalid' : '' }}" name="contact" value="{{ old('contact') }}" id="contact" placeholder="contact">
+                        @if($errors->has('contact'))
                             <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('mobile') }}</strong>
+                                <strong>{{ $errors->first('contact') }}</strong>
                             </span>
                         @endif
                     </div>
-                    @endif
+                    
                     <div class="form-group">
                         <i class="fa fa-lock" aria-hidden="true"></i>
                         <input type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" id="password" placeholder="Password">
@@ -107,11 +107,11 @@
                
 
                     
-                    <button type="submit" title="Sign Up" class="btn btn-primary btm-20">{{ __('frontstaticword.Signup') }}</button> 
+                    <button type="submit" title="Sign Up" class="btn btn-primary btm-20">{{ __('frontstaticword.signup') }}</button> 
 
                    
                     <hr>
-                    <div class="sign-up text-center">{{ __('frontstaticword.Alreadyhaveanaccount') }}?<a href="{{ route('login') }}" title="sign-up"> {{ __('frontstaticword.Login') }}</a>
+                    <div class="sign-up text-center">{{ __('frontstaticword.Alreadyhaveanaccount') }}?<a href="{{ route('login') }}" title="sign-up"> {{ __('frontstaticword.login') }}</a>
                     </div>
                 </form>
             </div>

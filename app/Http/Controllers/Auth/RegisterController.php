@@ -43,11 +43,9 @@ class RegisterController extends Controller
             'fname' => ['required', 'string', 'max:255'],
             'lname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:3', 'confirmed'],
-            // 'g-recaptcha-response' => 'required|captcha',
-            'mobile' => ['regex:/^([0-9\s\-\+\(\)]*)$/', 'max:17'],
-            // 'term' => 'required',
-        ]);
+            'password' => ['required', 'string', 'min:3', 'confirmed'],           
+            'contact' => ['regex:/^([0-9\s\-\+\(\)]*)$/', 'max:17'],
+            ]);
        
       
     }
@@ -60,34 +58,15 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-
-        // $setting = Setting::first();
-        // if($setting->verify_enable)
-        // {
-        //     $verified = Null;
-        // }
-        // else{
-        //     $verified = \Carbon\Carbon::now()->toDateTimeString();
-        // }
-
         $user = User::create([
             'fname' => $data['fname'],
             'lname' => $data['lname'],
             'email' => $data['email'],
-           // 'email_verified_at' => $verified,
+            'contact' => $data['contact'],
             'password' => Hash::make($data['password']),
-            'notification_preference' => []
         ]);
 
-        // if($setting->w_email_enable){
-        //     try{
-        //         Mail::to($data['email'])->send(new WelcomeUser($user)); 
-        //     }
-        //     catch(\Swift_TransportException $e){
-
-        //     }
-        // }
-        
+    
 
         return $user;
     }

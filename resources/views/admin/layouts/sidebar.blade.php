@@ -3,14 +3,8 @@
     <section class="sidebar">
       <!-- Sidebar user panel -->
       <div class="user-panel">
-        <div class="pull-left image">
-          @if(Auth::User()['user_img'] != null && Auth::User()['user_img'] !='' && @file_get_contents('images/user_img/'.Auth::user()['user_img']))
-          <img src="{{ asset('images/user_img/'.Auth::User()->user_img)}}" class="img-circle" alt="">
-
-          @else
+        <div class="pull-left image">   
           <img src="{{ asset('images/default/user.jpg') }}" class="img-circle" alt="">
-
-          @endif
         </div>
         <div class="pull-left info">
           <p>{{ Auth::User()->fname }}</p>
@@ -21,15 +15,16 @@
 
       @if(Auth::User()->role == "admin")
         <ul class="sidebar-menu" data-widget="tree">
-          <li class="header">{{ __('adminstaticword.Navigation') }}</li>
+          <li class="header">{{ __('adminstaticword.navigation') }}</li>
         
-          <li class="{{ Nav::isRoute('admin.index') }}"><a href="{{route('admin.index')}}"><i class="flaticon-web-browser" aria-hidden="true"></i><span>{{ __('adminstaticword.Dashboard') }}</span></a></li>
+          <li class="{{ Nav::isRoute('admin.index') }}"><a href="{{route('admin.index')}}"><i class="flaticon-web-browser" aria-hidden="true"></i><span>{{ __('adminstaticword.dashboard') }}</span></a></li>
 
           <li class={{ __('adminstaticword.Users') }}></li>
 
           {{-- Garage nav bar --}}
 
-          <li class="{{ Nav::isRoute('role') }} {{ Nav::isResource('role') }} treeview">
+          {{-- Employee = role/ employee --}}
+          <li class="{{ Nav::isRoute('employee') }} {{ Nav::isResource('employee') }} treeview">
             <a href="#">
                 <i class="flaticon-location"></i>{{ __('adminstaticword.employees') }}
                 <i class="fa fa-angle-left pull-right"></i>
@@ -40,14 +35,23 @@
             </ul>
           </li> 
 
-          <ul class="sidebar-menu" data-widget="tree">
-            <li class="{{ Nav::isRoute('cashier.index') }}"><a href="{{route('cashier.index')}}"><i class="flaticon-web-browser" aria-hidden="true">
-              </i><span>{{ __('adminstaticword.brand') }}</span></a></li>                                
-          </ul>
+          {{-- Producy = product/ brand/ vehicle model --}}
+
+          <li class="{{ Nav::isRoute('product') }} {{ Nav::isResource('product') }} treeview">
+            <a href="#">
+                <i class="flaticon-location"></i>{{ __('adminstaticword.product') }}
+                <i class="fa fa-angle-left pull-right"></i>
+            </a> 
+            <ul class="treeview-menu">            
+              <li class="{{ Nav::isRoute('product.index') }}"><a href="{{route('product.index')}}"><i class="flaticon-rec"></i>{{__('adminstaticword.product')}}</a></li>
+              <li class="{{ Nav::isRoute('bike.index') }}"><a href="{{route('bike.index')}}"><i class="flaticon-rec"></i>{{ __('adminstaticword.bike') }}</a></li>
+              <li class="{{ Nav::isRoute('brand.index') }}"><a href="{{route('brand.index')}}"><i class="flaticon-rec"></i>{{__('adminstaticword.brand')}}</a></li>
+            </ul>
+          </li> 
 
           <ul class="sidebar-menu" data-widget="tree">
             <li class="{{ Nav::isRoute('cashier.index') }}"><a href="{{route('cashier.index')}}"><i class="flaticon-web-browser" aria-hidden="true">
-              </i><span>{{ __('adminstaticword.model') }}</span></a></li>                                
+              </i><span>{{ __('adminstaticword.cashier') }}</span></a></li>                                
           </ul>
 
           <ul class="sidebar-menu" data-widget="tree">

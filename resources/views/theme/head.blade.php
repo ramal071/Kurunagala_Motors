@@ -1,7 +1,5 @@
 <head>
-    @if(env('GOOGLE_TAG_MANAGER_ENABLED') == 'true' && env('GOOGLE_TAG_MANAGER_ID') == !NULL)
-    @include('googletagmanager::head')
-    @endif
+
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     
     

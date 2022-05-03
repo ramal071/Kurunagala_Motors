@@ -30,3 +30,14 @@ Route::resource('cashier', 'CashierController');
 Route::resource('role' , 'RoleController');
 
 Route::resource('employee', 'EmployeeController');
+
+Route::resource('brand', 'BrandController');
+
+Route::resource('bike', 'BikeController');
+
+Route::resource('product', 'ProductController');
+
+// quick update status
+Route::post('/quickupdate/role/{id}', 'QuickUpdateController@roleQuick')->name('role.quick');
+Route::post('/quickupdate/employee/{id}', 'QuickUpdateController@employeeQuick')->name('employee.quick');
+Route::post('/quickupdate/prooduct/{id}', 'QuickUpdateController@productQuick')->name('product.quick');
