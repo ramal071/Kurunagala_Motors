@@ -10,22 +10,12 @@ use App\Role;
 
 class EmployeeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $arr['employee'] = Employee::all();
         return view('admin.employee.index')->with($arr);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $roles = Role::all();
@@ -33,14 +23,18 @@ class EmployeeController extends Controller
         return view('admin.employee.create', compact('roles'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request, Employee $employee)
     {
+        $data = $this->validate($request, [
+            'name'=>'required',
+            'nick_name'=>'required',
+            'emp_image'=>'required',
+            'id_front'=>'required',
+            'id_back'=>'required',
+            'phone'=>'required',
+            'address'=>'required',
+            'status'=>'required',
+        ]);
         
          if($request->emp_image->getClientOriginalName()){
              $ext =  $request->emp_image->getClientOriginalExtension();
@@ -82,30 +76,17 @@ class EmployeeController extends Controller
     $employee->address = $request->address;
     $employee->status = ($request->status) ? 1:0 ;
 
+    $employee->save();
 
-$employee->save();
-
-$employee->roles()->attach($request->roles);        
-return redirect()->route('employee.index');
+    $employee->roles()->attach($request->roles);        
+    return redirect()->route('employee.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Employee  $employee
-     * @return \Illuminate\Http\Response
-     */
     public function show(Employee $employee)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Employee  $employee
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Employee $employee)
     {
         $arr['employee'] =$employee;
@@ -113,15 +94,18 @@ return redirect()->route('employee.index');
         return view('admin.employee.edit')->with($arr);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Employee  $employee
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Employee $employee)
     {
+        $data = $this->validate($request, [
+            'name'=>'required',
+            'nick_name'=>'required',
+            'emp_image'=>'required',
+            'id_front'=>'required',
+            'id_back'=>'required',
+            'phone'=>'required',
+            'address'=>'required',
+            'status'=>'required',
+        ]);
       
         if(isset($request->emp_image) && $request->emp_image->getClientOriginalName()){
             $ext =  $request->emp_image->getClientOriginalExtension();
@@ -163,7 +147,7 @@ return redirect()->route('employee.index');
      }
 
     //   $employee->role_id = $request->role_id;
-    $employee->roles()->sync($request->roles);
+    // $employee->roles()->sync($request->roles);
        $employee->emp_image = $file;
        $employee->id_front = $file1;
        $employee->id_back = $file2;
@@ -173,16 +157,10 @@ return redirect()->route('employee.index');
        $employee->address = $request->address;
        $employee->status = ($request->status) ? 1:0;
        $employee->save();
-
+       $employee->roles()->sync($request->roles);
        return redirect()->route('employee.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Employee  $employee
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         Employee::destroy($id);

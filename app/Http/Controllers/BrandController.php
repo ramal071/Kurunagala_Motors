@@ -21,6 +21,15 @@ class BrandController extends Controller
 
     public function store(Request $request, Brand $brand)
     {
+        $data = $this->validate($request, [
+            'code'=> 'required',
+            'name'=> 'required',
+        ],
+        [
+            'code.required'=>'Please enter the code !!!',
+            'name.required'=>'Please enter the name !!!',
+        ]);
+
         $brand->code = $request->code;
         $brand->name = $request->name;
         $brand->description = $request->description;
@@ -41,6 +50,15 @@ class BrandController extends Controller
 
     public function update(Request $request, brand $brand)
     {
+        $data = $this->validate($request, [
+            'code'=> 'required',
+            'name'=> 'required',
+        ],
+        [
+            'code.required'=>'Please enter the code !!!',
+            'name.required'=>'Please enter the name !!!',
+        ]);
+        
         $brand->code = $request->code;
         $brand->name = $request->name;
         $brand->description = $request->description;

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Role;
 use App\Employee;
 use App\Product;
+use App\Cashier;
 
 class QuickUpdateController extends Controller
 {
@@ -55,6 +56,22 @@ class QuickUpdateController extends Controller
         {
             Product::where('id', '=', $id)->update(['status' => true]);
             return back()->with('success', 'Product Active');
+        }
+    }
+
+    public function cashierQuick($id)
+    {
+        $cashier = Cashier::findorfail($id);
+
+        if($cashier->status)
+        {
+            Cashier::where('id', '=', $id)->update(['status' => false]);
+            return back()->with('delete', 'cashier deacitve');
+        }
+        else
+        {
+            Cashier::where('id', '=', $id)->update(['status' => true]);
+            return back()->with('success', 'cashier Active');
         }
     }
 }

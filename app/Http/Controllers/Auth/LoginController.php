@@ -52,7 +52,7 @@ class LoginController extends Controller
         else{
             
             Auth::logout();
-            return redirect()->route('login')->with('delete','You are deactivated !'); 
+            return redirect()->route('login'); 
         }
     }
 }

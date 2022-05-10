@@ -40,4 +40,9 @@ Route::resource('product', 'ProductController');
 // quick update status
 Route::post('/quickupdate/role/{id}', 'QuickUpdateController@roleQuick')->name('role.quick');
 Route::post('/quickupdate/employee/{id}', 'QuickUpdateController@employeeQuick')->name('employee.quick');
-Route::post('/quickupdate/prooduct/{id}', 'QuickUpdateController@productQuick')->name('product.quick');
+Route::post('/quickupdate/product/{id}', 'QuickUpdateController@productQuick')->name('product.quick');
+Route::post('/quickupdate/cashier/{id}', 'QuickUpdateController@cashierQuick')->name('cashier.quick');
+
+ // Route::get('aaa', 'Auth\AuthController@showLoginForm');
+// Route::post('login', 'Auth\AuthController@login');
+// Route::get('logout', 'Auth\AuthController@logout');

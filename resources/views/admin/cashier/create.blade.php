@@ -1,5 +1,5 @@
 @extends('admin/layouts.master')
-@section('title', 'Create Employee - Admin')
+@section('title', 'Create Cashier - Admin')
 @section('body')
 
 <section class="content">
@@ -7,11 +7,11 @@
     <div class="col-xs-12">
       <div class="box box-primary">
         <div class="box-header with-border">
-          <h3 class="box-title">{{ __('adminstaticword.employee') }}</h3>
+          <h3 class="box-title">{{ __('adminstaticword.cashier') }}</h3>
         </div>
         <div class="box-body">
           <div class="form-group">
-            <form id="demo-form2" method="post" action="{{route('employee.store')}}" enctype="multipart/form-data" data-parsley-validate class="form-horizontal form-label-left" autocomplete="off">
+            <form id="demo-form2" method="post" action="{{route('cashier.store')}}" enctype="multipart/form-data" data-parsley-validate class="form-horizontal form-label-left" autocomplete="off">
               {{ csrf_field() }}
   
         <div class="row">
@@ -24,61 +24,24 @@
 
         <div class="row">
           <div class="col-md-6">
-            <label for="exampleInputTit1e">{{ __('adminstaticword.role') }}</label>
-            <select name="roles[]" class="form-control js-example-basic-single col-md-7 col-xs-12">
-              <option value="0">{{ __('adminstaticword.pleaseselect') }}</option>
-              @foreach($roles as $r)
-                <option value="{{$r->id}}">{{$r->name}}</option>
-              @endforeach
-            </select>
-          </div>
-        </div>
-      <br>
-
-        <div class="row">
-          <div class="col-md-6">
-            <label for="exampleInputTit1e">{{ __('adminstaticword.nickname') }}:<sup class="redstar">*</sup></label>
-            <input type="text" class="form-control" name="nick_name" id="exampleInputname" placeholder="Enter nick name" value="">
+            <label for="exampleInputTit1e">{{ __('adminstaticword.idno') }}:<sup class="redstar">*</sup></label>
+            <input type="text" class="form-control" name="idno" id="exampleInputname" placeholder="Enter ID" value="">
           </div>          
       </div>
       <br>
 
-        <div class="row">
-            <div class="col-md-6">
-              <label for="exampleInputTit1e">{{ __('adminstaticword.phone') }}:<sup class="redstar">*</sup></label>
-              <input type="text" class="form-control" name="phone" id="exampleInputname" placeholder="Enter phone" value="">
-            </div>          
-        </div>
-        <br>
+      <div class="row">
+        <div class="col-md-6">
+          <label for="exampleInputTit1e">{{ __('adminstaticword.password') }}:<sup class="redstar">*</sup></label>
+          <input type="text" class="form-control" name="password" id="exampleInputname" placeholder="Enter password" value="">
+        </div>          
+    </div>
+    <br>
 
         <div class="row">
             <div class="col-md-6">
-              <label for="exampleInputTit1e">{{ __('adminstaticword.address') }}:<sup class="redstar">*</sup></label>
-              <input type="text" class="form-control" name="address" id="exampleInputname" placeholder="Enter address" value="">
-            </div>          
-        </div>
-        <br>
-
-        <div class="row">
-            <div class="col-md-6">
-              <label for="exampleInputTit1e">{{ __('adminstaticword.image') }}:<sup class="redstar">*</sup></label>
-              <input type="file" class="form-control" name="emp_image" id="emp_image" placeholder="Employee image" value="">
-            </div>          
-        </div>
-        <br>
-
-        <div class="row">
-            <div class="col-md-6">
-              <label for="exampleInputTit1e">{{ __('adminstaticword.idfront') }}:<sup class="redstar">*</sup></label>
-              <input type="file" class="form-control" name="id_front" id="id_front" placeholder="Enter id front " value="">
-            </div>          
-        </div>
-        <br>
-
-        <div class="row">
-            <div class="col-md-6">
-              <label for="exampleInputTit1e">{{ __('adminstaticword.idback') }}:<sup class="redstar">*</sup></label>
-              <input type="file" class="form-control" name="id_back" id="id_back" placeholder="Enter id back " value="">
+              <label for="exampleInputTit1e">{{ __('adminstaticword.email') }}:<sup class="redstar">*</sup></label>
+              <input type="text" class="form-control" name="email" id="exampleInputname" placeholder="Enter email" value="">
             </div>          
         </div>
         <br>
@@ -93,11 +56,10 @@
           </div>
         </div>          
           <br>
-
   
             <div class="col-md-6">
                 <input type="submit" class="btn btn-info" value="Save">
-                <a href="{{route('employee.index')}}" class="btn btn-primary">Back</a>
+                <a href="{{route('cashier.index')}}" class="btn btn-primary">Back</a>
             </div> 
 
 

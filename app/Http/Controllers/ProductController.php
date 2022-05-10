@@ -25,6 +25,16 @@ class ProductController extends Controller
 
     public function store(Request $request, Product $product)
     {
+        $data = $this->validate($request, [
+            'code'=>'required',
+            'name'=>'required',
+            'limit'=>'required',
+            'status'=>'required',
+            'bikes_bike_id'=>'required',
+            'brands_brand_id'=>'required',
+
+        ]);
+
         $product->bike_id = $request->bike_id;
         $product->brand_id = $request->brand_id;
         $product->code = $request->code;
@@ -50,6 +60,16 @@ class ProductController extends Controller
 
     public function update(Request $request, Product $product)
     {
+        $data = $this->validate($request, [
+            'code'=>'required',
+            'name'=>'required',
+            'limit'=>'required',
+            'status'=>'required',
+            'bikes_bike_id'=>'required',
+            'brands_brand_id'=>'required',
+
+        ]);
+
         $product->bike_id = $request->bike_id;
         $product->brand_id = $request->brand_id;
         $product->code = $request->code;

@@ -2,6 +2,16 @@
 @section('title', 'Edit Product - Admin')
 @section('body')
 
+@if ($errors->any())
+<div class="alert alert-danger">
+  <ul>
+    @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+    @endforeach
+  </ul>
+</div>
+@endif
+
 <section class="content">
   <div class="row">
     <div class="col-xs-12">
@@ -98,7 +108,7 @@
         <div class="row">
             <div class="col-md-6">
               <label for="exampleInputTit1e">{{ __('adminstaticword.limit') }}:</label>
-              <input type="text" class="form-control" name="limit" id="exampleInputDescription" value=" {{ $product->limit }}">
+              <input type="number" class="form-control" name="limit" id="exampleInputDescription" value=" {{ $product->limit }}">
             </div> 
         </div>
         <br>        

@@ -4,7 +4,6 @@ return [
 
     'employees' => 'Employees' ,
     'employee' => 'Employee',
-    'cashier' => 'Cashier',
     'customer' => 'Customer',
     'id' => 'ID',
 
@@ -43,6 +42,12 @@ return [
     'description' => 'Description',
     'bikename' =>'Bike Name',
     'status' => 'Status',
+
+
+    'cashier' => 'Cashier',
+    'idno' => 'ID Number',
+    'email' => 'E-mail',
+    'password' =>'Passsword',
 
 
     'ServiceBills' => 'Service Bills',

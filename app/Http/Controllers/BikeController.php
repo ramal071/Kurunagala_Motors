@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\brand;
 use App\Bike;
+
 
 use Illuminate\Http\Request;
 
@@ -16,15 +18,30 @@ class BikeController extends Controller
 
     public function create()
     {
-        return view('admin.bike.create');
+        $arr['brand'] = brand::all();
+        return view('admin.bike.create')->with($arr);
     }
 
     public function store(Request $request, Bike $bike)
     {
+
+        $data = $this->validate($request, [ 
+            'name'=> 'required',
+            'code'=>'required',
+            'bikes_brand_id'=>'required'],
+            [
+            'name.required'=>'Please enter the name !!!',
+            'code.required'=>'Please enter the code !!!',
+            'bikes_brand_id.required'=>'Please enter the bikes_brand_id !!!',
+            ]
+        );
+
+       
         $bike->code = $request->code;
         $bike->name = $request->name;
         $bike->description = $request->description;
         $bike->save();
+        $bike->brand_id = $request->brand_id;
         return redirect()->route('bike.index');
     }
 
@@ -36,15 +53,30 @@ class BikeController extends Controller
     public function edit(Bike $bike)
     {
         $arr['bike'] = $bike;
+        $arr['brand'] = brand::all();
         return view('admin.bike.edit')->with($arr);
     }
 
     public function update(Request $request, Bike $bike)
     {
+        $data = $this->validate($request, [ 
+            'name'=> 'required',
+            'code'=>'required',
+            // 'bikes_brand_id'=>'required'
+        ],
+            [
+            'name.required'=>'Please enter the name !!!',
+            'code.required'=>'Please enter the code !!!',
+            'bikes_brand_id.required'=>'Please enter the bikes_brand_id !!!',
+            ]
+        );
+        
+        
         $bike->code = $request->code;
         $bike->name = $request->name;
         $bike->description = $request->description;
         $bike->save();
+        $bike->brand_id = $request->brand_id;
         return redirect()->route('bike.index');
     }
 

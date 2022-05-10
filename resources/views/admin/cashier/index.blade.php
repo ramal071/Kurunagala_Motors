@@ -23,7 +23,8 @@
                     
                     <th>#</th>
                     <th>{{ __('adminstaticword.name') }}</th>
-                    <th>{{ __('adminstaticword.idno') }}</th>
+                    <th>{{ __('adminstaticword.idno') }}</th>                    
+                    <th>{{ __('adminstaticword.password') }}</th>   
                     <th>{{ __('adminstaticword.email') }}</th>                
                     <th>{{ __('adminstaticword.status') }}</th>
                     <th>{{ __('adminstaticword.edit') }}</th>
@@ -38,6 +39,7 @@
                     <td><?php echo $i;?></td>
                     <td>{{$ch->name}}</td>    
                     <td>{{ $ch->idno }}</td>
+                    <td>{{ $ch->password}}</td>
                     <td>{{ $ch->email}}</td>
                     <td>
                       <form action="{{ route('cashier.quick', $ch->id) }}" method="POST">

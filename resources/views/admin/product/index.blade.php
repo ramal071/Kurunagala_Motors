@@ -33,10 +33,6 @@
                                         <?php echo $i++;?>
                                     <tr>
                                         <td><?php echo $i;?></td>
-                                    
-                                            {{-- <td>@if($e->role){{ $e->role->role_name }}@endif</td> 
-                        <td>{{ $e->role->role_name}}</td>
-                                            --}}
                                         <td>{{ $pr->brand->name}}</td>
                                         <td>{{ $pr->bike->name}}</td>
                                         <td>{{ $pr->code }}</td>

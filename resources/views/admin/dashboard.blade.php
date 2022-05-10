@@ -25,7 +25,17 @@
           <div class="small-box bg-aqua">
             <div class="inner">
               <h3>
-             800
+              	@php
+              		$user = App\User::get();
+              		if(count($user)>0){
+
+              			echo count($user);
+              		}
+              		else
+                  {
+              			echo "0";
+              		}
+              	@endphp
               </h3>
               <p>{{ __('adminstaticword.users') }}</p>
             </div>
@@ -42,7 +52,16 @@
           <div class="small-box bg-green">
             <div class="inner">
               <h3>
-              70
+              @php
+                  $brand = App\brand::get();
+                  if(count($brand)>0){
+                    echo count($brand);
+                  }
+                  else
+                  {
+                    echo "0";
+                  }
+              @endphp
               </h3>
               <p>{{ __('adminstaticword.brand') }}</p>
             </div>
@@ -59,7 +78,16 @@
           <div class="small-box bg-yellow">
             <div class="inner">
               <h3>
-              320
+              @php
+              $bike = App\Bike::get();
+              if(count($bike)>0){
+                echo count($bike);
+              }
+              else
+              {
+                echo "0";
+              }
+          @endphp
               </h3>
               <p>{{ __('adminstaticword.model') }}</p>
             </div>

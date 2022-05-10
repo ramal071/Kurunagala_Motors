@@ -1,8 +1,6 @@
 @section('title', 'Login')
 @include('theme.head')
 
-@include('admin.message')
-
 <!-- end head -->
 <!-- body start-->
 <body>
@@ -21,12 +19,8 @@
                     @php
                         $logo = App\Setting::first();
                     @endphp
-
-                    @if($logo->logo)
-                        <a href="{{ url('/') }}" title="logo"><img src="{{ asset('images/logo/'.$logo->logo) }}" class="img-fluid" alt="logo"></a>
-                    @else
                         <a href="{{ url('/') }}"><b><div class="logotext">{{ $logo->project_title }}</div></b></a>
-                    @endif
+                  
                 </div>
             </div>
             <div class="col-lg-4 col-4">

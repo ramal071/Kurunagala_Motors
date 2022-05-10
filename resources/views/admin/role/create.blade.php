@@ -2,6 +2,16 @@
 @section('title', 'Add Role - Admin')
 @section('body')
 
+@if ($errors->any())
+    <div class="alert alert-danger">
+      <ul>
+        @foreach ($errors->all() as $error)
+            <li> {{ $error }} </li>
+        @endforeach
+      </ul>
+    </div>
+@endif
+
 <section class="content">
   @include('admin.message')
   <div class="row">
@@ -15,9 +25,6 @@
             <form id="demo-form2" method="post" action="{{route('role.store')}}" data-parsley-validate class="form-horizontal form-label-left" autocomplete="off">
               {{ csrf_field() }}
   
-        
-  
-
         <div class="row">
             <div class="col-md-6">
               <label for="exampleInputTit1e">{{ __('adminstaticword.name') }}:<sup class="redstar">*</sup></label>

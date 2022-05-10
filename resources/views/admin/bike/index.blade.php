@@ -23,6 +23,7 @@
                 <tr>
                   
                   <th>#</th>
+                  <th>{{ __('adminstaticword.brand') }}</th>
                   <th>{{ __('adminstaticword.code') }}</th>
                   <th>{{ __('adminstaticword.name') }}</th>
                   <th>{{ __('adminstaticword.description') }}</th>
@@ -36,7 +37,7 @@
                 <?php $i++;?>
                 <tr>
                   <td><?php echo $i;?></td>
-                 
+                        <td>{{ $b->brand->name}}</td>
                         <td>{{ $b->code }}</td>
                         <td>{{ $b->name }}</td>
                         <td>{{ $b->description }}</td>

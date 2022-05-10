@@ -3,91 +3,62 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Auth;
+use App\Cashier;
 
 
 class CashierController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        if(Auth::User()->role == "cashier")
-        {
-        return view('cashier.dashboard');
-        }
-        else
-        {
-            return back();
-        }
+      
+        $arr['cashier'] = Cashier::all();
+        return view('admin.cashier.index')->with($arr);
+     
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('admin.cashier.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request, Cashier $cashier)
+    {        
+        $cashier->name = $request->name;
+        $cashier->idno = $request->idno;
+        $cashier->email = $request->email;
+        $cashier->password =Hash::make($request->password);
+        $cashier->status = ($request->status) ? 1:0;
+        $cashier->save();
+        return redirect()->route('cashier.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Cashier  $cashier
-     * @return \Illuminate\Http\Response
-     */
     public function show(Cashier $cashier)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Cashier  $cashier
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Cashier $cashier)
     {
-        //
+        $arr['cashier'] = $cashier;
+        return view('admin.cashier.edit')->with($arr);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Cashier  $cashier
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Cashier $cashier)
-    {
-        //
+    {        
+        $cashier->name = $request->name;
+        $cashier->idno = $request->idno;
+        $cashier->email = $request->email;
+        $cashier->password =  Hash::make($request->password);
+        $cashier->status = ($request->status) ? 1:0;
+        $cashier->save();
+        return redirect()->route('cashier.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Cashier  $cashier
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Cashier $cashier)
+    public function destroy($id)
     {
-        //
+        cashier::destroy($id);
+        return redirect()->route('cashier.index');
     }
 }

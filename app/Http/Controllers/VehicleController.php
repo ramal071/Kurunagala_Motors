@@ -32,6 +32,14 @@ class VehicleController extends Controller
      */
     public function store(Request $request, Vehicle $vehicle)
     {
+        $data = $this->validate($request, [
+            'code'=> 'required',
+            'name'=> 'required',
+        ],
+        [
+            'code.required'=>'Please enter the code !!!',
+            'name.required'=>'Please enter the name !!!',
+        ]);
 
         $vehicle->code = $request->code;
         $vehicle->name = $request->name;
@@ -72,6 +80,15 @@ class VehicleController extends Controller
      */
     public function update(Request $request, vehicle $vehicle)
     {
+        $data = $this->validate($request, [
+            'code'=> 'required',
+            'name'=> 'required',
+        ],
+        [
+            'code.required'=>'Please enter the code !!!',
+            'name.required'=>'Please enter the name !!!',
+        ]);
+        
         $vehicle->code = $request->code;
         $vehicle->name = $request->name;
         $vehicle->description = $request->description;

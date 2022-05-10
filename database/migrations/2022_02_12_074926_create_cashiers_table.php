@@ -17,6 +17,7 @@ class CreateCashiersTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string( 'idno');
+            $table->string( 'password');
             $table->string( 'email');
             $table->boolean('status')->default(1);
             $table->timestamps();
