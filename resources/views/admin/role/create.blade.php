@@ -2,18 +2,9 @@
 @section('title', 'Add Role - Admin')
 @section('body')
 
-@if ($errors->any())
-    <div class="alert alert-danger">
-      <ul>
-        @foreach ($errors->all() as $error)
-            <li> {{ $error }} </li>
-        @endforeach
-      </ul>
-    </div>
-@endif
+@include('admin.message')
 
 <section class="content">
-  @include('admin.message')
   <div class="row">
     <div class="col-xs-12">
       <div class="box box-primary">

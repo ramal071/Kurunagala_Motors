@@ -31,7 +31,7 @@ class CashierController extends Controller
         $cashier->password =Hash::make($request->password);
         $cashier->status = ($request->status) ? 1:0;
         $cashier->save();
-        return redirect()->route('cashier.index');
+        return redirect()->route('cashier.index')->with('success', 'Cashier created successfully');
     }
 
     public function show(Cashier $cashier)
@@ -59,6 +59,6 @@ class CashierController extends Controller
     public function destroy($id)
     {
         cashier::destroy($id);
-        return redirect()->route('cashier.index');
+        return redirect()->route('cashier.index')->with('delete', 'Cashier deleted');
     }
 }

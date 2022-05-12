@@ -1,6 +1,8 @@
 @extends('admin/layouts.master')
 @section('title', 'View Brand - Admin')
 @section('body')
+@include('admin.message')
+
     <section class="content">
         <div class="row">
             <div class="col-xs-12">

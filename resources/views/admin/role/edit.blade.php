@@ -1,16 +1,7 @@
 @extends('admin/layouts.master')
 @section('title', 'Edit Role - Admin')
 @section('body')
-
-@if ($errors->any())
-<div class="alert alert-danger">
-  <ul>
-    @foreach ($errors->all() as $error)
-        <li>{{ $error }}</li>
-    @endforeach
-  </ul>
-</div>
-@endif
+@include('admin.message')
 
 <section class="content">
     <div class="row">
@@ -36,24 +27,16 @@
               </div>  
             </br>
 
-            {{-- <div class="row">
-              <div class="col-md-3">
-                <label for="exampleInputTit1e">{{ __('adminstaticword.status') }}:</label>
-                  <li class="tg-list-item">              
-                    <input class="tgl tgl-skewed" id="status" type="checkbox" name="status" {{ $role->status == '1' ? 'checked' : '' }} >
-                    <label class="tgl-btn" data-tg-off="Disable" data-tg-on="Enable" for="status"></label>
-                  </li>
-              </div>
-            </div>
-          </br> --}}
-
+          <div class="row">
           <div class="col-md-6">
-            <label for="exampleInputDetails">{{ __('adminstaticword.status') }}:</label>
+            <label for="exampleInputTit1e">{{ __('adminstaticword.status') }}:</label>           
             <li class="tg-list-item">              
-              <input class="tgl tgl-skewed" id="status" type="checkbox" name="status"  {{ $role->status == '1' ? 'checked' : '' }} >
+              <input class="tgl tgl-skewed" id="status" type="checkbox" name="status" {{ $role->status == '1' ? 'checked' : '' }} >
               <label class="tgl-btn" data-tg-off="Disable" data-tg-on="Enable" for="status"></label>
             </li>
+            <input type="hidden"  name="free" value="0" for="status" id="status">
           </div>
+        </div>
         </br>
          
               <div class="row box-footer">
@@ -62,11 +45,8 @@
             </form>
           </div>
         </div>
-        <!-- /.box -->
       </div>
-      <!-- /.col -->
     </div>
-    <!-- /.row -->
   </section>
   @endsection
   

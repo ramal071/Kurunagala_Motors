@@ -1,16 +1,7 @@
 @extends('admin/layouts.master')
 @section('title', 'Edit Employee - Admin')
 @section('body')
-
-@if ($errors->any())
-<div class="alert alert-danger">
-  <ul>
-    @foreach ($errors->all() as $error)
-        <li>{{ $error }}</li>
-    @endforeach
-  </ul>
-</div>
-@endif
+@include('admin.message')
 
 <section class="content">
     <div class="row">
@@ -29,7 +20,7 @@
           <div class="row">
               <div class="col-md-6">
                 <label for="exampleInputTit1e">{{ __('adminstaticword.name') }}:<sup class="redstar">*</sup></label>
-                <input type="text" class="form-control" name="name" id="exampleInputname" placeholder="Enter name" value="{{ $employee->name }}">
+                <input type="text" class="form-control" name="name" id="exampleInputname" value="{{ $employee->name }}">
               </div>          
           </div>
           <br>
@@ -54,7 +45,7 @@
           <div class="row">
             <div class="col-md-6">
               <label for="exampleInputTit1e">{{ __('adminstaticword.nickname') }}:<sup class="redstar">*</sup></label>
-              <input type="text" class="form-control" name="nick_name" id="exampleInputname" placeholder="Enter nick name" value="{{ $employee->nick_name }}">
+              <input type="text" class="form-control" name="nick_name" id="exampleInputname" value="{{ $employee->nick_name }}">
             </div>          
         </div>
         <br>
@@ -62,7 +53,7 @@
           <div class="row">
               <div class="col-md-6">
                 <label for="exampleInputTit1e">{{ __('adminstaticword.phone') }}:<sup class="redstar">*</sup></label>
-                <input type="text" class="form-control" name="phone" id="exampleInputname" placeholder="Enter phone" value="{{ $employee->phone }}">
+                <input type="text" class="form-control" name="phone" id="exampleInputname" value="{{ $employee->phone }}">
               </div>          
           </div>
           <br>
@@ -70,7 +61,7 @@
           <div class="row">
               <div class="col-md-6">
                 <label for="exampleInputTit1e">{{ __('adminstaticword.address') }}:<sup class="redstar">*</sup></label>
-                <input type="text" class="form-control" name="address" id="exampleInputname" placeholder="Enter address" value="{{ $employee->address }}">
+                <input type="text" class="form-control" name="address" id="exampleInputname" value="{{ $employee->address }}">
               </div>          
           </div>
           <br>

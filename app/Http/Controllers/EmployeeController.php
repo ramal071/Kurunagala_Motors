@@ -79,12 +79,12 @@ class EmployeeController extends Controller
     $employee->save();
 
     $employee->roles()->attach($request->roles);        
-    return redirect()->route('employee.index');
+    return redirect()->route('employee.index')->with('success', 'Employee created');
     }
 
     public function show(Employee $employee)
     {
-        //
+        
     }
 
     public function edit(Employee $employee)
@@ -99,12 +99,8 @@ class EmployeeController extends Controller
         $data = $this->validate($request, [
             'name'=>'required',
             'nick_name'=>'required',
-            'emp_image'=>'required',
-            'id_front'=>'required',
-            'id_back'=>'required',
             'phone'=>'required',
             'address'=>'required',
-            'status'=>'required',
         ]);
       
         if(isset($request->emp_image) && $request->emp_image->getClientOriginalName()){
@@ -146,8 +142,6 @@ class EmployeeController extends Controller
       $file2 = $employee->id_back;
      }
 
-    //   $employee->role_id = $request->role_id;
-    // $employee->roles()->sync($request->roles);
        $employee->emp_image = $file;
        $employee->id_front = $file1;
        $employee->id_back = $file2;
@@ -164,6 +158,6 @@ class EmployeeController extends Controller
     public function destroy($id)
     {
         Employee::destroy($id);
-        return redirect()->route('employee.index');
+        return redirect()->route('employee.index')->with('delete','Employee deleted');
     }
 }

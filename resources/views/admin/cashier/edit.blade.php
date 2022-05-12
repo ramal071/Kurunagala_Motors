@@ -1,7 +1,7 @@
 @extends('admin/layouts.master')
 @section('title', 'Edit cashier - Admin')
 @section('body')
-
+@include('admin.message')
 
 <section class="content">
     <div class="row">

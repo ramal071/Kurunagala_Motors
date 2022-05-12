@@ -6,9 +6,11 @@ return [
     'employee' => 'Employee',
     'customer' => 'Customer',
     'id' => 'ID',
+    'create'=> 'Create',
 
     'role' => 'Role',
     'addrole' => 'Add Role',
+    'editrole' => 'Edit Role',
     'status' => 'Status',
     'edit' => 'Edit',
     'delete' => 'Delete',
@@ -48,7 +50,10 @@ return [
     'idno' => 'ID Number',
     'email' => 'E-mail',
     'password' =>'Passsword',
-
+    'first'=> 'First',
+    'last' => 'Last',
+    'passwordconfirmation' => 'Password Confirmation',
+    'contact' => 'Contact',
 
     'ServiceBills' => 'Service Bills',
     'Comments' => 'Comments',
@@ -69,5 +74,6 @@ return [
     'proformance' => 'Employee Proformance',
     'profit' => 'Profit',
     'income' => 'Income',
+    'search' => 'Search',
 
 ];

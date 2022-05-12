@@ -2,15 +2,7 @@
 @section('title', 'Add Bike - Admin')
 @section('body')
 
-@if ($errors->any())
-<div class="alert alert-danger">
-  <ul>
-    @foreach ($errors->all() as $error)
-        <li>{{ $error }}</li>
-    @endforeach
-  </ul>
-</div>
-@endif
+@include('admin.message')
 
 <section class="content">
   <div class="row">
@@ -27,8 +19,8 @@
               <div class="row">
                 <div class="col-md-6">
                   <label for="exampleInputTit1e">{{ __('adminstaticword.brand') }}</label>
-                  <select name="brand_id"class="form-control js-example-basic-single col-md-7 col-xs-12">
-                    <option value="0">{{ __('adminstaticword.pleaseselect') }}</option>
+                  <select name="brand_id" class="form-control js-example-basic-single col-md-7 col-xs-12">
+                    <option value="0">{{ __('adminstaticword.pleaseselect')}} {{__('adminstaticword.brand')}}</option>
                     @foreach($brand as $br)
                       <option value="{{$br->id}}">{{$br->name}}</option>
                     @endforeach

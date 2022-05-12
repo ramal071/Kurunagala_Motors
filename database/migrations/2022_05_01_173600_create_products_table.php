@@ -16,9 +16,9 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('brand_id');
-            $table->foreign('brand_id')->references('id')->on('brands');
+            $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
             $table->unsignedBigInteger('bike_id');
-            $table->foreign('bike_id')->references('id')->on('bikes');
+            $table->foreign('bike_id')->references('id')->on('bikes')->onDelete('cascade');
             $table->string('name');
             $table->string('code')->nullable();
             $table->integer('limit');

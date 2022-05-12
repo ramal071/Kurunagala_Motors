@@ -45,7 +45,7 @@ class VehicleController extends Controller
         $vehicle->name = $request->name;
         $vehicle->description = $request->description;
         $vehicle->save();
-        return redirect()->route('vehicle.index');
+        return redirect()->route('vehicle.index')->with('success', 'Vehicle model created successfully' );
     }
 
     /**
@@ -105,6 +105,6 @@ class VehicleController extends Controller
     public function destroy($id)
     {
         Vehicle::destroy($id);
-        return redirect()->route('vehicle.index');
+        return redirect()->route('vehicle.index')->with('delete', 'Vehicle model delete successfully');
     }
 }

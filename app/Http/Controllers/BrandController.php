@@ -34,7 +34,7 @@ class BrandController extends Controller
         $brand->name = $request->name;
         $brand->description = $request->description;
         $brand->save();
-        return redirect()->route('brand.index');
+        return redirect()->route('brand.index')->with('success', 'Brand created succcess');
     }
 
     public function show(brand $brand)
@@ -69,6 +69,6 @@ class BrandController extends Controller
     public function destroy($id)
     {
         Brand::destroy($id);
-        return redirect()->route('brand.index');
+        return redirect()->route('brand.index')->with('delete', 'Brand deleted');
     }
 }

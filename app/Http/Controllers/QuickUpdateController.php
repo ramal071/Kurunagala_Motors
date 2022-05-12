@@ -34,12 +34,12 @@ class QuickUpdateController extends Controller
         if($employee->status)
         {
             Employee::where('id', '=', $id)->update(['status' => false]);
-            return back()->with('delete', 'Employee deacitve');
+            return back()->with('delete', 'Employee deacitved');
         }
         else
         {
             Employee::where('id', '=', $id)->update(['status' => true]);
-            return back()->with('success', 'Employee Active');
+            return back()->with('success', 'Employee Actived');
         }
     }
 

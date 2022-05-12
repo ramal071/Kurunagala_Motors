@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Bike extends Model
 {
+    protected $table = 'bikes';
+    
+    protected $fillable = ['id', 'brand_id']; 
+
     public function product()
     {
         return $this->hasMany(Product::class, 'bike_id', 'id');

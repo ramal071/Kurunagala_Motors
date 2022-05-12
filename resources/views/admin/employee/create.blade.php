@@ -1,16 +1,7 @@
 @extends('admin/layouts.master')
 @section('title', 'Create Employee - Admin')
 @section('body')
-
-@if ($errors->any())
-<div class="alert alert-danger">
-  <ul>
-    @foreach ($errors->all() as $error)
-        <li>{{ $error }}</li>
-    @endforeach
-  </ul>
-</div>
-@endif
+@include('admin.message')
 
 <section class="content">
   <div class="row">

@@ -42,7 +42,7 @@ class ProductController extends Controller
         $product->limit = $request->limit;
         $product->status = ($request->status) ? 1:0;
         $product->save();
-        return redirect()->route('product.index');
+        return redirect()->route('product.index')->with('success', 'Product created successfully');
     }
 
     public function show(Product $product)
@@ -84,6 +84,6 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
-        return redirect()->route('product.index');
+        return redirect()->route('product.index')->with('delete', 'Product deleted successfully');
     }
 }

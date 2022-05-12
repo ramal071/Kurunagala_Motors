@@ -24,25 +24,26 @@ class BikeController extends Controller
 
     public function store(Request $request, Bike $bike)
     {
-
+        // $request->validate([
         $data = $this->validate($request, [ 
             'name'=> 'required',
-            'code'=>'required',
-            'bikes_brand_id'=>'required'],
+            'code'=>'required|unique:bikes,name',
+            'brand_id'=>'required'
+        ],
             [
             'name.required'=>'Please enter the name !!!',
             'code.required'=>'Please enter the code !!!',
-            'bikes_brand_id.required'=>'Please enter the bikes_brand_id !!!',
+            'code.unique' => 'This code already used',
             ]
         );
 
-       
+     
+        $bike->brand_id = $request->brand_id;
         $bike->code = $request->code;
         $bike->name = $request->name;
         $bike->description = $request->description;
         $bike->save();
-        $bike->brand_id = $request->brand_id;
-        return redirect()->route('bike.index');
+        return redirect()->route('bike.index')->with('success', 'Bike model created');
     }
 
     public function show($id)
@@ -67,7 +68,7 @@ class BikeController extends Controller
             [
             'name.required'=>'Please enter the name !!!',
             'code.required'=>'Please enter the code !!!',
-            'bikes_brand_id.required'=>'Please enter the bikes_brand_id !!!',
+            // 'bikes_brand_id.required'=>'Please enter the bikes_brand_id !!!',
             ]
         );
         
@@ -83,6 +84,6 @@ class BikeController extends Controller
     public function destroy($id)
     {
         Bike::destroy($id);
-        return redirect()->route('bike.index');
+        return redirect()->route('bike.index')->with('delete', 'Bike model deleted');
     }
 }

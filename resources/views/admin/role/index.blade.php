@@ -65,9 +65,7 @@
                       </td>
 
                   </td>
-                </tr>
-                {{-- delete modal --}}
-               
+                </tr>               
                 @endforeach
               </tbody>
             </table>

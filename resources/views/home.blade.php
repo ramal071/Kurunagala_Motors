@@ -7,6 +7,13 @@
 <!-- services start-->
 <section class="section services-section" id="services">
     <div class="container">
+
+        {{-- <div class="user-detailss">
+            Hi, {{ Auth::User()->fname }}                        
+        </div>  
+ --}}
+
+        
         <div class="row">
             <div class="col-lg-6">
                 <div class="section-title">
