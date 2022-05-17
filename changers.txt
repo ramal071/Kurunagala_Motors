@@ -1,0 +1,4 @@
+authservice provider == can remove
+ Gate::define('isCustomer', function ($user) {
+            return $user->role->first()->slug == 'customer';
+        });

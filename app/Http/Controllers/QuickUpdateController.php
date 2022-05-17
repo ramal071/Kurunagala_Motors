@@ -8,6 +8,7 @@ use App\Role;
 use App\Employee;
 use App\Product;
 use App\Cashier;
+use App\User;
 
 class QuickUpdateController extends Controller
 {
@@ -72,6 +73,22 @@ class QuickUpdateController extends Controller
         {
             Cashier::where('id', '=', $id)->update(['status' => true]);
             return back()->with('success', 'cashier Active');
+        }
+    }
+
+    public function userQuick($id)
+    {
+        $user = User::findorfail($id);
+
+        if($user->status)
+        {
+            User::where('id', '=', $id)->update(['status' => false]);
+            return back()->with('delete',  'User deacitve');
+        }
+        else
+        {
+            User::where('id', '=', $id)->update(['status' => true]);
+            return back()->with('success', 'User Active');
         }
     }
 }

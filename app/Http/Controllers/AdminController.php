@@ -15,15 +15,17 @@ class AdminController extends Controller
 
     public function index()
     {
-        if(Auth::User()->role == "admin")
+      //  return view('admin.dashboard');
+      //  if(Auth::user()->role->first()->name  == "manager")
+        if(Auth::User()->role_id == "1")
         {                         
 
             return view('admin.dashboard');
         }
-        elseif(Auth::User()->role == "cashier")
+       // elseif(Auth::user()->role->first()->name  == "cashier")
+       elseif(Auth::User()->role_id == "2")
         {
-
-            return view('cashier.dashboard');
+            return view('admin.dashboard');
         }
         else
         {

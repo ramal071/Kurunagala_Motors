@@ -31,9 +31,10 @@
   <link rel="stylesheet" href="{{ asset('css/custom-style.css') }}"/>
   <link rel="stylesheet" href="{{ url('admin/font/font/flaticon.css') }}" /> <!-- fontawesome css -->
 
-  
+    <link rel="stylesheet" href="{{url('css/admin/bootstrap-tagsinput.css')}}">
 
   @yield('stylesheets')
+  @yield('css_role_page')
   
 </head>
 
@@ -62,7 +63,13 @@
             <li class="dropdown user user-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <img src="{{ asset('images/default/user.jpg')}}" class="user-image" alt="">            
-                <span class="hidden-xs">Hi ! {{ Auth()->User()['fname'] }}</span>
+                <span class="hidden-xs">
+
+                  @auth
+                  Hi..{{ Auth::user()->fname }} {{ Auth::user()->role->isNotEmpty() ? Auth::user()->role->first()->name : "" }}
+                  @endauth
+                  {{-- Hi ! {{ Auth()->User()['fname'] }} --}}
+                </span>
               </a>            
             </li>
             <!-- Control Sidebar Toggle Button -->
@@ -83,12 +90,12 @@
     </header>
 
     <!-- Left side column. contains the logo and sidebar -->
-    @if(Auth::User()->role == "admin")
+    {{-- @if(Auth::User()->role == "admin") --}}
       @include('admin.layouts.sidebar')
-    @endif
+ {{--}}   @endif
     @if(Auth::User()->role == "cashier")
       @include('cashier.layouts.sidebar')
-    @endif
+    @endif --}}
     
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -112,12 +119,16 @@
   <script src="{{url('admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script> <!-- SlimScroll -->
   <script src="{{url('admin/bower_components/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script> <!-- FastClick -->
   <script src="{{url('admin/bower_components/fastclick/lib/fastclick.js')}}"></script>
-  <!-- AdminLTE App -->
+ <!-- AdminLTE App -->
   <script src="{{url('admin/dist/js/adminlte.min.js')}}"></script> <!-- AdminLTE for demo purposes -->
   <script src="{{url('admin/dist/js/demo.js')}}"></script>
   <script src="{{ URL::asset('admin/bower_components/PACE/pace.min.js') }}"></script> 
 
+  <script src="{{url('js/admin/bootstrap-tagsinput.js')}}"></script> 
 
+@yield('js_post_page')
+@yield('js_user_page')
+@yield('js_role_page')
   
 </body>
 </html>

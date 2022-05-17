@@ -13,7 +13,7 @@
       </div>
 
 
-      @if(Auth::User()->role == "admin")
+      {{-- @if(Auth::User()->role == "admin") --}}
         <ul class="sidebar-menu" data-widget="tree">
           <li class="header">{{ __('adminstaticword.navigation') }}</li>
 
@@ -22,6 +22,9 @@
           <li class="{{ Nav::isRoute('admin.index') }}"><a href="{{route('admin.index')}}"><i class="flaticon-web-browser" aria-hidden="true"></i><span>{{ __('adminstaticword.dashboard') }}</span></a></li>
 
           {{-- Employee = role/ employee --}}
+
+          {{-- @can('isManager') --}}
+          
           <li class="{{ Nav::isRoute('employee') }} {{ Nav::isResource('employee') }} treeview">
             <a href="#">
                 <i class="flaticon-location"></i>{{ __('adminstaticword.employees') }}
@@ -33,7 +36,11 @@
             </ul>
           </li> 
 
+          {{-- @endcan --}}
+         
+
           {{-- Producy = product/ brand/ vehicle model --}}
+          {{-- @canany(['isManager', 'isCashier']) --}}
 
           <li class="{{ Nav::isRoute('product') }} {{ Nav::isResource('product') }} treeview">
             <a href="#">
@@ -46,13 +53,16 @@
               <li class="{{ Nav::isRoute('brand.index') }}"><a href="{{route('brand.index')}}"><i class="flaticon-rec"></i>{{__('adminstaticword.brand')}}</a></li>
             </ul>
           </li> 
+              
+          {{-- @endcanany --}}
+          
+          
 
-
-          <li class="{{ Nav::isRoute('cashier.index') }}"><a href="{{route('cashier.index')}}"><i class="flaticon-web-browser" aria-hidden="true"></i><span>{{ __('adminstaticword.cashier') }}</span></a></li>
+          <li class="{{ Nav::isRoute('users.index') }}"><a href="{{route('users.index')}}"><i class="flaticon-web-browser" aria-hidden="true"></i><span>{{ __('adminstaticword.users') }}</span></a></li>
  
         
         </ul>
-      @endif
+      {{-- @endif --}}
     </section>
     <!-- /.sidebar -->
 </aside>

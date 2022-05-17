@@ -2,7 +2,7 @@
 @section('title', 'Dashboard - Admin')
 @section('body')
 
-@if(Auth()->User()->role == "admin")
+{{-- @if(Auth()->User()->role == "admin") --}}
 
 
 <section class="content-header">
@@ -18,7 +18,6 @@
 
 <section class="content">
 	<!-- Main row -->
-    {{-- @include('sweetalert::alert') --}}
     <div class="row">
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
@@ -184,7 +183,7 @@
     <!-- /.row -->
 
 
-@endif
+{{-- @endif --}}
 
 @endsection
 

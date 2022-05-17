@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Cashier;
 use App\User;
 class UsersSeeder extends Seeder
 {
@@ -17,8 +16,8 @@ class UsersSeeder extends Seeder
         $user =factory(User::class, 8)->create();
         $user->each(function(User $user) {
 
-            if($user->role == "cashier"){
-                factory(Cashier::class,1)->create([
+            if($user->role == "manager"){
+                factory(Manager::class,1)->create([
                     'user_id'=>$user->id
                 ]);
             }

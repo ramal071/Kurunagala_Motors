@@ -46,13 +46,23 @@
 
                 <div class="sidebar-nav-icon">
                     <ul>
-                         @if(Auth::User()->role == "admin" )
+                         {{-- @if(Auth::user()->role->first()->name == "manager" )
                         <a target="_blank" href="{{ url('/admins') }}"><li><i class="fa fa-dashboard"></i>{{ __('frontstaticword.AdminDashboard') }}</li></a>
                         @endif
-                        @if(Auth::User()->role == "cashier")
-
-                        <a target="_blank" href="{{ url('/cashier') }}"><li><i class="fa fa-dashboard"></i>{{ __('frontstaticword.cashierdashboard') }}</li></a>
+                        @if(Auth::user()->role->first()->name == "cashier")
+                        <a target="_blank" href="{{ url('/admins') }}"><li><i class="fa fa-dashboard"></i>{{ __('frontstaticword.cashierdashboard') }}</li></a>
                         @endif
+                        @if(Auth::user()->role->first()->name == "")
+                        <a target="_blank" href="{{ url('/home') }}"><li><i class="fa fa-dashboard"></i>{{ __('frontstaticword.cashierdashboard') }}</li></a>
+                        @endif --}}
+
+                        {{-- @if(Auth::user()->role->first()->name == "manager" )
+                        <a target="_blank" href="{{ url('/admins') }}"><li><i class="fa fa-dashboard"></i>{{ __('frontstaticword.AdminDashboard') }}</li></a>
+                        @elseif(Auth::user()->role->first()->name == "cashier")
+                        <a target="_blank" href="{{ url('/admins') }}"><li><i class="fa fa-dashboard"></i>{{ __('frontstaticword.cashierdashboard') }}</li></a>
+                        @else<a target="_blank" href="{{ url('/home') }}"><li><i class="fa fa-dashboard"></i>{{ __('frontstaticword.user') }}</li></a>
+                         --}}
+                        
                         <a href=""><li><i class="fa fa-heart"></i>{{ __('frontstaticword.service') }}</li></a>
                         <a href=""><li ><i class="fa fa-user"></i>{{ __('frontstaticword.userprofile') }}</li></a>
                      </ul>

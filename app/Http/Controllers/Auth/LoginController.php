@@ -23,36 +23,46 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
-    protected $redirectTo = '/home';
+   // protected $redirectTo = '/home';
+
+
 
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
     }
 
-    public function authenticated()
-    {
-        $gsetting = Setting::first();
+    
+
+     public function authenticated()
+     {
+
+       
+
+       $gsetting = Setting::first();
 
         if(Auth::User()->status == 1)
         {
-            if( Auth::User()-> role == "admin")
+          //  if(Auth::user()->role->first()->name  == "manager")
+          if(Auth::User()->role_id == "1")
             {
                 return redirect()->route('admin.index');
             }
-            elseif(Auth::User()->role == "cashier")
+           // elseif(Auth::user()->role->first()->name  == "cashier")
+           elseif(Auth::User()->role_id == "2")
             {
-                return redirect()->route('cashier.index');
+                return redirect()->route('admin.index');
             }
             else
             {
-                return redirect('/home');
+                return redirect('/');
             }
         }
-        else{
+        else
+        {
             
             Auth::logout();
             return redirect()->route('login'); 
         }
-    }
+     }
 }

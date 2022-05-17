@@ -9,6 +9,8 @@ return [
     'create'=> 'Create',
 
     'role' => 'Role',
+    'permission' => 'Permission',
+    'slug' =>'Slug',
     'addrole' => 'Add Role',
     'editrole' => 'Edit Role',
     'status' => 'Status',
@@ -18,6 +20,8 @@ return [
     'deactive' => 'Deactive',
     'add' => 'Add',
     'save' =>'Save',
+    'tool' => 'Tool',
+    'show' => 'Show',
 
     'employee' => 'Employee',
     'addemployee' => 'Add Employee',
@@ -27,6 +31,7 @@ return [
     'phone' => 'Phone',
     'address' => 'Address',
     'empimage' => 'Image',
+    'idno' => 'ID Number',
     'idfront' => 'ID Front',
     'idback' => 'ID Back',
     'image' => 'Image',
@@ -50,8 +55,8 @@ return [
     'idno' => 'ID Number',
     'email' => 'E-mail',
     'password' =>'Passsword',
-    'first'=> 'First',
-    'last' => 'Last',
+    'fname'=> 'First Name',
+    'lname' => 'Last Name',
     'passwordconfirmation' => 'Password Confirmation',
     'contact' => 'Contact',
 
@@ -60,6 +65,7 @@ return [
     'navigation' => 'MAIN NAVIGATION',
     'dashboard' => 'Dashboard',
     'users' => 'Users',
+    'user' => 'User',
     'latestusers' => 'Latest Users',
     'online' => 'Online',
     'logout' => 'Logout',
@@ -75,5 +81,6 @@ return [
     'profit' => 'Profit',
     'income' => 'Income',
     'search' => 'Search',
+   
 
 ];

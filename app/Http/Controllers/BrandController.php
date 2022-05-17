@@ -4,18 +4,25 @@ namespace App\Http\Controllers;
 
 use App\brand;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class BrandController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function index()
     {
+        
         $arr['brand'] = Brand::all();
         return view('admin.brand.index')->with($arr);
     }
 
-    public function create()
+    public function create(brand $brand)
     {
+        $this->authorize('create', brand::class); //policy
         return view('admin.brand.create');
     }
 
@@ -44,12 +51,23 @@ class BrandController extends Controller
 
     public function edit(brand $brand)
     {
+        $this->authorize('edit', $brand); //policy
+
         $arr['brand'] = $brand;
         return view('admin.brand.edit')->with($arr);
     }
 
     public function update(Request $request, brand $brand)
     {
+        $this->authorize('update', $brand); //policy
+
+        //  if (Gate::allows('isAdmin')) {
+        //  //   abort(403);
+        //    dd('admin');
+        // }else{
+        //     dd('not admin');
+        // }
+
         $data = $this->validate($request, [
             'code'=> 'required',
             'name'=> 'required',
@@ -66,9 +84,10 @@ class BrandController extends Controller
         return redirect() -> route('brand.index');
     }
 
-    public function destroy($id)
+    public function destroy(Request $request, brand $brand)
     {
-        Brand::destroy($id);
+        $this->authorize('delete', $brand); //policy
+        $brand->delete();
         return redirect()->route('brand.index')->with('delete', 'Brand deleted');
     }
 }

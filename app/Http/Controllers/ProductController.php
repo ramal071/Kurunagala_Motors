@@ -30,8 +30,8 @@ class ProductController extends Controller
             'name'=>'required',
             'limit'=>'required',
             'status'=>'required',
-            'bikes_bike_id'=>'required',
-            'brands_brand_id'=>'required',
+            // 'bikes_bike_id'=>'required',
+            // 'brands_brand_id'=>'required',
 
         ]);
 
@@ -65,8 +65,8 @@ class ProductController extends Controller
             'name'=>'required',
             'limit'=>'required',
             'status'=>'required',
-            'bikes_bike_id'=>'required',
-            'brands_brand_id'=>'required',
+            // 'bikes_bike_id'=>'required',
+            // 'brands_brand_id'=>'required',
 
         ]);
 

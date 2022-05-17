@@ -10,6 +10,7 @@ use App\Role;
 
 class EmployeeController extends Controller
 {
+
     public function index()
     {
         $arr['employee'] = Employee::all();

@@ -41,9 +41,10 @@ class RegisterController extends Controller
     protected function validator(array $data)
     { 
         return Validator::make($data, [
-            'fname' => ['required', 'string', 'max:255'],
-            'lname' => ['required', 'string', 'max:255'],
+            'fname' => ['required', 'string', 'max:50'],
+            'lname' => ['required', 'string', 'max:50'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+             'idno' => ['required'],
             'password' => ['required', 'string', 'min:3', 'confirmed'],           
             'contact' => ['regex:/^([0-9\s\-\+\(\)]*)$/', 'max:17'],
             ]);
@@ -63,22 +64,11 @@ class RegisterController extends Controller
             'fname' => $data['fname'],
             'lname' => $data['lname'],
             'email' => $data['email'],
+             'idno'=> $data['idno'],
             'contact' => $data['contact'],
             'password' => Hash::make($data['password']),
-        ]);
-
-    
+        ]);   
 
         return $user;
-    }
-
-    public function validateCashier(Request $request) {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
-            'idno' => 'required',
-            'address'=> 'required',
-        ]);
     }
 }

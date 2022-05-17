@@ -71,6 +71,15 @@
                         @endif
                     </div>
                     <div class="form-group">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        <input type="text" class="form-control{{ $errors->has('idno') ? ' is-invalid' : '' }}" name="idno" value="{{ old('idno') }}" id="idno" placeholder="ID Number">
+                        @if($errors->has('idno'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('idno') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                    <div class="form-group">
                         <i class="fa fa-envelope" aria-hidden="true"></i>
                         <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" id="email" placeholder="Email">
                         @if($errors->has('email'))

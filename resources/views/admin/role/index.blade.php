@@ -24,6 +24,8 @@
                   
                   <th>#</th>
                   <th>{{ __('adminstaticword.role') }}</th>
+                  <th>{{ __('adminstaticword.slug') }}</th>
+                  <th>{{ __('adminstaticword.permission') }}</th>
                   <th>{{ __('adminstaticword.status') }}</th>
                   <th>{{ __('adminstaticword.edit') }}</th>
                   <th>{{ __('adminstaticword.delete') }}</th>
@@ -37,6 +39,20 @@
                   <td><?php echo $i;?></td>
 
                         <td>{{ $r->name }}</td>
+                        <td>{{ $r->slug }}</td>
+
+                        <td>
+                          @if ($r->permissions != null)
+                                  
+                              @foreach ($r->permissions as $permission)
+                              <span class="badge badge-secondary">
+                                  {{ $permission->name }}                                    
+                              </span>
+                              @endforeach
+                          
+                          @endif
+                      </td>
+
                         <td>
                           <form action="{{ route('role.quick', $r->id) }}" method="POST">
                             {{ csrf_field() }}
