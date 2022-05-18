@@ -1,5 +1,5 @@
 @extends('admin/layouts.master')
-@section('title', 'Edit Brand')
+@section('title', 'Edit Stock')
 @section('body')
 @include('admin.message')
 
@@ -8,11 +8,11 @@
     <div class="col-xs-12">
       <div class="box box-primary">
         <div class="box-header with-border">
-          <h3 class="box-title">{{ __('adminstaticword.brand') }}</h3>
+          <h3 class="box-title">{{ __('adminstaticword.stock') }}</h3>
         </div>
         <div class="box-body">
           <div class="form-group">
-            <form id="demo-form2" method="post" action="{{route('brand.update', $brand->id) }}" data-parsley-validate class="form-horizontal form-label-left" autocomplete="off">
+            <form id="demo-form2" method="post" action="{{route('stock.update', $stock->id) }}" data-parsley-validate class="form-horizontal form-label-left" autocomplete="off">
               {{ csrf_field() }}
                 @method('PUT')
         <div class="row">
@@ -50,29 +50,12 @@
           <div class="row">
             <div class="col-md-6">
                 <input type="submit" class="btn btn-info" value="Update">
-                <a href="{{route('brand.index')}}" class="btn btn-primary">Back</a>
+                <a href="{{route('stock.index')}}" class="btn btn-primary">Back</a>
             </div> 
           </div>
 
       </form>
     </div>
   </section>  
-
-  {{-- slug --}}
-
-@section('js_slug_page')
-<script>
-        $(document).ready(function(){
-            $('#name').keyup(function(e){
-                var str = $('#name').val();
-                str = str.replace(/\W+(?!$)/g, '-').toLowerCase();//rplace stapces with dash
-                $('#slug').val(str);
-                $('#slug').attr('placeholder', str);
-            });
-        });
-        
-    </script>   
-  @endsection
-  {{-- /slug --}}
 
   @endsection

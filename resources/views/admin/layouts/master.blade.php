@@ -89,15 +89,8 @@
       </nav>
     </header>
 
-    <!-- Left side column. contains the logo and sidebar -->
-    {{-- @if(Auth::User()->role == "admin") --}}
       @include('admin.layouts.sidebar')
- {{--}}   @endif
-    @if(Auth::User()->role == "cashier")
-      @include('cashier.layouts.sidebar')
-    @endif --}}
-    
-    <!-- Content Wrapper. Contains page content -->
+
     <div class="content-wrapper">
       <!-- Main content -->
       @yield('body')
@@ -126,9 +119,13 @@
 
   <script src="{{url('js/admin/bootstrap-tagsinput.js')}}"></script> 
 
+
+  {{-- <script> --}}
 @yield('js_post_page')
 @yield('js_user_page')
-@yield('js_role_page')
+@yield('js_slug_page')
+@yield('scripts')
+  {{-- </script> --}}
   
 </body>
 </html>

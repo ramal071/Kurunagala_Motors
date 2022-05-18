@@ -71,11 +71,11 @@
     <link rel="stylesheet" href="/css/admin/bootstrap-tagsinput.css">
 @endsection
 
-@section('js_role_page')
-    <script src="/js/admin/bootstrap-tagsinput.js"></script>
+@section('js_slug_page')
+    <script src="/js/admin/bootstrap-tagsinput.js">
+    </script>
 
     <script>
-
         $(document).ready(function(){
             $('#role_name').keyup(function(e){
                 var str = $('#role_name').val();

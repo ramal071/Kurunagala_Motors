@@ -1,5 +1,5 @@
 @extends('admin/layouts.master')
-@section('title', 'Add Bike - Admin')
+@section('title', 'Add Bike')
 @section('body')
 
 @include('admin.message')
@@ -18,7 +18,7 @@
   
               <div class="row">
                 <div class="col-md-6">
-                  <label for="exampleInputTit1e">{{ __('adminstaticword.brand') }}</label>
+                  <label for="brand">{{ __('adminstaticword.brand') }}</label>
                   <select name="brand_id" class="form-control js-example-basic-single col-md-7 col-xs-12">
                     <option value="0">{{ __('adminstaticword.pleaseselect')}} {{__('adminstaticword.brand')}}</option>
                     @foreach($brand as $br)
@@ -31,24 +31,32 @@
 
         <div class="row">
             <div class="col-md-6">
-              <label for="exampleInputTit1e">{{ __('adminstaticword.code') }}:<sup class="redstar">*</sup></label>
-              <input type="text" class="form-control" name="code" id="exampleInputbikecode" placeholder="Enter your bike code" value="" >
+              <label for="code">{{ __('adminstaticword.code') }}:<sup class="redstar">*</sup></label>
+              <input type="text" class="form-control" name="code" id="code" placeholder="Enter your bike code" value="" >
             </div>          
         </div>
         <br>
 
         <div class="row">
             <div class="col-md-6">
-              <label for="exampleInputTit1e">{{ __('adminstaticword.bikename') }}:<sup class="redstar">*</sup></label>
-              <input type="text" class="form-control" name="name" id="exampleInputbikename" placeholder="Enter your bike name" value="">
+              <label for="name">{{ __('adminstaticword.bikename') }}:<sup class="redstar">*</sup></label>
+              <input type="text" class="form-control" name="name" id="name" placeholder="Enter your bike name" value="">
             </div>          
+        </div>
+        <br>
+
+        <div class="row">
+          <div class="col-md-6">
+            <label for="slug">{{ __('adminstaticword.slug') }}:<sup class="redstar">*</sup></label>
+            <input type="text" class="form-control" name="slug" id="slug" placeholder="Slug bike name" value="">
+          </div>          
         </div>
         <br>
   
         <div class="row">
             <div class="col-md-6">
-              <label for="exampleInputTit1e">{{ __('adminstaticword.description') }}:</label>
-              <input type="text" class="form-control" name="description" id="exampleInputDescription" placeholder="Enter your Description" value="">
+              <label for="description">{{ __('adminstaticword.description') }}:</label>
+              <input type="text" class="form-control" name="description" id="description" placeholder="Enter your Description" value="">
             </div> 
         </div>
         <br>         
@@ -64,5 +72,19 @@
     </div>
   </section>  
   
-  
+  {{-- slug --}}
+@section('js_slug_page')
+<script>
+        $(document).ready(function(){
+            $('#name').keyup(function(e){
+                var str = $('#name').val();
+                str = str.replace(/\W+(?!$)/g, '-').toLowerCase();//rplace stapces with dash
+                $('#slug').val(str);
+                $('#slug').attr('placeholder', str);
+            });
+        });        
+    </script>   
+  @endsection
+  {{-- /slug --}}
+
   @endsection

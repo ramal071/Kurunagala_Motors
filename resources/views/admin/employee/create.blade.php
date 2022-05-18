@@ -1,5 +1,5 @@
 @extends('admin/layouts.master')
-@section('title', 'Create Employee - Admin')
+@section('title', 'Create Employee')
 @section('body')
 @include('admin.message')
 

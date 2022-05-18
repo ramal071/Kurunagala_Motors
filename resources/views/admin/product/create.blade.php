@@ -1,5 +1,5 @@
 @extends('admin/layouts.master')
-@section('title', 'Create Product - Admin')
+@section('title', 'Create Product')
 @section('body')
 @include('admin.message')
 
@@ -29,48 +29,43 @@
             </div>
           <br>
 
-            {{-- <div class="row">
+            <div class="row">
               <div class="col-md-6">
                 <label for="exampleInputTit1e1">{{ __('adminstaticword.bike') }}</label>
                 <select name="bike_id" id="upload_id" class="form-control js-example-basic-single col-md-7 col-xs-12" >
                 </select>
               </div>
             </div>
-          <br> --}}
-
-              <div class="row">
-                <div class="col-md-6">
-                  <label for="exampleInputTit1e1">{{ __('adminstaticword.bike') }}</label>
-                  <select name="bike_id" id="bike_id" class="form-control js-example-basic-single col-md-7 col-xs-12" >
-                    <option value="0">{{ __('adminstaticword.pleaseselect') }}</option>
-                    @foreach($bike as $b)
-                      <option value="{{$b->id}}">{{$b->name}}</option>
-                    @endforeach
-                  </select>
-                </div>
-              </div>
-            <br>
+          <br>
 
         <div class="row">
             <div class="col-md-6">
-              <label for="exampleInputTit1e">{{ __('adminstaticword.code') }}:<sup class="redstar">*</sup></label>
-              <input type="text" class="form-control" name="code" id="exampleInputproductcode" placeholder="Enter bike product code" value="" >
+              <label for="code">{{ __('adminstaticword.code') }}:<sup class="redstar">*</sup></label>
+              <input type="text" class="form-control" name="code" id="code" placeholder="Enter bike product code" value="" >
             </div>          
         </div>
         <br>
 
         <div class="row">
             <div class="col-md-6">
-              <label for="exampleInputTit1e">{{ __('adminstaticword.productname') }}:<sup class="redstar">*</sup></label>
-              <input type="text" class="form-control" name="name" id="exampleInputbrandname" >
+              <label for="name">{{ __('adminstaticword.productname') }}:<sup class="redstar">*</sup></label>
+              <input type="text" class="form-control" name="name" id="name" >
             </div>          
+        </div>
+        <br>
+
+        <div class="row">
+          <div class="col-md-6">
+            <label for="slug">{{ __('adminstaticword.slug') }}:</label>
+            <input type="text" class="form-control" name="slug" id="slug" >
+          </div>          
         </div>
         <br>
   
         <div class="row">
             <div class="col-md-6">
-              <label for="exampleInputTit1e">{{ __('adminstaticword.limit') }}:</label>
-              <input type="number" class="form-control" name="limit" id="exampleInputDescription" >
+              <label for="description">{{ __('adminstaticword.description') }}:</label>
+              <input type="text" class="form-control" name="description" id="description" >
             </div> 
         </div>
         <br>        
@@ -101,7 +96,7 @@
   @endsection
 
 
-{{--   
+  
 
 @section('scripts')
 
@@ -113,15 +108,15 @@
     var urlLike = '{{ route('admin-dropdown') }}';
     $('#brand_id').change(function() {
       var up = $('#upload_id').empty();
-      var br_id = $(this).val();    
-      if(br_id){
+      var pr_id = $(this).val();    
+      if(pr_id){
         $.ajax({
           headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
           },
           type:"GET",
           url: urlLike,
-          data: {brId: br_id},
+          data: {prId: pr_id},
           success:function(data){   
             console.log(data);
             up.append('<option value="0">Please Choose</option>');
@@ -139,5 +134,22 @@
 
 })(jQuery);
 </script> 
+
+  {{-- slug --}}
+
+  @section('js_slug_page')
+  <script>
+          $(document).ready(function(){
+              $('#name').keyup(function(e){
+                  var str = $('#name').val();
+                  str = str.replace(/\W+(?!$)/g, '-').toLowerCase();//rplace stapces with dash
+                  $('#slug').val(str);
+                  $('#slug').attr('placeholder', str);
+              });
+          });
+          
+      </script>   
+    @endsection
+    {{-- /slug --}}
   
-@endsection --}}
+@endsection

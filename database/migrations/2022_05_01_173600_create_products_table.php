@@ -19,10 +19,11 @@ class CreateProductsTable extends Migration
             $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
             $table->unsignedBigInteger('bike_id');
             $table->foreign('bike_id')->references('id')->on('bikes')->onDelete('cascade');
+            $table->string('code');
             $table->string('name');
-            $table->string('code')->nullable();
-            $table->integer('limit');
-            $table->boolean('status')->default(true);
+            $table->string('slug');  
+            $table->string('description')->nullable();
+            $table->boolean('status')->default(1);
             $table->timestamps();
         }); 
     }

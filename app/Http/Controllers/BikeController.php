@@ -41,6 +41,7 @@ class BikeController extends Controller
         $bike->brand_id = $request->brand_id;
         $bike->code = $request->code;
         $bike->name = $request->name;
+        $bike->slug = $request->slug;
         $bike->description = $request->description;
         $bike->save();
         return redirect()->route('bike.index')->with('success', 'Bike model created');
@@ -75,6 +76,7 @@ class BikeController extends Controller
         
         $bike->code = $request->code;
         $bike->name = $request->name;
+        $bike->slug = $request->slug;
         $bike->description = $request->description;
         $bike->save();
         $bike->brand_id = $request->brand_id;

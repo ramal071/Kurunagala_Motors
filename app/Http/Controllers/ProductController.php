@@ -28,10 +28,9 @@ class ProductController extends Controller
         $data = $this->validate($request, [
             'code'=>'required',
             'name'=>'required',
-            'limit'=>'required',
             'status'=>'required',
-            // 'bikes_bike_id'=>'required',
-            // 'brands_brand_id'=>'required',
+            'bike_id'=>'required',
+            'brand_id'=>'required',
 
         ]);
 
@@ -39,7 +38,8 @@ class ProductController extends Controller
         $product->brand_id = $request->brand_id;
         $product->code = $request->code;
         $product->name = $request->name;
-        $product->limit = $request->limit;
+        $product->slug = $request->slug;
+        $product->description = $request->description;
         $product->status = ($request->status) ? 1:0;
         $product->save();
         return redirect()->route('product.index')->with('success', 'Product created successfully');
@@ -50,23 +50,27 @@ class ProductController extends Controller
         //
     }
 
-    public function edit(Product $product)
+    public function edit($id)
     {
-        $arr['product'] = $product;
-        $arr['bike'] = Bike::all();
-        $arr['brand'] = brand::all();
-        return view('admin.product.edit')->with($arr);
-    }
+    //     $arr['product'] = $product;
+    //     $arr['bike'] = Bike::all();
+    //     $arr['brand'] = brand::all();
+    //     return view('admin.product.edit')->with($arr);
+
+    $pr = Product::find($id);
+    return view('admin.product.edit',compact('pr'));
+
+     }
+
 
     public function update(Request $request, Product $product)
     {
         $data = $this->validate($request, [
             'code'=>'required',
             'name'=>'required',
-            'limit'=>'required',
             'status'=>'required',
-            // 'bikes_bike_id'=>'required',
-            // 'brands_brand_id'=>'required',
+            'bike_id'=>'required',
+            'brand_id'=>'required',
 
         ]);
 
@@ -74,7 +78,8 @@ class ProductController extends Controller
         $product->brand_id = $request->brand_id;
         $product->code = $request->code;
         $product->name = $request->name;
-        $product->limit = $request->limit;
+        $product->slug = $request->slug;
+        $product->description = $request->description;
         $product->status = ($request->status) ? 1:0;
         $product->save();
         return redirect()->route('product.index');
@@ -85,5 +90,26 @@ class ProductController extends Controller
     {
         $product->delete();
         return redirect()->route('product.index')->with('delete', 'Product deleted successfully');
+    }
+
+
+    public function upload_info(Request $request) 
+    {
+
+        $id = $request['prId'];
+        $brand = Brand::findOrFail($id);
+        $upload = $brand->bike->where('brand_id',$id)->pluck('name','id')->all();
+
+        return response()->json($upload);
+    }
+
+    public function child_info(Request $request) 
+    {
+
+        $id = $request['prId'];
+        $bike = Bike::findOrFail($id);
+        $upload = $bike->product->where('bike_id',$id)->where('status',true)->pluck('name','id')->all();
+
+        return response()->json($upload);
     }
 }

@@ -15,4 +15,9 @@ class Product extends Model
     {
         return $this->belongsTo(brand::class, 'brand_id', 'id');
     }
+
+    public function stock()
+    {
+        return $this->hasMany(Stock::class, 'stock_id' , 'id');
+    }
 }

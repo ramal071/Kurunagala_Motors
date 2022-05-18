@@ -49,7 +49,7 @@
    
 @endsection
 
-@section('js_role_page')
+@section('js_slug_page')
 {{-- Slug  --}}
 <script>
     $(document).ready(function(){

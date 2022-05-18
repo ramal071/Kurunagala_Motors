@@ -1,5 +1,5 @@
 @extends('admin/layouts.master')
-@section('title', 'View Product - Admin')
+@section('title', 'View Product')
 @section('body')
     <section class="content">
         <div class="row">
@@ -15,12 +15,13 @@
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th>#</th>
-                                        <th>{{__('adminstaticword.bike') }}</th>
+                                        <th>#</th>                                        
                                         <th>{{__('adminstaticword.brand') }}</th>
-                                        <th>{{__('adminstaticword.name') }}</th>
+                                        <th>{{__('adminstaticword.bike') }}</th>
                                         <th>{{__('adminstaticword.code') }}</th>
-                                        <th>{{__('adminstaticword.limit') }}</th>
+                                        <th>{{__('adminstaticword.name') }}</th>
+                                        <th>{{__('adminstaticword.slug') }}</th>                                       
+                                        <th>{{__('adminstaticword.description') }}</th>
                                         <th>{{__('adminstaticword.status') }}</th>
                                         <th>{{__('adminstaticword.edit') }}</th>
                                         <th>{{__('adminstaticword.delete') }}</th>
@@ -29,15 +30,16 @@
 
                                 <tbody>
                                     <?php $i=0;?>
-                                    @foreach ($product as $pr)
-                                        <?php echo $i++;?>
+                                    @foreach($product as $pr)
+                                    <?php $i++;?>
                                     <tr>
                                         <td><?php echo $i;?></td>
                                         <td>{{ $pr->brand->name}}</td>
                                         <td>{{ $pr->bike->name}}</td>
                                         <td>{{ $pr->code }}</td>
                                         <td>{{ $pr->name }}</td>
-                                        <td>{{ $pr->limit }}</td>
+                                        <td>{{ $pr->slug }}</td>
+                                        <td>{{ $pr->description }}</td>
                                         
                                         <td>
                                             <form action="{{ route('product.quick', $pr->id) }}" method="POST">

@@ -33,7 +33,13 @@ Route::resource('brand', 'BrandController');
 Route::resource('role' , 'RoleController');
 Route::resource('employee', 'EmployeeController');
 Route::resource('bike', 'BikeController');
+
 Route::resource('product', 'ProductController');
+Route::get("dropdown","ProductController@upload_info")->name('admin-dropdown');
+Route::get("child-dropdown","ProductController@child_info")->name('child-dropdown');
+
+
+Route::resource('stock', 'StockController');
 
 // Route::resource('role' , 'RoleController')->middleware('can:isManager');
 // Route::resource('employee', 'EmployeeController')->middleware('can:isManager');

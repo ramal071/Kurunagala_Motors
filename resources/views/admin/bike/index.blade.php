@@ -1,5 +1,5 @@
 @extends('admin/layouts.master')
-@section('title', 'View Bike Model - Admin')
+@section('title', 'View Bike Model')
 @section('body')
 
 <section class="content">
@@ -26,6 +26,7 @@
                   <th>{{ __('adminstaticword.brand') }}</th>
                   <th>{{ __('adminstaticword.code') }}</th>
                   <th>{{ __('adminstaticword.name') }}</th>
+                  <th>{{__('adminstaticword.slug') }}</th>
                   <th>{{ __('adminstaticword.description') }}</th>
                   <th>{{ __('adminstaticword.edit') }}</th>
                   <th>{{ __('adminstaticword.delete') }}</th>
@@ -40,6 +41,7 @@
                         <td>{{ $b->brand->name}}</td>
                         <td>{{ $b->code }}</td>
                         <td>{{ $b->name }}</td>
+                        <td>{{ $b->slug }}</td>
                         <td>{{ $b->description }}</td>
                         <td>
                           <a href="{{route('bike.edit', $b->id)}}" class="btn btn-success btn-sm" ><i class="glyphicon glyphicon-pencil"></i></a>

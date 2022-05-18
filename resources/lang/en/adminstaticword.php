@@ -50,6 +50,14 @@ return [
     'bikename' =>'Bike Name',
     'status' => 'Status',
 
+    'stock' =>'Stock',
+    'qty'=> 'Quantity',
+    'dprice' => 'Dealer Price',
+    'sprice' => 'Seller Price',
+    'discount' => 'Discount',
+    'color' => 'Color',
+    'lowestlimit' => 'Lowerst Limit',
+
 
     'cashier' => 'Cashier',
     'idno' => 'ID Number',

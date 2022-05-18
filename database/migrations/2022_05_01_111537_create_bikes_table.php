@@ -19,6 +19,7 @@ class CreateBikesTable extends Migration
             $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
             $table->string('code');
             $table->string('name');
+            $table->string('slug');
             $table->string('description')->nullable();
             $table->timestamps();
         });

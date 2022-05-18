@@ -39,6 +39,7 @@ class BrandController extends Controller
 
         $brand->code = $request->code;
         $brand->name = $request->name;
+        $brand->slug = $request->slug;
         $brand->description = $request->description;
         $brand->save();
         return redirect()->route('brand.index')->with('success', 'Brand created succcess');
@@ -79,6 +80,7 @@ class BrandController extends Controller
         
         $brand->code = $request->code;
         $brand->name = $request->name;
+        $brand->slug = $request->slug;
         $brand->description = $request->description;
         $brand->save();
         return redirect() -> route('brand.index');

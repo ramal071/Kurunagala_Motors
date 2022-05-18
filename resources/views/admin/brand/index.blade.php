@@ -24,20 +24,22 @@
                                         <th>#</th>
                                         <th>{{__('adminstaticword.code') }}</th>
                                         <th>{{__('adminstaticword.name') }}</th>
+                                        <th>{{__('adminstaticword.slug') }}</th>
                                         <th>{{__('adminstaticword.description') }}</th>
                                         <th>{{__('adminstaticword.edit') }}</th>
                                         <th>{{__('adminstaticword.delete') }}</th>
                                     </tr>
                                 </thead>
 
-                                <tbody>
+                                <tbody>                                    
                                     <?php $i=0;?>
                                     @foreach ($brand as $br)
-                                        <?php echo $i++;?>
+                                        <?php $i++;?>
                                     <tr>
                                             <td><?php echo $i;?></td>
                                         <td>{{ $br->code }}</td>
                                         <td>{{ $br->name }}</td>
+                                        <td>{{ $br->slug }}</td>
                                         <td>{{ $br->description }}</td>
 
                                        
