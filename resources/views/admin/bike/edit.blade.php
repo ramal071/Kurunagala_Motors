@@ -16,7 +16,6 @@
               {{ csrf_field() }}
                 @method('PUT')
 
-
                 <div class="row">
                   <div class="col-md-6">
                     <label for="exampleInputTit1e">{{ __('adminstaticword.brand') }}</label>
@@ -31,51 +30,54 @@
                     </select>
                   </div>
                 </div>
+                <br>
+
+              <div class="row">
+                  <div class="col-md-6">
+                    <label for="code">{{ __('adminstaticword.code') }}:<sup class="redstar">*</sup></label>
+                    <input type="text" class="form-control" name="code" id="code" value="{{ $bike->code }}">
+                  </div>          
+              </div>
               <br>
 
-        <div class="row">
-            <div class="col-md-6">
-              <label for="code">{{ __('adminstaticword.code') }}:<sup class="redstar">*</sup></label>
-              <input type="text" class="form-control" name="code" id="code" value="{{ $bike->code }}">
-            </div>          
-        </div>
-        <br>
+              <div class="row">
+                  <div class="col-md-6">
+                    <label for="name">{{ __('adminstaticword.bikename') }}:<sup class="redstar">*</sup></label>
+                    <input type="text" class="form-control" name="name" id="name" value="{{ $bike->name }}">
+                  </div>          
+              </div>
+              <br>
 
-        <div class="row">
-            <div class="col-md-6">
-              <label for="name">{{ __('adminstaticword.bikename') }}:<sup class="redstar">*</sup></label>
-              <input type="text" class="form-control" name="name" id="name" value="{{ $bike->name }}">
-            </div>          
-        </div>
-        <br>
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="slug">{{ __('adminstaticword.slug') }}:</label>
+                  <input type="text" class="form-control" name="slug" id="slug" value="{{ $bike->slug }}">
+                </div>          
+              </div>
+              <br>
+        
+              <div class="row">
+                  <div class="col-md-6">
+                    <label for="description">{{ __('adminstaticword.description') }}:</label>
+                    <input type="text" class="form-control" name="description" id="exampleInputDescription" value="{{ $bike->description }}">
+                  </div> 
+              </div>         
+              <br>
 
-        <div class="row">
-          <div class="col-md-6">
-            <label for="slug">{{ __('adminstaticword.slug') }}:</label>
-            <input type="text" class="form-control" name="slug" id="slug" value="{{ $bike->slug }}">
-          </div>          
-        </div>
-        <br>
-  
-        <div class="row">
-            <div class="col-md-6">
-              <label for="description">{{ __('adminstaticword.description') }}:</label>
-              <input type="text" class="form-control" name="description" id="exampleInputDescription" value="{{ $bike->description }}">
-            </div> 
-        </div>         
-          <br>
-
-          <div class="row">
-            <div class="col-md-6">
-                <input type="submit" class="btn btn-info" value="Update">
-                <a href="{{route('bike.index')}}" class="btn btn-primary">Back</a>
-            </div> 
+              <div class="row">
+                <div class="col-md-6">
+                    <input type="submit" class="btn btn-info" value="Update">
+                    <a href="{{route('bike.index')}}" class="btn btn-primary">Back</a>
+                </div> 
+              </div>
+            </form>
           </div>
-
-      </form>
+        </div>
+      </div>
     </div>
-  </section>  
-  
+  </div>
+</section>
+ 
     {{-- slug --}}
 
 @section('js_slug_page')
@@ -87,8 +89,7 @@
                 $('#slug').val(str);
                 $('#slug').attr('placeholder', str);
             });
-        });
-        
+        });        
     </script>   
   @endsection
   {{-- /slug --}}

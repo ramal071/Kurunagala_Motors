@@ -1,7 +1,6 @@
 @extends('admin/layouts.master')
 @section('title', 'Add Bike')
 @section('body')
-
 @include('admin.message')
 
 <section class="content">
@@ -20,7 +19,6 @@
                 <div class="col-md-6">
                   <label for="brand">{{ __('adminstaticword.brand') }}</label>
                   <select name="brand_id" class="form-control js-example-basic-single col-md-7 col-xs-12">
-                    <option value="0">{{ __('adminstaticword.pleaseselect')}} {{__('adminstaticword.brand')}}</option>
                     @foreach($brand as $br)
                       <option value="{{$br->id}}">{{$br->name}}</option>
                     @endforeach
@@ -29,49 +27,52 @@
               </div>
             <br>
 
-        <div class="row">
-            <div class="col-md-6">
-              <label for="code">{{ __('adminstaticword.code') }}:<sup class="redstar">*</sup></label>
-              <input type="text" class="form-control" name="code" id="code" placeholder="Enter your bike code" value="" >
-            </div>          
-        </div>
-        <br>
+            <div class="row">
+                <div class="col-md-6">
+                  <label for="code">{{ __('adminstaticword.code') }}:<sup class="redstar">*</sup></label>
+                  <input type="text" class="form-control" name="code" id="code" placeholder="Enter your bike code" value="" >
+                </div>          
+            </div>
+            <br>
 
-        <div class="row">
-            <div class="col-md-6">
-              <label for="name">{{ __('adminstaticword.bikename') }}:<sup class="redstar">*</sup></label>
-              <input type="text" class="form-control" name="name" id="name" placeholder="Enter your bike name" value="">
-            </div>          
-        </div>
-        <br>
+            <div class="row">
+                <div class="col-md-6">
+                  <label for="name">{{ __('adminstaticword.bikename') }}:<sup class="redstar">*</sup></label>
+                  <input type="text" class="form-control" name="name" id="name" placeholder="Enter your bike name" value="">
+                </div>          
+            </div>
+            <br>
 
-        <div class="row">
-          <div class="col-md-6">
-            <label for="slug">{{ __('adminstaticword.slug') }}:<sup class="redstar">*</sup></label>
-            <input type="text" class="form-control" name="slug" id="slug" placeholder="Slug bike name" value="">
-          </div>          
-        </div>
-        <br>
-  
-        <div class="row">
-            <div class="col-md-6">
-              <label for="description">{{ __('adminstaticword.description') }}:</label>
-              <input type="text" class="form-control" name="description" id="description" placeholder="Enter your Description" value="">
-            </div> 
-        </div>
-        <br>         
+            <div class="row">
+              <div class="col-md-6">
+                <label for="slug">{{ __('adminstaticword.slug') }}:<sup class="redstar">*</sup></label>
+                <input type="text" class="form-control" name="slug" id="slug" placeholder="Slug bike name" value="">
+              </div>          
+            </div>
+            <br>
+      
+            <div class="row">
+                <div class="col-md-6">
+                  <label for="description">{{ __('adminstaticword.description') }}:</label>
+                  <input type="text" class="form-control" name="description" id="description" placeholder="Enter your Description" value="">
+                </div> 
+            </div>
+            <br>         
 
-          <div class="row">
-            <div class="col-md-6">
-                <input type="submit" class="btn btn-info" value="Save">
-                <a href="{{route('bike.index')}}" class="btn btn-primary">Back</a>
-            </div> 
+            <div class="row">
+              <div class="col-md-6">
+                  <input type="submit" class="btn btn-info" value="Save">
+                  <a href="{{route('bike.index')}}" class="btn btn-primary">Back</a>
+              </div> 
+            </div>
+            </form>
           </div>
-
-      </form>
+        </div>
+      </div>
     </div>
-  </section>  
-  
+  </div>
+</section>
+
   {{-- slug --}}
 @section('js_slug_page')
 <script>

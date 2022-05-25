@@ -59,7 +59,14 @@ class StockController extends Controller
 
         ]);
 
-        $stock->code = $request->code;
+        $stock->product_id = $request->product_id;
+        $stock->quantity = $request->quantity;
+        $stock->dealerprice = $request->dealerprice;
+        $stock->sellingprice = $request->sellingprice;
+        $stock->discount = $request->discount;
+        $stock->color = $request->color;
+        $stock->lowestlimit = $request->lowestlimit;
+        $stock->description = $request->description;
         $stock->save();
         return redirect()->route('stock.index');
     }
@@ -67,6 +74,6 @@ class StockController extends Controller
     public function destroy(Stock $stock)
     {
         $stock->delete();
-        return redirect()->route('stock.index')->with('delete', 'Stock deleted');
+        return redirect()->route('stock.index')->with('delete', 'Stock detail deleted');
     }
 }

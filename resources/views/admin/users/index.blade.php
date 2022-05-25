@@ -33,7 +33,7 @@
                                 <tbody>
                                     <?php $i=0;?>
                                     @foreach ($users as $user)
-                                    @if(!\Auth::user()->hasRole('manager') && $user->hasRole('manager')) @continue; @endif   {{--users wala adminta vitharai admin pennanne--}}               
+                                    @if(!\Auth::user()->hasRole('manager') && $user->hasRole('manager')) @continue; @endif                 
                                     <?php $i++;?>
                                         <tr>
                                             <td> <?php echo $i;?> </td>
@@ -42,19 +42,8 @@
                                             <td> {{ $user->idno }} </td>
                                             <td> {{ $user->email }} </td>
                                             <td> {{ $user->contact }} </td>
-                                            {{-- <td>{{ $user->role->name}}</td> --}}
                                             <td>{{ $user->role_id}}</td>
-                                            
-                                            {{-- <td> 
-                                                @if ($user->role->isNotEmpty())
-                                                    @foreach ($user->role as $role)
-                                                        <span class="badge badge-secondary">
-                                                            {{ $role->name }}
-                                                        </span>
-                                                    @endforeach
-                                                @endif
-                        
-                                            </td> --}}
+                                       
                                              <td>
                                                 @if ($user->permissions->isNotEmpty())
                                                                 
@@ -84,7 +73,7 @@
                                                 <a href="/users/{{ $user['id'] }}" ><i class="fa fa-eye"></i></a>
                                                 <a href="/users/{{ $user['id'] }}/edit"><i class="fa fa-edit"></i></a>
                                                 
-                                                    <a href="javascript:void(0)" onclick="$(this).parent().find('form').submit()"><i class="fa fa-fw fa-trash-o"></i></a>
+                                                <a href="javascript:void(0)" onclick="$(this).parent().find('form').submit()"><i class="fa fa-fw fa-trash-o"></i></a>
                                                           
                                                     <form action="{{route('users.destroy', $user->id)}}" method="post">
                                                       @method('DELETE')  
@@ -103,12 +92,6 @@
             </div>
         </div>
     </section>    
-{{-- 
-    @section('js_user_page') 
 
-
-
-
-@endsection --}}
 
 @endsection

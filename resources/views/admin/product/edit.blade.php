@@ -35,15 +35,6 @@
           <div class="row">
             <div class="col-md-6">
               <label for="exampleInputTit1e1">{{ __('adminstaticword.bike') }}</label>
-              {{-- <select name="bike_id" id="upload_id" class="form-control js-example-basic-single col-md-7 col-xs-12">
-                @php
-                    $bike = App\Bike::all();
-                @endphp
-                @foreach($bike as $b)
-                <option {{ $br->bike_id == $b->id ? 'selected' : "" }} value="{{ $b->id }}">{{ $b->name }}</option>
-                @endforeach
-              </select> --}}
-
               <select name="bike_id" id="upload_id" class="form-control js-example-basic-single">
                 @php
                   $bike = App\Bike::all();

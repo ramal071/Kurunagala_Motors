@@ -30,6 +30,12 @@ class User extends Authenticatable
         return $this->hasOne(Role::class, 'role_id', 'id');
     }
 
+    public function isCustomer(){
+        return $this->hasOne(Customer::class, 'user_id', 'id');
+    }
+
+
+
     
 
 }

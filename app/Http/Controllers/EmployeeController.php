@@ -142,7 +142,7 @@ class EmployeeController extends Controller
        else
       $file2 = $employee->id_back;
      }
-
+     $employee->roles()->sync($request->roles);
        $employee->emp_image = $file;
        $employee->id_front = $file1;
        $employee->id_back = $file2;
@@ -152,7 +152,7 @@ class EmployeeController extends Controller
        $employee->address = $request->address;
        $employee->status = ($request->status) ? 1:0;
        $employee->save();
-       $employee->roles()->sync($request->roles);
+     
        return redirect()->route('employee.index');
     }
 

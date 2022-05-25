@@ -43,8 +43,6 @@
                     <td><?php echo $i;?></td>
                     <td>{{$e->name}}</td>
                     <td>{{ $e->nick_name }}</td>      
-                    {{-- <td>@if(isset($e->role)){{$e->role->name}}@endif</td>  --}}
-
                     <td>
                       @foreach ($e->roles as $r)
                       <ui><li>
@@ -52,7 +50,6 @@
                       </ui> </li>
                       @endforeach
                     </td>
-
                     <td>{{ $e->phone }}</td>
                     <td>{{ $e->address}}</td>
                     <td> <img src="{{ asset('storage/employee/' .  $e->emp_image) }}" width="100px;" height="100px;" alt="Image"></td>
@@ -85,7 +82,7 @@
                       </form>
                     </td>
                   </tr>
-                  {{-- delete modal --}}
+                
                 
                   @endforeach
                 </tbody>

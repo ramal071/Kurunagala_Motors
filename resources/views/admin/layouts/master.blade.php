@@ -32,6 +32,7 @@
   <link rel="stylesheet" href="{{ url('admin/font/font/flaticon.css') }}" /> <!-- fontawesome css -->
 
     <link rel="stylesheet" href="{{url('css/admin/bootstrap-tagsinput.css')}}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css">
 
   @yield('stylesheets')
   @yield('css_role_page')
@@ -44,10 +45,9 @@
       <!-- Logo -->
       <a href="{{ url('/') }}" class="logo">
   
-      <!-- logo for regular state and mobile devices -->
+
       <span class="logo-lg"> <img title="{{ $project_title }}" width="100px" src="{{ url('images/logo/'.$gsetting->logo) }}" alt=""/></span>
     </a>
-      <!-- Header Navbar: style can be found in header.less -->
       <nav class="navbar navbar-static-top">
         <!-- Sidebar toggle button-->
         <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
@@ -70,9 +70,10 @@
                   @endauth
                   {{-- Hi ! {{ Auth()->User()['fname'] }} --}}
                 </span>
+
               </a>            
             </li>
-            <!-- Control Sidebar Toggle Button -->
+            
             <li>
                  <a class="dropdown-item" href="{{ route('logout') }}"
                    onclick="event.preventDefault();
@@ -107,9 +108,10 @@
   <script src="{{url('admin/bower_components/jquery/dist/jquery.min.js')}}"></script>
   <script src="{{ url('admin/js/select2.min.js')}}"></script>
   <!-- Bootstrap 3.3.7 -->
-  <script src="{{url('admin/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script> <!-- DataTables -->
+  <script src="{{url('admin/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script> <!-- DataTables | id=example1 -->
   <script src="{{url('admin/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
   <script src="{{url('admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script> <!-- SlimScroll -->
+
   <script src="{{url('admin/bower_components/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script> <!-- FastClick -->
   <script src="{{url('admin/bower_components/fastclick/lib/fastclick.js')}}"></script>
  <!-- AdminLTE App -->
@@ -118,6 +120,26 @@
   <script src="{{ URL::asset('admin/bower_components/PACE/pace.min.js') }}"></script> 
 
   <script src="{{url('js/admin/bootstrap-tagsinput.js')}}"></script> 
+
+  <script src="{{ url('admin/js/dataTables.buttons.min.js')}}"></script> 
+  <script src="{{ url('admin/js/buttons.flash.min.js')}}"></script> 
+  <script src="{{ url('admin/js/jszip.min.js')}}"></script>
+  <script src="{{ url('admin/js/pdfmake.min.js')}}"></script>
+  <script src="{{ url('admin/js/vfs_fonts.js')}}"></script>
+  <script src="{{ url('admin/js/buttons.html5.min.js')}}"></script>
+  <script src="{{ url('admin/js/buttons.print.min.js')}}"></script>
+
+
+<script>
+$(document).ready(function() {
+  $('#example1').DataTable( {
+      dom: 'Bfrtip',
+      buttons: [
+          'copy', 'csv', 'excel', 'pdf', 'print'
+      ]
+  } );
+} );
+</script>
 
 
   {{-- <script> --}}

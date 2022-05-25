@@ -8,6 +8,8 @@ class brand extends Model
 {
     protected $table = 'brands';   
 
+    protected $fillable = ['code', 'name', 'slug', 'description'];
+
     public function product()
     {
         return $this->hasMany(Product::class, 'brand_id', 'id');

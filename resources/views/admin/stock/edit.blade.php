@@ -15,37 +15,75 @@
             <form id="demo-form2" method="post" action="{{route('stock.update', $stock->id) }}" data-parsley-validate class="form-horizontal form-label-left" autocomplete="off">
               {{ csrf_field() }}
                 @method('PUT')
-        <div class="row">
-            <div class="col-md-6">
-              <label for="code">{{ __('adminstaticword.code') }}:<sup class="redstar">*</sup></label>
-              <input type="text" class="form-control" name="code" id="exampleInputbrandcode" value="{{ $brand->code }}">
-            </div>          
-        </div>
-        <br>
 
-        <div class="row">
-            <div class="col-md-6">
-              <label for="name">{{ __('adminstaticword.brandname') }}:<sup class="redstar">*</sup></label>
-              <input type="text" class="form-control" name="name" id="name" value="{{ $brand->name }}">
-            </div>          
-        </div>
-        <br>
 
-        <div class="row">
-          <div class="col-md-6">
-            <label for="slug">{{ __('adminstaticword.slug') }}:</label>
-            <input type="text" class="form-control" name="slug" id="slug" value="{{ $brand->slug }}">
-          </div>          
-        </div>
-        <br>
-  
-        <div class="row">
+                <div class="row">
+                  <div class="col-md-6">
+                    <label for="exampleInputTit1e">{{ __('adminstaticword.product') }}</label>
+                    <select name="product_id" class="form-control js-example-basic-single col-md-7 col-xs-12">
+                      @foreach($product as $pr)
+                      <option value="{{ $pr->id }}" {{$stock->product_id == $pr->id  ? 'selected' : ''}}>{{ $pr->name}}</option>
+                     @endforeach
+                    </select>
+                  </div>
+                </div>
+                <br>
+                
+                <div class="row">
+                  <div class="col-md-6">
+                    <label for="quantity">{{ __('adminstaticword.qty') }}:<sup class="redstar">*</sup></label>
+                    <input type="number" class="form-control" name="quantity" id="quantity" value="{{ $stock->quantity }}">
+                  </div>          
+              </div>
+              <br>
+      
+              <div class="row">
+                  <div class="col-md-6">
+                    <label for="dealerprice">{{ __('adminstaticword.dprice') }}:<sup class="redstar">*</sup></label>
+                    <input type="double" class="form-control" name="dealerprice" id="dealerprice" value="{{ $stock->dealerprice }}">
+                  </div>          
+              </div>
+              <br>
+      
+              <div class="row">
+                 <div class="col-md-6">
+                   <label for="sellingprice">{{ __('adminstaticword.sprice') }}:<sup class="redstar">*</sup></label>
+                   <input type="double" class="form-control" name="sellingprice" id="sellingprice" value="{{ $stock->sellingprice }}">
+                  </div>          
+              </div>
+              <br>
+      
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="discount">{{ __('adminstaticword.discount') }}:<sup class="redstar">*</sup></label>
+                  <input type="number" class="form-control" name="discount"  id="discount" value="{{ $stock->discount }}">
+                 </div>          
+             </div>
+             <br>
+      
+             <div class="row">
+              <div class="col-md-6">
+                <label for="color">{{ __('adminstaticword.color') }}:</label>
+                <input type="color" class="form-control" name="color" id="color" value="{{ $stock->color }}">
+               </div>          
+           </div>
+           <br>
+      
+           <div class="row">
             <div class="col-md-6">
-              <label for="description">{{ __('adminstaticword.description') }}:</label>
-              <input type="text" class="form-control" name="description" id="exampleInputDescription" value="{{ $brand->description }}">
-            </div> 
-        </div>         
+              <label for="lowestlimit">{{ __('adminstaticword.lowestlimit') }}:<sup class="redstar">*</sup></label>
+              <input type="number" class="form-control" name="lowestlimit" id="lowestlimit" value="{{ $stock->lowestlimit }}">
+             </div>          
+          </div>
           <br>
+        
+              <div class="row">
+                  <div class="col-md-6">
+                    <label for="description">{{ __('adminstaticword.description') }}:</label>
+                    <input type="textarea" class="form-control" name="description" id="description" value="{{ $stock->description }}">
+                  </div> 
+              </div>
+              <br>       
 
           <div class="row">
             <div class="col-md-6">

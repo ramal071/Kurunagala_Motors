@@ -46,25 +46,22 @@
                                         <td>{{ $stock->dealerprice }}</td>
                                         <td>{{ $stock->sellingprice }}</td>
                                         <td>{{ $stock->discount }}</td>
-                                        <td>{{ $stock->color }}</td>
+                                        <td style="background-color:{{ $stock->color }}"> </td>
                                         <td>{{ $stock->lowestlimit }}</td>
                                         <td>{{ $stock->description }}</td>
 
                                        
-                                        <td>
-                                            
+                                            <td>
                                             <a href="{{route('stock.edit', $stock->id)}}" class="btn btn-success btn-sm" ><i class="glyphicon glyphicon-pencil"></i></a>
-                                           
-                                        </td>
+                                        </td>                                      
                                        
-                                        <td>
-                                            
+                                       
+                                            <td>
                                             <a href="javascript:void(0)" onclick="$(this).parent().find('form').submit()" class="btn btn-danger"><i class="fa fa-fw fa-trash-o"></i></a>
                                             <form action="{{ route('stock.destroy', $stock->id) }}" method="post">
                                                 @method('DELETE')
                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                             </form>
-                                           
                                         </td>
                                     </tr>
                                     @endforeach

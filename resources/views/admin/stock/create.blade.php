@@ -19,7 +19,7 @@
                 <div class="col-md-6">
                   <label for="product">{{ __('adminstaticword.product') }}</label>
                   <select name="product_id" class="form-control js-example-basic-single col-md-7 col-xs-12">
-                    <option value="0">{{ __('adminstaticword.pleaseselect')}} {{__('adminstaticword.brand')}}</option>
+                    <option value="0">{{ __('adminstaticword.pleaseselect')}} {{__('adminstaticword.product')}}</option>
                     @foreach($product as $pr)
                       <option value="{{$pr->id}}">{{$pr->name}}</option>
                     @endforeach
@@ -40,7 +40,7 @@
         <div class="row">
             <div class="col-md-6">
               <label for="dealerprice">{{ __('adminstaticword.dprice') }}:<sup class="redstar">*</sup></label>
-              <input type="text" class="form-control" name="dealerprice" id="dealerprice" placeholder="Enter dealerprice...." value="">
+              <input type="double" class="form-control" name="dealerprice" id="dealerprice" placeholder="Enter dealerprice...." value="">
             </div>          
         </div>
         <br>
@@ -48,7 +48,7 @@
         <div class="row">
            <div class="col-md-6">
              <label for="sellingprice">{{ __('adminstaticword.sprice') }}:<sup class="redstar">*</sup></label>
-             <input type="text" class="form-control" name="sellingprice" placeholder="Enter selling price...." id="sellingprice" value="">
+             <input type="double" class="form-control" name="sellingprice" placeholder="Enter selling price...." id="sellingprice" value="">
             </div>          
         </div>
         <br>
@@ -56,7 +56,7 @@
         <div class="row">
           <div class="col-md-6">
             <label for="discount">{{ __('adminstaticword.discount') }}:<sup class="redstar">*</sup></label>
-            <input type="text" class="form-control" name="discount" placeholder="Enter discount...." id="discount" value="">
+            <input type="number" class="form-control" name="discount" placeholder="Enter discount...." id="discount" value="">
            </div>          
        </div>
        <br>
@@ -64,7 +64,7 @@
        <div class="row">
         <div class="col-md-6">
           <label for="color">{{ __('adminstaticword.color') }}:</label>
-          <input type="text" class="form-control" name="color" placeholder="Enter color...." id="color" value="">
+          <input type="color" class="form-control" name="color" placeholder="Enter color...." id="color" value="">
          </div>          
      </div>
      <br>
@@ -72,7 +72,7 @@
      <div class="row">
       <div class="col-md-6">
         <label for="lowestlimit">{{ __('adminstaticword.lowestlimit') }}:<sup class="redstar">*</sup></label>
-        <input type="text" class="form-control" name="lowestlimit" placeholder="Enter lowest limit...." id="lowestlimit" value="">
+        <input type="number" class="form-control" name="lowestlimit" placeholder="Enter lowest limit...." id="lowestlimit" value="">
        </div>          
    </div>
    <br>

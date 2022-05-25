@@ -49,6 +49,7 @@ return [
     'description' => 'Description',
     'bikename' =>'Bike Name',
     'status' => 'Status',
+    'productimage' => 'Product Image',
 
     'stock' =>'Stock',
     'qty'=> 'Quantity',
@@ -58,6 +59,12 @@ return [
     'color' => 'Color',
     'lowestlimit' => 'Lowerst Limit',
 
+    'damage' => 'Damage Spareparts',
+    'isreturn' => 'Is Return',
+    'reason' => 'Reason',
+    'recondition' => 'Recondition Spareparts',
+    'no' =>'No',
+    'yes' => 'Yes',
 
     'cashier' => 'Cashier',
     'idno' => 'ID Number',
@@ -67,6 +74,11 @@ return [
     'lname' => 'Last Name',
     'passwordconfirmation' => 'Password Confirmation',
     'contact' => 'Contact',
+
+    'service' => 'Service',
+    'servicetype' => 'Service Type',
+
+    'userprofile' => 'User Profile',
 
     'ServiceBills' => 'Service Bills',
     'Comments' => 'Comments',

@@ -46,23 +46,6 @@
 
                 <div class="sidebar-nav-icon">
                     <ul>
-                         {{-- @if(Auth::user()->role->first()->name == "manager" )
-                        <a target="_blank" href="{{ url('/admins') }}"><li><i class="fa fa-dashboard"></i>{{ __('frontstaticword.AdminDashboard') }}</li></a>
-                        @endif
-                        @if(Auth::user()->role->first()->name == "cashier")
-                        <a target="_blank" href="{{ url('/admins') }}"><li><i class="fa fa-dashboard"></i>{{ __('frontstaticword.cashierdashboard') }}</li></a>
-                        @endif
-                        @if(Auth::user()->role->first()->name == "")
-                        <a target="_blank" href="{{ url('/home') }}"><li><i class="fa fa-dashboard"></i>{{ __('frontstaticword.cashierdashboard') }}</li></a>
-                        @endif --}}
-
-                        {{-- @if(Auth::user()->role->first()->name == "manager" )
-                        <a target="_blank" href="{{ url('/admins') }}"><li><i class="fa fa-dashboard"></i>{{ __('frontstaticword.AdminDashboard') }}</li></a>
-                        @elseif(Auth::user()->role->first()->name == "cashier")
-                        <a target="_blank" href="{{ url('/admins') }}"><li><i class="fa fa-dashboard"></i>{{ __('frontstaticword.cashierdashboard') }}</li></a>
-                        @else<a target="_blank" href="{{ url('/home') }}"><li><i class="fa fa-dashboard"></i>{{ __('frontstaticword.user') }}</li></a>
-                         --}}
-                        
                         <a href=""><li><i class="fa fa-heart"></i>{{ __('frontstaticword.service') }}</li></a>
                         <a href=""><li ><i class="fa fa-user"></i>{{ __('frontstaticword.userprofile') }}</li></a>
                      </ul>
@@ -131,10 +114,18 @@
                                     <img src="{{ asset('images/default/user.jpg')}}"  class="circle" alt="">
                             </button>
                             <ul class="dropdown-menu dropdown-menu-right User-Dropdown U-open" aria-labelledby="dropdownMenu1">
-                                
+                                <div id="notificationTitle">
+                                    <img src="{{ asset('images/default/user.jpg')}}" class="dropdown-user-circle" alt="">
+                                    <div class="user-detailss">
+
+                                        {{ Auth::User()->fname }}
+                                        <br>
+                                        {{ Auth::User()->email }}
+                                    </div>
+                                </div>
                                  
-                                <a href=""><li><i class="fa fa-users"></i>{{ __('frontstaticword.service') }}</li></a>
-                                <a href=""><li ><i class="fa fa-user"></i>{{ __('frontstaticword.userprofile') }}</li></a>                                        
+                                <a href=""><li><i class="fa fa-users"></i>{{ __('frontstaticword.service') }}</li></a>  
+                                <a href="{{route('profile.show',Auth::User()->id)}}"><li ><i class="fa fa-user"></i>{{ __('frontstaticword.userprofile') }}</li></a>                                    
 
                                 
 

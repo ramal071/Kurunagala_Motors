@@ -9,6 +9,7 @@ use App\Employee;
 use App\Product;
 use App\Cashier;
 use App\User;
+use App\DamageProduct;
 
 class QuickUpdateController extends Controller
 {
@@ -89,6 +90,22 @@ class QuickUpdateController extends Controller
         {
             User::where('id', '=', $id)->update(['status' => true]);
             return back()->with('success', 'User Active');
+        }
+    }
+
+    public function damageQuick($id)
+    {
+        $damage = DamageProduct::findorfail($id);
+
+        if($damage->is_return)
+        {
+            DamageProduct::where('id', '=', $id)->update(['is_return' => false]);
+            return back()->with('delete',  'not return !!!');
+        }
+        else
+        {
+            DamageProduct::where('id', '=', $id)->update(['is_return' => true]);
+            return back()->with('success', 'return !!!');
         }
     }
 }

@@ -27,7 +27,6 @@ class UsersController extends Controller
         }
 
         $role = Role::all();
-
         return view('admin.users.create', ['role' => $role]);
     }
 
@@ -39,12 +38,11 @@ class UsersController extends Controller
             'email'=>'required|unique:users|email',
             'idno'=>'required',
             'contact'=>'required',
-           // 'permission'=>'required',
             'status' => 'required',
             'password'=>'required|confirmed|between:3,255',
             'password_confirmation'=>'required',
         ]);
-        // dd($request);
+       //  dd($request);
 
         $user = new User;
         $user->fname = $request->fname;
@@ -151,4 +149,12 @@ class UsersController extends Controller
 
         // return redirect('/users);
     }
+
+    // public function viewAllUser()
+    // {
+    //     $users = User::where('role_id','3')->get()->toArray();
+    //    // $instructors = User::with('isCustomer')->where('role','instructor')->get()->toArray();
+    //     //dd($instructors);
+    //     return view('admin.customer.index');
+    // }
 }

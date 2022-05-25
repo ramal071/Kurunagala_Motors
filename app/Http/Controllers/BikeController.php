@@ -64,12 +64,10 @@ class BikeController extends Controller
         $data = $this->validate($request, [ 
             'name'=> 'required',
             'code'=>'required',
-            // 'bikes_brand_id'=>'required'
         ],
             [
             'name.required'=>'Please enter the name !!!',
             'code.required'=>'Please enter the code !!!',
-            // 'bikes_brand_id.required'=>'Please enter the bikes_brand_id !!!',
             ]
         );
         

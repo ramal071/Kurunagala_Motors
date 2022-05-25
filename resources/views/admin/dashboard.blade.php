@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'Dashboard - Admin')
+@section('title', 'Dashboard') 
 @section('body')
 
 {{-- @if(Auth()->User()->role == "admin") --}}
@@ -41,7 +41,7 @@
             <div class="icon">
               <i class="flaticon-user"></i>
             </div>
-            <a href="" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{url('users')}}" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
 

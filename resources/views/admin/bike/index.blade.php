@@ -32,6 +32,7 @@
                   <th>{{ __('adminstaticword.delete') }}</th>
                 </tr>
               </thead>
+
               <tbody>
                 <?php $i=0;?>
                 @foreach($bike as $b)
@@ -46,7 +47,7 @@
                         <td>
                           <a href="{{route('bike.edit', $b->id)}}" class="btn btn-success btn-sm" ><i class="glyphicon glyphicon-pencil"></i></a>
                         </td>
-                    <td>
+                        <td>
                         <a href="javascript:void(0)" onclick="$(this).parent().find('form').submit()" class="btn btn-danger"><i class="fa fa-fw fa-trash-o"></i></a>
                               
                         <form action="{{route('bike.destroy', $b->id)}}" method="post">
@@ -56,7 +57,7 @@
                       </td>                   
 
                 </tr>
-                {{-- delete modal --}}
+          
                
                 @endforeach
               </tbody>

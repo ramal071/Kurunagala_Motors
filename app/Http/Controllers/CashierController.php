@@ -28,7 +28,6 @@ class CashierController extends Controller
         $cashier->name = $request->name;
         $cashier->idno = $request->idno;
         $cashier->email = $request->email;
-        $cashier->password =Hash::make($request->password);
         $cashier->status = ($request->status) ? 1:0;
         $cashier->save();
         return redirect()->route('cashier.index')->with('success', 'Cashier created successfully');
@@ -50,7 +49,6 @@ class CashierController extends Controller
         $cashier->name = $request->name;
         $cashier->idno = $request->idno;
         $cashier->email = $request->email;
-        $cashier->password =  Hash::make($request->password);
         $cashier->status = ($request->status) ? 1:0;
         $cashier->save();
         return redirect()->route('cashier.index');

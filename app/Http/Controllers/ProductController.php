@@ -28,11 +28,22 @@ class ProductController extends Controller
         $data = $this->validate($request, [
             'code'=>'required',
             'name'=>'required',
+            'product_image' => 'required',
             'status'=>'required',
             'bike_id'=>'required',
             'brand_id'=>'required',
 
         ]);
+
+        if($request->product_image->getClientOriginalName()){
+            $ext =  $request->product_image->getClientOriginalExtension();
+            $file = date('YmdHis').rand(1,99999).'.'.$ext;
+            $request->product_image->storeAs('public/product/',$file);
+       }
+       else
+       {
+           $file = '';
+       }
 
         $product->bike_id = $request->bike_id;
         $product->brand_id = $request->brand_id;
@@ -52,10 +63,6 @@ class ProductController extends Controller
 
     public function edit($id)
     {
-    //     $arr['product'] = $product;
-    //     $arr['bike'] = Bike::all();
-    //     $arr['brand'] = brand::all();
-    //     return view('admin.product.edit')->with($arr);
 
     $pr = Product::find($id);
     return view('admin.product.edit',compact('pr'));
@@ -73,6 +80,19 @@ class ProductController extends Controller
             'brand_id'=>'required',
 
         ]);
+
+        if(isset($request->product_image) && $request->product_image->getClientOriginalName()){
+            $ext =  $request->product_image->getClientOriginalExtension();
+            $file = date('YmdHis').rand(1,99999).'.'.$ext;
+            $request->product_image->storeAs('public/product/',$file);
+       }
+       else
+       {
+        if(!$product->product_image)
+        $file = '';
+         else
+        $file = $product->product_image;
+       }
 
         $product->bike_id = $request->bike_id;
         $product->brand_id = $request->brand_id;

@@ -1,13 +1,16 @@
 @extends('admin/layouts.master')
 @section('title', 'View Product')
 @section('body')
+@include('admin.message')
     <section class="content">
         <div class="row">
             <div class="col-xs-12">
                 <div class="box box-primary">  {{-- red line --}}
                     <div class="box-header with-border">
                         <h3 class="box-title">{{__('adminstaticword.product') }}</h3>
-                        <a href="{{ route('product.create') }}" class="btn btn-info btn-sm">+{{__('adminstaticword.product') }}</a>                            
+                       
+                        <a href="{{ route('product.create') }}" class="btn btn-info btn-sm">+ {{__('adminstaticword.product') }}</a>    
+                                         
                     </div>
 
                     <div class="box-body">
@@ -21,6 +24,7 @@
                                         <th>{{__('adminstaticword.code') }}</th>
                                         <th>{{__('adminstaticword.name') }}</th>
                                         <th>{{__('adminstaticword.slug') }}</th>                                       
+                                        <th>{{__('adminstaticword.productimage') }}</th>                                       
                                         <th>{{__('adminstaticword.description') }}</th>
                                         <th>{{__('adminstaticword.status') }}</th>
                                         <th>{{__('adminstaticword.edit') }}</th>
@@ -39,6 +43,7 @@
                                         <td>{{ $pr->code }}</td>
                                         <td>{{ $pr->name }}</td>
                                         <td>{{ $pr->slug }}</td>
+                                        {{-- <td> <img src="{{ asset('storage/product/' .  $e->product_image) }}" width="100px;" height="100px;" alt="Image"></td> --}}
                                         <td>{{ $pr->description }}</td>
                                         
                                         <td>

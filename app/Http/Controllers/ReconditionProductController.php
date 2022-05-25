@@ -4,82 +4,64 @@ namespace App\Http\Controllers;
 
 use App\ReconditionProduct;
 use Illuminate\Http\Request;
+use App\Stock;
 
 class ReconditionProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $arr['reconditions'] = ReconditionProduct::all();
+        return view('admin.recondition.index')->with($arr);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $arr['stock'] = Stock::all();
+        return view('admin.recondition.create')->with($arr);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(Request $request, ReconditionProduct $recondition)
     {
-        //
+
+        $data = $this->validate($request, [
+            
+            'name'=>'required',
+            'stock_id'=>'required',
+        ]);
+
+        $recondition->stock_id = $request->stock_id;
+        $recondition->name = $request->name;
+        $recondition->description = $request->description;
+        $recondition->save();
+        return redirect()->route('recondition.index')->with('success', 'Created successfully.');
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\ReconditionProduct  $reconditionProduct
-     * @return \Illuminate\Http\Response
-     */
     public function show(ReconditionProduct $reconditionProduct)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\ReconditionProduct  $reconditionProduct
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ReconditionProduct $reconditionProduct)
+    public function edit(ReconditionProduct $recondition)
     {
-        //
+      $arr['recondition']= $recondition;
+      $arr['stock'] = Stock::all();
+      return view('admin.recondition.edit')->with($arr);
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ReconditionProduct  $reconditionProduct
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, ReconditionProduct $reconditionProduct)
+    public function update(Request $request, ReconditionProduct $recondition)
     {
-        //
+        $recondition->stock_id = $request->stock_id;
+        $recondition->name = $request->name;
+        $recondition->description = $request->description;
+        $recondition->save();
+        return redirect()->route('recondition.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\ReconditionProduct  $reconditionProduct
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(ReconditionProduct $reconditionProduct)
+    public function destroy($id)
     {
-        //
+        ReconditionProduct::destroy($id);
+        return redirect()->route('recondition.index')->with('delete', 'Deleted successfully');
     }
 }

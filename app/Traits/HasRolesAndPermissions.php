@@ -19,14 +19,14 @@ trait HasRolesAndPermissions
         return $this->belongsToMany(Role::class,'users_roles');
     }
 
-    // public function roles()
+    // public function role()
     // {
     //     return $this->hasOne(Role::class, 'role_id', 'id');
     // }
 
     // public function user()
     // {
-    //     return $this->hasOne(User::class, 'user_id', 'id');
+    //     return $this->belongsTo(User::class, 'user_id', 'id');
     // }
 
 

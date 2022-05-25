@@ -1,5 +1,5 @@
 @extends('admin/layouts.master')
-@section('title', 'Add Role - Admin')
+@section('title', 'Add Role')
 @section('body')
 
 

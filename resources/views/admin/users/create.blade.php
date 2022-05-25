@@ -29,7 +29,6 @@
           <div class="form-group">
             <label for="name">Contact</label>
             <input type="text" name="contact" class="form-control" id="contact" placeholder="Contact..." value="{{ old('contact') }}">
-            {{-- <input type="text" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask id="contact" placeholder="Contact..." value="{{ old('contact') }}"> --}}
           </div>
         
           <div class="form-group">
@@ -41,20 +40,13 @@
                 <option value="{{$r->id}}">{{$r->name}}</option>
               @endforeach
             </select>
-    
-            {{-- <select class="role form-control" name="role" id="role">
-                <option value="">Select Role...</option>
-                @foreach ($role as $role)
-                <option data-role-id="{{$role->id}}" data-role-slug="{{$role->slug}}" value="{{$role->id}}">{{$role->name}}</option>
-                @endforeach             
-            </select> --}}
-        </div>
-
-        <div id="permissions_box">
-          <label for="role" name="permission">Select Permissions</label>
-          <div id="permissions_ckeckbox_list">
           </div>
-      </div> 
+
+          <div id="permissions_box">
+              <label for="role" name="permission">Select Permissions</label>
+              <div id="permissions_ckeckbox_list">
+              </div>
+          </div> 
         
           <div class="form-group">
             <label for="name">ID Number</label>

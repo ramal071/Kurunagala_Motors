@@ -4,82 +4,64 @@ namespace App\Http\Controllers;
 
 use App\DamageProduct;
 use Illuminate\Http\Request;
+use App\Stock;
 
 class DamageProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $arr['damages'] = DamageProduct::all();
+        return view('admin.damage.index')->with($arr);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $arr['stock'] = Stock::all();
+        return view('admin.damage.create')->with($arr);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(Request $request , DamageProduct $damage)
+    {
+        $data = $this->validate($request, [ 
+            'quantity'=> 'required',
+            'is_return'=>'required',
+            'stock_id'=>'required'
+        ]);
+
+        $damage->stock_id = $request->stock_id;
+        $damage->quantity = $request->quantity;
+        $damage->reason = $request->reason;
+        $damage->is_return = ($request->is_return) ? 1:0 ;
+        $damage->save();
+        return redirect()->route('damage.index')->with('success', 'Created successfully.');
+
+    }
+
+    public function show(Request $request, DamageProduct $damageProduct)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\DamageProduct  $damageProduct
-     * @return \Illuminate\Http\Response
-     */
-    public function show(DamageProduct $damageProduct)
+    public function edit(DamageProduct $damage)
     {
-        //
+        $arr['damage'] = $damage;
+        $arr['stock'] = Stock::all();
+        return view('admin.damage.edit')->with($arr); 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\DamageProduct  $damageProduct
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(DamageProduct $damageProduct)
+    public function update(Request $request, DamageProduct $damage)
     {
-        //
+        $damage->stock_id = $request->stock_id;
+        $damage->quantity = $request->quantity;
+        $damage->reason = $request->reason;
+        $damage->is_return = ($request->is_return) ? 1:0 ;
+        $damage->save();
+        return redirect()->route('damage.index');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\DamageProduct  $damageProduct
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, DamageProduct $damageProduct)
+    public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\DamageProduct  $damageProduct
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(DamageProduct $damageProduct)
-    {
-        //
+        DamageProduct::destroy($id);
+        return redirect()->route('damage.index')->with('delete', 'Deleted successfully');
     }
 }

@@ -13,54 +13,55 @@
         <div class="box-body">
           <div class="form-group">
             <form id="demo-form2" method="post" action="{{route('brand.store')}}" data-parsley-validate class="form-horizontal form-label-left" autocomplete="off">
-              {{ csrf_field() }}   
-  
+              {{ csrf_field() }}     
 
-        <div class="row">
-            <div class="col-md-6">
-              <label for="code">{{ __('adminstaticword.code') }}:<sup class="redstar">*</sup></label>
-              <input type="text" class="form-control" name="code" id="code" placeholder="Enter bike brand code" value="">
-            </div>          
-        </div>
-        <br>
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="code">{{ __('adminstaticword.code') }}:<sup class="redstar">*</sup></label>
+                  <input type="text" class="form-control" name="code" id="code" placeholder="Enter bike brand code" value="">
+                </div>          
+              </div>
+              <br>
 
-        <div class="row">
-            <div class="col-md-6">
-              <label for="name">{{ __('adminstaticword.brandname') }}:<sup class="redstar">*</sup></label>
-              <input type="text" class="form-control" name="name" id="name" placeholder="Enter bike brand name" value="">
-            </div>          
-        </div>
-        <br>
+              <div class="row">
+                  <div class="col-md-6">
+                    <label for="name">{{ __('adminstaticword.brandname') }}:<sup class="redstar">*</sup></label>
+                    <input type="text" class="form-control" name="name" id="name" placeholder="Enter bike brand name" value="">
+                  </div>          
+              </div>
+              <br>
 
-        <div class="row">
-           <div class="col-md-6">
-             <label for="slug">{{ __('adminstaticword.slug') }}:</sup></label>
-             <input type="text" class="form-control" name="slug" placeholder="slug bike brand name" id="slug" value="">
-            </div>          
-        </div>
-        <br>
-  
-        <div class="row">
-            <div class="col-md-6">
-              <label for="description">{{ __('adminstaticword.description') }}:</label>
-              <input type="text" class="form-control" name="description" id="description" placeholder="Enter bike Description" value="">
-            </div> 
-        </div>
-        <br>         
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="slug">{{ __('adminstaticword.slug') }}:</sup></label>
+                  <input type="text" class="form-control" name="slug" placeholder="slug bike brand name" id="slug" value="">
+                  </div>          
+              </div>
+              <br>
+        
+              <div class="row">
+                  <div class="col-md-6">
+                    <label for="description">{{ __('adminstaticword.description') }}:</label>
+                    <input type="text" class="form-control" name="description" id="description" placeholder="Enter bike Description" value="">
+                  </div> 
+              </div>
+              <br>         
 
-          <div class="row">
-            <div class="col-md-6">
-                <input type="submit" class="btn btn-info" value="Save">
-                <a href="{{route('brand.index')}}" class="btn btn-primary">Back</a>
-            </div> 
+              <div class="row">
+                <div class="col-md-6">
+                  <input type="submit" class="btn btn-info" value="Save">
+                  <a href="{{route('brand.index')}}" class="btn btn-primary">Back</a>
+                </div> 
+                </div>
+            </form>
           </div>
-
-      </form>
+        </div>
+      </div>
     </div>
-  </section>  
+  </div>
+</section>
   
     {{-- slug --}}
-
 @section('js_slug_page')
 <script>
         $(document).ready(function(){
@@ -70,8 +71,7 @@
                 $('#slug').val(str);
                 $('#slug').attr('placeholder', str);
             });
-        });
-        
+        });        
     </script>   
   @endsection
   {{-- /slug --}}
