@@ -28,6 +28,9 @@ class UsersController extends Controller
 
         $role = Role::all();
         return view('admin.users.create', ['role' => $role]);
+
+        // $arr['role'] = Role::all();
+        // return view('admin.users.create')->with($arr);
     }
 
     public function store(Request $request)
@@ -36,7 +39,7 @@ class UsersController extends Controller
             'fname'=>'required|max:255',
             'lname'=>'required|max:255',
             'email'=>'required|unique:users|email',
-            'idno'=>'required',
+            'idno'=>'required|unique:users,idno',
             'contact'=>'required',
             'status' => 'required',
             'password'=>'required|confirmed|between:3,255',
@@ -48,7 +51,7 @@ class UsersController extends Controller
         $user->fname = $request->fname;
         $user->lname = $request->lname;
         $user->idno = $request->idno;
-        $user->role_id=$request->role_id;
+        $user->role_id = $request->role_id;
         $user->email = $request->email;
         $user->contact = $request->contact;
         $user->status = ($request->status) ? 1:0;
@@ -78,6 +81,7 @@ class UsersController extends Controller
 
     public function edit(User $user)
     {
+    //    $arr['user'] = $user;
         $role = Role::get();
         $userRole = $user->role->first();
         if($userRole != null){
@@ -107,7 +111,7 @@ class UsersController extends Controller
             'email'=>'required|email',
             'idno'=>'required',
             'contact'=>'required',
-            'password'=>'confirmed',
+            // 'password'=>'confirmed',
         ]);
        // dd($request);
 

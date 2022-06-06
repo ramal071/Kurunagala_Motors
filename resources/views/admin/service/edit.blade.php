@@ -30,9 +30,25 @@
                         <input type="text" class="form-control" name="name" id="name" value="{{ $service->name }}">
                       </div>          
                   </div>
-                  <br>
-            
-                  <div class="row">
+                  <br>     
+                 
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label for="exampleInputTit1e">{{ __('adminstaticword.servicetype') }}</label>
+                        <select name="servicetype_id" class="form-control js-example-basic-single col-md-7 col-xs-12">
+                          @foreach($servicetype as $servicetype)
+                            <option value="{{$servicetype->id}}"
+                                @if ($servicetype->id == $service->servicetype_id)
+                                selected
+                            @endif
+                                >{{$servicetype->name}}</option>
+                          @endforeach
+                        </select>
+                      </div>
+                    </div>
+                    <br>
+
+                    <div class="row">
                       <div class="col-md-6">
                         <label for="description">{{ __('adminstaticword.description') }}:</label>
                         <input type="text" class="form-control" name="description" id="description" value="{{ $service->description }}">

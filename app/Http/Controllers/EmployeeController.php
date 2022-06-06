@@ -7,6 +7,8 @@ use Auth;
 
 use App\Employee;
 use App\Role;
+use Illuminate\Support\Facades\DB;
+
 
 class EmployeeController extends Controller
 {
@@ -92,6 +94,13 @@ class EmployeeController extends Controller
     {
         $arr['employee'] =$employee;
         $arr['roles'] = Role::all(); 
+        $arr['empolyee_roles']  = DB::table('employee_role as er')
+                ->leftjoin('employees as e','e.id','=','er.employee_id')
+                ->leftjoin('roles as r','e.id','=','er.role_id')
+                ->select('*')
+                 ->where('er.employee_id' , $employee->id)
+                ->get();
+// dd($arr['empolyee_roles']);
         return view('admin.employee.edit')->with($arr);
     }
 
@@ -142,7 +151,7 @@ class EmployeeController extends Controller
        else
       $file2 = $employee->id_back;
      }
-     $employee->roles()->sync($request->roles);
+    
        $employee->emp_image = $file;
        $employee->id_front = $file1;
        $employee->id_back = $file2;
@@ -152,7 +161,8 @@ class EmployeeController extends Controller
        $employee->address = $request->address;
        $employee->status = ($request->status) ? 1:0;
        $employee->save();
-     
+       $employee->roles()->sync($request->roles);
+       $employee->save();
        return redirect()->route('employee.index');
     }
 

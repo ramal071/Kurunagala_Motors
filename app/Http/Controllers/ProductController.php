@@ -47,6 +47,7 @@ class ProductController extends Controller
 
         $product->bike_id = $request->bike_id;
         $product->brand_id = $request->brand_id;
+        $product->product_image = $file;
         $product->code = $request->code;
         $product->name = $request->name;
         $product->slug = $request->slug;
@@ -61,12 +62,13 @@ class ProductController extends Controller
         //
     }
 
-    public function edit($id)
+    public function edit(Product $product)
     {
 
-    $pr = Product::find($id);
-    return view('admin.product.edit',compact('pr'));
-
+        $arr['bike'] = Bike::all();
+        $arr['brand'] = brand::all();
+        $arr['product'] =$product;
+        return view('admin.product.edit')->with($arr);
      }
 
 
@@ -81,6 +83,7 @@ class ProductController extends Controller
 
         ]);
 
+        // $file = $request->file('public/product/');
         if(isset($request->product_image) && $request->product_image->getClientOriginalName()){
             $ext =  $request->product_image->getClientOriginalExtension();
             $file = date('YmdHis').rand(1,99999).'.'.$ext;
@@ -96,6 +99,7 @@ class ProductController extends Controller
 
         $product->bike_id = $request->bike_id;
         $product->brand_id = $request->brand_id;
+        $product->product_image = $file;
         $product->code = $request->code;
         $product->name = $request->name;
         $product->slug = $request->slug;

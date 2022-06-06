@@ -43,7 +43,7 @@
                                         <td>{{ $pr->code }}</td>
                                         <td>{{ $pr->name }}</td>
                                         <td>{{ $pr->slug }}</td>
-                                        {{-- <td> <img src="{{ asset('storage/product/' .  $e->product_image) }}" width="100px;" height="100px;" alt="Image"></td> --}}
+                                        <td> <img src="{{ asset('storage/product/' .  $pr->product_image) }}" width="100px;" height="100px;" alt="Image"></td>
                                         <td>{{ $pr->description }}</td>
                                         
                                         <td>

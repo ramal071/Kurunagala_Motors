@@ -15,10 +15,20 @@ Route::resource('users', 'UsersController');
 
 Route::resource('cashier', 'CashierController');
 
-Route::resource('customer', 'CustomerController');
+Route::resource('customer', 'CustomerController'); 
+Route::resource('customervehicle', 'CustomerVehicleController');
+Route::resource('customerjobdetail', 'CustomerJobDetailController');    
+Route::resource('customerpendingpayment', 'CustomerPendingPaymentController');
+Route::resource('customerpendingservice', 'CustomerPendingServiceController');
+
+Route::get("dropdown1","CustomerPendingServiceController@upload_info")->name('admin-dropdown1');
+Route::get("child-dropdown1","CustomerPendingServiceController@child_info1")->name('child-dropdown1');
+
+Route::resource('completejob', 'CompleteJobController'); 
+Route::resource('servicerepair', 'ServiceRepairController'); 
+Route::get('service-show', 'ServiceRepairController@usedProductService');
 
 Route::resource('service', 'ServiceController');
-
 Route::resource('servicetype', 'ServiceTypeController');
 
 // Route::prefix('user')->group(function (){
@@ -27,6 +37,7 @@ Route::resource('servicetype', 'ServiceTypeController');
 
 Route::resource('role' , 'RoleController')->middleware('role:manager');
 Route::resource('employee', 'EmployeeController')->middleware('role:manager');
+Route::resource('salary', 'SalaryController');
 
 Route::resource('bike', 'BikeController');
 Route::resource('brand', 'BrandController');
@@ -51,3 +62,7 @@ Route::post('/quickupdate/product/{id}', 'QuickUpdateController@productQuick')->
 Route::post('/quickupdate/cashier/{id}', 'QuickUpdateController@cashierQuick')->name('cashier.quick');
 Route::post('/quickupdate/user/{id}', 'QuickUpdateController@userQuick')->name('user.quick');
 Route::post('/quickupdate/damage/{id}', 'QuickUpdateController@damageQuick')->name('damage.quick');
+Route::post('/quickupdate/servicerepair/{id}', 'QuickUpdateController@servicerepairQuick')->name('servicerepair.quick');
+Route::post('/quickupdate/isborrow/{id}', 'QuickUpdateController@isborrowQuick')->name('isborrow.quick');
+Route::post('/quickupdate/iscomplete/{id}', 'QuickUpdateController@iscompleteQuick')->name('iscomplete.quick');
+Route::post('/quickupdate/isrepaircomplete/{id}', 'QuickUpdateController@isrepaircompleteQuick')->name('isrepaircomplete.quick');

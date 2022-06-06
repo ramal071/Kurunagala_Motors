@@ -85,7 +85,7 @@
         $(document).ready(function(){
             $('#name').keyup(function(e){
                 var str = $('#name').val();
-                str = str.replace(/\W+(?!$)/g, '-').toLowerCase();//rplace stapces with dash
+                str = str.replace(/\W+(?!$)/g, '-').toLowerCase();
                 $('#slug').val(str);
                 $('#slug').attr('placeholder', str);
             });

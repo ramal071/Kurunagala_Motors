@@ -15,4 +15,9 @@ class Employee extends Model
         return $this->belongsToMany(Role::class,
          'employee_role', 'employee_id', 'role_id')->withTimestamps();
     }
+
+    public function servicerepairs()
+    {
+        return $this->belongsToMany(ServiceRepair::class,'employee_service_repairs','employee_id','service_repair_id')->withTimestamps();
+    }
 }

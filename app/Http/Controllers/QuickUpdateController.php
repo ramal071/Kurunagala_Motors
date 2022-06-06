@@ -10,6 +10,7 @@ use App\Product;
 use App\Cashier;
 use App\User;
 use App\DamageProduct;
+use App\ServiceRepair;
 
 class QuickUpdateController extends Controller
 {
@@ -106,6 +107,70 @@ class QuickUpdateController extends Controller
         {
             DamageProduct::where('id', '=', $id)->update(['is_return' => true]);
             return back()->with('success', 'return !!!');
+        }
+    }
+
+    public function servicerepairQuick($id)
+    {
+        $servicerepair = ServiceRepair::findorfail($id);
+
+        if($servicerepair->status)
+        {
+            ServiceRepair::where('id', '=', $id)->update(['status' => false]);
+            return back()->with('delete',  'Done !!!');
+        }
+        else
+        {
+            ServiceRepair::where('id', '=', $id)->update(['status' => true]);
+            return back()->with('success', 'Ongoing !!!');
+        }
+    }
+    
+    public function isborrowQuick($id)
+    {
+        $servicerepair = ServiceRepair::findorfail($id);
+
+        if($servicerepair->is_borrow)
+        {
+            ServiceRepair::where('id', '=', $id)->update(['is_borrow' => false]);
+            return back()->with('delete',  'not borrow !!!');
+        }
+        else
+        {
+            ServiceRepair::where('id', '=', $id)->update(['is_borrow' => true]);
+            return back()->with('success', 'borrow !!!');
+        }
+    }
+    
+    public function iscompleteQuick($id)
+    {
+        $servicerepair = ServiceRepair::findorfail($id);
+
+        if($servicerepair->is_complete)
+        {
+            ServiceRepair::where('id', '=', $id)->update(['is_complete' => false]);
+            return back()->with('delete',  'Half Pay !!!');
+        }
+        else
+        {
+            ServiceRepair::where('id', '=', $id)->update(['is_complete' => true]);
+            return back()->with('success', 'Full Pay !!!');
+        }
+    }
+    
+    public function isrepaircompleteQuick($id)
+    {
+        $servicerepair = ServiceRepair::findorfail($id);
+
+        if($servicerepair->is_repaircomplete)
+        {
+            ServiceRepair::where('id', '=', $id)->update(['is_repaircomplete' => false]);
+            return back()->with('delete',  'not complete');
+        }
+        else
+        {
+            ServiceRepair::where('id', '=', $id)->update(['is_repaircomplete' => true]);
+            return back()->with('success', 'complete');
         }
     }
 }

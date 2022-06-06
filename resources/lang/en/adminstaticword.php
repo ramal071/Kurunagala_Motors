@@ -4,7 +4,6 @@ return [
 
     'employees' => 'Employees' ,
     'employee' => 'Employee',
-    'customer' => 'Customer',
     'id' => 'ID',
     'create'=> 'Create',
 
@@ -37,6 +36,8 @@ return [
     'image' => 'Image',
     'pleaseselect' => 'Please Select',
 
+    'salary' => 'Salary',
+
     'product' => 'Product',
     'brand' => 'Brand',
     'brandname' => 'Brand Name',
@@ -52,12 +53,16 @@ return [
     'productimage' => 'Product Image',
 
     'stock' =>'Stock',
+    'available' => 'Available',
     'qty'=> 'Quantity',
     'dprice' => 'Dealer Price',
     'sprice' => 'Seller Price',
     'discount' => 'Discount',
     'color' => 'Color',
     'lowestlimit' => 'Lowerst Limit',
+    'gnr' => 'Goods Recevied New',
+    'supplier'=>'Supplier',
+
 
     'damage' => 'Damage Spareparts',
     'isreturn' => 'Is Return',
@@ -77,6 +82,36 @@ return [
 
     'service' => 'Service',
     'servicetype' => 'Service Type',
+    'pendingservice' =>'Pending Service',
+    'pendingpayment' => 'Pending Payment',
+    'nextdate' => 'Next Date',
+    'whatareservices' => 'Next Service',
+    'reminderdate' => 'Reminder Date',
+
+    'job' => 'Job',
+    'price' => 'Price',
+    'usedproductservice' => 'Used Product For Service',
+
+    'borrow' => 'Borrow',
+    'notborrow' => 'Not Borrow',
+    'halfpayment' => 'Half Payment',
+    'fullpayment' => 'Full Payment',
+    'notcomplete' => 'not Complete',
+    'complete' => 'Complete',
+    'repaircomplete' => 'Repair Complete',
+    'amount' => 'Amount',
+    'paidamount' => 'Paid Amount',
+    
+    'customer' => 'Customer',
+    'bikeregister' => 'Bike Register',
+    'servicerepair' => 'Service Repair',
+    'completeservicerepair' => 'Complete Service Repair',
+    'registernumber' => 'Register Number',
+    'totalwork' => 'Total Work',
+    'totalcost' => 'Total Cost',
+    'endtime' => 'End Time',
+    'starttime' => 'Start Time',
+    'number' => 'number',
 
     'userprofile' => 'User Profile',
 

@@ -19,4 +19,9 @@ class Bike extends Model
     {
         return $this->belongsTo(Brand::class, 'brand_id', 'id');
     }
+
+    public function customervehicle()
+    {
+        return $this->hasMany(CustomerVehicle::class, 'bike_id', 'id');
+    }
 }

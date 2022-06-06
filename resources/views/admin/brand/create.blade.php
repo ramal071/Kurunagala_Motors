@@ -52,7 +52,9 @@
                   <input type="submit" class="btn btn-info" value="Save">
                   <a href="{{route('brand.index')}}" class="btn btn-primary">Back</a>
                 </div> 
-                </div>
+              </div>
+              <br>
+              
             </form>
           </div>
         </div>

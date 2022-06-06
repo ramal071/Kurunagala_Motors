@@ -12,7 +12,7 @@
         </div>
         <div class="box-body">
           <div class="form-group">
-            <form id="demo-form2" method="post" action="{{route('product.store')}}" data-parsley-validate class="form-horizontal form-label-left" autocomplete="off">
+            <form id="demo-form2" method="post" action="{{route('product.store')}}"  enctype="multipart/form-data" data-parsley-validate class="form-horizontal form-label-left" autocomplete="off">
               {{ csrf_field() }} 
 
               
@@ -51,6 +51,14 @@
               <label for="name">{{ __('adminstaticword.productname') }}:<sup class="redstar">*</sup></label>
               <input type="text" class="form-control" name="name" id="name" >
             </div>          
+        </div>
+        <br>
+
+        <div class="row">
+          <div class="col-md-6">
+            <label for="product_image">{{ __('adminstaticword.image') }}:<sup class="redstar">*</sup></label>
+            <input type="file" class="form-control" name="product_image" id="product_image" placeholder="product image" value="">
+          </div>          
         </div>
         <br>
 

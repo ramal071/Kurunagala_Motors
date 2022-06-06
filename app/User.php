@@ -34,6 +34,26 @@ class User extends Authenticatable
         return $this->hasOne(Customer::class, 'user_id', 'id');
     }
 
+    public function customervehicle()
+    {
+        return $this->hasMany(CustomerVehicle::class, 'user_id', 'id');
+    }
+
+    public function customerpendingservice()
+    {
+        return $this->hasMany(CustomerPendingService::class, 'user_id', 'id');
+    }
+
+    public function customerpendingpayment()
+    {
+        return $this->hasOne(CustomerPendingPayment::class, 'user_id', 'id');
+    }
+
+    public function servicerepair()
+    {
+        return $this->hasOne(ServiceRepair::class, 'user_id', 'id');
+    }
+
 
 
     

@@ -42,7 +42,7 @@
                                             <td> {{ $user->idno }} </td>
                                             <td> {{ $user->email }} </td>
                                             <td> {{ $user->contact }} </td>
-                                            <td>{{ $user->role_id}}</td>
+                                            <td>{{ $user->role_id }}</td>
                                        
                                              <td>
                                                 @if ($user->permissions->isNotEmpty())

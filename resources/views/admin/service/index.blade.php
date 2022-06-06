@@ -1,5 +1,5 @@
 @extends('admin/layouts.master')
-@section('title', 'Service Type')
+@section('title', 'Service View')
 @section('body')
 
 <section class="content">
@@ -24,7 +24,8 @@
                   
                   <th>#</th>
                   <th>{{__('adminstaticword.code') }}</th>
-                  <th>{{ __('adminstaticword.type') }}</th>
+                  <th>{{__('adminstaticword.name') }}</th>
+                  <th>{{ __('adminstaticword.servicetype') }}</th>
                   <th>{{ __('adminstaticword.description') }}</th>                
                   <th>{{ __('adminstaticword.edit') }}</th>
                   <th>{{ __('adminstaticword.delete') }}</th>
@@ -38,7 +39,8 @@
                   <td><?php echo $i;?></td>
 
                         <td>{{ $service->code }}</td>
-                        <td>{{ $service->type }}</td>
+                        <td>{{ $service->name }}</td>
+                        <td>{{ $service->servicetype->name }}</td>
                         <td>{{ $service->description }}</td>
                                           
                       <td>

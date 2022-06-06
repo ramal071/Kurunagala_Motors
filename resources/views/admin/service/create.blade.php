@@ -32,6 +32,19 @@
               <br>
 
               <div class="row">
+                <div class="col-md-6">
+                  <label for="servicetype">{{ __('adminstaticword.brand') }}</label>
+                  <select name="servicetype_id" class="form-control js-example-basic-single col-md-7 col-xs-12">
+                    <option value="0">{{ __('adminstaticword.pleaseselect') }}</option>
+                    @foreach($servicetype as $servicetype)
+                      <option value="{{$servicetype->id}}">{{$servicetype->name}}</option>
+                    @endforeach
+                  </select>
+                </div>
+              </div>
+              <br>
+
+              <div class="row">
                   <div class="col-md-6">
                     <label for="description">{{ __('adminstaticword.description') }}:</label>
                     <input type="text" class="form-control" name="description" id="description" placeholder="Enter service Description" value="">

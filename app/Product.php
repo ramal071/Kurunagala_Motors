@@ -20,4 +20,9 @@ class Product extends Model
     {
         return $this->hasMany(Stock::class, 'stock_id' , 'id');
     }
+
+    public function servicerepair()
+    {
+        return $this->hasMany(ServiceRepair::class, 'product_id', 'id');
+    }
 }

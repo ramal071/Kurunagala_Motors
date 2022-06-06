@@ -14,15 +14,14 @@ class CreateCustomerVehiclesTable extends Migration
     public function up()
     {
         Schema::create('customer_vehicles', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            // $table->unsignedBigInteger('user_id');
-            // $table->foreign('user_id')->references('id')->on('users');
-            // $table->unsignedBigInteger('bike_id');
-            // $table->foreign('bike_id')->references('id')->on('bikes');
-            // $table->unsignedBigInteger('brand_id');
-            // $table->foreign('brand_id')->references('id')->on('brands');
-            // $table->string('register_number',10);
-            // $table->boolean('status')->default(1);
+            $table->bigIncrements('id');        
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('bike_id');
+            $table->foreign('bike_id')->references('id')->on('bikes');
+            $table->unsignedBigInteger('brand_id');
+            $table->foreign('brand_id')->references('id')->on('brands');
+            $table->string('register_number');    
             $table->timestamps();
         });
     }

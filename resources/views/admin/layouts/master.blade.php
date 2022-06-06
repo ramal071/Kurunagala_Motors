@@ -31,8 +31,10 @@
   <link rel="stylesheet" href="{{ asset('css/custom-style.css') }}"/>
   <link rel="stylesheet" href="{{ url('admin/font/font/flaticon.css') }}" /> <!-- fontawesome css -->
 
-    <link rel="stylesheet" href="{{url('css/admin/bootstrap-tagsinput.css')}}">
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css">
+  <link rel="stylesheet" href="{{url('css/admin/bootstrap-tagsinput.css')}}">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css">
+
+  {{-- <link rel="stylesheet" href="{{url('https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css')}}"> --}}
 
   @yield('stylesheets')
   @yield('css_role_page')
@@ -128,6 +130,11 @@
   <script src="{{ url('admin/js/vfs_fonts.js')}}"></script>
   <script src="{{ url('admin/js/buttons.html5.min.js')}}"></script>
   <script src="{{ url('admin/js/buttons.print.min.js')}}"></script>
+
+  {{-- <script src="{{ url('https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js')}}"></script> --}}
+  {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script> --}}
+  {{-- <script src="{{ url('https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js')}}"></script>
+ --}}
 
 
 <script>

@@ -24,7 +24,7 @@
                   
                   <th>#</th>
                   <th>{{__('adminstaticword.code') }}</th>
-                  <th>{{ __('adminstaticword.type') }}</th>
+                  <th>{{ __('adminstaticword.servicetype') }}</th>
                   <th>{{ __('adminstaticword.description') }}</th>                
                   <th>{{ __('adminstaticword.edit') }}</th>
                   <th>{{ __('adminstaticword.delete') }}</th>
@@ -38,7 +38,7 @@
                   <td><?php echo $i;?></td>
 
                         <td>{{ $servicetype->code }}</td>
-                        <td>{{ $servicetype->type }}</td>
+                        <td>{{ $servicetype->name }}</td>
                         <td>{{ $servicetype->description }}</td>
                                           
                       <td>

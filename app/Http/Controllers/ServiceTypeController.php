@@ -18,7 +18,7 @@ class ServiceTypeController extends Controller
         return view('admin.servicetype.create');
     }
 
-    public function store(Request $request, service $service)
+    public function store(Request $request, Servicetype $servicetype)
     {
         $data = $this->validate($request, [
             'name'=> 'required|unique:Servicetypes,name',
@@ -29,11 +29,11 @@ class ServiceTypeController extends Controller
         'name.unique' => 'Service type name already exist',
     ]);
         
-        $service = new service();
-        $service->code = $request->code;
-        $service->name = $request->name;
-        $service->description = $request->description;
-        $service->save();      
+        $servicetype = new Servicetype();
+        $servicetype->code = $request->code;
+        $servicetype->name = $request->name;
+        $servicetype->description = $request->description;
+        $servicetype->save();      
         
         return redirect()->route('servicetype.index')->with('success','Created New Service type successfully');
     
@@ -67,7 +67,7 @@ class ServiceTypeController extends Controller
         return redirect()->route('servicetype.index');
     }
 
-    public function destroy(Servicetype $servicetype)
+    public function destroy($id)
     {
         Servicetype::destroy($id);
         return redirect()->route('servicetype.index')->with('delete', 'Service type model deleted');

@@ -17,7 +17,7 @@ class CreateServicetypesTable extends Migration
             $table->bigIncrements('id');
             $table->string('code');
             $table->string('name');
-            $table->string('description');
+            $table->string('description')->nullable();  
             $table->timestamps();
         });
     }

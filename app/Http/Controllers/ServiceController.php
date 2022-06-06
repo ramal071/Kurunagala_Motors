@@ -17,21 +17,23 @@ class ServiceController extends Controller
 
     public function create()
     {
-        return view('admin.service.create');
+        $arr['servicetype'] = Servicetype::all();
+        return view('admin.service.create')->with($arr);
     }
 
     public function store(Request $request, service $service)
     {
         $data = $this->validate($request, [
-            'name'=> 'required|unique:services,name',
+         //   'name'=> 'required|unique:services,name',
+            'name'=> 'required',
             'code'=> 'required|unique:services,code',
              ],
     [
         'name.required'=>'Please Enter service Name',
-        'name.unique' => 'Service name already exist',
     ]);
         
         $service = new service();
+        $service->servicetype_id = $request->servicetype_id;
         $service->code = $request->code;
         $service->name = $request->name;
         $service->description = $request->description;
@@ -49,6 +51,7 @@ class ServiceController extends Controller
     public function edit(service $service)
     {
         $arr['service'] = $service;
+        $arr['servicetype'] = ServiceType::all();
         return view('admin.service.edit')->with($arr);
     }
 
@@ -63,9 +66,10 @@ class ServiceController extends Controller
         ]);
         $service->code = $request->code;
         $service->name = $request->name;
+        $service->servicetype_id = $request->servicetype_id;
         $service->description = $request->description;
         $service->save();
-
+        
         return redirect()->route('service.index');
     }
 
