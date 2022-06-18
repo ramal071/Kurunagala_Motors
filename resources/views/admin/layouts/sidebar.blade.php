@@ -16,10 +16,9 @@
           <li class="header">{{ __('adminstaticword.navigation') }}</li>
 
            {{-- Garage nav bar start --}}
-        
+           @if(!\Auth::user()->hasRole('customer') )   
           <li class="{{ Nav::isRoute('admin.index') }}"><a href="{{route('admin.index')}}"><i class="flaticon-web-browser" aria-hidden="true"></i><span>{{ __('adminstaticword.dashboard') }}</span></a></li>
-
-          {{-- <li class="{{ Nav::isRoute('user.index') }} {{ Nav::isRoute('user.add') }} {{ Nav::isRoute('user.edit') }}"><a href="{{route('user.index')}}"><i class="flaticon-user" aria-hidden="true"></i><span>{{ __('adminstaticword.customer') }}</span></a></li> --}}
+            @endif
 
           <li class="{{ Nav::isRoute('service') }} {{ Nav::isResource('service') }} treeview">
             <a href="#">
@@ -33,20 +32,23 @@
             </ul>
           </li> 
                     {{-- Employee = role/ employee --}}
+          @if(Auth::user()->hasRole('manager') )        
+            <li class="{{ Nav::isRoute('employee') }} {{ Nav::isResource('employee') }} treeview">
+              <a href="#">
+                  <i class="flaticon-location"></i>{{ __('adminstaticword.employees') }}
+                  <i class="fa fa-angle-left pull-right"></i>
+              </a> 
+              <ul class="treeview-menu">   
+                <li class="{{ Nav::isRoute('role.index') }}"><a href="{{route('role.index')}}"><i class="flaticon-rec"></i>{{ __('adminstaticword.role') }}</a></li>
+                <li class="{{ Nav::isRoute('employee.index') }}"><a href="{{route('employee.index')}}"><i class="flaticon-rec"></i>{{__('adminstaticword.employee')}}</a></li>
+                <li class="{{ Nav::isRoute('salary.index') }}"><a href="{{route('salary.index')}}"><i class="flaticon-rec"></i>{{__('adminstaticword.salary')}}</a></li>
+                <li class="{{ Nav::isRoute('employee_serviceRepair.index') }}"><a href="{{route('employee_serviceRepair.index')}}"><i class="flaticon-rec"></i>{{__('adminstaticword.employeeservice')}}</a></li>
+                {{-- <li class="{{ Nav::isRoute('employee.employeeService') }}"><a href="{{route('employee.employeeService')}}"><i class="flaticon-rec"></i>{{__('adminstaticword.employeeservice')}}</a></li> --}}
+      
+              </ul>
+            </li> 
+          @endif
 
-          <li class="{{ Nav::isRoute('employee') }} {{ Nav::isResource('employee') }} treeview">
-            <a href="#">
-                <i class="flaticon-location"></i>{{ __('adminstaticword.employees') }}
-                <i class="fa fa-angle-left pull-right"></i>
-            </a> 
-            <ul class="treeview-menu">            
-              <li class="{{ Nav::isRoute('role.index') }}"><a href="{{route('role.index')}}"><i class="flaticon-rec"></i>{{ __('adminstaticword.role') }}</a></li>
-              <li class="{{ Nav::isRoute('employee.index') }}"><a href="{{route('employee.index')}}"><i class="flaticon-rec"></i>{{__('adminstaticword.employee')}}</a></li>
-              <li class="{{ Nav::isRoute('salary.index') }}"><a href="{{route('salary.index')}}"><i class="flaticon-rec"></i>{{__('adminstaticword.salary')}}</a></li>
-            </ul>
-          </li> 
-
-          
               {{--  Product = bike , brand ,  product --}}
               <li class="{{ Nav::isRoute('product') }} {{ Nav::isResource('product') }} treeview">
                 <a href="#">
@@ -61,7 +63,7 @@
               </li> 
 
            {{-- customer = bike register , job details , pending service , pending payment --}}
-
+           {{-- @if(Auth::user()->hasRole('manager') )     --}}
            <li class="{{ Nav::isRoute('customer') }} {{ Nav::isResource('customer') }} treeview">
             <a href="#">
                 <i class="flaticon-location"></i>{{ __('adminstaticword.customer') }}
@@ -104,7 +106,14 @@
               <li class="{{ Nav::isRoute('stock.index') }}"><a href="{{route('stock.index')}}"><i class="flaticon-rec"></i>{{ __('adminstaticword.pendinglimit') }} {{__('adminstaticword.jobdetails')}}</a></li>
             </ul>
           </li> 
+
+          {{-- <a href="{{route('profile.show',Auth::User()->id)}}"><li ><i class="fa fa-user"></i>{{ __('frontstaticword.') }}</li></a>      --}}
+
+          <li class="{{ Nav::isRoute('profile.show') }}"><a href="{{route('profile.show',Auth::User()->id)}}"><i class="flaticon-web-browser" aria-hidden="true"></i><span>{{ __('adminstaticword.userprofile') }}</span></a></li>
         
+          <li class="{{ Nav::isRoute('contact.index') }}"><a href="{{route('contact.index')}}"><i class="flaticon-web-browser" aria-hidden="true"></i><span>{{ __('adminstaticword.contact') }}</span></a></li>
+ 
+
         </ul>
       {{-- @endif --}}
     </section>

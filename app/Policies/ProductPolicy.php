@@ -3,13 +3,17 @@
 namespace App\Policies;
 
 use App\User;
-use App\brand;
+use App\Product;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class BrandPolicy
+class ProductPolicy
 {
     use HandlesAuthorization;
 
+    public function __construct()
+    {
+        //
+    }
 
     public function before($user, $ability)
     {
@@ -23,10 +27,6 @@ class BrandPolicy
         //
     }
 
-    public function view(User $user, brand $brand)
-    {
-        //
-    }
 
     public function create(User $user)
     {
@@ -38,7 +38,7 @@ class BrandPolicy
         return false;
     }
 
-    // public function edit(User $user, brand $brand)
+    // public function edit(User $user, Product $product)
     // {
     //     if($user->permissions->contains('slug', 'edit')) {
     //         return true;
@@ -49,7 +49,7 @@ class BrandPolicy
     // }
 
 
-    public function update(User $user, brand $brand)
+    public function update(User $user, Product $product)
     {
         if($user->role->contains('slug', 'manager')){
             return true;
@@ -60,7 +60,7 @@ class BrandPolicy
         return false;
     }
 
-    public function delete(User $user, brand $brand)
+    public function delete(User $user, Product $product)
     {
         if($user->permissions->contains('slug', 'delete')) {
             return true;
@@ -68,15 +68,5 @@ class BrandPolicy
             return true;
         }
         return false;
-    }
-
-    public function restore(User $user, brand $brand)
-    {
-        //
-    }
-
-    public function forceDelete(User $user, brand $brand)
-    {
-        //
     }
 }

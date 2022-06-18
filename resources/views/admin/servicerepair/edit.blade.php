@@ -3,6 +3,8 @@
 @section('body')
 @include('admin.message')
 
+@section('stylesheets')
+@endsection
 
 <section class="content">
     <div class="row">
@@ -16,8 +18,6 @@
                 <form id="demo-form2" method="post" action="{{route('servicerepair.update', $servicerepair->id) }}"  enctype="multipart/form-data" data-parsley-validate class="form-horizontal form-label-left" autocomplete="off">
                     {{ csrf_field() }}
                       @method('PUT')
-
-                     
     
                     <div class="row">
                         <div class="col-md-6">
@@ -27,7 +27,7 @@
                               $user = App\User::all();
                             @endphp  
                             @foreach($user as $caat)
-                              <option {{ $customerpendingservice->user_id == $caat->id ? 'selected' : "" }} value="{{ $caat->id }}">{{ $caat->idno }}</option>
+                              <option {{ $caat->user_id == $caat->id ? 'selected' : "" }} value="{{ $caat->id }}">{{ $caat->idno }}</option>
                             @endforeach 
                           </select>
                         </div>
@@ -43,7 +43,7 @@
                             $customervehicle = App\CustomerVehicle::all();
                             @endphp  
                             @foreach($customervehicle as $caat)
-                            <option {{ $customerpendingservice->customervehicle_id == $caat->id ? 'selected' : "" }} value="{{ $caat->id }}">{{ $caat->register_number }}</option>
+                            <option {{ $caat->customervehicle_id == $caat->id ? 'selected' : "" }} value="{{ $caat->id }}">{{ $caat->register_number }}</option>
                             @endforeach 
                         </select>
                         </div>
@@ -58,7 +58,7 @@
                             $service = App\Service::all();
                             @endphp  
                             @foreach($service as $service)
-                            <option {{ $customerpendingservice->service_id == $service->id ? 'selected' : "" }} value="{{ $service->id }}">{{ $service->name }}</option>
+                            <option {{ $service->service_id == $service->id ? 'selected' : "" }} value="{{ $service->id }}">{{ $service->name }}</option>
                             @endforeach 
                         </select>
                         </div>
@@ -88,41 +88,39 @@
                               $stock = App\Stock::all();
                             @endphp  
                             @foreach($stock as $stock)
-                              <option {{ $stock->stock_id == $stock->id ? 'selected' : "" }} value="{{ $stock->id }}">{{ $stock->name }}</option>
+                              <option {{ $stock->stock_id == $stock->id ? 'selected' : "" }} value="{{ $stock->id }}">{{ $stock->id }}</option>
                             @endforeach 
                           </select>
                         </div>
                       </div>
                     <br> 
 
-                    {{-- <div class="row">
-                        <div class="col-md-6">
-                          <label for="employee">{{ __('adminstaticword.employee') }}</label>
-                          <select name="stock_id" id="stock_id" class="form-control js-example-basic-single">
-                            @php
-                              $employee = App\Employee::all();
-                            @endphp  
-                            @foreach($employee as $employee)
-                              <option {{ $employee->stock_id == $stock->id ? 'selected' : "" }} value="{{ $employee->id }}">{{ $employee->name }}</option>
-                            @endforeach 
-                          </select>
-                        </div>
-                      </div>
-                    <br>  --}}
-                 
                     <div class="row">
                         <div class="col-md-6">
-                            <label for="exampleInputTit1e">{{ __('adminstaticword.role') }}</label>
-                             <select name="employee[]" value="{{ $servicerepair->employee_id }}"
-                                class="form-control js-example-basic-single col-md-7 col-xs-12">
-                                <option value="">Choose Employee</option>
-                                {{-- {{ dd($empolyee_roles) }} --}}
+                            <label for="employee">{{ __('adminstaticword.employee') }}</label>
+                             {{-- <select name="employee[]" value="{{ $servicerepair->employee_id }}" --}}
+                              {{-- <select name="employee[]"
+                                class="form-control employee" multiple="multiple"> --}}
+                                {{-- <option value="">Choose Employee</option>                               
                                 @foreach ($employee as $r)
                                     <option value="{{ $r->id }}"
                                       {{ $r->id == $empolyee_service_repairs[0]->employee_id ? 'selected' : '' }}>
                                       {{ $r->name }} 
                                     </option>
                                 @endforeach
+                            </select> --}}
+
+                            <select name="employee[]" class="form-control employee" multiple="multiple" >
+                              <option value="">Choose employee</option>
+                              @foreach($employee as $c)
+                                <option value="{{ $c->id }}" 
+                
+                                  @if($c->id == $servicerepair->employee_id)
+                                  selected
+                                  @endif
+                
+                                  >{{ $c->name }}</option>
+                              @endforeach
                             </select>
                         </div>
                     </div>
@@ -139,7 +137,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label for="amount">{{ __('adminstaticword.amount') }}:<sup class="redstar">*</sup></label>
-                            <input type="date" class="form-control" name="amount" id="amount" value=" {{ $servicerepair->amount }}">
+                            <input type="text" class="form-control" name="amount" id="amount" value=" {{ $servicerepair->amount }}">
                         </div>  
                     </div>
                     <br>     
@@ -161,4 +159,23 @@
   </section>
   @endsection
   
-  @endsection
+  @section('scripts')
+@php
+    $employee_ids = [];
+@endphp
+
+@foreach ($servicerepair->employee as $e)
+@php
+    array_push($employee_ids, $e->id);
+@endphp    
+@endforeach
+
+<script>
+$(document).ready(function() {
+    $('.employee').select2();
+    data = [];
+    data = <?php echo json_encode($employee_ids); ?>;
+    $('.employee').val(data).trigger('change'); 
+  });
+  </script>
+@endsection

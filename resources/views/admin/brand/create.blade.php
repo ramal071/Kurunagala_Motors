@@ -27,7 +27,9 @@
                   <div class="col-md-6">
                     <label for="name">{{ __('adminstaticword.brandname') }}:<sup class="redstar">*</sup></label>
                     <input type="text" class="form-control" name="name" id="name" placeholder="Enter bike brand name" value="">
-                  </div>          
+                    {{-- <div id="brandList"></div> --}}
+                  </div>      
+                  {{-- {{ csrf_field() }}     --}}
               </div>
               <br>
 
@@ -77,5 +79,55 @@
     </script>   
   @endsection
   {{-- /slug --}}
+
+  {{-- autocomplete --}}  
+  {{-- <script>
+    $(document).ready(function(){
+      $('#name').keyup(function(){
+        var query = $(this).val();
+        if(query !='')
+        {
+          var _token = $('input[name="_token"]').val();
+          $.ajax({
+            url:"{{ route('brand.fetch') }}",
+            method:"POST",
+            data:{query:query, _token:_token},
+            success:function(data)
+            {
+              $('#brandList').fadeIn();
+              $('#brandList').html(data);
+            }
+          });
+        }
+      });
+    });
+  </script> --}}
+
+  {{-- <script>  
+    $(document).ready(function(){  
+         $('#name').keyup(function(){  
+              var query = $(this).val();  
+              if(query != '')  
+              {  
+                   $.ajax({  
+                        url:"brand.php",  /////
+                        method:"POST",  
+                        data:{query:query},  
+                        success:function(data)  
+                        {  
+                             $('#brandList').fadeIn();  
+                             $('#brandList').html(data);  
+                        }  
+                   });  
+              }  
+         });  
+         $(document).on('click', 'li', function(){  
+              $('#name').val($(this).text());  
+              $('#brandList').fadeOut();  
+         });  
+    });  
+    </script>   --}}
+
+  {{-- /autocomplete --}}
   
   @endsection

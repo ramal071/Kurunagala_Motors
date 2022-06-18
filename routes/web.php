@@ -11,12 +11,14 @@ Route::prefix('admins')->group(function (){
     Route::get('/', 'AdminController@index')->name('admin.index');
 });
 
-Route::resource('users', 'UsersController');
+Route::resource('users', 'UsersController')->middleware('role:cashier,manager');;
 
 Route::resource('cashier', 'CashierController');
 
 Route::resource('customer', 'CustomerController'); 
 Route::resource('customervehicle', 'CustomerVehicleController');
+// Route::get('customervehicle/{id}', 'CustomerVehicleController');
+
 Route::resource('customerjobdetail', 'CustomerJobDetailController');    
 Route::resource('customerpendingpayment', 'CustomerPendingPaymentController');
 Route::resource('customerpendingservice', 'CustomerPendingServiceController');
@@ -37,14 +39,19 @@ Route::resource('servicetype', 'ServiceTypeController');
 
 Route::resource('role' , 'RoleController')->middleware('role:manager');
 Route::resource('employee', 'EmployeeController')->middleware('role:manager');
-Route::resource('salary', 'SalaryController');
+Route::resource('salary', 'SalaryController')->middleware('role:cashier,manager');;
+//  Route::get('/employee/employeeservice', 'EmployeeController@employeeservice')->name('employeeservice');
+Route::resource('employee_serviceRepair', 'EmployeeServiceRepairController');
+
 
 Route::resource('bike', 'BikeController');
 Route::resource('brand', 'BrandController');
+//Route::post('/brand/fetch', 'BrandController@fetch')->name('brand.fetch');
 Route::resource('product', 'ProductController');
 Route::get("dropdown","ProductController@upload_info")->name('admin-dropdown');
 Route::get("child-dropdown","ProductController@child_info")->name('child-dropdown');
 
+Route::get('/detail/{id}', 'ProductController@detail');
 
 Route::resource('stock', 'StockController')->middleware('role:cashier,manager');
 Route::resource('damage', 'DamageProductController')->middleware('role:manager');
@@ -54,6 +61,15 @@ Route::resource('recondition', 'ReconditionProductController')->middleware('role
 Route::get('profile-show/{id}', 'UserProfileController@userprofilepage')->name('profile.show');
 Route::put('profile-edit/{id}','UserProfileController@userprofile')->name('user.profile');
 Route::put('profile-update/{id}','UserProfileController@userprofileUpdate')->name('user.profile_update');
+
+//contact
+Route::get('contactus','ContactUsController@contactView')->name('contact.view');
+Route::post('/contact','ContactUsController@sendMessage')->name('contact.send');
+
+Route::get('contact','ContactController@index')->name('contact.index');
+Route::get('contact/{id}','ContactController@show')->name('contact.show');
+Route::delete('contact/{id}','ContactController@destroy')->name('contact.destroy');
+
 
 // quick update status
 Route::post('/quickupdate/role/{id}', 'QuickUpdateController@roleQuick')->name('role.quick');

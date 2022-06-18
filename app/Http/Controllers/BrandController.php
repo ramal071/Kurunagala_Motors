@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\brand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use DB;
 
 class BrandController extends Controller
 {
@@ -22,7 +23,7 @@ class BrandController extends Controller
 
     public function create(brand $brand)
     {
-        $this->authorize('create', brand::class); //policy
+     //   $this->authorize('create', brand::class); //policy
         return view('admin.brand.create');
     }
 
@@ -92,4 +93,23 @@ class BrandController extends Controller
         $brand->delete();
         return redirect()->route('brand.index')->with('delete', 'Brand deleted');
     }
+
+    // function fetch(Request $request)
+    // {
+    //     if($request->get('query'))
+    //     {
+    //         $query = $request->get('query');
+    //         $data = DB::table('brands')->where('name', 'LIKE', '%{$query}%')->get();
+    //         $output = '<ul class="dropdown-menu"
+    //         style="display:block;
+    //         position:relative"
+    //         >';
+    //         foreach ($data as $row) 
+    //         {
+    //             $output .='<li><a href="#">'.$row->name.'</a></li>';
+    //         }
+    //         $output .='<ul>';
+    //         echo $output;
+    //     }
+    // }
 }

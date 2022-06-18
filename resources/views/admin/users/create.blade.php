@@ -3,35 +3,54 @@
 @section('body')
 @include('admin.message')
 
-<section id="signup" class="signup-block-main-block mt-0">
-  <div class="container">
-    <div class="col-lg-6 col-md-6 offset-md-3">
-      <div class="signuo-block">
+<section id="signup" class="content">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box box-primary">
 
+        <div class="box-header with-border">
+          <h3 class="box-title">{{ __('adminstaticword.user') }}</h3>
+        </div>
+
+        <div class="box-body">
+        <div class="form-group">
         <form method="POST" action="/users" enctype="multipart/form-data">
           {{ csrf_field() }}
           
-          <div class="form-group">
+          <div class="row">
+            <div class="col-md-6">
               <label for="name">First name</label>  
               <input type="text" name="fname" class="form-control" id="fname" placeholder="First Name..." value="{{ old('fname') }}">
+            </div>          
           </div>
+          <br>
         
-          <div class="form-group">
+          <div class="row">
+            <div class="col-md-6">
             <label for="name">Last name</label>
             <input type="text" name="lname" class="form-control" id="lname" placeholder="Last Name..." value="{{ old('lname') }}">
-          </div>
+          </div>          
+        </div>
+        <br>
         
-          <div class="form-group">
+          <div class="row">
+            <div class="col-md-6">
               <label for="email">Email</label>
               <input type="email" name="email" class="form-control" id="email" placeholder="Email..." value="{{ old('email') }}">
+            </div>          
           </div>
+          <br>
         
-          <div class="form-group">
+          <div class="row">
+            <div class="col-md-6">
             <label for="name">Contact</label>
             <input type="text" name="contact" class="form-control" id="contact" placeholder="Contact..." value="{{ old('contact') }}">
-          </div>
+          </div>          
+        </div>
+        <br>
         
-          <div class="form-group">
+          <div class="row">
+            <div class="col-md-6">
             <label for="role">Select Role</label>
 
             <select name="role_id" id="role_id" class="form-control js-example-basic-single col-md-7 col-xs-12" >
@@ -40,7 +59,9 @@
                 <option value="{{$r->id}}">{{$r->name}}</option>
               @endforeach
             </select>
-          </div>
+          </div>          
+        </div>
+        <br>
 
           <div id="permissions_box">
               <label for="role" name="permission">Select Permissions</label>
@@ -48,27 +69,39 @@
               </div>
           </div> 
         
-          <div class="form-group">
+          <div class="row">
+            <div class="col-md-6">
             <label for="name">ID Number</label>
             <input type="text" name="idno" class="form-control" id="idno" placeholder="ID..." value="{{ old('idno') }}">
-          </div>
+          </div>          
+        </div>
+        <br>
         
-          <div class="form-group">
+          <div class="row">
+            <div class="col-md-6">
               <label for="password">Password</label>
               <input type="password" name="password" class="form-control" id="password" placeholder="Password...">
+            </div>          
           </div>
+          <br>
         
-          <div class="form-group">
+          <div class="row">
+            <div class="col-md-6">
             <label for="password_confirmation">Password Confirm</label>
             <input type="password" name="password_confirmation" class="form-control" placeholder="Password..." id="password_confirmation">
-          </div>
+          </div>          
+        </div>
+        <br>
         
-          <div class="form-group">
+          <div class="row">
+            <div class="col-md-6">
             <li class="tg-list-item">     
                 <input class="tgl tgl-skewed" id="status" type="checkbox" name="status" >
                 <label class="tgl-btn" data-tg-off="Disable" data-tg-on="Enable" for="status"></label>
             </li>
-          </div>
+          </div>          
+        </div>
+        <br>
           
           <div class="form-group pt-2">
               <input class="btn btn-primary" type="submit" value="Submit">

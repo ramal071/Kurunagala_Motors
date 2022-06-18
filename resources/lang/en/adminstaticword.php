@@ -6,6 +6,7 @@ return [
     'employee' => 'Employee',
     'id' => 'ID',
     'create'=> 'Create',
+    'my' => 'My',
 
     'role' => 'Role',
     'permission' => 'Permission',
@@ -37,6 +38,8 @@ return [
     'pleaseselect' => 'Please Select',
 
     'salary' => 'Salary',
+    'employeeservice' => 'Employee-Service',
+    'startjob' => 'Start Job',
 
     'product' => 'Product',
     'brand' => 'Brand',
@@ -89,6 +92,7 @@ return [
     'reminderdate' => 'Reminder Date',
 
     'job' => 'Job',
+    'jobid' => 'Job ID',
     'price' => 'Price',
     'usedproductservice' => 'Used Product For Service',
 
@@ -114,6 +118,9 @@ return [
     'number' => 'number',
 
     'userprofile' => 'User Profile',
+    'latestusers' => 'Latest Users',
+    'contactus' => 'Contact Us',
+    'message' => 'Message',
 
     'ServiceBills' => 'Service Bills',
     'Comments' => 'Comments',

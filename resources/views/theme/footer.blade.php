@@ -125,10 +125,10 @@
                             <ul>
                                 <li><a href="#">About Us</a></li>
                                 <li><a href="/#services">Services</a></li>
-                                <li><a href="">Employee</a></li>
+                                <li><a href="{{ route('product.index') }}">Product</a></li>
                                 <li><a href="">Forum</a></li>
                                 <li><a href="">FAQ's</a></li>
-                                <li><a href="">Contact Us</a></li>
+                                <li><a href="{{ route('contact.view') }}">Contact Us</a></li>
                             </ul>
                         </div>
                     </div>

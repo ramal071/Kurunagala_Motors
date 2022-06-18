@@ -54,9 +54,9 @@
                                     <td>{{ $b->service->name}}</td>
                                     <td>
                                         @foreach ($b->employee as $e)
-                                        <ui><li>
+                                        <li>
                                             {{$e->name}}
-                                        </ui> </li>
+                                        </li>
                                         @endforeach
                                     </td>
                                     <td>{{ $b->amount }}</td>

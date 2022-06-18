@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\Bike;
 use App\brand;
+use Illuminate\Support\Facades\Gate;
 
 class ProductController extends Controller
 {
@@ -16,8 +17,16 @@ class ProductController extends Controller
         return view('admin.product.index')->with($arr);
     }
 
-    public function create()
+    function detail($id)
     {
+        $data = Product::find($id); 
+        return view('detail', ['product' =>$data]);
+    }
+
+    public function create(Product $product)
+    {
+        $this->authorize('create', Product::class); //policy
+
         $arr['bike'] = Bike::all();
         $arr['brand'] = brand::all();
         return view('admin.product.create')->with($arr);
@@ -64,6 +73,7 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
+        $this->authorize('edit', $product); //policy
 
         $arr['bike'] = Bike::all();
         $arr['brand'] = brand::all();
@@ -74,6 +84,8 @@ class ProductController extends Controller
 
     public function update(Request $request, Product $product)
     {
+        $this->authorize('update', $product); //policy
+
         $data = $this->validate($request, [
             'code'=>'required',
             'name'=>'required',
@@ -112,6 +124,8 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
+        $this->authorize('delete', $product); //policy
+
         $product->delete();
         return redirect()->route('product.index')->with('delete', 'Product deleted successfully');
     }

@@ -16,8 +16,10 @@ class BikeController extends Controller
         return view('admin.bike.index')->with($arr);
     }
 
-    public function create()
+    public function create(Bike $bike)
     {
+        $this->authorize('create', $bike); 
+
         $arr['brand'] = brand::all();
         return view('admin.bike.create')->with($arr);
     }
@@ -54,6 +56,8 @@ class BikeController extends Controller
 
     public function edit(Bike $bike)
     {
+        $this->authorize('edit', $bike);
+
         $arr['bike'] = $bike;
         $arr['brand'] = brand::all();
         return view('admin.bike.edit')->with($arr);
@@ -61,6 +65,8 @@ class BikeController extends Controller
 
     public function update(Request $request, Bike $bike)
     {
+        $this->authorize('update', $bike);
+
         $data = $this->validate($request, [ 
             'name'=> 'required',
             'code'=>'required',
@@ -83,7 +89,11 @@ class BikeController extends Controller
 
     public function destroy($id)
     {
+        $this->authorize('delete', $id); 
+
         Bike::destroy($id);
         return redirect()->route('bike.index')->with('delete', 'Bike model deleted');
     }
+
+    
 }

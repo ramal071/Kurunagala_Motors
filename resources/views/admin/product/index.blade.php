@@ -8,9 +8,9 @@
                 <div class="box box-primary">  {{-- red line --}}
                     <div class="box-header with-border">
                         <h3 class="box-title">{{__('adminstaticword.product') }}</h3>
-                       
+                        @can('create', App\Product::class)
                         <a href="{{ route('product.create') }}" class="btn btn-info btn-sm">+ {{__('adminstaticword.product') }}</a>    
-                                         
+                        @endcan  
                     </div>
 
                     <div class="box-body">
@@ -26,7 +26,7 @@
                                         <th>{{__('adminstaticword.slug') }}</th>                                       
                                         <th>{{__('adminstaticword.productimage') }}</th>                                       
                                         <th>{{__('adminstaticword.description') }}</th>
-                                        <th>{{__('adminstaticword.status') }}</th>
+                                        <th>{{__('adminstaticword.status') }}</th>                                     
                                         <th>{{__('adminstaticword.edit') }}</th>
                                         <th>{{__('adminstaticword.delete') }}</th>
                                     </tr>
@@ -35,6 +35,7 @@
                                 <tbody>
                                     <?php $i=0;?>
                                     @foreach($product as $pr)
+                                     
                                     <?php $i++;?>
                                     <tr>
                                         <td><?php echo $i;?></td>
@@ -45,8 +46,8 @@
                                         <td>{{ $pr->slug }}</td>
                                         <td> <img src="{{ asset('storage/product/' .  $pr->product_image) }}" width="100px;" height="100px;" alt="Image"></td>
                                         <td>{{ $pr->description }}</td>
-                                        
-                                        <td>
+                                        @if(!\Auth::user()->hasRole('customer') )         
+                                        <td>    
                                             <form action="{{ route('product.quick', $pr->id) }}" method="POST">
                                               {{ csrf_field() }}
                                               <button type="Submit" class="btn btn-xs {{ $pr->status ==1 ? 'btn-success' : 'btn-danger' }} "> 
@@ -56,19 +57,38 @@
                                                 {{__('adminstaticword.deactive') }} 
                                                 @endif
                                               </button>
-                                            </form>
+                                            </form>                                          
                                         </td>  
+                                    @else
+                                        <td>
+                                       
+                                            <button type="Submit" class="btn btn-xs {{ $pr->status ==1 ? 'btn-success' : 'btn-danger' }} "> 
+                                                @if ($pr->status ==1)
+                                              {{__('adminstaticword.active') }}         
+                                              @else
+                                              {{__('adminstaticword.deactive') }} 
+                                              @endif
+                                            </button>
+                                    
+                                        </td>   
+                                        @endif 
 
                                         <td>
+                                            @can('edit',$pr)
                                             <a href="{{route('product.edit', $pr->id)}}" class="btn btn-success btn-sm" ><i class="glyphicon glyphicon-pencil"></i></a>
-                                          </td>
+                                            @endcan  
+                                        </td>
+
                                         <td>
+                                            @can('delete',$pr)
                                             <a href="javascript:void(0)" onclick="$(this).parent().find('form').submit()" class="btn btn-danger"><i class="fa fa-fw fa-trash-o"></i></a>
                                             <form action="{{ route('product.destroy', $pr->id) }}" method="post">
                                                 @method('DELETE')
                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                             </form>
+                                            @endcan  
                                         </td>
+
                                     </tr>
                                     @endforeach
                                 </tbody>

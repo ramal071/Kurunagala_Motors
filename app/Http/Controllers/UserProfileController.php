@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Auth;
+use App\customervehicle;
 use Redirect;
 
 class UserProfileController extends Controller
@@ -14,7 +15,7 @@ class UserProfileController extends Controller
         if(Auth::check()){
             $user = User::where('id', Auth::User()->id)->first();
 
-            return view('front.user_profile.profile');
+            return view('front.user_profile.profile',compact('user'));
         }
         return Redirect::route('login');
     }

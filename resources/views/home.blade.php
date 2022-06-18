@@ -3,21 +3,125 @@
 @section('content')
 
 
-
 <!-- services start-->
 <section class="section services-section" id="services">
     <div class="container">
-
         {{-- <div class="user-detailss">
             Hi, {{ Auth::User()->fname }}                        
-        </div>  
- --}}
+        </div>   --}}
+        \
+        {{-- <div class="row">
+            <div class="col-lg-6">
+                <div class="section-title">
+                    <h2> <a href="{{route('profile.show',Auth::User()->id)}}">USER PROFILE</li></a>  </h2>
+                </div>
+            </div>
+        </div> --}}
 
+
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="section-title">
+                    <h2>MY DETAILS</h2>
+                </div>
+            </div>
+        </div>
+       
+        <div class="row">
+            <!-- feaure box -->
+            <div class="col-sm-6 col-lg-4">
+                <div class="feature-box-1">
+                    <div class="icon">
+                        <i class="fa fa-product-hunt" aria-hidden="true"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h5>My Service</h5>
+                        <p>We at Kurunagala Motors offer convenient and quality driven services for your vehicle. </p>
+                    </div>
+                    @if(Auth::check())         
+                    <a href="{{url('customer')}}" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
+                    @else
+                    <a href="{{ route('login') }}">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a></li>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </br>
+ 
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="section-title">
+                    <h2>PRODUCTS</h2>
+                </div>
+            </div>
+        </div>
+       
+        <div class="row">
+            <!-- feaure box -->
+            <div class="col-sm-6 col-lg-4">
+                <div class="feature-box-1">
+                    <div class="icon">
+                        <i class="fa fa-product-hunt" aria-hidden="true"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h5>Product</h5>
+                        <p>Here, you can view our products available </p>
+                    </div>
+                    @if(Auth::check())
+                    <a href="{{url('product')}}" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
+                    @else
+                    <a href="{{ route('login') }}">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a></li>
+                    @endif
+                </div>
+            </div>
+       
+            
+            <!-- feaure box -->
+            <div class="col-sm-6 col-lg-4">
+                <div class="feature-box-1">
+                    <div class="icon">
+                        <i class="fa fa-motorcycle" aria-hidden="true"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h5>Bike</h5>
+                        <p>Here, you can view our bike models we services </p>
+                    </div>
+                    @if(Auth::check())
+                    <a href="{{url('bike')}}" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
+                    @else
+                    <a href="{{ route('login') }}">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a></li>
+                    @endif                    
+                </div>
+            </div>
+      
+            
+            <!-- feaure box -->
+            <div class="col-sm-6 col-lg-4">
+                <div class="feature-box-1">
+                    <div class="icon">
+                        <i class="fa fa-list-alt"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h5>Brand</h5>
+                        <p>Here, you can view our bike brands we services </p>
+                    </div>
+                    @if(Auth::check())
+                    <a href="{{url('brand')}}" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
+                    @else
+                    <a href="{{ route('login') }}">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a></li>
+                    @endif
+                    
+                </div>
+            </div>
+        </div>
+
+    </br>
+ 
         
         <div class="row">
             <div class="col-lg-6">
                 <div class="section-title">
-                    <h2>SERVICES</h2>
+                    <h2>DETAILS</h2>
                 </div>
             </div>
         </div>

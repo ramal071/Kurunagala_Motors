@@ -72,3 +72,10 @@
   <!-- /.row -->
 </section>
 @endsection
+
+
+{{-- body wash = https://www.autocarindia.com/auto-features/how-to-correctly-clean-your-two-wheeler-406570 --}}
+{{-- service = https://www.uplist.lk/listing/mag-city/mag-city-bike-repair/ --}}
+{{-- engine repair = https://www.indiamart.com/proddetail/bike-engine-repair-services-17746319033.html --}}
+{{-- modify = https://indianautosblog.com/humble-bajaj-ct-100-modified-into-a-scrambler-looks-wilder-p321567 --}}
+{{-- paint = https://dir.indiamart.com/impcat/bike-painting-services.html --}}

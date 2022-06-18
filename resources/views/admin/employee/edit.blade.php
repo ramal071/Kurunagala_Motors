@@ -1,7 +1,8 @@
 @extends('admin/layouts.master')
 @section('title', 'Edit Employee')
 @section('body')
-    @include('admin.message')
+@include('admin.message')
+
 
     <section class="content">
         <div class="row">
@@ -42,15 +43,6 @@
                                                 </option>
                                             @endforeach
                                         </select>
-   {{-- <select name="roles[]" class="form-control js-example-basic-single col-md-7 col-xs-12">               
-                        @foreach ($roles as $r)
-                          <option value="{{$r->id}}"
-                            @if ($r->id == $employee->role_id)
-                            selected
-                            @endif
-                            >{{$r->name}}</option>
-                        @endforeach
-                      </select> --}}
                                     </div>
                                 </div>
                                 <br>
@@ -158,3 +150,4 @@
     </section>
 
 @endsection
+

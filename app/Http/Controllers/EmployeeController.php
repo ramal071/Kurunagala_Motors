@@ -94,6 +94,7 @@ class EmployeeController extends Controller
     {
         $arr['employee'] =$employee;
         $arr['roles'] = Role::all(); 
+        
         $arr['empolyee_roles']  = DB::table('employee_role as er')
                 ->leftjoin('employees as e','e.id','=','er.employee_id')
                 ->leftjoin('roles as r','e.id','=','er.role_id')
@@ -171,4 +172,9 @@ class EmployeeController extends Controller
         Employee::destroy($id);
         return redirect()->route('employee.index')->with('delete','Employee deleted');
     }
+
+    // public function employeeservice(Request $request)
+    // {       
+    //     return view('admin.employeeservice.index');
+    // }
 }

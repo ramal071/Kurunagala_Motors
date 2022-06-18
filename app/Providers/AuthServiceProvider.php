@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use App\Product;
+use App\Policies\BrandPolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -14,6 +16,8 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
          'App\brand' => 'App\Policies\BrandPolicy',
+         'App\Product' => 'App\Policies\ProductPolicy',
+         'App\Bike' => 'App\Policies\BikePolicy',
     ];
 
     /**

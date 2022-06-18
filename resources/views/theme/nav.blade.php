@@ -38,20 +38,16 @@
                         </div>
                     </a>
                 </div>
-
                 @endauth
                               
               
                 @auth
-
                 <div class="sidebar-nav-icon">
                     <ul>
                         <a href=""><li><i class="fa fa-heart"></i>{{ __('frontstaticword.service') }}</li></a>
                         <a href=""><li ><i class="fa fa-user"></i>{{ __('frontstaticword.userprofile') }}</li></a>
                      </ul>
-                </div>
-                
-               
+                </div>    
                 @endauth
             </div>
         </div>
@@ -67,6 +63,19 @@
                                 <a href="{{ url('/') }}"><b><div class="logotext">{{ $gsetting->project_title }}</div></b></a>                   
                         </div>
                     </div>
+
+                    {{-- <div class="col-lg-6 col-md-4 col-sm-12">
+                        <div class="navigation">
+                            <div id="cssmenu">
+                                <ul>
+                                    <li><a href="#" title="Products"><i class="flaticon-grid"></i>{{ __('frontstaticword.product') }}</a>
+                                        @php
+                                         $products = \App\Product::where('status', '1')->get();
+                                        @endphp
+                                </ul>
+                            </div>
+                        </div>
+                    </div> --}}
                 </div>
             </div>
             <div class="col-lg-7">

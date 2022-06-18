@@ -24,7 +24,14 @@ return [
 
     'userprofile' => 'User Profile',
     'search' =>'Search',
-
-    
-
+    'product' => 'Product',
+    'weare' => 'We Are',
+    'contactus' => 'Contact Us',  
+    'personalinfo' => 'Personal Info', 
+    'email' => 'E-mail',
+    'password' =>'Passsword',
+    'fname'=> 'First Name',
+    'lname' => 'Last Name',
+    'contact' => 'Contact',
+    'idno' => 'ID Number',
 ];

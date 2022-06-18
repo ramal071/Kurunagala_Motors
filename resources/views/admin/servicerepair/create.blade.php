@@ -3,6 +3,9 @@
 @section('body')
 @include('admin.message')
 
+@section('stylesheets')
+@endsection
+
 <section class="content">
     <div class="row">
         <div class="col-xs-12">
@@ -84,7 +87,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                   <label for="exampleInputTit1e">{{ __('adminstaticword.employee') }}</label>
-                                  <select name="employee[]" class="form-control js-example-basic-single col-md-7 col-xs-12">
+                                  <select name="employee[]" class="form-control employee" multiple="multiple">
                                     <option value="0">{{ __('adminstaticword.pleaseselect') }}</option>
                                     @foreach($employee as $employee)
                                       <option value="{{$employee->id}}">{{$employee->name}}</option>
@@ -174,4 +177,14 @@
         </div>
     </div>
 
+@endsection
+
+
+@section('scripts')
+
+<script>
+$(document).ready(function() {
+    $('.employee').select2();
+  });
+  </script>
 @endsection
