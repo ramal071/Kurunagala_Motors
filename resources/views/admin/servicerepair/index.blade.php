@@ -9,10 +9,8 @@
         <div class="col-xs-12">
             <div class="box box-primary">  {{-- red line --}}
                 <div class="box-header with-border">
-                    <h3 class="box-title">{{__('adminstaticword.servicerepair') }}</h3>
-                  
+                    <h3 class="box-title">{{__('adminstaticword.servicerepair') }}</h3>                  
                     <a href="{{ route('servicerepair.create') }}" class="btn btn-info btn-sm">+ {{__('adminstaticword.servicerepair') }}</a>        
-
                 </div>
 
                 <div class="box-body">
@@ -23,9 +21,8 @@
                                     <th>{{__('adminstaticword.job') }}</th>
                                     <th>{{__('adminstaticword.idno') }}</th>
                                     <th>{{__('adminstaticword.fname') }}</th>
-                                    <th>{{__('adminstaticword.registernumber') }}</th>
-                                    {{-- <th>{{__('adminstaticword.brand') }}</th> --}}
-                                    <th>{{__('adminstaticword.model') }}</th>
+                                    <th>{{__('adminstaticword.registernumber') }}</th>                                  
+                                    <th>{{__('adminstaticword.stock') }}</th>                                    
                                     <th>{{__('adminstaticword.service') }}</th>
                                     <th>{{__('adminstaticword.employee') }}</th>   
                                     <th>{{__('adminstaticword.amount') }}</th>   
@@ -44,14 +41,26 @@
                                 @foreach($servicerepair as $b)
                                 <?php $i++;?>
                                 <tr>
-                                    <td>{{ $b->id}}</td>
+                                    <td>{{ $b->code}}</td>
                                     <td>{{ $b->users->idno}}</td>
                                     <td>{{ $b->users->lname}}</td>
-                                    {{-- <td>{{ $b->customervehicle->users->lname }}</td> --}}
                                     <td>{{ $b->customervehicle->register_number }}</td>
-                                    {{-- <td>{{ $b->customervehicle->brand->name}}</td> --}}
-                                    <td>{{ $b->customervehicle->bike->name}}</td>
-                                    <td>{{ $b->service->name}}</td>
+                                    {{-- <td>{{ $b->customervehicle->brand->name}} {{ $b->customervehicle->bike->name}}</td> --}}
+                                    <td>
+                                      @foreach ($b->stock as $s)
+                                      <ul>  <li>
+                                        {{$s->product->brand->name}} {{$s->product->bike->name}} {{$s->product->name}}
+                                        {{-- {{$s->product->name}} --}}
+                                      </li> </ul>
+                                      @endforeach
+                                    </td>                               
+                                    <td>
+                                      @foreach ($b->service as $s)
+                                      <li>
+                                          {{$s->name}}
+                                      </li>
+                                      @endforeach
+                                    </td>
                                     <td>
                                         @foreach ($b->employee as $e)
                                         <li>
@@ -59,7 +68,15 @@
                                         </li>
                                         @endforeach
                                     </td>
-                                    <td>{{ $b->amount }}</td>
+                                    {{-- <td>{{ $b->amount }}</td> --}}
+
+                                    <td>
+                                      @foreach ($b->service as $s)
+                                      <li>
+                                          {{$s->price}}
+                                      </li>
+                                      @endforeach
+                                    </td>
                                     <td>{{ $b->paid_amount }}</td>
                                    
                                     <td>
@@ -73,7 +90,7 @@
                                             @endif
                                           </button>
                                         </form>
-                                      </td>  
+                                    </td>  
 
                                      <td>
                                         <form action="{{ route('isborrow.quick', $b->id) }}" method="POST">

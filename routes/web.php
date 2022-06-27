@@ -8,14 +8,17 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::prefix('admins')->group(function (){
-    Route::get('/', 'AdminController@index')->name('admin.index');
+    Route::get('/', 'AdminController@index')->name('admin.index');   
 });
+//Route::get('admins', 'AdminController@userChart');
 
-Route::resource('users', 'UsersController')->middleware('role:cashier,manager');;
+Route::resource('users', 'UsersController')->middleware('role:cashier,manager');
 
 Route::resource('cashier', 'CashierController');
 
 Route::resource('customer', 'CustomerController'); 
+Route::get('customerVehicle-show/{id}', 'CustomerController@customerVehiclePage')->name('customer.vehicle.show');
+Route::get('customerPending-service/{id}', 'CustomerController@PendingService')->name('customer.pending.serviice');
 Route::resource('customervehicle', 'CustomerVehicleController');
 // Route::get('customervehicle/{id}', 'CustomerVehicleController');
 
@@ -29,11 +32,15 @@ Route::get("child-dropdown1","CustomerPendingServiceController@child_info1")->na
 Route::resource('completejob', 'CompleteJobController'); 
 Route::resource('servicerepair', 'ServiceRepairController'); 
 Route::get('service-show', 'ServiceRepairController@usedProductService');
-
 Route::resource('service', 'ServiceController');
-Route::resource('servicetype', 'ServiceTypeController');
+// Route::resource('servicetype', 'ServiceTypeController');
+Route::get("dropdown2","ServiceRepairController@upload_info")->name('admin-dropdown2');
+Route::get("child-dropdown2","ServiceRepairController@child_info")->name('child-dropdown2');
+Route::resource('service_servicerepair', 'ServiceServiceRepairController');
+Route::resource('stock_servicerepair', 'StockServiceRepairController');
 
-// Route::prefix('user')->group(function (){
+
+// Route::prefix('user')->group(function (){   ServiceServiceRepairController
    //  Route::get('/','UsersController@viewAllUser')->name('user.index');
 // });
 
@@ -42,6 +49,8 @@ Route::resource('employee', 'EmployeeController')->middleware('role:manager');
 Route::resource('salary', 'SalaryController')->middleware('role:cashier,manager');;
 //  Route::get('/employee/employeeservice', 'EmployeeController@employeeservice')->name('employeeservice');
 Route::resource('employee_serviceRepair', 'EmployeeServiceRepairController');
+Route::resource('attendance', 'AttendanceController')->middleware('role:cashier,manager');   
+Route::resource('attendancereport', 'AttendanceReportController');
 
 
 Route::resource('bike', 'BikeController');
@@ -58,14 +67,16 @@ Route::resource('damage', 'DamageProductController')->middleware('role:manager')
 Route::resource('recondition', 'ReconditionProductController')->middleware('role:manager');
 
 // user profile
+Route::resource('profile', 'UserProfileController');
 Route::get('profile-show/{id}', 'UserProfileController@userprofilepage')->name('profile.show');
-Route::put('profile-edit/{id}','UserProfileController@userprofile')->name('user.profile');
-Route::put('profile-update/{id}','UserProfileController@userprofileUpdate')->name('user.profile_update');
+Route::put('profile-update','UserProfileController@userprofileUpdate')->name('user.profile_update');
+
+Route::get('password-update/{id}','UserProfileController@userpasswordpage')->name('password.update');
+Route::post('password-update','UserProfileController@userpasswordUpdate')->name('user.password_update');
 
 //contact
 Route::get('contactus','ContactUsController@contactView')->name('contact.view');
 Route::post('/contact','ContactUsController@sendMessage')->name('contact.send');
-
 Route::get('contact','ContactController@index')->name('contact.index');
 Route::get('contact/{id}','ContactController@show')->name('contact.show');
 Route::delete('contact/{id}','ContactController@destroy')->name('contact.destroy');

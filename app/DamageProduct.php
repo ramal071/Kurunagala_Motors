@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class DamageProduct extends Model
 {
-    public function stock()
+    public function product()
     {
-        return $this->hasMany(Stock::class, 'stock_id', 'id');
+        return $this->hasMany(Product::class, 'product_id', 'id');
     }
 }

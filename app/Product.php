@@ -25,4 +25,9 @@ class Product extends Model
     {
         return $this->hasMany(ServiceRepair::class, 'product_id', 'id');
     }
+
+    public function damage()
+    {
+        return $this->belongsTo(DamageProduct::class, 'damage_id', 'id');
+    }
 }

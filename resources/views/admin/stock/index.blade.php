@@ -41,7 +41,8 @@
                                     <?php $i++;?>
                                     <tr>
                                         <td><?php echo $i;?></td>
-                                        <td>{{ $stock->product->name }}</td>
+                                        <td>{{ $stock->product->brand->name }} {{ $stock->product->bike->name }} {{ $stock->product->name }} </td>
+                                
                                         <td>{{ $stock->quantity }}</td>
                                         <td>{{ $stock->dealerprice }}</td>
                                         <td>{{ $stock->sellingprice }}</td>

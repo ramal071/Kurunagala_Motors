@@ -284,9 +284,57 @@
       </div>
       <!-- /.box-footer -->
   </div>
-  <!--/.box -->
 
-{{-- @endif --}}
+
+  
+{{--  canvas js line chart--}}
+<?php
+//  echo $current_month = date('M Y', strtotime("-0 month"));
+// echo"<pre>"; print_r($usersCount); die;
+
+    $months = array();
+    $count = 0;
+    while ($count <= 3) {
+        $months[] = date('M Y', strtotime("-".$count." month"));
+    $count++;
+    }
+   // echo"<pre>"; print_r($months); die;    
+
+$dataPoints = array(
+	array("y" => $usersCount[3], "label" => $months[3]),
+    array("y" => $usersCount[2], "label" => $months[2]),
+    array("y" => $usersCount[1], "label" => $months[1]),
+    array("y" => $usersCount[0], "label" => $months[0]),
+	
+);
+ 
+?>
+
+<script>
+    window.onload = function () {
+     
+    var chart = new CanvasJS.Chart("chartContainer", {
+        title: {
+            text: "Users Join"
+        },
+        axisY: {
+            title: "Number of Users"
+        },
+        data: [{
+            type: "line",
+            dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+        }]
+    });
+    chart.render();
+     
+    }
+    </script>
+    // <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+{{--  --}}
+
+  
 
 @endsection
 

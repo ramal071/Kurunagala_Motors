@@ -13,8 +13,6 @@
           <a href="{{route('service.create')}}" class="btn btn-info btn-sm">+ {{ __('adminstaticword.service') }}</a> 
         </div>
      
-
-        <!-- /.box-header -->
         <div class="box-body">
           <div class="table-responsive">
             <table id="example1" class="table table-bordered table-striped">
@@ -25,7 +23,7 @@
                   <th>#</th>
                   <th>{{__('adminstaticword.code') }}</th>
                   <th>{{__('adminstaticword.name') }}</th>
-                  <th>{{ __('adminstaticword.servicetype') }}</th>
+                  <th>{{ __('adminstaticword.price') }}</th>
                   <th>{{ __('adminstaticword.description') }}</th>                
                   <th>{{ __('adminstaticword.edit') }}</th>
                   <th>{{ __('adminstaticword.delete') }}</th>
@@ -40,7 +38,7 @@
 
                         <td>{{ $service->code }}</td>
                         <td>{{ $service->name }}</td>
-                        <td>{{ $service->servicetype->name }}</td>
+                        <td>{{ $service->price }}</td>
                         <td>{{ $service->description }}</td>
                                           
                       <td>
@@ -63,19 +61,8 @@
             </table>
           </div>
         </div>
-        <!-- /.box-body -->
       </div>
-      <!-- /.box -->
     </div>
-    <!-- /.col -->
   </div>
-  <!-- /.row -->
 </section>
 @endsection
-
-
-{{-- body wash = https://www.autocarindia.com/auto-features/how-to-correctly-clean-your-two-wheeler-406570 --}}
-{{-- service = https://www.uplist.lk/listing/mag-city/mag-city-bike-repair/ --}}
-{{-- engine repair = https://www.indiamart.com/proddetail/bike-engine-repair-services-17746319033.html --}}
-{{-- modify = https://indianautosblog.com/humble-bajaj-ct-100-modified-into-a-scrambler-looks-wilder-p321567 --}}
-{{-- paint = https://dir.indiamart.com/impcat/bike-painting-services.html --}}

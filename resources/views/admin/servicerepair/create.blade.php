@@ -31,64 +31,47 @@
                                  </div>  
                             </div>
                             <br>
-                            
+
                             <div class="row">
-                                <div class="col-md-6">
-                                    <label for="register_number">{{ __('adminstaticword.registernumber') }}:<sup class="redstar">*</sup></label>
-                                    <select name="customervehicle_id" id="customervehicle_id" class="form-control js-example-basic-single col-md-7 col-xs-12" >
-                                        <option value="0">{{ __('adminstaticword.pleaseselect') }}</option>
-                                        @foreach($customervehicle as $customervehicle)
-                                        <option value="{{$customervehicle->id}}">{{$customervehicle->register_number}}</option>
-                                        @endforeach
-                                    </select>
-                                 </div>  
+                              <div class="col-md-6">
+                                <label for="customervehicle_id">{{ __('adminstaticword.registernumber') }}</label>
+                                <select name="customervehicle_id" id="upload_id" class="form-control js-example-basic-single col-md-7 col-xs-12" >
+                                </select>
+                              </div>
                             </div>
+                          <br>
+
+                              <div class="row">
+                                <div class="col-md-6">
+                                  <label for="exampleInputTit1e">{{ __('adminstaticword.service') }}</label>
+                                  <select name="service[]" class="form-control service" multiple="multiple">
+                                    <option value="0"></option>
+                                    @foreach($service as $s)
+                                      <option value="{{$s->id}}">{{$s->name}}</option>
+                                    @endforeach
+                                  </select>
+                                </div>
+                              </div>
                             <br>
 
                             <div class="row">
-                                <div class="col-md-6">
-                                    <label for="service">{{ __('adminstaticword.whatareservices') }}:<sup class="redstar">*</sup></label>
-                                    <select name="service_id" id="service_id" class="form-control js-example-basic-single col-md-7 col-xs-12" >
-                                        <option value="0">{{ __('adminstaticword.pleaseselect') }}</option>
-                                        @foreach($service as $service)
-                                        <option value="{{$service->id}}">{{$service->name}}</option>
-                                        @endforeach
-                                    </select>
-                                 </div>  
+                              <div class="col-md-6">
+                                <label for="stock">{{ __('adminstaticword.stock') }}</label>
+                                <select name="stock[]" class="form-control stock" multiple="multiple">
+                                  <option value="0"></option>
+                                  @foreach($stock as $s)
+                                    <option value="{{$s->id}}">{{$s->id}}: {{ $s->product->brand->name }} {{ $s->product->bike->name }} {{$s->product->name}}</option>
+                                  @endforeach
+                                </select>
+                              </div>
                             </div>
-                            <br>
-
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="product">{{ __('adminstaticword.product') }}:<sup class="redstar">*</sup></label>
-                                    <select name="product_id" id="product_id" class="form-control js-example-basic-single col-md-7 col-xs-12" >
-                                        <option value="0">{{ __('adminstaticword.pleaseselect') }}</option>
-                                        @foreach($product as $product)
-                                        <option value="{{$product->id}}">{{$product->name}}</option>
-                                        @endforeach
-                                    </select>
-                                 </div>  
-                            </div>
-                            <br>
-
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="stock">{{ __('adminstaticword.stock') }}:<sup class="redstar">*</sup></label>
-                                    <select name="stock_id" id="stock_id" class="form-control js-example-basic-single col-md-7 col-xs-12" >
-                                        <option value="0">{{ __('adminstaticword.pleaseselect') }}</option>
-                                        @foreach($stock as $stock)
-                                        <option value="{{$stock->id}}">{{$stock->id}}</option>
-                                        @endforeach
-                                    </select>
-                                 </div>  
-                            </div>
-                            <br>
+                          <br>
 
                             <div class="row">
                                 <div class="col-md-6">
                                   <label for="exampleInputTit1e">{{ __('adminstaticword.employee') }}</label>
                                   <select name="employee[]" class="form-control employee" multiple="multiple">
-                                    <option value="0">{{ __('adminstaticword.pleaseselect') }}</option>
+                                    <option value="0"></option>
                                     @foreach($employee as $employee)
                                       <option value="{{$employee->id}}">{{$employee->name}}</option>
                                     @endforeach
@@ -181,10 +164,70 @@
 
 
 @section('scripts')
-
 <script>
 $(document).ready(function() {
     $('.employee').select2();
   });
   </script>
+@endsection
+
+@section('service_scripts')
+<script>
+$(document).ready(function() {
+    $('.service').select2();
+  });
+  </script>
+@endsection
+
+@section('stock')
+<script>
+$(document).ready(function() {
+    $('.stock').select2();
+  });
+  </script>
+@endsection
+
+
+
+@section('regnum_scripts')
+<script>
+  (function($) {
+      "use strict";
+
+      $(function() {
+          var urlLike = '{{ route('admin-dropdown2') }}';
+          $('#user_id').change(function() {
+              var up = $('#upload_id').empty();
+              var pr_id1 = $(this).val();
+              if (pr_id1) {
+                  $.ajax({
+                      headers: {
+                          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                      },
+                      type: "GET",
+                      url: urlLike,
+                      data: {
+                          prId1: pr_id1
+                      },
+                      success: function(data) {
+                          up.append('<option value="0">Please Choose</option>');
+                          $.each(data, function(id, title) {
+                              //   console.log(data.id);
+                              up.append($('<option>', {
+                                  value: title.id,
+                                  text: title.register_number,
+                              }));
+                          });
+                      },
+                      error: function(XMLHttpRequest, textStatus, errorThrown) {
+                          console.log(XMLHttpRequest);
+                      }
+                  });
+              }
+          });
+      });
+
+  })(jQuery);
+</script>
+
 @endsection

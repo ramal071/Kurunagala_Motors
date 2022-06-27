@@ -22,7 +22,8 @@
                                     <th>{{__('adminstaticword.jobid') }}</th>
                                     <th>{{__('adminstaticword.startjob') }}</th>
                                     <th>{{__('adminstaticword.name') }}</th>
-                                    <th>{{__('adminstaticword.nickname') }}</th>
+                                    <th>{{__('adminstaticword.nickname') }}</th>                                    
+                                    <th>{{__('adminstaticword.registernumber') }}</th>
                                     <th>{{__('adminstaticword.service') }}</th>
                                     <th>{{__('adminstaticword.product') }}</th>
                                     <th>{{__('adminstaticword.status') }}</th>
@@ -34,7 +35,7 @@
                                 @foreach($servicerepair as $b)
                                 <?php $i++;?>
                                 <tr>
-                                    <td>{{ $b->id}}</td>
+                                    <td>{{ $b->code}}</td>
                                     <td>{{ $b->created_at}}</td>
 
                                     <td>
@@ -52,20 +53,32 @@
                                         </li>
                                         @endforeach
                                     </td>
-                                    <td>{{ $b->service->name}}</td>
-                                    <td>{{ $b->product->name}}</td>
-
+                                    <td>{{ $b->customervehicle->register_number}}</td>
                                     <td>
-                                       
-                                          <button type="Submit" class="btn btn-xs {{ $b->is_repaircomplete ==1 ? 'btn-success' : 'btn-danger' }} "> 
-                                            @if ($b->is_repaircomplete ==1)
-                                            {{__('adminstaticword.complete') }}         
-                                            @else
-                                            {{__('adminstaticword.notcomplete') }} 
-                                            @endif
-                                          </button>
-                                     
-                                      </td>    
+                                        @foreach ($b->service as $s)
+                                        <li>
+                                            {{$s->name}}
+                                        </li>
+                                        @endforeach
+                                    </td>
+                                   
+                                    <td>
+                                        @foreach ($b->stock as $s)
+                                        <li>
+                                            {{$s->id}}:  {{$s->product->brand->name}} {{$s->product->bike->name}} {{$s->product->name}}
+                                        </li>
+                                        @endforeach
+                                    </td>
+
+                                    <td>                                       
+                                        <button type="Submit" class="btn btn-xs {{ $b->is_repaircomplete ==1 ? 'btn-success' : 'btn-danger' }} "> 
+                                        @if ($b->is_repaircomplete ==1)
+                                        {{__('adminstaticword.complete') }}         
+                                        @else
+                                        {{__('adminstaticword.notcomplete') }} 
+                                        @endif
+                                        </button>                                     
+                                    </td>    
 
                                 </tr>      
                                 @endforeach

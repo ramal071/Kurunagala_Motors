@@ -21,10 +21,10 @@
                   <tr>
                     <th>{{ __('adminstaticword.name') }}</th>
                     <th>{{ __('adminstaticword.phone') }}</th>
-                    <th>{{ __('adminstaticword.email') }}</th>
                     <th>{{ __('adminstaticword.message') }}</th>
+                    <th>{{ __('adminstaticword.time') }}</th>
                     <th>{{ __('adminstaticword.view') }}</th>
-                    <th>{{ __('adminstaticword.Delete') }}</th>
+                    <th>{{ __('adminstaticword.delete') }}</th>
                   </tr>
                 </thead>
                 <tbody>

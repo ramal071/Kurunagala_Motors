@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\DamageProduct;
 use Illuminate\Http\Request;
 use App\Stock;
+use App\Product;
 
 class DamageProductController extends Controller
 {
@@ -16,7 +17,9 @@ class DamageProductController extends Controller
 
     public function create()
     {
-        $arr['stock'] = Stock::all();
+        $arr['product'] = Product::all();
+      
+        // $arr['stock'] = Stock::all();
         return view('admin.damage.create')->with($arr);
     }
 
@@ -25,10 +28,10 @@ class DamageProductController extends Controller
         $data = $this->validate($request, [ 
             'quantity'=> 'required',
             'is_return'=>'required',
-            'stock_id'=>'required'
+            'product_id'=>'required'
         ]);
 
-        $damage->stock_id = $request->stock_id;
+        $damage->product_id = $request->product_id;
         $damage->quantity = $request->quantity;
         $damage->reason = $request->reason;
         $damage->is_return = ($request->is_return) ? 1:0 ;
@@ -45,13 +48,13 @@ class DamageProductController extends Controller
     public function edit(DamageProduct $damage)
     {
         $arr['damage'] = $damage;
-        $arr['stock'] = Stock::all();
+        $arr['product'] = Product::all();
         return view('admin.damage.edit')->with($arr); 
     }
 
     public function update(Request $request, DamageProduct $damage)
     {
-        $damage->stock_id = $request->stock_id;
+        $damage->product_id = $request->product_id;
         $damage->quantity = $request->quantity;
         $damage->reason = $request->reason;
         $damage->is_return = ($request->is_return) ? 1:0 ;

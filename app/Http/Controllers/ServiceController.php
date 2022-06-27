@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\service;
 use Illuminate\Http\Request;
-use App\Servicetype;
+
 
 class ServiceController extends Controller
 {
@@ -17,8 +17,7 @@ class ServiceController extends Controller
 
     public function create()
     {
-        $arr['servicetype'] = Servicetype::all();
-        return view('admin.service.create')->with($arr);
+        return view('admin.service.create');
     }
 
     public function store(Request $request, service $service)
@@ -33,7 +32,7 @@ class ServiceController extends Controller
     ]);
         
         $service = new service();
-        $service->servicetype_id = $request->servicetype_id;
+        $service->price = $request->price;
         $service->code = $request->code;
         $service->name = $request->name;
         $service->description = $request->description;
@@ -51,7 +50,6 @@ class ServiceController extends Controller
     public function edit(service $service)
     {
         $arr['service'] = $service;
-        $arr['servicetype'] = ServiceType::all();
         return view('admin.service.edit')->with($arr);
     }
 
@@ -66,7 +64,7 @@ class ServiceController extends Controller
         ]);
         $service->code = $request->code;
         $service->name = $request->name;
-        $service->servicetype_id = $request->servicetype_id;
+        $service->price = $request->price;
         $service->description = $request->description;
         $service->save();
         

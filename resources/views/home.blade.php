@@ -35,11 +35,28 @@
                         <i class="fa fa-product-hunt" aria-hidden="true"></i>
                     </div>
                     <div class="feature-content">
-                        <h5>My Service</h5>
-                        <p>We at Kurunagala Motors offer convenient and quality driven services for your vehicle. </p>
+                        <h5>My Register</h5>
+                        <p>Your bike register details </p>
                     </div>
                     @if(Auth::check())         
-                    <a href="{{url('customer')}}" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="{{url('customerVehicle-show/{id}')}}" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
+                    @else
+                    <a href="{{ route('login') }}">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a></li>
+                    @endif
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-lg-4">
+                <div class="feature-box-1">
+                    <div class="icon">
+                        <i class="fa fa-product-hunt" aria-hidden="true"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h5>Next Service</h5>
+                        <p>Your bike next service details </p>
+                    </div>
+                    @if(Auth::check())         
+                    <a href="{{url('customerPending-service/{id}')}}" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
                     @else
                     <a href="{{ route('login') }}">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a></li>
                     @endif
@@ -205,9 +222,33 @@
             </div>
             <!-- / -->
         </div>
+
+        {{-- chart --}}
+        <div class="card-body">
+            <div class="chart-body">
+                <div class="chart-pie pt-4 pb-2">
+                    <canvas id="myPieChart"></canvas>
+                </div>
+                <div class="mt-4 text-center small">
+                    <span class="mr-2">
+                        <i class="fas-fa-circle text-primary"></i>Direct
+                    </span>
+
+                    <span class="mr-2">
+                        <i class="fas-fa-circle text-success"></i>Social
+                    </span>
+
+                    <span class="mr-2">
+                        <i class="fas-fa-circle text-info"></i>Referral
+                    </span>
+                </div>
+            </div>
+        </div>
+        {{-- chart --}}
+
+    
+
     </div>
 </section>
-<!-- services end>-->
 
-
-@endsection
+@endsection 

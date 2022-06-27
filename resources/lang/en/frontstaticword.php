@@ -34,4 +34,11 @@ return [
     'lname' => 'Last Name',
     'contact' => 'Contact',
     'idno' => 'ID Number',
+    'updateprofile' => 'Update Profile',
+    'lastupdate' => 'Last Update',
+    'passwordupdate' => 'Password Update',
+    'user' => 'User',
+    'userbikeregister' => 'User Bike Register',
+    'pendingservice' => 'Pending Service',
+
 ];

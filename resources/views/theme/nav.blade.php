@@ -11,7 +11,6 @@
                 <a href="#find"><i class="fa fa-search"></i></a>
             </div>
 
-
             <div id="mySidenav" class="sidenav">
               <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                 @guest
@@ -38,14 +37,13 @@
                         </div>
                     </a>
                 </div>
-                @endauth
-                              
+                @endauth                              
               
                 @auth
                 <div class="sidebar-nav-icon">
                     <ul>
-                        <a href=""><li><i class="fa fa-heart"></i>{{ __('frontstaticword.service') }}</li></a>
-                        <a href=""><li ><i class="fa fa-user"></i>{{ __('frontstaticword.userprofile') }}</li></a>
+                        <a href="{{route('password.update',Auth::User()->id)}}"><li><i class="fa fa-heart"></i>{{ __('frontstaticword.passwordupdate') }}</li></a>
+                        <a href="{{route('profile.show',Auth::User()->id)}}"><li ><i class="fa fa-user"></i>{{ __('frontstaticword.userprofile') }}</li></a>
                      </ul>
                 </div>    
                 @endauth
@@ -134,7 +132,8 @@
                                 </div>
                                  
                                 <a href=""><li><i class="fa fa-users"></i>{{ __('frontstaticword.service') }}</li></a>  
-                                <a href="{{route('profile.show',Auth::User()->id)}}"><li ><i class="fa fa-user"></i>{{ __('frontstaticword.userprofile') }}</li></a>                                    
+                                <a href="{{route('profile.show',Auth::User()->id)}}"><li ><i class="fa fa-user"></i>{{ __('frontstaticword.userprofile') }}</li></a>    
+                                <a href="{{route('password.update',Auth::User()->id)}}"><li ><i class="fa fa-user"></i>{{ __('frontstaticword.passwordupdate') }}</li></a>                                   
 
                                 
 

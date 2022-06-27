@@ -20,7 +20,7 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>{{__('adminstaticword.stock') }}</th>
+                                        <th>{{__('adminstaticword.product') }}</th>
                                         <th>{{__('adminstaticword.qty') }}</th>
                                         <th>{{__('adminstaticword.reason') }}</th>
                                         <th>{{__('adminstaticword.isreturn') }}</th>
@@ -35,7 +35,7 @@
                                         <?php $i++;?>
                                     <tr>
                                         <td><?php echo $i;?></td>
-                                        <td>{{ $damage->stock_id }}</td>
+                                        <td>{{ $damage->product_id }}</td>
                                         <td>{{ $damage->quantity }}</td>
                                         <td>{{ $damage->reason }}</td>
                                         

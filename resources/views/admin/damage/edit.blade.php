@@ -25,7 +25,7 @@
                             @if ($stock->id == $stock->stock_id)
                             selected
                         @endif
-                            >{{$stock->id}}</option>
+                            >{{$stock->id}}: {{$stock->product->brand->name}} {{$stock->product->bike->name}} {{$stock->product->name}}</option>
                       @endforeach
                     </select>
                   </div>

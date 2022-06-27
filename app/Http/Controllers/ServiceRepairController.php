@@ -11,7 +11,7 @@ use App\Stock;
 use App\CustomerVehicle;
 use App\Service;
 use App\Employee;
-
+use App\Helpers\Helper;
 
 class ServiceRepairController extends Controller
 {
@@ -42,13 +42,13 @@ class ServiceRepairController extends Controller
 
     public function store(Request $request, ServiceRepair $servicerepair)
     {
-       
+
+        $code = Helper::IDGenerator(new ServiceRepair, 'code',5,'Job');
+   //     $servicerepair = new ServiceRepair;
+        $servicerepair->code=$code; 
+
         $servicerepair->user_id = $request->user_id;
-        $servicerepair->stock_id = $request->stock_id;
-        $servicerepair->customervehicle_id = $request->customervehicle_id;
-        $servicerepair->service_id = $request->service_id;
-        $servicerepair->product_id = $request->product_id;
-       // $servicerepair->employee()->attach($request->employee);   
+        $servicerepair->customervehicle_id = $request->customervehicle_id; 
         $servicerepair->amount = $request->amount;
         $servicerepair->paid_amount = $request->paid_amount;
         $servicerepair->status = ($request->status) ? 1:0 ;
@@ -57,6 +57,8 @@ class ServiceRepairController extends Controller
         $servicerepair->is_complete = ($request->is_complete) ? 1:0 ;
         $servicerepair->save();
         $servicerepair->employee()->attach($request->employee);   
+        $servicerepair->stock()->attach($request->stock);   
+        $servicerepair->service()->attach($request->service);   
         return redirect()->route('servicerepair.index')->with('success', 'Created successfully');
     }
 
@@ -88,17 +90,16 @@ class ServiceRepairController extends Controller
     public function update(Request $request, ServiceRepair $servicerepair)
     {
         $servicerepair->user_id = $request->user_id;
-        $servicerepair->stock_id = $request->stock_id;
         $servicerepair->customervehicle_id = $request->customervehicle_id;
-        $servicerepair->service_id = $request->service_id;
-        $servicerepair->product_id = $request->product_id; 
         $servicerepair->amount = $request->amount;
         $servicerepair->paid_amount = $request->paid_amount;
         $servicerepair->status = ($request->status) ? 1:0 ;
         $servicerepair->is_repaircomplete = ($request->is_repaircomplete) ? 1:0 ;
         $servicerepair->is_borrow = ($request->is_borrow) ? 1:0 ;
         $servicerepair->is_complete = ($request->is_complete) ? 1:0 ;
-        $servicerepair->employee()->sync($request->employee);   
+        $servicerepair->employee()->sync($request->employee); 
+        $servicerepair->stock()->sync($request->stock); 
+        $servicerepair->service()->sync($request->service);   
         $servicerepair->save();
       
         return redirect()->route('servicerepair.index');
@@ -108,5 +109,22 @@ class ServiceRepairController extends Controller
     {
         ServiceRepair::destroy($id);
         return redirect()->route('servicerepair.index')->with('delete', 'Job deleted');
+    }
+
+    public function upload_info(Request $request) 
+    {
+
+        $id = $request['prId1'];
+        $userId = User::findOrFail($id)->id;
+        $upload  = DB::table('customer_vehicles')->leftjoin('users','users.id','=','customer_vehicles.user_id')->select('customer_vehicles.id','register_number')->where('user_id',$userId)->get();
+        return response()->json($upload);
+    }
+
+    public function child_info(Request $request) 
+    {
+        $id = $request['prId1'];
+        $customervehicle = CustomerVehicle::findOrFail($id);
+        $upload = $customervehicle->customerpendingservice->where('customervehicle_id',$id)->where('status',true)->pluck('name','id')->all();
+        return response()->json($upload);
     }
 }

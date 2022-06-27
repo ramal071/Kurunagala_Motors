@@ -30,7 +30,7 @@
                   </div>          
               </div>
               <br>
-
+{{-- 
               <div class="row">
                 <div class="col-md-6">
                   <label for="servicetype">{{ __('adminstaticword.brand') }}</label>
@@ -42,7 +42,15 @@
                   </select>
                 </div>
               </div>
-              <br>
+              <br> --}}
+
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="price">{{ __('adminstaticword.price') }}:</label>
+                  <input type="text" class="form-control" name="price" id="price" placeholder="Enter service price" value="">
+                </div> 
+            </div>
+            <br>    
 
               <div class="row">
                   <div class="col-md-6">

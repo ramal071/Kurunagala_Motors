@@ -159,6 +159,9 @@ $(document).ready(function() {
 @yield('js_user_page')
 @yield('js_slug_page')
 @yield('scripts')
+@yield('regnum_scripts')
+@yield('service_scripts')
+@yield('stock')
   {{-- </script> --}}
   
 </body>

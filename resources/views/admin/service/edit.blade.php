@@ -32,7 +32,7 @@
                   </div>
                   <br>     
                  
-                    <div class="row">
+                    {{-- <div class="row">
                       <div class="col-md-6">
                         <label for="exampleInputTit1e">{{ __('adminstaticword.servicetype') }}</label>
                         <select name="servicetype_id" class="form-control js-example-basic-single col-md-7 col-xs-12">
@@ -46,6 +46,14 @@
                         </select>
                       </div>
                     </div>
+                    <br> --}}
+
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label for="price">{{ __('adminstaticword.price') }}:</label>
+                        <input type="text" class="form-control" name="price" id="price" value="{{ $service->price }}">
+                      </div> 
+                  </div>         
                     <br>
 
                     <div class="row">

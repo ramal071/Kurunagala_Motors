@@ -15,17 +15,12 @@ class CreateServiceRepairsTable extends Migration
     {
         Schema::create('service_repairs', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('code');
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->unsignedBigInteger('stock_id');
-            $table->foreign('stock_id')->references('id')->on('stocks');
-            $table->unsignedBigInteger('product_id');
-            $table->foreign('product_id')->references('id')->on('products');
-            $table->unsignedBigInteger('service_id');
-            $table->foreign('service_id')->references('id')->on('services');
+            $table->foreign('user_id')->references('id')->on('users');                 
             $table->unsignedBigInteger('customervehicle_id');
             $table->foreign('customervehicle_id')->references('id')->on('customer_vehicles');
-            $table->decimal('amount', $precision = 8, $scale = 2);
+            $table->decimal('amount', $precision = 8, $scale = 2)->nullable();
             $table->boolean('is_repaircomplete')->default(false);
             $table->boolean('is_borrow')->default(false);   
             $table->decimal('paid_amount', $precision = 8, $scale = 2)->nullable(); //borrowed with some amount paid

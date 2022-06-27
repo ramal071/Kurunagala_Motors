@@ -20,4 +20,10 @@ class Employee extends Model
     {
         return $this->belongsToMany(ServiceRepair::class,'employee_service_repairs','employee_id','service_repair_id')->withTimestamps();
     }
+
+    public function attendance()
+    {
+        return $this->hasMany(Attendance::class, 'employee_id' , 'id');
+    }
+
 }

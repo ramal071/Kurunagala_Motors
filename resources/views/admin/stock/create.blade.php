@@ -21,7 +21,7 @@
                   <select name="product_id" class="form-control js-example-basic-single col-md-7 col-xs-12">
                     <option value="0">{{ __('adminstaticword.pleaseselect')}} {{__('adminstaticword.product')}}</option>
                     @foreach($product as $pr)
-                      <option value="{{$pr->id}}">{{$pr->name}}</option>
+                      <option value="{{$pr->id}}">{{ $pr->brand->name }} {{ $pr->bike->name }} {{$pr->name}}</option>
                     @endforeach
                   </select>
                 </div>

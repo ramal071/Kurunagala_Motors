@@ -21,8 +21,13 @@ class Stock extends Model
         return $this->belongsTo(ReconditionProduct::class, 'recondition_id', 'id');
     }
 
+    // public function servicerepair()
+    // {
+    //     return $this->hasMany(ServiceRepair::class, 'stock_id', 'id');
+    // }
+
     public function servicerepair()
     {
-        return $this->hasMany(ServiceRepair::class, 'stock_id', 'id');
+        return $this->belongsToMany(ServiceRepair::class,'stock_service_repair','service_repair_id', 'stock_id');
     }
 }

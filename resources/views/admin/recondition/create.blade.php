@@ -20,11 +20,22 @@
                   <label for="exampleInputTit1e">{{ __('adminstaticword.stock') }}</label>
                   <select name="stock_id" id="stock_id" class="form-control js-example-basic-single col-md-7 col-xs-12">
                     @foreach($stock as $stock)
-                      <option value="{{$stock->id}}">{{$stock->id}}</option>
+                      <option value="{{$stock->id}}">{{$stock->id}} {{$stock->product->brand->name}} {{$stock->product->bike->name}} {{$stock->product->name}}</option>
                     @endforeach
                   </select>
                 </div>
               </div>
+
+              {{-- <div class="row">
+                <div class="col-md-6">
+                  <label for="stock">{{ __('adminstaticword.product') }}</label>
+                  <select name="stock_id" class="form-control js-example-basic-single col-md-7 col-xs-12">
+                    @foreach($stock as $s)
+                      <option value="{{$s->id}}">{{$s->id}}: {{$s->brand->name}} {{$s->bike->name}} {{$s->name}}</option>
+                    @endforeach
+                  </select>
+                </div> --}}
+              </div>    
     
               <div class="row">
                 <div class="col-md-6">

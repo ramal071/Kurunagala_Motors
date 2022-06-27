@@ -11,10 +11,10 @@ class service extends Model
     //     return $this->belongsTo(Servicetype::class, 'servicetype_id', 'id');
     // }
 
-    public function servicetype()
-    {
-        return $this->belongsTo(Servicetype::class, 'servicetype_id', 'id');
-    }
+    // public function servicetype()
+    // {
+    //     return $this->belongsTo(Servicetype::class, 'servicetype_id', 'id');
+    // }
 
     public function customerpendingservice()
     {
@@ -26,8 +26,13 @@ class service extends Model
         return $this->hasMany(CustomerPendingPayment::class, 'service_id', 'id');
     }
 
-    public function servicerepair()
+    // public function servicerepair()
+    // {
+    //     return $this->hasMany(ServiceRepair::class, 'service_id', 'id');
+    // }
+
+    public function servicerepairs()
     {
-        return $this->hasMany(ServiceRepair::class, 'service_id', 'id');
+        return $this->belongsToMany(ServiceRepair::class,'service_service_repairs','service_id','service_repair_id')->withTimestamps();
     }
 }
