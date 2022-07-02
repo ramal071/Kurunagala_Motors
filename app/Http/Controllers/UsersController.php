@@ -6,6 +6,8 @@ use App\Role;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Registerd;
 
 
 class UsersController extends Controller
@@ -14,6 +16,7 @@ class UsersController extends Controller
     {
         $users = User::orderBy('id', 'desc')->get();
         return view('admin.users.index', ['users' => $users]);
+
     }
 
     public function create(Request $request)
@@ -70,6 +73,9 @@ class UsersController extends Controller
                 $user->save();
             }
         }
+      //  $user = $this->index($request, null);
+        $user_email=$request->email;
+        Mail::to($user_email)->send(new Registerd($user));
 
         return redirect()->route('users.index')->with('success', 'User created');
     }
@@ -154,11 +160,4 @@ class UsersController extends Controller
         // return redirect('/users);
     }
 
-    // public function viewAllUser()
-    // {
-    //     $users = User::where('role_id','3')->get()->toArray();
-    //    // $instructors = User::with('isCustomer')->where('role','instructor')->get()->toArray();
-    //     //dd($instructors);
-    //     return view('admin.customer.index');
-    // }
 }

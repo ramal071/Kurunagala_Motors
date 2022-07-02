@@ -20,6 +20,7 @@ class CreateServiceRepairsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');                 
             $table->unsignedBigInteger('customervehicle_id');
             $table->foreign('customervehicle_id')->references('id')->on('customer_vehicles');
+            $table->string('email')->nullable();
             $table->decimal('amount', $precision = 8, $scale = 2)->nullable();
             $table->boolean('is_repaircomplete')->default(false);
             $table->boolean('is_borrow')->default(false);   

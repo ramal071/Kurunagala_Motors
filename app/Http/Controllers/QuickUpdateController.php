@@ -12,6 +12,9 @@ use App\User;
 use App\DamageProduct;
 use App\ServiceRepair;
 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SerRepairComplete;
+
 class QuickUpdateController extends Controller
 {
     public function roleQuick($id)
@@ -170,7 +173,13 @@ class QuickUpdateController extends Controller
         else
         {
             ServiceRepair::where('id', '=', $id)->update(['is_repaircomplete' => true]);
+
+            $user_email=$servicerepair->email;
+            Mail::to($user_email)->send(new SerRepairComplete($servicerepair));
+
             return back()->with('success', 'complete');
         }
+
+        
     }
 }

@@ -17,9 +17,11 @@ Route::resource('users', 'UsersController')->middleware('role:cashier,manager');
 Route::resource('cashier', 'CashierController');
 
 Route::resource('customer', 'CustomerController'); 
+Route::resource('customervehicle', 'CustomerVehicleController');
 Route::get('customerVehicle-show/{id}', 'CustomerController@customerVehiclePage')->name('customer.vehicle.show');
 Route::get('customerPending-service/{id}', 'CustomerController@PendingService')->name('customer.pending.serviice');
-Route::resource('customervehicle', 'CustomerVehicleController');
+Route::get('customerPending-payment/{id}', 'CustomerController@CustomerPendingPayment')->name('customer.pending.payment');
+Route::get('customerService-repair/{id}', 'CustomerController@ServiceRepair')->name('customer.service.repair');
 // Route::get('customervehicle/{id}', 'CustomerVehicleController');
 
 Route::resource('customerjobdetail', 'CustomerJobDetailController');    
@@ -30,7 +32,8 @@ Route::get("dropdown1","CustomerPendingServiceController@upload_info")->name('ad
 Route::get("child-dropdown1","CustomerPendingServiceController@child_info1")->name('child-dropdown1');
 
 Route::resource('completejob', 'CompleteJobController'); 
-Route::resource('servicerepair', 'ServiceRepairController'); 
+Route::resource('servicerepair', 'ServiceRepairController');
+// Route::get('add_to_cart', 'ServiceRepairController@addToCart');  
 Route::get('service-show', 'ServiceRepairController@usedProductService');
 Route::resource('service', 'ServiceController');
 // Route::resource('servicetype', 'ServiceTypeController');
@@ -80,6 +83,9 @@ Route::post('/contact','ContactUsController@sendMessage')->name('contact.send');
 Route::get('contact','ContactController@index')->name('contact.index');
 Route::get('contact/{id}','ContactController@show')->name('contact.show');
 Route::delete('contact/{id}','ContactController@destroy')->name('contact.destroy');
+
+// working hours
+Route::resource('workinghour', 'WorkinghourController');  
 
 
 // quick update status

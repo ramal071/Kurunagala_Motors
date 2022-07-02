@@ -22,6 +22,8 @@ return [
     'save' =>'Save',
     'tool' => 'Tool',
     'show' => 'Show',
+    'settings' => 'Settings',
+    'workinghour' => 'Working Hour',
 
     'employee' => 'Employee',
     'addemployee' => 'Add Employee',
@@ -102,6 +104,7 @@ return [
     'jobid' => 'Job ID',
     'price' => 'Price',
     'usedproductservice' => 'Used Product For Service',
+    'invoice' => 'Invoice',
 
     'borrow' => 'Borrow',
     'notborrow' => 'Not Borrow',
@@ -154,6 +157,9 @@ return [
     'profit' => 'Profit',
     'income' => 'Income',
     'search' => 'Search',
+    'day' => 'Day',
+    'from' => 'From',
+    'to' => 'To',
    
 
 ];

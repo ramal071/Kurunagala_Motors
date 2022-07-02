@@ -29,13 +29,26 @@
                                 </tr>
                             </thead>
 
-                            <tbody>                                    
-                                {{-- 
-                                <tr>
+                            <?php $i=0;?>
+                            @foreach($salary as $b)            
+                                <tr>                                
                                       
-                                    <td>{{ $br->code }}</td>
-                                    <td>{{ $br->name }}</td>
-                                    <td>{{ $br->slug }}</td>
+                                    <td>
+                                        @foreach ($b->employee as $e)
+                                        <li>
+                                            {{$e->name}}
+                                        </li>
+                                        @endforeach
+                                    </td>
+
+                                    <td>
+                                        @foreach ($b->employee as $e)
+                                        <li>
+                                            {{$e->nick_name}}
+                                        </li>
+                                        @endforeach
+                                    </td>
+                                    
                                     <td>{{ $br->description }}</td>
 
                                    
@@ -53,7 +66,7 @@
                                      
                                     </td>
                                 </tr>
-                                @endforeach --}}
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

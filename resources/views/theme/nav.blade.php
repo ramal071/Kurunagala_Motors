@@ -7,9 +7,7 @@
             <div class="logo">           
                     <a href="{{ url('/') }}"><b><div class="logotext">{{ $gsetting->project_title }}</div></b></a>           
             </div>
-            <div class="nav-search nav-wishlist">                
-                <a href="#find"><i class="fa fa-search"></i></a>
-            </div>
+       
 
             <div id="mySidenav" class="sidenav">
               <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -61,19 +59,6 @@
                                 <a href="{{ url('/') }}"><b><div class="logotext">{{ $gsetting->project_title }}</div></b></a>                   
                         </div>
                     </div>
-
-                    {{-- <div class="col-lg-6 col-md-4 col-sm-12">
-                        <div class="navigation">
-                            <div id="cssmenu">
-                                <ul>
-                                    <li><a href="#" title="Products"><i class="flaticon-grid"></i>{{ __('frontstaticword.product') }}</a>
-                                        @php
-                                         $products = \App\Product::where('status', '1')->get();
-                                        @endphp
-                                </ul>
-                            </div>
-                        </div>
-                    </div> --}}
                 </div>
             </div>
             <div class="col-lg-7">
@@ -81,11 +66,7 @@
                 <div class="row">               
                     <div class="col-lg-1">
                     </div>
-                    <div class="col-lg-1">
-                        <input class="search-submit" type="submit" id="go" value="">
-                        <div class="icon"><i class="fa fa-search"></i></div>
-                    </div>
-
+          
                     <div class="col-lg-8">
                         <div class="Login-btn">                            
                             <a href="{{ route('login') }}" class="btn btn-secondary" title="login">{{ __('frontstaticword.login') }}</a>
@@ -96,22 +77,7 @@
                 @endguest
 
                 @auth
-                <div class="row">
-                    <div class="col-lg-1 col-md-1 col-sm-2 col-2">
-                        <div class="nav-wishlist">
-                            <ul id="nav">
-                                <li id="notification_li">
-                                    <a href=""><i class="fa fa-bell"></i></a>                                    
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-
-                    <div class="col-lg-1 col-md-1 col-sm-2 col-2">                     
-                        <a href="#find"><i class="fa fa-search"></i></a>
-                    </div>
-
+       
                     {{-- Drop down --}}
                     <div class="col-lg-8 col-md-8 col-sm-8 col-8">
                         <div class="my-container">

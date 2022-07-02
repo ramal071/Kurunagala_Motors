@@ -22,6 +22,7 @@
                   <th>{{__('adminstaticword.code') }}</th>
                   <th>{{__('adminstaticword.starttime') }}</th>
                   <th>{{ __('adminstaticword.service') }}</th>
+                  <th>{{ __('adminstaticword.amount') }}</th>
               
                 </tr>
               </thead>
@@ -38,8 +39,19 @@
                             </li>
                             @endforeach
                         </td>  
+
+                        <td>
+                          @foreach ($b->service as $s)
+                          <li>
+                              {{$s->price }}
+                          </li>
+                          @endforeach
+                      </td>  
+
+                   
                     </tr>      
                 @endforeach
+             
               </tbody>
             </table>
           </div>

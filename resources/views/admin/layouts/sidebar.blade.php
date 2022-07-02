@@ -118,6 +118,19 @@
             </li> 
             @endif
 
+            @if(!\Auth::user()->hasRole('customer') )  
+            <li class="{{ Nav::isRoute('settings') }} {{ Nav::isResource('settings') }} treeview">
+             <a href="#">
+                 <i class="flaticon-location"></i>{{ __('adminstaticword.settings') }}
+                 <i class="fa fa-angle-left pull-right"></i>
+             </a> 
+             <ul class="treeview-menu">            
+               <li class="{{ Nav::isRoute('workinghour.index') }}"><a href="{{route('workinghour.index')}}"><i class="flaticon-rec"></i>{{ __('adminstaticword.workinghour') }} </a></li>
+               <li class="{{ Nav::isRoute('customerpendingservice.index') }}"><a href="{{route('customerpendingservice.index')}}"><i class="flaticon-rec"></i>{{__('adminstaticword.pendingservice')}}</a></li>
+                </ul>
+           </li> 
+           @endif
+
           {{-- <a href="{{route('profile.show',Auth::User()->id)}}"><li ><i class="fa fa-user"></i>{{ __('frontstaticword.') }}</li></a>      --}}
 
           <li class="{{ Nav::isRoute('profile.show') }}"><a href="{{route('profile.show',Auth::User()->id)}}"><i class="flaticon-web-browser" aria-hidden="true"></i><span>{{ __('adminstaticword.userprofile') }}</span></a></li>

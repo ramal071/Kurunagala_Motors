@@ -6,18 +6,8 @@
 <!-- services start-->
 <section class="section services-section" id="services">
     <div class="container">
-        {{-- <div class="user-detailss">
-            Hi, {{ Auth::User()->fname }}                        
-        </div>   --}}
-        \
-        {{-- <div class="row">
-            <div class="col-lg-6">
-                <div class="section-title">
-                    <h2> <a href="{{route('profile.show',Auth::User()->id)}}">USER PROFILE</li></a>  </h2>
-                </div>
-            </div>
-        </div> --}}
 
+        @auth
 
         <div class="row">
             <div class="col-lg-6">
@@ -62,8 +52,97 @@
                     @endif
                 </div>
             </div>
+
+            <div class="col-sm-6 col-lg-4">
+                <div class="feature-box-1">
+                    <div class="icon">
+                        <i class="fa fa-product-hunt" aria-hidden="true"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h5>Pending Payment</h5>
+                
+                    </div>
+                    @if(Auth::check())         
+                    <a href="{{url('customerPending-payment/{id}')}}" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
+                    @else
+                    <a href="{{ route('login') }}">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a></li>
+                    @endif
+                </div>
+            </div>
         </div>
     </br>
+
+    @endauth      
+
+    @auth
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="section-title">
+                <h2>SERVICE-REPAIR</h2>
+            </div>
+        </div>
+    </div>
+   
+    <div class="row">
+        <!-- feaure box -->
+        <div class="col-sm-6 col-lg-4">
+            <div class="feature-box-1">
+                <div class="icon">
+                    <i class="fa fa-product-hunt" aria-hidden="true"></i>
+                </div>
+                <div class="feature-content">
+                    <h5>Service-Repair</h5>                   
+                </div>
+                @if(Auth::check())
+                <a href="{{url('servicerepair/{id}')}}" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
+                @else
+                <a href="{{ route('login') }}">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a></li>
+                @endif
+            </div>
+        </div>
+   
+        
+        <!-- feaure box -->
+        <div class="col-sm-6 col-lg-4">
+            <div class="feature-box-1">
+                <div class="icon">
+                    <i class="fa fa-motorcycle" aria-hidden="true"></i>
+                </div>
+                <div class="feature-content">
+                    <h5>USED PRODUCTS</h5>
+                    <p>Here, you can view our bike models we services </p>
+                </div>
+                @if(Auth::check())
+                <a href="{{url('bike')}}" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
+                @else
+                <a href="{{ route('login') }}">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a></li>
+                @endif                    
+            </div>
+        </div>
+  
+        
+        <!-- feaure box -->
+        <div class="col-sm-6 col-lg-4">
+            <div class="feature-box-1">
+                <div class="icon">
+                    <i class="fa fa-list-alt"></i>
+                </div>
+                <div class="feature-content">
+                    <h5>SERVICE DONE</h5>
+                    <p>Here, you can view our bike brands we services </p>
+                </div>
+                @if(Auth::check())
+                <a href="{{url('brand')}}" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
+                @else
+                <a href="{{ route('login') }}">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a></li>
+                @endif
+                
+            </div>
+        </div>
+    </div>
+
+    @endauth      
  
         <div class="row">
             <div class="col-lg-6">
@@ -220,34 +299,46 @@
                     </div>
                 </div>
             </div>
-            <!-- / -->
         </div>
+        <br>  
 
-        {{-- chart --}}
-        <div class="card-body">
-            <div class="chart-body">
-                <div class="chart-pie pt-4 pb-2">
-                    <canvas id="myPieChart"></canvas>
-                </div>
-                <div class="mt-4 text-center small">
-                    <span class="mr-2">
-                        <i class="fas-fa-circle text-primary"></i>Direct
-                    </span>
-
-                    <span class="mr-2">
-                        <i class="fas-fa-circle text-success"></i>Social
-                    </span>
-
-                    <span class="mr-2">
-                        <i class="fas-fa-circle text-info"></i>Referral
-                    </span>
+         {{-- working hours --}}
+         <div class="row">
+            <div class="col-lg-6">
+                <div class="section-title">
+                    <h2>Working Hours</h2>
                 </div>
             </div>
         </div>
-        {{-- chart --}}
-
-    
-
+       
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="box-body">
+                    <div class="table responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>                 
+                                    <th>{{__('adminstaticword.day') }}</th>
+                                    <th>{{__('adminstaticword.from') }}</th>
+                                    <th>{{__('adminstaticword.to') }}</th>                       
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $i=0;?>
+                                @foreach($workinghour as $w)
+                                <?php $i++;?>
+                                <tr>
+                                    <td>{{ $w->day }}</td>
+                                    <td>{{ $w->from }}</td>
+                                    <td>{{ $w->to }}</td> 
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 

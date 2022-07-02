@@ -22,10 +22,7 @@
               <label for="name">First name</label>  
               <input type="text" name="fname" class="form-control" id="fname" placeholder="First Name..." value="{{ old('fname') }}">
             </div>          
-          </div>
-          <br>
-        
-          <div class="row">
+         
             <div class="col-md-6">
             <label for="name">Last name</label>
             <input type="text" name="lname" class="form-control" id="lname" placeholder="Last Name..." value="{{ old('lname') }}">
@@ -38,18 +35,20 @@
               <label for="email">Email</label>
               <input type="email" name="email" class="form-control" id="email" placeholder="Email..." value="{{ old('email') }}">
             </div>          
-          </div>
-          <br>
+       
+            <div class="col-md-6">
+            <label for="name">ID Number</label>
+            <input type="text" name="idno" class="form-control" id="idno" placeholder="ID..." value="{{ old('idno') }}">
+          </div>          
+        </div>
+        <br>
         
           <div class="row">
             <div class="col-md-6">
             <label for="name">Contact</label>
             <input type="text" name="contact" class="form-control" id="contact" placeholder="Contact..." value="{{ old('contact') }}">
           </div>          
-        </div>
-        <br>
         
-          <div class="row">
             <div class="col-md-6">
             <label for="role">Select Role</label>
 
@@ -67,25 +66,14 @@
               <label for="role" name="permission">Select Permissions</label>
               <div id="permissions_ckeckbox_list">
               </div>
-          </div> 
-        
-          <div class="row">
-            <div class="col-md-6">
-            <label for="name">ID Number</label>
-            <input type="text" name="idno" class="form-control" id="idno" placeholder="ID..." value="{{ old('idno') }}">
-          </div>          
-        </div>
-        <br>
-        
+          </div>         
+                
           <div class="row">
             <div class="col-md-6">
               <label for="password">Password</label>
               <input type="password" name="password" class="form-control" id="password" placeholder="Password...">
             </div>          
-          </div>
-          <br>
         
-          <div class="row">
             <div class="col-md-6">
             <label for="password_confirmation">Password Confirm</label>
             <input type="password" name="password_confirmation" class="form-control" placeholder="Password..." id="password_confirmation">

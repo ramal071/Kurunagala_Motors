@@ -29,38 +29,16 @@
                                         @endforeach
                                     </select>
                                  </div>  
-                          
+                            </div>
+                            <br>
+
+                            <div class="row">
                               <div class="col-md-6">
                                 <label for="customervehicle_id">{{ __('adminstaticword.registernumber') }}</label>
                                 <select name="customervehicle_id" id="upload_id" class="form-control js-example-basic-single col-md-7 col-xs-12" >
                                 </select>
                               </div>
                             </div>
-                          <br>
-
-                          <div class="row">
-                            <div class="col-md-6">
-                              <label for="exampleInputTit1e">{{ __('adminstaticword.employee') }}</label>
-                              <select name="employee[]" class="form-control employee" multiple="multiple">
-                                <option value="0"></option>
-                                @foreach($employee as $employee)
-                                  <option value="{{$employee->id}}">{{$employee->name}}</option>
-                                @endforeach
-                              </select>
-                            </div>
-                         
-                            <div class="col-md-6">
-                              <label for="email">{{ __('adminstaticword.email') }}:</sup></label>
-                              <input type="text" class="form-control" name="email" id="email" placeholder="If user need email" value="">
-                              {{-- 
-                                  @if (auth()->user())
-                                      <input type="email" class="form-control" id="email" name="email" value="{{ auth()->user()->email }}" readonly>
-                                  @else
-                                      <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required>
-                                  @endif
-                                --}}
-                            </div>          
-                          </div>
                           <br>
 
                               <div class="row">
@@ -73,7 +51,10 @@
                                     @endforeach
                                   </select>
                                 </div>
-                             
+                              </div>
+                            <br>
+
+                            <div class="row">
                               <div class="col-md-6">
                                 <label for="stock">{{ __('adminstaticword.stock') }}</label>
                                 <select name="stock[]" class="form-control stock" multiple="multiple">
@@ -85,14 +66,29 @@
                               </div>
                             </div>
                           <br>
-                          
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                  <label for="exampleInputTit1e">{{ __('adminstaticword.employee') }}</label>
+                                  <select name="employee[]" class="form-control employee" multiple="multiple">
+                                    <option value="0"></option>
+                                    @foreach($employee as $employee)
+                                      <option value="{{$employee->id}}">{{$employee->name}}</option>
+                                    @endforeach
+                                  </select>
+                                </div>
+                              </div>
+                            <br>
 
                             <div class="row">
                                 <div class="col-md-6">
                                   <label for="paid_amount">{{ __('adminstaticword.paidamount') }}:<sup class="redstar">*</sup></label>
                                   <input type="text" class="form-control" name="paid_amount" id="paid_amount" placeholder="Enter paid_amount" value="">
                                 </div>          
-                          
+                            </div>
+                            <br>
+
+                            <div class="row">
                                 <div class="col-md-6">
                                   <label for="amount">{{ __('adminstaticword.amount') }}:<sup class="redstar">*</sup></label>
                                   <input type="text" class="form-control" name="amount" id="amount" placeholder="Enter amount" value="">
@@ -147,7 +143,6 @@
                                 </div>
                             </div>          
                             <br>
-                          
 
 
                             <div class="row">
@@ -192,48 +187,6 @@ $(document).ready(function() {
   </script>
 @endsection
 
-
-
-@section('regnum_scripts')
-<script>
-  (function($) {
-      "use strict";
-
-      $(function() {
-          var urlLike = '{{ route('admin-dropdown2') }}';
-          $('#user_id').change(function() {
-              var up = $('#upload_id').empty();
-              var pr_id1 = $(this).val();
-              if (pr_id1) {
-                  $.ajax({
-                      headers: {
-                          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                      },
-                      type: "GET",
-                      url: urlLike,
-                      data: {
-                          prId1: pr_id1
-                      },
-                      success: function(data) {
-                          up.append('<option value="0">Please Choose</option>');
-                          $.each(data, function(id, title) {
-                              //   console.log(data.id);
-                              up.append($('<option>', {
-                                  value: title.id,
-                                  text: title.register_number,
-                              }));
-                          });
-                      },
-                      error: function(XMLHttpRequest, textStatus, errorThrown) {
-                          console.log(XMLHttpRequest);
-                      }
-                  });
-              }
-          });
-      });
-
-  })(jQuery);
-</script>
 
 
 @section('regnum_scripts')

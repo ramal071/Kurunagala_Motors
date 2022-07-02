@@ -28,18 +28,18 @@
                             </thead>
                             <tbody>
                                 <?php $i=0;?>
-                                @foreach($servicerepair as $b)
+                                @foreach($arr as $b)
                                 <?php $i++;?>
                                 <tr>
                                   <td>{{ $b->code}}</td>
-                                  <td>{{ $b->users->idno}}</td>
-                                  <td>{{ $b->users->fname}}</td>
-                                  <td>{{ $b->customervehicle->register_number }}</td>
-                                  <td>
+                                  {{-- <td>{{ $b->users->idno}}</td>
+                                  <td>{{ $b->users->fname}}</td> --}}
+                                  {{-- <td>{{ $b->customervehicle->register_number }}</td>
+                                  <td>  
                                     @foreach ($b->stock as $s)
                                     <ul>  <li>
                                       {{$s->product->brand->name}} {{$s->product->bike->name}} {{$s->product->name}}
-                                      {{-- {{$s->product->name}} --}}
+                             
                                     </li> </ul>
                                     @endforeach
                                   </td>                               
@@ -49,7 +49,7 @@
                                         {{$s->name}}
                                     </li>
                                     @endforeach
-                                  </td>
+                                  </td> --}}
                             
                                   <td>                                       
                                     <button type="Submit" class="btn btn-xs {{ $b->is_repaircomplete ==1 ? 'btn-success' : 'btn-danger' }} "> 

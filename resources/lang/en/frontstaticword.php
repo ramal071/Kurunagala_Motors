@@ -40,5 +40,7 @@ return [
     'user' => 'User',
     'userbikeregister' => 'User Bike Register',
     'pendingservice' => 'Pending Service',
+    'servicerepair' => 'Service Repair',
+    'pendingpayment' => 'Pending Payment'
 
 ];

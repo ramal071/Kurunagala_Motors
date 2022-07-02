@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Bike;
 use App\brand;
 use App\User;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Registerd;
+use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class CustomerVehicleController extends Controller
 {
@@ -36,10 +39,21 @@ class CustomerVehicleController extends Controller
         $customervehicle->user_id = $request->user_id;
         $customervehicle->bike_id = $request->bike_id;
         $customervehicle->brand_id = $request->brand_id;
-
         $customervehicle->register_number = $request->register_number;
 
         $customervehicle->save();
+
+        // Mail::send('admin.emails.customerVehicleCreated', $customervehicle->toArray(),
+        // function($message){
+        //     $message
+        //     ->to('testramal071@gmail.com', 'Code Online')
+        //     ->subject('Your bike registered');
+        // });  Auth::user()->email;
+
+
+        // $user_email=$request->$customervehicle->email;
+        // Mail::to($user_email)->send(new CusVehicle($customervehicle));
+
         return redirect()->route('customervehicle.index')->with('success', 'Created successfully');
     }
 

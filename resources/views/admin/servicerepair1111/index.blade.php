@@ -19,7 +19,7 @@
                                 <tr>
                                     <th>{{__('adminstaticword.job') }}</th>
                                     <th>{{__('adminstaticword.idno') }}</th>
-                                    {{-- <th>{{__('adminstaticword.fname') }}</th> --}}
+                                    <th>{{__('adminstaticword.fname') }}</th>
                                     <th>{{__('adminstaticword.registernumber') }}</th>                                  
                                     <th>{{__('adminstaticword.stock') }}</th>                                    
                                     <th>{{__('adminstaticword.service') }}</th>
@@ -30,7 +30,8 @@
                                     <th>{{__('adminstaticword.borrow') }}</th>      
                                     <th>{{__('adminstaticword.complete') }}</th>    
                                     <th>{{__('adminstaticword.repaircomplete') }}</th>                    
-                                    <th>{{__('adminstaticword.tool') }}</th>
+                                    <th>{{__('adminstaticword.edit') }}</th>
+                                    <th>{{__('adminstaticword.delete') }}</th>
                                 </tr>
                             </thead>
 
@@ -41,7 +42,7 @@
                                 <tr>
                                     <td>{{ $b->code}}</td>
                                     <td>{{ $b->users->idno}}</td>
-                                    {{-- <td>{{ $b->users->lname}}</td> --}}
+                                    <td>{{ $b->users->lname}}</td>
                                     <td>{{ $b->customervehicle->register_number }}</td>
                                     {{-- <td>{{ $b->customervehicle->brand->name}} {{ $b->customervehicle->bike->name}}</td> --}}
                                     <td>
@@ -66,16 +67,15 @@
                                         </li>
                                         @endforeach
                                     </td>
-                                    {{-- <td>{{ $total }}</td> --}}
+                                    {{-- <td>{{ $b->amount }}</td> --}}
 
                                     <td>
                                       @foreach ($b->service as $s)
                                       <li>
-                                          {{$s->price}}
+                                          {{$s->price++}}
                                       </li>
                                       @endforeach
                                     </td>
-
                                     <td>{{ $b->paid_amount }}</td>
                                    
                                     <td>
@@ -131,11 +131,12 @@
                                       </td>                                      
 
                                     <td>
-                                      <a href="{{route('servicerepair.show', $b->id)}}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i></a>
-
                                     <a href="{{route('servicerepair.edit', $b->id)}}" class="btn btn-success btn-sm" ><i class="glyphicon glyphicon-pencil"></i></a>
-                                   
-                                    <a href="javascript:void(0)" onclick="$(this).parent().find('form').submit()" class="btn btn-danger"><i class="fa fa-fw fa-trash-o"></i></a>     
+                                    </td>
+
+                                    <td>
+                                    <a href="javascript:void(0)" onclick="$(this).parent().find('form').submit()" class="btn btn-danger"><i class="fa fa-fw fa-trash-o"></i></a>
+                                        
                                     <form action="{{route('servicerepair.destroy', $b->id)}}" method="post">
                                     @method('DELETE')  
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">

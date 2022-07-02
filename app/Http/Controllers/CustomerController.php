@@ -6,6 +6,8 @@ use App\Customer;
 use App\customervehicle;
 use Illuminate\Http\Request;
 use App\customerpendingservice;
+use App\CustomerPendingPayment;
+use App\ServiceRepair;
 
 use App\User;
 use Auth;
@@ -32,6 +34,28 @@ class CustomerController extends Controller
             $user = User::where('id', Auth::User()->id)->first();
             $customerpendingservice =  customerpendingservice::where('user_id', $user->id)->orderBy('id', 'desc')->get();
             return view('customer.pendingservice',compact('user',  'customerpendingservice'));
+        }
+        return Redirect::route('login');
+    }
+
+    public function CustomerPendingPayment($id)
+    {
+        if(Auth::check()){
+          
+            $user = User::where('id', Auth::User()->id)->first();
+            $customerpendingpayment =  CustomerPendingPayment::where('user_id', $user->id)->orderBy('id', 'desc')->get();
+            return view('customer.customerpendingpayment',compact('user',  'customerpendingpayment'));
+        }
+        return Redirect::route('login');
+    }
+
+    public function ServiceRepair($id)
+    {
+        if(Auth::check()){
+          
+            $user = User::where('id', Auth::User()->id)->first();
+            $servicerepair =  ServiceRepair::where('user_id', $user->id)->orderBy('id', 'desc')->get();
+            return view('customer.servicerepair',compact('user', 'servicerepair'));
         }
         return Redirect::route('login');
     }

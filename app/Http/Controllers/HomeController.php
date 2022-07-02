@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Workinghour;
 
 class HomeController extends Controller
 {
 
     public function index()
-    {          
-        return view('home');    
+    {  
+        $arr['workinghour'] = Workinghour::all();        
+        return view('home')->with($arr);    
     }
     
 }

@@ -60,17 +60,13 @@
 {{--  canvas js line chart--}}
 
 <?php
-//  echo $current_month = date('M Y', strtotime("-0 month"));
-// echo"<pre>"; print_r($usersCount); die;
-
     $months = array();
     $count = 0;
     while ($count <= 3) {
         $months[] = date('M Y', strtotime("-".$count." month"));
     $count++;
     }
-   // echo"<pre>"; print_r($months); die;    
-
+  
 $dataPoints = array(
 	array("y" => $usersCount[3], "label" => $months[3]),
     array("y" => $usersCount[2], "label" => $months[2]),
@@ -80,8 +76,6 @@ $dataPoints = array(
 );
  
 ?>
-
-
 
 <script>
     window.onload = function () {
@@ -103,14 +97,8 @@ $dataPoints = array(
     }
     </script>
 
-
-
-
-
      <div id="chartContainer" style="height: 370px; width: 75%;"></div>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-
-
 
 </body>
 </html>

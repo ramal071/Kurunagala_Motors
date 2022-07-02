@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Salary;
+use App\Employee;
 use Illuminate\Http\Request;
 
 class SalaryController extends Controller
@@ -10,6 +11,7 @@ class SalaryController extends Controller
     public function index()
     {
         $arr['salary'] = Salary::all();
+        $arr['employee'] = Employee::all(); 
     	return view('admin.salary.index')->with($arr);
     }
 

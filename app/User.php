@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+// use Illuminate\Databas\Eloquent\HasFactory;
 
 use App\Traits\HasRolesAndPermissions;
 
@@ -52,6 +53,12 @@ class User extends Authenticatable
     public function servicerepair()
     {
         return $this->hasOne(ServiceRepair::class, 'user_id', 'id');
+    }
+
+  
+    function getServicerepair()
+    {
+        return $this->hasMany('app\servicerepair');
     }
 
 

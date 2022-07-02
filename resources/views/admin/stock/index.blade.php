@@ -29,9 +29,9 @@
                                         <th>{{__('adminstaticword.discount') }}</th>
                                         <th>{{__('adminstaticword.color') }}</th>
                                         <th>{{__('adminstaticword.lowestlimit') }}</th>
+                                        {{-- <th>{{__('adminstaticword.status') }}</th> --}}
                                         <th>{{__('adminstaticword.description') }}</th>
-                                        <th>{{__('adminstaticword.edit') }}</th>
-                                        <th>{{__('adminstaticword.delete') }}</th>
+                                        <th>{{__('adminstaticword.tool') }}</th>
                                     </tr>
                                 </thead>
 
@@ -48,16 +48,19 @@
                                         <td>{{ $stock->sellingprice }}</td>
                                         <td>{{ $stock->discount }}</td>
                                         <td style="background-color:{{ $stock->color }}"> </td>
-                                        <td>{{ $stock->lowestlimit }}</td>
+
+                                        @if ($stock->quantity> $stock->lowestlimit)
+                                        <td>{{ $stock->lowestlimit }}</td>  
+                                        @else
+                                        <td  class="btn-danger">{{ $stock->lowestlimit }}-Low!! </td>  
+                                        @endif
+                                        
                                         <td>{{ $stock->description }}</td>
 
                                        
-                                            <td>
+                                        <td>
                                             <a href="{{route('stock.edit', $stock->id)}}" class="btn btn-success btn-sm" ><i class="glyphicon glyphicon-pencil"></i></a>
-                                        </td>                                      
-                                       
-                                       
-                                            <td>
+                                        
                                             <a href="javascript:void(0)" onclick="$(this).parent().find('form').submit()" class="btn btn-danger"><i class="fa fa-fw fa-trash-o"></i></a>
                                             <form action="{{ route('stock.destroy', $stock->id) }}" method="post">
                                                 @method('DELETE')

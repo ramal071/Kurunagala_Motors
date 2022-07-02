@@ -9,8 +9,8 @@
         <div class="col-xs-12">
             <div class="box box-primary">  {{-- red line --}}
                 <div class="box-header with-border">
-                    <h3 class="box-title">{{__('adminstaticword.pendingpayment') }}</h3>
-                  
+                    <h3 class="box-title"> {{ Auth::User()->fname }} {{__('adminstaticword.pendingpayment') }}</h3>
+                    
                     <a href="{{ route('customerpendingpayment.create') }}" class="btn btn-info btn-sm">+ {{__('adminstaticword.pendingpayment') }}</a>        
 
                 </div>

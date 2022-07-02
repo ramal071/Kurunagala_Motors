@@ -13,7 +13,9 @@ class ServiceServiceRepairController extends Controller
     public function index()
     {
         $arr['servicerepair'] = ServiceRepair::all();  
-        $arr['service'] = Service::all();   
+        $arr['service'] = Service::all();  
+        
+        
         return view('admin.service_servicerepair.index')->with($arr);    
     }
 
