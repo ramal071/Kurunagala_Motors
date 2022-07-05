@@ -24,7 +24,7 @@
                                             class="form-control js-example-basic-single col-md-7 col-xs-12">
                                             <option value="0">{{ __('adminstaticword.pleaseselect') }}</option>
                                             @foreach ($user as $user)
-                                                <option value="{{ $user->id }}">{{ $user->idno }}</option>
+                                                <option value="{{ $user->id }}">{{ $user->idno }}: {{ $user->fname }} {{ $user->lname }}</option>
                                             @endforeach
                                         </select>
                                     </div>

@@ -5,12 +5,16 @@ namespace App\Http\Controllers;
 use App\ReconditionProduct;
 use Illuminate\Http\Request;
 use App\Stock;
+use App\Product;
+use App\brand;
 
 class ReconditionProductController extends Controller
 {
     public function index()
     {
         $arr['reconditions'] = ReconditionProduct::all();
+        $arr['Product'] = Product::all();
+        $arr['stock'] = Stock::all();
         return view('admin.recondition.index')->with($arr);
     }
 

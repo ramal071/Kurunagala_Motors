@@ -8,12 +8,9 @@
             <div class="col-xs-12">
                 <div class="box box-primary">  {{-- red line --}}
                     <div class="box-header with-border">
-                        <h3 class="box-title">{{__('adminstaticword.damage') }}</h3>
-                       
-                        <a href="{{ route('damage.create') }}" class="btn btn-info btn-sm">+{{__('adminstaticword.damage') }}</a>        
-                        
+                        <h3 class="box-title">{{__('adminstaticword.damage') }}</h3>                       
+                        <a href="{{ route('damage.create') }}" class="btn btn-info btn-sm">+{{__('adminstaticword.damage') }}</a>                              
                     </div>
-
                     <div class="box-body">
                         <div class="table responsive">
                             <table id="example1" class="table table-bordered table-striped">

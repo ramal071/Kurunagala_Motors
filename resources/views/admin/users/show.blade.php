@@ -13,14 +13,6 @@
                             <h4> {{__('adminstaticword.lname') }}: {{$user->lname}}</h4>
                             <h4> {{__('adminstaticword.contact') }}: {{$user->contact}}</h4>
                             <h4> {{__('adminstaticword.email') }}: {{$user->email}}</h4>
-
-                            <h4> {{__('adminstaticword.role') }}: @if ($user->role->isNotEmpty())
-                                @foreach ($user->role as $role)
-                                    <span class="badge badge-primary">
-                                        {{ $role->name }}
-                                    </span>
-                                @endforeach
-                            @endif</h4>
                         </div>  
                         
                         <h4> {{__('adminstaticword.permission') }}: 

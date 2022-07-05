@@ -10,9 +10,6 @@
             <div class="box box-primary">  {{-- red line --}}
                 <div class="box-header with-border">
                     <h3 class="box-title">{{__('adminstaticword.jobdetails') }}</h3>
-                  
-                    <a href="{{ route('customervehicle.create') }}" class="btn btn-info btn-sm">+ {{__('adminstaticword.jobdetails') }}</a>        
-
                 </div>
 
                 <div class="box-body">
@@ -22,47 +19,56 @@
                                 <tr>
                                     <th>#</th>
                                     <th>{{__('adminstaticword.idno') }}</th>
-                                    <th>{{__('adminstaticword.fname') }}</th>
+                                    <th>{{__('adminstaticword.name') }}</th>
                                     <th>{{__('adminstaticword.registernumber') }}</th>
                                     <th>{{__('adminstaticword.brand') }}</th>
                                     <th>{{__('adminstaticword.model') }}</th>
-                                    <th>{{__('adminstaticword.totalwork') }}</th>
+                                    <th>{{__('adminstaticword.service') }}</th>
+                                    <th>{{__('adminstaticword.usedproduct') }}</th> 
                                     <th>{{__('adminstaticword.totalcost') }}</th>   
                                     <th>{{__('adminstaticword.starttime') }}</th>  
-                                    <th>{{__('adminstaticword.endtime') }}</th>  
-                                    <th>{{ __('adminstaticword.employee') }} {{ __('adminstaticword.name') }}</th>  
-                                    <th>{{__('adminstaticword.servicetype') }}</th>                                 
-                                    <th>{{__('adminstaticword.edit') }}</th>
-                                    <th>{{__('adminstaticword.delete') }}</th>
+                                    <th>{{__('adminstaticword.lastupdate') }}</th>  
+                                    <th>{{ __('adminstaticword.complete') }}/ {{ __('adminstaticword.notcomplete') }}</th>  
                                 </tr>
                             </thead>
 
-                            <tbody>                                    
-                                {{-- 
+                            <tbody>
+                                <?php $i=0;?>
+                                @foreach($servicerepair as $b)
+                                <?php $i++;?>
                                 <tr>
-                                      
-                                    <td>{{ $br->code }}</td>
-                                    <td>{{ $br->name }}</td>
-                                    <td>{{ $br->slug }}</td>
-                                    <td>{{ $br->description }}</td>
+                                    <td>{{ $b->id}}</td>
+                                    <td>{{ $b->users->idno}}</td>
+                                    <td>{{ $b->users->fname}} {{ $b->users->lname}}</td>
+                                    <td>{{ $b->customervehicle->register_number }}</td>
+                                    <td>{{ $b->customervehicle->brand->name}}</td>
+                                    <td>{{ $b->customervehicle->bike->name}}</td>
+                                    <td>{{ $b->service->name}}</td>
+                                    <td>
+                                        @foreach ($b->stock as $s)
+                                        <li>
+                                             {{$s->product->brand->name}} {{$s->product->bike->name}} {{$s->product->name}}
+                                        </li>
+                                        @endforeach
+                                    </td>
+                                    <td>{{ $b->amount }}</td>
+                                    <td>{{ $b->created_at }}</td>
+                                    <td>{{ $b->updated_at }}</td>
+                    
 
-                                   
-                                    <td>
-                                        <a href="{{route('brand.edit', $br->id)}}" class="btn btn-success btn-sm" ><i class="glyphicon glyphicon-pencil"></i></a>
-                                      
-                                    </td>
-                                   
-                                    <td>
-                                        <a href="javascript:void(0)" onclick="$(this).parent().find('form').submit()" class="btn btn-danger"><i class="fa fa-fw fa-trash-o"></i></a>
-                                        <form action="{{ route('brand.destroy', $br->id) }}" method="post">
-                                            @method('DELETE')
-                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        </form>
-                                     
-                                    </td>
-                                </tr>
-                                @endforeach --}}
-                            </tbody>
+                                    <td>                                       
+                                        <button type="Submit" class="btn btn-xs {{ $b->is_repaircomplete ==1 ? 'btn-success' : 'btn-danger' }} "> 
+                                        @if ($b->is_repaircomplete ==1)
+                                        {{__('adminstaticword.complete') }}         
+                                        @else
+                                        {{__('adminstaticword.notcomplete') }} 
+                                        @endif
+                                        </button>                                     
+                                    </td>    
+
+                                </tr>      
+                                @endforeach
+                              </tbody>
                         </table>
                     </div>
                 </div>

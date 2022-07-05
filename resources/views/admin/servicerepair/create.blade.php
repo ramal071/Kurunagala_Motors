@@ -25,7 +25,7 @@
                                     <select name="user_id" id="user_id" class="form-control js-example-basic-single col-md-7 col-xs-12" >
                                         <option value="0">{{ __('adminstaticword.pleaseselect') }}</option>
                                         @foreach($user as $user)
-                                        <option value="{{$user->id}}">{{$user->idno}}</option>
+                                        <option value="{{$user->id}}">{{$user->idno}}: {{$user->fname}} {{$user->lname}}</option>
                                         @endforeach
                                     </select>
                                  </div>  
@@ -38,7 +38,7 @@
                             </div>
                           <br>
 
-                          <div class="row">
+                          {{-- <div class="row">
                             <div class="col-md-6">
                               <label for="exampleInputTit1e">{{ __('adminstaticword.employee') }}</label>
                               <select name="employee[]" class="form-control employee" multiple="multiple">
@@ -47,12 +47,24 @@
                                   <option value="{{$employee->id}}">{{$employee->name}}</option>
                                 @endforeach
                               </select>
-                            </div>
+                            </div> --}}
+
+                            <div class="row">
+                              <div class="col-md-6">
+                                  <label for="employee">{{ __('adminstaticword.employee') }}:<sup class="redstar">*</sup></label>
+                                  <select name="employee_id" id="employee_id" class="form-control js-example-basic-single col-md-7 col-xs-12" >
+                                      <option value="0">--{{ __('adminstaticword.pleaseselect') }}--</option>
+                                      @foreach($employee as $employee)
+                                      <option value="{{$employee->id}}">{{$employee->name}}</option>
+                                      @endforeach
+                                  </select>
+                               </div>  
+                            
                          
                             <div class="col-md-6">
                               <label for="email">{{ __('adminstaticword.email') }}:</sup></label>
-                              <input type="text" class="form-control" name="email" id="email" placeholder="If user need email" value="">
-                              {{-- 
+                              <input type="text" class="form-control" name="email" id="email" placeholder=" email" value="">
+                              {{--    fix login user email
                                   @if (auth()->user())
                                       <input type="email" class="form-control" id="email" name="email" value="{{ auth()->user()->email }}" readonly>
                                   @else
@@ -63,7 +75,19 @@
                           </div>
                           <br>
 
-                              <div class="row">
+                          <div class="row">
+                            <div class="col-md-6">
+                                <label for="service">{{ __('adminstaticword.service') }}:<sup class="redstar">*</sup></label>
+                                <select name="service_id" id="service_id" class="form-control js-example-basic-single col-md-7 col-xs-12" >
+                                    <option value="0">--{{ __('adminstaticword.pleaseselect') }}--</option>
+                                    @foreach($service as $service)
+                                    <option value="{{$service->id}}">{{$service->name}}</option>
+                                    @endforeach
+                                </select>
+                             </div>  
+                             
+                           
+                              {{-- <div class="row">
                                 <div class="col-md-6">
                                   <label for="exampleInputTit1e">{{ __('adminstaticword.service') }}</label>
                                   <select name="service[]" class="form-control service" multiple="multiple">
@@ -73,32 +97,45 @@
                                     @endforeach
                                   </select>
                                 </div>
-                             
+                              --}}
                               <div class="col-md-6">
                                 <label for="stock">{{ __('adminstaticword.stock') }}</label>
                                 <select name="stock[]" class="form-control stock" multiple="multiple">
                                   <option value="0"></option>
                                   @foreach($stock as $s)
-                                    <option value="{{$s->id}}">{{$s->id}}: {{ $s->product->brand->name }} {{ $s->product->bike->name }} {{$s->product->name}}</option>
+                                    <option value="{{$s->id}}">{{$s->id}}: {{$s->sellingprice}} {{ $s->product->brand->name }} {{ $s->product->bike->name }} {{$s->product->name}}</option>
                                   @endforeach
                                 </select>
                               </div>
                             </div>
-                          <br>
+                            <br>
                           
 
-                            <div class="row">
+                            {{-- <div class="row">
                                 <div class="col-md-6">
-                                  <label for="paid_amount">{{ __('adminstaticword.paidamount') }}:<sup class="redstar">*</sup></label>
+                                  <label for="paid_amount">{{ __('adminstaticword.paidamount') }}:</label>
                                   <input type="text" class="form-control" name="paid_amount" id="paid_amount" placeholder="Enter paid_amount" value="">
                                 </div>          
                           
                                 <div class="col-md-6">
-                                  <label for="amount">{{ __('adminstaticword.amount') }}:<sup class="redstar">*</sup></label>
+                                  <label for="amount">{{ __('adminstaticword.amount') }}:</label>
                                   <input type="text" class="form-control" name="amount" id="amount" placeholder="Enter amount" value="">
                                 </div>          
                             </div>
-                            <br>
+                            <br> --}}
+
+                            <div class="row">
+                              <div class="col-md-6">
+                                <label for="description">{{ __('adminstaticword.description') }}</label>
+                                <input type="text" class="form-control" name="description" id="description" placeholder="Enter description" value="">
+                              </div>  
+
+                              {{-- <div class="col-md-6">
+                               <label for="charge">{{ __('adminstaticword.charge') }}:</label>
+                                <input type="text" class="form-control" name="charge" id="charge" placeholder="Enter charge" value="">
+                              </div>       --}}                                     
+                          </div>
+                          <br>
 
                             
                             <div class="col-md-6">
@@ -123,7 +160,6 @@
                                 </div>
                             </div>          
                             <br>
-
                             
                             <div class="col-md-6">
                                 <div class="col-md-6">
@@ -146,8 +182,7 @@
                                   </li>
                                 </div>
                             </div>          
-                            <br>
-                          
+                            <br>                    
 
 
                             <div class="row">
@@ -165,24 +200,14 @@
         </div>
     </div>
 
-@endsection
+
+{{--  --}}
+
+{{--  --}}
 
 
-@section('scripts')
-<script>
-$(document).ready(function() {
-    $('.employee').select2();
-  });
-  </script>
 @endsection
 
-@section('service_scripts')
-<script>
-$(document).ready(function() {
-    $('.service').select2();
-  });
-  </script>
-@endsection
 
 @section('stock')
 <script>
@@ -192,48 +217,6 @@ $(document).ready(function() {
   </script>
 @endsection
 
-
-
-@section('regnum_scripts')
-<script>
-  (function($) {
-      "use strict";
-
-      $(function() {
-          var urlLike = '{{ route('admin-dropdown2') }}';
-          $('#user_id').change(function() {
-              var up = $('#upload_id').empty();
-              var pr_id1 = $(this).val();
-              if (pr_id1) {
-                  $.ajax({
-                      headers: {
-                          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                      },
-                      type: "GET",
-                      url: urlLike,
-                      data: {
-                          prId1: pr_id1
-                      },
-                      success: function(data) {
-                          up.append('<option value="0">Please Choose</option>');
-                          $.each(data, function(id, title) {
-                              //   console.log(data.id);
-                              up.append($('<option>', {
-                                  value: title.id,
-                                  text: title.register_number,
-                              }));
-                          });
-                      },
-                      error: function(XMLHttpRequest, textStatus, errorThrown) {
-                          console.log(XMLHttpRequest);
-                      }
-                  });
-              }
-          });
-      });
-
-  })(jQuery);
-</script>
 
 
 @section('regnum_scripts')

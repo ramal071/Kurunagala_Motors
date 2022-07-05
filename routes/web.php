@@ -13,6 +13,8 @@ Route::prefix('admins')->group(function (){
 //Route::get('admins', 'AdminController@userChart');
 
 Route::resource('users', 'UsersController')->middleware('role:cashier,manager');
+Route::get("dropdown3","UsersController@upload_info")->name('admin-dropdown3');
+Route::get("child-dropdown3","UsersController@child_info")->name('child-dropdown3');
 
 Route::resource('cashier', 'CashierController');
 
@@ -22,6 +24,12 @@ Route::get('customerVehicle-show/{id}', 'CustomerController@customerVehiclePage'
 Route::get('customerPending-service/{id}', 'CustomerController@PendingService')->name('customer.pending.serviice');
 Route::get('customerPending-payment/{id}', 'CustomerController@CustomerPendingPayment')->name('customer.pending.payment');
 Route::get('customerService-repair/{id}', 'CustomerController@ServiceRepair')->name('customer.service.repair');
+Route::get('customerService-stoct/{id}', 'CustomerController@ServiceRepairStock')->name('customer.service.stock');
+Route::get('completeJob/{id}', 'CustomerController@completeJob')->name('customer.service.done');
+Route::get('customerbike', 'CustomerController@Bike')->name('customer.bike');
+Route::get('customerbrand', 'CustomerController@Brand')->name('customer.brand');
+Route::get('customerproduct', 'CustomerController@Product')->name('customer.product');
+Route::resource('leave', 'LeaveController'); 
 // Route::get('customervehicle/{id}', 'CustomerVehicleController');
 
 Route::resource('customerjobdetail', 'CustomerJobDetailController');    
@@ -31,9 +39,13 @@ Route::resource('customerpendingservice', 'CustomerPendingServiceController');
 Route::get("dropdown1","CustomerPendingServiceController@upload_info")->name('admin-dropdown1');
 Route::get("child-dropdown1","CustomerPendingServiceController@child_info1")->name('child-dropdown1');
 
-Route::resource('completejob', 'CompleteJobController'); 
+Route::resource('completejob', 'CompleteJobController');     
 Route::resource('servicerepair', 'ServiceRepairController');
-// Route::get('add_to_cart', 'ServiceRepairController@addToCart');  
+// Route::get("jobdetails","ServiceRepairController@jobdetails")->name('jobdetails');
+
+Route::resource('calendar', 'CalendarController');
+
+// Route::get('add_to_cart', 'ServiceRepairController@addToCart');     
 Route::get('service-show', 'ServiceRepairController@usedProductService');
 Route::resource('service', 'ServiceController');
 // Route::resource('servicetype', 'ServiceTypeController');
@@ -41,11 +53,6 @@ Route::get("dropdown2","ServiceRepairController@upload_info")->name('admin-dropd
 Route::get("child-dropdown2","ServiceRepairController@child_info")->name('child-dropdown2');
 Route::resource('service_servicerepair', 'ServiceServiceRepairController');
 Route::resource('stock_servicerepair', 'StockServiceRepairController');
-
-
-// Route::prefix('user')->group(function (){   ServiceServiceRepairController
-   //  Route::get('/','UsersController@viewAllUser')->name('user.index');
-// });
 
 Route::resource('role' , 'RoleController')->middleware('role:manager');
 Route::resource('employee', 'EmployeeController')->middleware('role:manager');

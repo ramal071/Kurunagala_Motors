@@ -16,14 +16,29 @@ class Employee extends Model
          'employee_role', 'employee_id', 'role_id')->withTimestamps();
     }
 
-    public function servicerepairs()
+    // public function servicerepairs()
+    // {
+    //     return $this->belongsToMany(ServiceRepair::class,'employee_service_repairs','employee_id','service_repair_id')->withTimestamps();
+    // }
+
+    public function servicerepair()
     {
-        return $this->belongsToMany(ServiceRepair::class,'employee_service_repairs','employee_id','service_repair_id')->withTimestamps();
+        return $this->hasMany(ServiceRepair::class, 'employee_id', 'id');
     }
 
     public function attendance()
     {
         return $this->hasMany(Attendance::class, 'employee_id' , 'id');
+    }
+
+    public function salary()
+    {
+        return $this->hasMany(Salary::class, 'employee_id' , 'id');
+    }
+
+    public function leave()
+    {
+        return $this->hasMany(Leave::class, 'employee_id' , 'id');
     }
 
 }

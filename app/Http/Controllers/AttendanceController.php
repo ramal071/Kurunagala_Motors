@@ -10,6 +10,7 @@ class AttendanceController extends Controller
 {
     public function index()
     {
+        $arr['employee'] = Employee::all();
          $arr['attendance'] = Attendance::all();
         return view('admin.attendance.index')->with($arr);
     }
@@ -22,6 +23,18 @@ class AttendanceController extends Controller
 
     public function store(Request $request, Attendance $attendance)
     {
+        $data = $this->validate($request, [ 
+            'employee_id'=> 'required',
+            'time_start'=>'required',
+            'time_end'=>'required'
+        ],
+            [
+            'employee_id.required'=>'Please enter the employee id !!!',
+            'time_start.required'=>'Please enter the time start !!!',
+            'time_end.required'=>'Please enter the time end !!!',
+            ]
+        );
+
         $attendance->employee_id = $request->employee_id;
         $attendance->time_start = $request->time_start;
         $attendance->time_end = $request->time_end;
@@ -43,6 +56,18 @@ class AttendanceController extends Controller
 
     public function update(Request $request, Attendance $attendance)
     {
+        $data = $this->validate($request, [ 
+            'employee_id'=> 'required',
+            'time_start'=>'required',
+            'time_end'=>'required'
+        ],
+            [
+            'employee_id.required'=>'Please enter the employee id !!!',
+            'time_start.required'=>'Please enter the time start !!!',
+            'time_end.required'=>'Please enter the time end !!!',
+            ]
+        );
+
         $attendance->employee_id = $request->employee_id;
         $attendance->time_start = $request->time_start;
         $attendance->time_end = $request->time_end;

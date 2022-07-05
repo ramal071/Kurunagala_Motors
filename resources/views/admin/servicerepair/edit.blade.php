@@ -22,23 +22,29 @@
                     <div class="row">
                         <div class="col-md-6">
                           <label for="user_id">{{ __('adminstaticword.user') }}</label>
-                          <select name="user_id" id="user_id" class="form-control js-example-basic-single">
+                          <input type="text" class="form-control" name="user_id" id="user_id" value="{{ $servicerepair->users->fname }}" readonly>
+                          {{-- <select name="user_id" id="user_id" class="form-control js-example-basic-single" >
                             @php
                               $user = App\User::all();
                             @endphp  
                             @foreach($user as $caat)
-                              <option {{ $caat->user_id == $caat->id ? 'selected' : "" }} value="{{ $caat->id }}">{{ $caat->idno }}</option>
+                              <option {{ $caat->user_id == $caat->id ? 'selected' : "" }} value="{{ $caat->id }}">{{ $caat->idno }}: {{$caat->fname}} {{$caat->lname}} </option>
                             @endforeach 
-                          </select>
+                          </select> --}}
                         </div>
-                      </div>
-                    <br>        
+
+                        <div class="col-md-6">
+                          <label for="email">{{ __('adminstaticword.email') }}:<sup class="redstar">*</sup></label>
+                          <input type="email" class="form-control" name="email" id="email" value=" {{ $servicerepair->email }}" >
+                      </div>  
+                  </div>
+                  <br>        
                      
                       
                     <div class="row">
                         <div class="col-md-6">
                         <label for="exampleInputTit1e1">{{ __('adminstaticword.registernumber') }}</label>
-                        <select name="customervehicle_id" id="upload_id" class="form-control js-example-basic-single">
+                        <select name="customervehicle_id" id="upload_id" class="form-control js-example-basic-single" >
                             @php
                             $customervehicle = App\CustomerVehicle::all();
                             @endphp  
@@ -47,27 +53,34 @@
                             @endforeach 
                         </select>
                         </div>
-                    </div>
-                    <br>
-                    
-                    <div class="row">
+               
                       <div class="col-md-6">
-                          <label for="service">{{ __('adminstaticword.service') }}</label>
-                          <select name="service[]" class="form-control service" multiple="multiple" >
-                            <option value="">Choose service</option>
-                            @foreach($service as $c)
-                              <option value="{{ $c->id }}"               
-                                @if($c->id == $servicerepair->service_id)
-                                selected
-                                @endif              
-                                >{{ $c->name }}</option>
-                            @endforeach
-                          </select>
+                        <label for="service">{{ __('adminstaticword.service') }}</label>
+                        <select name="service_id" id="service_id" class="form-control js-example-basic-single" >
+                          @php
+                            $service = App\Service::all();
+                          @endphp  
+                          @foreach($service as $caat)
+                            <option {{ $caat->service_id == $caat->id ? 'selected' : "" }} value="{{ $caat->id }}">{{ $caat->name }}</option>
+                          @endforeach                         
+                        </select>
                       </div>
                     </div>
-                    <br>
+                    <br> 
 
                     <div class="row">
+                      <div class="col-md-6">
+                        <label for="employee">{{ __('adminstaticword.employee') }}</label>
+                        <select name="employee_id" id="employee_id" class="form-control js-example-basic-single">
+                          @php
+                            $employee = App\Employee::all();
+                          @endphp  
+                          @foreach($employee as $caat)
+                            <option {{ $caat->employee_id == $caat->id ? 'selected' : "" }} value="{{ $caat->id }}">{{ $caat->name }}</option>
+                          @endforeach 
+                        </select>
+                      </div>
+                  
                       <div class="col-md-6">
                           <label for="stock">{{ __('adminstaticword.stock') }}</label>
                           <select name="stock[]" class="form-control stock" multiple="multiple" >
@@ -82,69 +95,33 @@
                           </select>
                       </div>
                     </div>
-                    <br>
-                    
-                    {{-- <div class="row">
-                        <div class="col-md-6">
-                          <label for="stock">{{ __('adminstaticword.stock') }}</label>
-                          <select name="stock_id" id="stock_id" class="form-control js-example-basic-single">
-                            @php
-                              $stock = App\Stock::all();
-                            @endphp  
-                            @foreach($stock as $stock)
-                              <option {{ $stock->stock_id == $stock->id ? 'selected' : "" }} value="{{ $stock->id }}">{{ $stock->id }}</option>
-                            @endforeach 
-                          </select>
-                        </div>
-                      </div>
-                    <br>  --}}
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="employee">{{ __('adminstaticword.employee') }}</label>
-                             {{-- <select name="employee[]" value="{{ $servicerepair->employee_id }}" --}}
-                              {{-- <select name="employee[]"
-                                class="form-control employee" multiple="multiple"> --}}
-                                {{-- <option value="">Choose Employee</option>                               
-                                @foreach ($employee as $r)
-                                    <option value="{{ $r->id }}"
-                                      {{ $r->id == $empolyee_service_repairs[0]->employee_id ? 'selected' : '' }}>
-                                      {{ $r->name }} 
-                                    </option>
-                                @endforeach
-                            </select> --}}
-
-                            <select name="employee[]" class="form-control employee" multiple="multiple" >
-                              <option value="">Choose employee</option>
-                              @foreach($employee as $c)
-                                <option value="{{ $c->id }}" 
-                
-                                  @if($c->id == $servicerepair->employee_id)
-                                  selected
-                                  @endif
-                
-                                  >{{ $c->name }}</option>
-                              @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <br>
-
+                    <br>                    
+               
                     <div class="row">
                         <div class="col-md-6">
                             <label for="paid_amount">{{ __('adminstaticword.paidamount') }}:<sup class="redstar">*</sup></label>
                             <input type="text" class="form-control" name="paid_amount" id="paid_amount" value=" {{ $servicerepair->paid_amount }}">
                         </div>  
-                    </div>
-                    <br> 
-                
-                    <div class="row">
+                  
                         <div class="col-md-6">
                             <label for="amount">{{ __('adminstaticword.amount') }}:<sup class="redstar">*</sup></label>
                             <input type="text" class="form-control" name="amount" id="amount" value=" {{ $servicerepair->amount }}">
                         </div>  
                     </div>
-                    <br>     
+                    <br>   
+                    
+                    <div class="row">
+                      <div class="col-md-6">
+                          <label for="charge">{{ __('adminstaticword.charge') }}:</label>
+                          <input type="text" class="form-control" name="charge" id="charge" value=" {{ $servicerepair->charge }}">
+                      </div>  
+                
+                      <div class="col-md-6">
+                          <label for="description">{{ __('adminstaticword.description') }}:</label>
+                          <input type="text" class="form-control" name="description" id="description" value=" {{ $servicerepair->description }}">
+                      </div>  
+                  </div>
+                  <br>
 
                     <div class="row">
                         <div class="col-md-6">
@@ -152,8 +129,7 @@
                             <a href="{{route('servicerepair.index')}}" class="btn btn-primary">Back</a>
                         </div>
                     </div>
-                    <br>
-
+                  <br>                    
               </form>
             </div>
           </div>
@@ -163,53 +139,8 @@
   </section>
   @endsection
   
-  {{-- employee select --}}
-  @section('scripts')
-@php
-    $employee_ids = [];
-@endphp
-
-@foreach ($servicerepair->employee as $e)
-@php
-    array_push($employee_ids, $e->id);
-@endphp    
-@endforeach
-
-<script>
-$(document).ready(function() {
-    $('.employee').select2();
-    data = [];
-    data = <?php echo json_encode($employee_ids); ?>;
-    $('.employee').val(data).trigger('change'); 
-  });
-  </script>
-@endsection
-// emploee select
-
-// service select
-@section('service_scripts')
-@php
-    $service_ids = [];
-@endphp
-
-@foreach ($servicerepair->service as $e)
-@php
-    array_push($service_ids, $e->id);
-@endphp    
-@endforeach
-
-<script>
-$(document).ready(function() {
-    $('.service').select2();
-    data = [];
-    data = <?php echo json_encode($service_ids); ?>;
-    $('.service').val(data).trigger('change'); 
-  });
-  </script>
-@endsection
-// service select
-
-// stock select
+ 
+ {{-- stock select --}}
 @section('stock')
 @php
     $stock_ids = [];
@@ -230,4 +161,3 @@ $(document).ready(function() {
   });
   </script>
 @endsection
-// service select

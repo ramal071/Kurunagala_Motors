@@ -16,10 +16,21 @@ class ContactUsController extends Controller
     {
         $this->validate($request,[
             'name' => 'required',
-            'email' => 'required',
-            'phone' => 'required',
-            'message' => 'required',
-        ]);
+            'email' => 'required|email',
+            'phone' => 'required|max:11numeric',
+            'message' => 'required|max:255',
+        ],
+        [
+            'employee_id.required'=>'Please enter the name !!!',
+            'email.required'=>'Please enter the email !!!',
+            'email.email'=>'Please enter valid email !!!',
+            'phone.required'=>'Please enter the contact !!!',
+            'phone.max'=>'phone number max limit = 11 !!!',
+            'phone.numeric'=>'Please enter phone numeric !!!',
+            'message.required'=>'Please enter the message !!!',
+            'message.max'=>'max limit 255!!!',
+        ]
+    );
 
         $contact = new Contact();
         $contact->name = $request->name;
@@ -29,6 +40,6 @@ class ContactUsController extends Controller
         $contact->save();
 
       //  Toastr::success('Your message successfully send.','Success',["positionClass" => "toast-top-right"]);
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Message sent');
     }
 }

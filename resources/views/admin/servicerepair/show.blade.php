@@ -3,6 +3,210 @@
 @section('body')
 @include('admin.message')
 
+
+<section class="content">
+  <div class="row">
+      <div class="col-xs-12">
+          <div class="box box-primary"> 
+
+            {{--  --}}
+
+            <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        body{
+            background-color: #F6F6F6; 
+            margin: 0;
+            padding: 0;
+        }
+        h1,h2,h3,h4,h5,h6{
+            margin: 0;
+            padding: 0;
+        }
+        p{
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            width: 80%;
+            margin-right: auto;
+            margin-left: auto;
+        }
+        .brand-section{
+           background-color: #0d1033;
+           padding: 10px 40px;
+        }
+        .logo{
+            width: 50%;
+        }
+
+        .row{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .col-6{
+            width: 50%;
+            flex: 0 0 auto;
+        }
+        .text-white{
+            color: #fff;
+        }
+        .company-details{
+            float: right;
+            text-align: right;
+        }
+        .body-section{
+            padding: 16px;
+            border: 1px solid gray;
+        }
+        .heading{
+            font-size: 20px;
+            margin-bottom: 08px;
+        }
+        .sub-heading{
+            color: #262626;
+            margin-bottom: 05px;
+        }
+        table{
+            background-color: #fff;
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table thead tr{
+            border: 1px solid #111;
+            background-color: #f2f2f2;
+        }
+        table td {
+            vertical-align: middle !important;
+            text-align: center;
+        }
+        table th, table td {
+            padding-top: 08px;
+            padding-bottom: 08px;
+        }
+        .table-bordered{
+            box-shadow: 0px 0px 5px 0.5px gray;
+        }
+        .table-bordered td, .table-bordered th {
+            border: 1px solid #dee2e6;
+        }
+        .text-right{
+            text-align: end;
+        }
+        .w-20{
+            width: 20%;
+        }
+        .float-right{
+            float: right;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="brand-section">
+            <div class="row">
+                <div class="col-6">
+                  <img src="{{ url('images/logo/'.$gsetting->logo) }}" width="200" height="70px" style="max-height: 80px;">
+                </div>
+                <div class="col-6">
+                    <div class="company-details">
+                        <p class="text-white">61/B</p>
+                        <p class="text-white">Galenbidunuwewa, Anuradhapura</p>
+                        <p class="text-white">+94 71 709 7116</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="body-section">
+            <div class="row">
+                <div class="col-6">
+                    <h2 class="heading">{{__('adminstaticword.job') }}: {{ $servicerepair->code}}</h2>
+                    <p class="sub-heading">{{__('adminstaticword.starttime') }}:  {{ $servicerepair->created_at}} </p>
+                    <p class="sub-heading">{{__('adminstaticword.lastupdate') }}:  {{ $servicerepair->updated_at}} </p>
+                    <p class="sub-heading">{{__('adminstaticword.email') }}: {{ $servicerepair->email}}</h2>
+                </div>
+                <div class="col-6">
+                    <p class="sub-heading">{{__('adminstaticword.name') }}: {{ $servicerepair->users->fname}} {{ $servicerepair->users->lname}}</td>
+                      <p class="sub-heading">{{__('adminstaticword.idno') }}: {{ $servicerepair->users->idno}}</td>
+                    <p class="sub-heading">{{__('adminstaticword.registernumber') }}: {{ $servicerepair->customervehicle->register_number}}</td>
+                    <p class="sub-heading">{{__('adminstaticword.bike') }}: {{$servicerepair->customervehicle->brand->name}} {{$servicerepair->customervehicle->bike->name}}
+     
+                </div>
+            </div>
+        </div>
+
+        <div class="body-section">
+            <h3 class="heading">Service Details</h3>
+            <br>
+            <table class="table-bordered">
+                <thead>
+                    <tr>
+                      <th> {{__('adminstaticword.service') }}</th>
+                      <th> {{__('adminstaticword.employee') }}</th> 
+                      <th> {{__('adminstaticword.product') }}</th>   
+                      <th> {{__('adminstaticword.amount') }}</th>   
+                    </tr>
+                </thead>
+                <tbody>
+                  <?php
+                  $a = (int)$servicerepair->price;
+                  $b = (int)$servicerepair->sellingprice;
+                  $c = (int)$servicerepair->charge;
+                 
+                  $pay = $a +$b +$c; 
+                  // $discount = $e;
+                  $total = $pay ;
+                  ?>
+                    <tr>
+                      <td>{{ $servicerepair->service->name}}</td>
+                      <td>{{ $servicerepair->employee->name}}</td>   
+                      <td>
+                      @foreach ($servicerepair->stock as $s)
+                                  {{ $s->product->brand->name }} {{ $s->product->bike->name }} {{ $s->product->name }} <br>
+                      @endforeach 
+                      </td>
+                      <td>{{ $servicerepair->service->price}}</td> 
+                      
+                      <tr>
+                        <td colspan="3" class="text-right">paid_amount</td>
+                        <td> {{ $servicerepair->paid_amount }} </td>
+                     
+                    <tr>
+                        <td colspan="3" class="text-right">Charge</td>
+                        <td>{{ $servicerepair->charge }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="text-right">Amount</td>
+                        <td> {{$servicerepair->price + $servicerepair->sellingprice + $servicerepair->charge  }}</td>
+                    </tr>
+                    </tr>                  
+                </tbody>
+            </table>
+            <br>
+            <p class="heading">Payment(Rs.): <?php echo $total ;?> </p>
+        </div>     
+    </div>      
+
+</body>
+</html>
+
+
+            {{--  --}}
+
+
+          </div>
+      </div>
+  </div>
+</section>
+
+
+{{-- 
 <link rel="license" href="http://www.opensource.org/licenses/mit-license/">
 
 <style type="text/css">
@@ -161,7 +365,7 @@
 <section class="content">
     <div class="row">
         <div class="col-xs-12">
-            <div class="box box-primary">  {{-- red line --}}
+            <div class="box box-primary"> 
                 <div id="wrapper">
                     <header>
                       <h1>Invoice</h1>
@@ -189,12 +393,7 @@
                         </tr>
                         <tr>
                           <th><span contenteditable>Employee</span></th>
-                          <td><span contenteditable>
-                            @foreach ($servicerepair->employee as $e)
-                            <li>
-                                {{$e->name}}
-                            </li>
-                            @endforeach    
+                          <td><span contenteditable>{{ $servicerepair->service->name}}                     
                         </span></td>
                         </tr>
                         <tr>
@@ -221,19 +420,11 @@
                         <tbody>
                           <tr>
                             <td><a class="cut">-</a><span contenteditable>                             
-                                @foreach ($servicerepair->service as $s)
-                                <li>
-                                    {{$s->name}}
-                                </li>
-                                @endforeach                             
+                              {{ $servicerepair->service->name}}                       
                             </span></td>
 
                             <td><a class="cut">-</a><span contenteditable>                             
-                                @foreach ($servicerepair->service as $s)
-                                <li>
-                                    {{$s->price}}
-                                </li>
-                                @endforeach                             
+                              {{ $servicerepair->service->price}}                            
                             </span></td>
 
                             <td><span contenteditable> 
@@ -286,6 +477,6 @@
             </div>
         </div>
     </div>
-</section>  
+</section>   --}}
 
 @endsection

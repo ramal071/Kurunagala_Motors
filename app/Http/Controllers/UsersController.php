@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Role;
 use Illuminate\Http\Request;
 use App\User;
+use App\Permission;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Registerd;
@@ -19,24 +20,27 @@ class UsersController extends Controller
 
     }
 
-    public function create(Request $request)
+    public function create(Request $request, User $user)
     {
 
-        if($request->ajax()){
-            $role = Role::where('id', $request->role_id)->first();
-            $permissions = $role->permissions;
+        // if($request->ajax()){
+        //     $role = Role::where('id', $request->role_id)->first();
+        //     $permissions = $role->permissions;
 
-            return $permissions;
-        }
+        //     return $permissions;
+        // }
 
-        $role = Role::all();
-        return view('admin.users.create', ['role' => $role]);
+        $arr['user'] = $user;
+        $arr['role'] = Role::all();
+        $arr['permission'] = Permission::all();
+
+        return view('admin.users.create')->with($arr);
 
         // $arr['role'] = Role::all();
         // return view('admin.users.create')->with($arr);
     }
 
-    public function store(Request $request)
+    public function store(Request $request, User $user)
     {
         $request->validate([
             'fname'=>'required|max:255',
@@ -61,18 +65,18 @@ class UsersController extends Controller
         $user->password =  Hash::make($request->password);
       
         $user->save();
-
-        // if($request->role !=null){
-        //     $user->role()->attach($request->role);        
-        //     $user->save();
-        // }
-
-        if($request->permissions != null){            
-            foreach ($request->permissions as $permission) {
-                $user->permissions()->attach($permission);
-                $user->save();
-            }
+         $user->permissions()->attach($request->permission);   
+        if($request->role !=null){
+            $user->role()->attach($request->role);        
+            $user->save();
         }
+
+        // if($request->permissions != null){            
+        //     foreach ($request->permissions as $permission) {
+        //         $user->permissions()->attach($permission);
+        //         $user->save();
+        //     }
+        // }
       //  $user = $this->index($request, null);
         $user_email=$request->email;
         Mail::to($user_email)->send(new Registerd($user));
@@ -88,25 +92,29 @@ class UsersController extends Controller
     public function edit(User $user)
     {
     //    $arr['user'] = $user;
-        $role = Role::get();
-        $userRole = $user->role->first();
-        if($userRole != null){
-            $rolePermissions = $userRole->allRolePermissions;
-        }else{
-            $rolePermissions = null;
-        }
-        $userPermissions = $user->permissions;
+        // $role = Role::get();
+        // $userRole = $user->role->first();
+        // if($userRole != null){
+        //     $rolePermissions = $userRole->allRolePermissions;
+        // }else{
+        //     $rolePermissions = null;
+        // }
+        // $userPermissions = $user->permissions;
 
-        // dd($rolePermissions);
-        // dd($userRole->name);
 
-        return view('admin.users.edit', [
-            'user'=> $user,
-            'role'=>$role,
-            'userRole'=>$userRole,
-            'rolePermissions'=>$rolePermissions,
-            'userPermissions'=>$userPermissions
-        ]);
+        // return view('admin.users.edit', [
+        //     'user'=> $user,
+        //     'role'=>$role,
+       
+       
+        // ]);
+
+        
+        $arr['user'] = $user;
+        $arr['permission'] = Permission::all();
+        $arr['role'] = Role::all();
+
+        return view('admin.users.edit')->with($arr);
     }
 
     public function update(Request $request, User $user)
@@ -131,21 +139,22 @@ class UsersController extends Controller
           $user->password = Hash::make($request->password);
        }
        $user->save();
-
+     //  $user->permissions()->attach($permission);
        $user->role()->detach();
-       $user->permissions()->detach();
+    //    $user->permissions()->detach();
+    $user->permissions()->sync($request->permission); 
 
       if($request->role != null){
           $user->role()->attach($request->role);
           $user->save();
     }
 
-       if($request->permissions != null){            
-            foreach ($request->permissions as $permission) {
-             $user->permissions()->attach($permission);
-             $user->save();
-        }
-    }
+    //    if($request->permissions != null){            
+    //         foreach ($request->permissions as $permission) {
+    //          $user->permissions()->attach($permission);
+    //          $user->save();
+    //     }
+    // }
 
        return redirect('/users');
     }
@@ -159,5 +168,6 @@ class UsersController extends Controller
 
         // return redirect('/users);
     }
+
 
 }

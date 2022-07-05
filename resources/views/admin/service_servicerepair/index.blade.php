@@ -32,23 +32,8 @@
                     <tr>
                         <td>{{ $b->code}}</td>
                         <td>{{ $b->created_at}}</td>
-                        <td>
-                            @foreach ($b->service as $s)
-                            <li>
-                                {{$s->name}}
-                            </li>
-                            @endforeach
-                        </td>  
-
-                        <td>
-                          @foreach ($b->service as $s)
-                          <li>
-                              {{$s->price }}
-                          </li>
-                          @endforeach
-                      </td>  
-
-                   
+                        <td>{{ $b->service->name}}</td>
+                        <td>{{ $b->service->price}}</td>
                     </tr>      
                 @endforeach
              

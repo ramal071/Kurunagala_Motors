@@ -12,7 +12,6 @@ use App\CustomerVehicle;
 use App\Service;
 use App\Employee;
 use App\Helpers\Helper;
-use Session;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SerRepair;
 
@@ -20,25 +19,32 @@ class ServiceRepairController extends Controller
 {
     public function index()
     {
-        // $arr['servicerepair'] = ServiceRepair::all();
         $arr['servicerepair'] = ServiceRepair::all();
+        
+          $arr['stock'] = Stock::all();
+         $arr['product'] = Product::all(); 
 
-        // $arr['servicerepair'] =  DB::table('service_service_repairs AS sr')::leftJoin('service_repairs AS t', 't.id', '=', 'sr.service_repair_id')
-        //                         ->leftJoin('services AS s', 's.id', '=', 'sr.service_id')
-        //                         ->leftJoin('stock_service_repairs AS st', 'st.id', '=', 'sr.service_id')
-        //                         ->select('shortDesc',  DB::raw('SUM(t.debit-t.credit) as bal'))
-        //                         ->groupBy('shortDesc')
-        //                         ->whereBetween('asAt', [$start, $end])
-        //                         ->where(['accounts.subAccount' => $id])
-        //                         ->get();
-    //     $total['servicerepair'] = DB::table('service_repairs')->get();
-    //     $total = $arr['servicerepair'] = DB::table('service_service_repairs')
+        $arr['servicerepair1'] =  DB::table('service_repairs AS sr')->leftJoin('services AS s', 's.id', '=', 'sr.service_id')
+                                ->leftJoin('stock_service_repairs AS st', 'st.service_repair_id', '=', 'sr.id')
+                                ->leftJoin('users AS u', 'sr.user_id', '=', 'u.id')
+                                ->leftJoin('customer_vehicles AS v', 'sr.customervehicle_id', '=', 'v.id')
+                                ->leftJoin('employees AS e', 'sr.employee_id', '=', 'e.id')
+                                ->leftJoin('stocks AS ss', 'st.stock_id', '=', 'ss.id')
+                                ->select('st.id as stid','ss.id as ssid','sr.id','sr.code','customervehicle_id','idno','register_number','s.name as sname','e.name as ename','price','paid_amount','sr.status','is_borrow','is_complete','is_repaircomplete','charge','price', DB::raw('SUM(ss.sellingprice) as selling'),'sr.description')
+                                // ->select('*')
+                                ->groupBy('sr.id')
+                                // ->whereBetween('asAt', [$start, $end])
+                                // ->where(['accounts.subAccount' => $id])sellingprice
+                                ->get();
+                            
+    //       $total['servicerepair'] = DB::table('service_repairs')->get();
+    //       $total = $arr['servicerepair'] = DB::table('service_service_repairs')
     //     ->join('services', 'service_service_repairs.service_id', '=', 'services.id')
     //     ->where('service_service_repairs.service_repair_id')
     //     ->select('services.*', 'service_service_repairs.id as service_service_repair_id')
     //    // ->get();
     //    ->sum('services.price');
-
+//  dd($arr);
         return view('admin.servicerepair.index')->with($arr);
     }
 
@@ -55,6 +61,20 @@ class ServiceRepairController extends Controller
 
     public function store(Request $request, ServiceRepair $servicerepair)
     {
+        $data = $this->validate($request, [ 
+            'user_id'=> 'required',
+            'customervehicle_id'=>'required',
+            'employee_id'=> 'required',
+            'email'=>'required',
+           
+        ],
+            [
+            'user_id.required'=>'Please enter the employee id !!!',
+            'employee_id.required'=>'Please enter the employee !!!',
+            'customervehicle_id.required'=>'Please enter the bike !!!',
+            'email.required'=>'Please enter the email !!!',
+            ]
+        );        
 
         $code = Helper::IDGenerator(new ServiceRepair, 'code',5,'Job');
         $servicerepair->code=$code; 
@@ -62,6 +82,10 @@ class ServiceRepairController extends Controller
         $servicerepair->user_id = $request->user_id;
         $servicerepair->customervehicle_id = $request->customervehicle_id; 
         $servicerepair->amount = $request->amount;
+        $servicerepair->charge = $request->charge;
+        $servicerepair->description = $request->description;
+        $servicerepair->service_id = $request->service_id;
+        $servicerepair->employee_id = $request->employee_id;
         $servicerepair->email = $request->email;
         $servicerepair->paid_amount = $request->paid_amount;
         $servicerepair->status = ($request->status) ? 1:0 ;
@@ -69,18 +93,18 @@ class ServiceRepairController extends Controller
         $servicerepair->is_borrow = ($request->is_borrow) ? 1:0 ;
         $servicerepair->is_complete = ($request->is_complete) ? 1:0 ;
         $servicerepair->save();
-        $servicerepair->employee()->attach($request->employee);   
+       // $servicerepair->employee()->attach($request->employee);   
         $servicerepair->stock()->attach($request->stock);   
-        $servicerepair->service()->attach($request->service);   
+      //  $servicerepair->service()->attach($request->service);   
 
         // send job start mail
         $user_email=$request->email;
         Mail::to($user_email)->send(new SerRepair($servicerepair));
 
         //  stock reduce 
-      $servicerepair == ServiceRepair::where('code',  $servicerepair->stock_id)->first();
+     // $servicerepair == ServiceRepair::where('code',  $servicerepair->stock_id)->first();
       //  dd($servicerepair);
-      echo "original stock:".$servicerepair->stock_id;
+    //  echo "original stock:".$servicerepair->stock_id;
 
         return redirect()->route('servicerepair.index')->with('success', 'Created successfully');
     }
@@ -124,20 +148,22 @@ class ServiceRepairController extends Controller
         $servicerepair->user_id = $request->user_id;
         $servicerepair->customervehicle_id = $request->customervehicle_id;
         $servicerepair->amount = $request->amount;
+        $servicerepair->service_id = $request->service_id;
+        $servicerepair->employee_id = $request->employee_id;
         $servicerepair->email = $request->email;
+        $servicerepair->charge = $request->charge;
+        $servicerepair->description = $request->description;
         $servicerepair->paid_amount = $request->paid_amount;
         $servicerepair->status = ($request->status) ? 1:0 ;
         $servicerepair->is_repaircomplete = ($request->is_repaircomplete) ? 1:0 ;
         $servicerepair->is_borrow = ($request->is_borrow) ? 1:0 ;
         $servicerepair->is_complete = ($request->is_complete) ? 1:0 ;
-        $servicerepair->employee()->sync($request->employee); 
+      //  $servicerepair->employee()->sync($request->employee); 
         $servicerepair->stock()->sync($request->stock); 
-        $servicerepair->service()->sync($request->service);   
+   //     $servicerepair->service()->sync($request->service);   
         $servicerepair->save();
 
-        $user_email=$request->email;
-        Mail::to($user_email)->send(new Registerd($servicerepair));
-      
+     
         return redirect()->route('servicerepair.index');
     }
 
@@ -163,6 +189,7 @@ class ServiceRepairController extends Controller
         $upload = $customervehicle->customerpendingservice->where('customervehicle_id',$id)->where('status',true)->pluck('name','id')->all();
         return response()->json($upload);
     }
+
 
 
 }

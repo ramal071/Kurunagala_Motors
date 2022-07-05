@@ -41,6 +41,7 @@
                 <li class="{{ Nav::isRoute('role.index') }}"><a href="{{route('role.index')}}"><i class="flaticon-rec"></i>{{ __('adminstaticword.role') }}</a></li>
                 <li class="{{ Nav::isRoute('employee.index') }}"><a href="{{route('employee.index')}}"><i class="flaticon-rec"></i>{{__('adminstaticword.employee')}}</a></li>
                 <li class="{{ Nav::isRoute('salary.index') }}"><a href="{{route('salary.index')}}"><i class="flaticon-rec"></i>{{__('adminstaticword.salary')}}</a></li>
+                <li class="{{ Nav::isRoute('leave.index') }}"><a href="{{route('leave.index')}}"><i class="flaticon-rec"></i>{{__('adminstaticword.leave')}}</a></li>
                 <li class="{{ Nav::isRoute('employee_serviceRepair.index') }}"><a href="{{route('employee_serviceRepair.index')}}"><i class="flaticon-rec"></i>{{__('adminstaticword.employeeservice')}}</a></li>
                 <li class="{{ Nav::isRoute('attendance.index') }}"><a href="{{route('attendance.index')}}"><i class="flaticon-rec"></i>{{__('adminstaticword.attendance')}}</a></li>
                 <li class="{{ Nav::isRoute('attendancereport.index') }}"><a href="{{route('attendancereport.index')}}"><i class="flaticon-rec"></i>{{__('adminstaticword.attendancereport')}}</a></li>
@@ -126,7 +127,7 @@
              </a> 
              <ul class="treeview-menu">            
                <li class="{{ Nav::isRoute('workinghour.index') }}"><a href="{{route('workinghour.index')}}"><i class="flaticon-rec"></i>{{ __('adminstaticword.workinghour') }} </a></li>
-               <li class="{{ Nav::isRoute('customerpendingservice.index') }}"><a href="{{route('customerpendingservice.index')}}"><i class="flaticon-rec"></i>{{__('adminstaticword.pendingservice')}}</a></li>
+               <li class="{{ Nav::isRoute('calendar.index') }}"><a href="{{route('calendar.index')}}"><i class="flaticon-web-browser" aria-hidden="true"></i><span>{{ __('adminstaticword.calendar') }}</span></a></li>
                 </ul>
            </li> 
            @endif

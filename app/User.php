@@ -31,6 +31,11 @@ class User extends Authenticatable
         return $this->hasOne(Role::class, 'role_id', 'id');
     }
 
+    public function permissions(){
+        return $this->belongsToMany(Permission::class,
+         'users_permissions', 'user_id', 'permission_id')->withTimestamps();
+    }
+
     public function isCustomer(){
         return $this->hasOne(Customer::class, 'user_id', 'id');
     }

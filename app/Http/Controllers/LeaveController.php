@@ -1,0 +1,105 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Leave;
+use App\Employee;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use DateTime;
+
+class LeaveController extends Controller
+{
+   
+    public function index()
+    {
+        $arr['leaves'] = Leave::all();
+        $arr['employee'] = Employee::all(); 
+        return view('admin.leave.index')->with($arr);
+
+//         $leaves = DB::table('leaves')
+//                     ->join('employees', 'employees.id', '=', 'leaves.employee_id')
+//                     ->select('leaves.*', 'employees.*')
+//                     ->get();
+// // dd($leaves);
+//        return view('admin.leave.index',compact('leaves'))->with($arr);
+  
+    }
+
+    public function create(Request $request)
+    {
+        $arr['employee'] = Employee::all();
+
+        return view('admin.leave.create')->with($arr);
+    }
+
+    public function store(Request $request, Leave $leave)
+    {
+        $request->validate([
+            // 'leave_type'   => 'required|string|max:255',
+            'from_date'    => 'required|string|max:255',
+            'to_date'      => 'required|string|max:255',
+            // 'leave_reason' => 'required|string|max:255',
+        ]);
+
+      
+        try {
+
+            $from_date = new DateTime($request->from_date);
+            $to_date = new DateTime($request->to_date);
+            $day     = $from_date->diff($to_date);
+            $days    = $day->d;
+
+            $leaves = new Leave;
+            $leaves->employee_id   = $request->employee_id;
+            $leaves->leave_type    = $request->leave_type;
+            $leaves->from_date     = $request->from_date;
+            $leaves->to_date       = $request->to_date;
+            $leaves->day           = $days;
+            $leaves->leave_reason  = $request->leave_reason;
+            $leaves->save();
+            
+           
+            return redirect()->back();
+        } catch(\Exception $e) {
+           
+            return redirect()->back();
+        }
+
+    }
+
+    public function show(Leave $leave)
+    {
+        //
+    }
+
+    public function edit(Leave $leave)
+    {
+        $arr['leave'] = $leave;
+        $arr['employee'] = Employee::all();
+        return view('admin.leave.edit')->with($arr);
+    }
+
+    public function update(Request $request, Leave $leave)
+    {
+            $from_date = new DateTime($request->from_date);
+            $to_date = new DateTime($request->to_date);
+            $day     = $from_date->diff($to_date);
+            $days    = $day->d;
+
+            $leave->leave_type = $request->leave_type;
+            $leave->from_date = $request->from_date;
+            $leave->to_date = $request->to_date;
+            $leave->day = $request->day;
+            $leave->leave_reason = $request->leave_reason;
+            $leave->save();
+            return redirect()->route('leave.index')->with('success', 'leave Marked');
+       
+    }
+
+    public function destroy(Leave $leave)
+    {
+        $leave->delete();
+        return redirect()->route('leave.index')->with('delete', 'Leave deleted');
+    }
+}

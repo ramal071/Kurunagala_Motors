@@ -16,19 +16,16 @@
                 <div class="profile-info-block">
                     <div class="row">
     
-                        <table id="example1" class="table table-bordered table-striped">
-                            <thead>
+                        <table class="table">
+                            <thead class="thead-dark">
                                 <tr>
                                     <th>{{__('adminstaticword.job') }}</th>
-                                    <th>{{__('adminstaticword.idno') }}</th>
                                     <th>{{__('adminstaticword.fname') }}</th>
                                     <th>{{__('adminstaticword.registernumber') }}</th>                                  
                                     <th>{{__('adminstaticword.stock') }}</th>                                    
-                                    <th>{{__('adminstaticword.service') }}</th>
-                                    <th>{{__('adminstaticword.employee') }}</th>   
+                                    <th>{{__('adminstaticword.service') }}</th>  
                                     <th>{{__('adminstaticword.amount') }}</th>   
-                                    <th>{{__('adminstaticword.paidamount') }}</th>   
-                                    <th>{{__('adminstaticword.status') }}</th>       
+                                    <th>{{__('adminstaticword.paidamount') }}</th>     
                                     <th>{{__('adminstaticword.borrow') }}</th>      
                                     <th>{{__('adminstaticword.complete') }}</th>    
                                     <th>{{__('adminstaticword.repaircomplete') }}</th>        
@@ -41,9 +38,8 @@
                                 <?php $i++;?>
                                 <tr>
                                     <td>{{ $b->code}}</td>
-                                    <td>{{ $b->users->idno}}</td>
                                     <td>{{ $b->users->lname}}</td>
-                                    <td>{{ $b->customervehicle->register_number }}</td>
+                                    <td>{{ $b->customervehicle->register_number}}</td>
                                     <td>
                                       @foreach ($b->stock as $s)
                                       <ul>  <li>
@@ -52,39 +48,9 @@
                                       </li> </ul>
                                       @endforeach
                                     </td>                               
-                                    <td>
-                                      @foreach ($b->service as $s)
-                                      <li>
-                                          {{$s->name}}
-                                      </li>
-                                      @endforeach
-                                    </td>
-                                    <td>
-                                        @foreach ($b->employee as $e)
-                                        <li>
-                                            {{$e->name}}
-                                        </li>
-                                        @endforeach
-                                    </td>
-
-                                    <td>
-                                      @foreach ($b->service as $s)
-                                      <li>
-                                          {{$s->price}}
-                                      </li>
-                                      @endforeach
-                                    </td>
-                                    <td>{{ $b->paid_amount }}</td>
-                                   
-                                    <td>                                       
-                                          <button type="Submit" class="btn btn-xs {{ $b->status ==1 ? 'btn-success' : 'btn-danger' }} "> 
-                                            @if ($b->status ==1)
-                                            {{__('adminstaticword.active') }}         
-                                            @else
-                                            {{__('adminstaticword.deactive') }} 
-                                            @endif
-                                        </button>    
-                                    </td>  
+                                    <td>{{ $b->service->name}}</td>                                  
+                                    <td>{{ $b->service->price}}</td>
+                                    <td>{{ $b->paid_amount}}</td>
 
                                      <td>                                      
                                           <button type="Submit" class="btn btn-xs {{ $b->is_borrow ==1 ? 'btn-success' : 'btn-danger' }} "> 

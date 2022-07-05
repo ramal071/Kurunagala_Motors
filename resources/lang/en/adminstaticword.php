@@ -135,6 +135,7 @@ return [
     'contactus' => 'Contact Us',
     'message' => 'Message',
     'passwordupdate' => 'Password Update',
+    'lastupdate' => 'Last Update',
 
     'ServiceBills' => 'Service Bills',
     'Comments' => 'Comments',
@@ -160,6 +161,23 @@ return [
     'day' => 'Day',
     'from' => 'From',
     'to' => 'To',
-   
 
+    'calendar' => 'Calendar',
+    'charge' => 'Charge',
+    'fix'=> 'Fix',
+    'basic'=>'basic',
+    'allowance' => 'allowance',
+    'medical_allowance' => 'medical_allowance',
+    'leave' => 'Leave',
+    'prof_tax' => 'prof_tax',
+    'labour_welfare'=> 'labour_welfare',
+    'conveyance' => 'conveyance',
+    'month' => 'Month',
+    'leavetype' => 'Leave Type',
+    'fromdate' => 'From Date',
+    'todate' => 'To Date',
+    'leavereason' => 'Leave Reason',   
+    'usedproduct' => 'Used Product',
+    'balance' => 'Balance',
+    'slip_id' => 'Slip Id',
 ];

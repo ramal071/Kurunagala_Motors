@@ -20,11 +20,17 @@ class CreateServiceRepairsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');                 
             $table->unsignedBigInteger('customervehicle_id');
             $table->foreign('customervehicle_id')->references('id')->on('customer_vehicles');
-            $table->string('email')->nullable();
-            $table->decimal('amount', $precision = 8, $scale = 2)->nullable();
+            $table->unsignedBigInteger('service_id');
+            $table->foreign('service_id')->references('id')->on('services');
+            $table->unsignedBigInteger('employee_id');
+            $table->foreign('employee_id')->references('id')->on('employees');
+            $table->string('email');
+            $table->string('charge')->nullable();
+            $table->decimal('amount')->nullable();
+            $table->string('description')->nullable();;
             $table->boolean('is_repaircomplete')->default(false);
             $table->boolean('is_borrow')->default(false);   
-            $table->decimal('paid_amount', $precision = 8, $scale = 2)->nullable(); //borrowed with some amount paid
+            $table->decimal('paid_amount')->nullable(); //borrowed with some amount paid
             $table->boolean('is_complete')->default(false); //if full payment ok
             $table->boolean('status')->default(1);
             $table->timestamps();

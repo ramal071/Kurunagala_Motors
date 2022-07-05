@@ -1,5 +1,5 @@
 @extends('admin/layouts.master')
-@section('title', 'Create Pending Payment')
+@section('title', 'Create Salary Payment')
 @section('body')
 @include('admin.message')
 
@@ -8,26 +8,35 @@
         <div class="col-xs-12">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">{{__('adminstaticword.pendingpayment') }}</h3>
+                    <h3 class="box-title">{{__('adminstaticword.salary') }}</h3>
                 </div>
 
                 <div class="box-body">
                     <div class="form-group">
-                        <form id="demo-form2" method="POST" action="{{ route('pendingpayment.index')}}">
+                        <form id="demo-form2" method="POST" action="{{ route('salary.store')}}">
                             {{ csrf_field() }}
+                            
+                                    {{-- <select class="select select2s-hidden-accessible style="width: 100%;" tabindex="-1" aria-hidden="true" id="name" name="name">
+                                        <option value="">-- Select --</option>
+                                        @foreach ($employeeList as $key=>$employee )
+                                            <option value="{{ $employee->name }}" data-employee_id={{ $employee->employee_id }}>{{ $employee->name }}</option>
+                                        @endforeach
+                                    </select> --}}
 
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="name">{{ __('adminstaticword.idno') }}:<sup class="redstar">*</sup></label>
-                                    <input type="text" class="form-control" name="name" id="name" placeholder="Enter name" value="">
-                                 </div>  
-                            </div>
-                            <br>
-
-                            <div class="row">
+                                    <label for="employee">{{ __('adminstaticword.employee') }}</label>
+                                    <select name="employee_id" class="form-control js-example-basic-single col-md-7 col-xs-12">
+                                    @foreach($employee as $br)
+                                        <option value="{{$br->id}}">{{$br->name}}</option>
+                                    @endforeach
+                                    </select>
+                                </div>
+                                    
+                           
                                 <div class="col-md-6">
-                                    <label for="name">{{ __('adminstaticword.name') }}:<sup class="redstar">*</sup></label>
-                                    <input type="text" class="form-control" name="name" id="name" placeholder="Enter name" value="">
+                                    <label for="salary">{{ __('adminstaticword.salary') }}:<sup class="redstar">*</sup></label>
+                                    <input type="text" class="form-control" name="salary" id="salary" placeholder="Enter name" value="">
                                     {{-- <input type="text" id="searchhere_id" placeholder="Search" /> --}}
                                  </div>  
                             </div>
@@ -35,50 +44,46 @@
                             
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="register_number">{{ __('adminstaticword.registernumber') }}:<sup class="redstar">*</sup></label>
-                                    <input type="text" class="form-control" name="register_number" id="register_number" placeholder="Enter name" value="">
+                                    <label for="basic">{{ __('adminstaticword.basic') }}:<sup class="redstar">*</sup></label>
+                                    <input type="text" class="form-control" name="basic" id="basic" placeholder="Enter ...." value="">
+                                </div> 
+                            
+                                <div class="col-md-6">
+                                    <label for="conveyance">{{ __('adminstaticword.conveyance') }}:<sup class="redstar">*</sup></label>
+                                    <input type="text" class="form-control" name="conveyance" id="conveyance" placeholder="Enter ..." value="">
                                 </div> 
                             </div>
                             <br>
 
-                            <div class="row">
+                            {{-- <div class="row">
                                 <div class="col-md-6">
-                                    <label for="email">{{ __('adminstaticword.email') }}:<sup class="redstar">*</sup></label>
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="Enter email" value="">
+                                    <label for="allowance">{{ __('adminstaticword.allowance') }}:<sup class="redstar">*</sup></label>
+                                    <input type="text" class="form-control" name="allowance" id="allowance" placeholder="Enter contact" value="">
                                 </div> 
-                            </div>
-                            <br>
+                                
+                                <div class="col-md-6">
+                                    <label for="labour_welfare">{{ __('adminstaticword.labour_welfare') }}:<sup class="redstar">*</sup></label>
+                                    <input type="text" class="form-control" name="labour_welfare" id="labour_welfare" placeholder="Enter total cost" value="">
+                                </div>  
+                            </div> --}}                            
 
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="contact">{{ __('adminstaticword.contact') }}:<sup class="redstar">*</sup></label>
-                                    <input type="text" class="form-control" name="contact" id="contact" placeholder="Enter contact" value="">
-                                </div> 
-                            </div>
-                            <br>
+                                    <label for="leave">{{ __('adminstaticword.leave') }} :<sup class="redstar">*</sup></label>
+                                    <input type="text" class="form-control" name="leave" id="leave" placeholder="Enter price" value="">
+                                </div>  
 
-
-                            <div class="row">
                                 <div class="col-md-6">
-                                    <label for="price">{{ __('adminstaticword.price') }} :<sup class="redstar">*</sup></label>
-                                    <input type="text" class="form-control" name="price" id="price" placeholder="Enter price" value="">
+                                    <label for="medical_allowance">{{ __('adminstaticword.medical_allowance') }}:<sup class="redstar">*</sup></label>
+                                    <input type="text" class="form-control" name="medical_allowance" id="medical_allowance" placeholder="Enter total cost" value="">
                                 </div>  
                             </div>
-                            <br> 
-
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="servicetype">{{ __('adminstaticword.servicetype') }}:<sup class="redstar">*</sup></label>
-                                    <input type="text" class="form-control" name="servicetype" id="servicetype" placeholder="Enter total cost" value="">
-                                </div>  
-                            </div>
-                            <br> 
-
-
+                            <br>                          
+                              
                             <div class="row">
                                 <div class="col-md-6">
                                     <input type="submit" class="btn btn-info" value="Save">
-                                    <a href="{{route('pendingpayment.index')}}" class="btn btn-primary">Back</a>
+                                    <a href="{{route('salary.index')}}" class="btn btn-primary">Back</a>
                                 </div>
                             </div>
                             <br>

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ServiceRepair extends Model
 {
+
     public function users()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
@@ -26,20 +27,25 @@ class ServiceRepair extends Model
     //     return $this->belongsTo(Stock::class, 'stock_id', 'id');
     // }
 
-    // public function service()
-    // {
-    //     return $this->belongsTo(Service::class, 'service_id', 'id');
-    // }
+    public function service()
+    {
+        return $this->belongsTo(Service::class, 'service_id', 'id');
+    }
 
     public function employee()
     {
-        return $this->belongsToMany(Employee::class, 'employee_service_repairs', 'service_repair_id','employee_id')->withTimestamps();
+        return $this->belongsTo(Employee::class, 'service_id', 'id');
     }
 
-    public function service()
-    {
-        return $this->belongsToMany(Service::class, 'service_service_repairs', 'service_repair_id','service_id')->withTimestamps();
-    }
+    // public function employee()
+    // {
+    //     return $this->belongsToMany(Employee::class, 'employee_service_repairs', 'service_repair_id','employee_id')->withTimestamps();
+    // }
+
+    // public function service()
+    // {
+    //     return $this->belongsToMany(Service::class, 'service_service_repairs', 'service_repair_id','service_id')->withTimestamps();
+    // }
 
     public function stock()
     {

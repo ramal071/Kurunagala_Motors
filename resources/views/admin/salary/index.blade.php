@@ -9,10 +9,8 @@
         <div class="col-xs-12">
             <div class="box box-primary">  {{-- red line --}}
                 <div class="box-header with-border">
-                    <h3 class="box-title">{{__('adminstaticword.salary') }}</h3>
-                  
-                    <a href="{{ route('salary.create') }}" class="btn btn-info btn-sm">+ {{__('adminstaticword.salary') }}</a>        
-
+                    <h3 class="box-title">{{__('adminstaticword.salary') }}</h3>                  
+                    <a href="{{ route('salary.create') }}" class="btn btn-info btn-sm">+ {{__('adminstaticword.salary') }}</a>       
                 </div>
 
                 <div class="box-body">
@@ -21,49 +19,39 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
+                                    <th>{{__('adminstaticword.slip_id') }}</th>
                                     <th>{{__('adminstaticword.employee') }} {{__('adminstaticword.id') }}</th>
-                                    <th>{{__('adminstaticword.name') }}</th>
-                                    <th>{{__('adminstaticword.completejob') }}</th>        
-                                    <th>{{__('adminstaticword.edit') }}</th>
-                                    <th>{{__('adminstaticword.delete') }}</th>
+                                    <th>{{__('adminstaticword.salary') }}</th>
+                                    <th>{{__('adminstaticword.basic') }}</th>  
+                                    <th>{{__('adminstaticword.conveyance') }}</th>
+                                    <th>{{__('adminstaticword.allowance') }}</th>  
+                                    <th>{{__('adminstaticword.medical_allowance') }}</th>
+                                    <th>{{__('adminstaticword.leave') }}</th>  
+                                    <th>{{__('adminstaticword.labour_welfare') }}</th>         
+                                    <th>{{__('adminstaticword.tool') }}</th>
                                 </tr>
                             </thead>
 
                             <?php $i=0;?>
-                            @foreach($salary as $b)            
-                                <tr>                                
-                                      
+                            @foreach($salary as $sal)            
+                                <tr>      
+                                    <th>{{ $sal->slip_id}}</th>                          
+                                    <td>{{ $sal->employee->name}}</td>                              
+                                    <td>{{ $sal->salary }}</td>
+                                    <td>{{ $sal->basic }}</td>
+                                    <td>{{ $sal->conveyance }}</td>
+                                    <td>{{ $sal->allowance }}</td>
+                                    <td>{{ $sal->medical_allowance }}</td>
+                                    <td>{{ $sal->leave }}</td>
+                                    <td>{{ $sal->labour_welfare }}</td>                                 
                                     <td>
-                                        @foreach ($b->employee as $e)
-                                        <li>
-                                            {{$e->name}}
-                                        </li>
-                                        @endforeach
-                                    </td>
-
-                                    <td>
-                                        @foreach ($b->employee as $e)
-                                        <li>
-                                            {{$e->nick_name}}
-                                        </li>
-                                        @endforeach
-                                    </td>
-                                    
-                                    <td>{{ $br->description }}</td>
-
-                                   
-                                    <td>
-                                        <a href="{{route('brand.edit', $br->id)}}" class="btn btn-success btn-sm" ><i class="glyphicon glyphicon-pencil"></i></a>
-                                      
-                                    </td>
-                                   
-                                    <td>
-                                        <a href="javascript:void(0)" onclick="$(this).parent().find('form').submit()" class="btn btn-danger"><i class="fa fa-fw fa-trash-o"></i></a>
-                                        <form action="{{ route('brand.destroy', $br->id) }}" method="post">
+                                        <a href="{{route('salary.edit', $sal->id)}}" ><i class="glyphicon glyphicon-pencil"></i></a>
+                                        <a href="{{route('salary.show', $sal->id)}}" ><i class="fa fa-eye"></i></a>
+                                        <a href="javascript:void(0)" onclick="$(this).parent().find('form').submit()"><i class="fa fa-fw fa-trash-o"></i></a>
+                                        <form action="{{ route('salary.destroy', $sal->id) }}" method="post">
                                             @method('DELETE')
                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        </form>
-                                     
+                                        </form>                                    
                                     </td>
                                 </tr>
                                 @endforeach

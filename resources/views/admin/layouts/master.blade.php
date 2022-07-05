@@ -32,13 +32,14 @@
   <link rel="stylesheet" href="{{ url('admin/font/font/flaticon.css') }}" /> <!-- fontawesome css -->
 
   <link rel="stylesheet" href="{{url('css/admin/bootstrap-tagsinput.css')}}">
-  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css') }}">
+  <link rel="stylesheet" href="{{url('https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css') }}">
   <link rel="stylesheet" href="{{url('https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css') }}">
   <link rel="stylesheet" href="{{url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css') }}">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-  
 
-  {{-- <link rel="stylesheet" href="{{url('https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css')}}"> --}}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css" /> <!-- calandar -->
+
+  
 
   @yield('stylesheets')
   @yield('css_role_page')
@@ -134,12 +135,11 @@
   <script src="{{ url('admin/js/vfs_fonts.js')}}"></script>
   <script src="{{ url('admin/js/buttons.html5.min.js')}}"></script>
   <script src="{{ url('admin/js/buttons.print.min.js')}}"></script>
-  {{-- <script src="{{ url('https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js')}}"></script> --}}
 
-  {{-- <script src="{{ url('https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js')}}"></script> --}}
-  {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script> --}}
-  {{-- <script src="{{ url('https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js')}}"></script>
- --}}
+  {{-- calandar --}}
+  {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>  taginpt case --}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>
 
 
 <script>
@@ -147,7 +147,7 @@ $(document).ready(function() {
   $('#example1').DataTable( {
       dom: 'Bfrtip',
       buttons: [
-          'copy', 'csv', 'excel', 'pdf', 'print'
+          'excel', 'pdf', 'print'
       ]
   } );
 } );
@@ -162,6 +162,9 @@ $(document).ready(function() {
 @yield('regnum_scripts')
 @yield('service_scripts')
 @yield('stock')
+@yield('sprice_scripts')
+@yield('calandar')
+@yield('salary')
   {{-- </script> --}}
   
 </body>

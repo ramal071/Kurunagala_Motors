@@ -21,8 +21,7 @@ class AdminController extends Controller
       //  return view('admin.dashboard');
       //  if(Auth::user()->role->first()->name  == "manager")
         if(Auth::User()->role_id == "1")
-        {                         
-
+        {                      
         $current_month_users = User::whereYear('created_at', Carbon::now()->year)->whereMonth('created_at',Carbon::now()->month)->count(); 
         $before_1_month_users = User::whereYear('created_at', Carbon::now()->year)->whereMonth('created_at',Carbon::now()->subMonth(1))->count(); 
         $before_2_month_users = User::whereYear('created_at', Carbon::now()->year)->whereMonth('created_at',Carbon::now()->subMonth(2))->count(); 

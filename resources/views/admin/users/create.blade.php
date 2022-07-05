@@ -47,26 +47,50 @@
             <div class="col-md-6">
             <label for="name">Contact</label>
             <input type="text" name="contact" class="form-control" id="contact" placeholder="Contact..." value="{{ old('contact') }}">
-          </div>          
-        
-            <div class="col-md-6">
-            <label for="role">Select Role</label>
-
-            <select name="role_id" id="role_id" class="form-control js-example-basic-single col-md-7 col-xs-12" >
-              <option value="0">{{ __('adminstaticword.pleaseselect') }}</option>
-              @foreach($role as $r)
-                <option value="{{$r->id}}">{{$r->name}}</option>
-              @endforeach
-            </select>
-          </div>          
+          </div> 
         </div>
-        <br>
+        <br>         
+        
+            {{-- <div class="col-md-6">
+            <label for="role">Select Role</label>
+              <select name="role_id" id="role_id" class="form-control" >
+                <option value="0">{{ __('adminstaticword.pleaseselect') }}</option>
+                @foreach($role as $r)
+                  <option value="{{$r->id}}">{{$r->name}}</option>
+                @endforeach
+              </select>
+            </div>          
+          </div>
+          <br>
 
           <div id="permissions_box">
               <label for="role" name="permission">Select Permissions</label>
               <div id="permissions_ckeckbox_list">
               </div>
-          </div>         
+          </div>          --}}
+
+          <div class="row">
+            <div class="col-md-6">
+                <label for="role">{{ __('adminstaticword.role') }}:<sup class="redstar">*</sup></label>
+                <select name="role_id" id="role_id" class="form-control" >
+                    <option value="0">{{ __('adminstaticword.pleaseselect') }}</option>
+                    @foreach($role as $r)
+                  <option value="{{$r->id}}">{{$r->name}}</option>
+                @endforeach
+                </select>
+             </div>  
+             
+             <div class="col-md-6">
+              <label for="permission">{{ __('adminstaticword.permission') }}</label>
+              <select name="permission[]" class="form-control permission" multiple="multiple">
+                <option value="0"></option>
+                @foreach($permission as $s)
+                  <option value="{{$s->id}}">{{$s->name}}</option>
+                @endforeach
+              </select>
+            </div>
+          </div>
+        <br>
                 
           <div class="row">
             <div class="col-md-6">
@@ -102,11 +126,16 @@
 
 </section>
 
-
+@endsection
 
 @section('js_user_page')
+<script>
+$(document).ready(function() {
+    $('.permission').select2();
+  });
+</script>
 
-    <script>
+    {{-- <script>
 
         $(document).ready(function(){
             var permissions_box = $('#permissions_box');
@@ -150,9 +179,6 @@
             });
         });
 
-    </script>
-
-@endsection
-
+    </script> --}}
 
 @endsection

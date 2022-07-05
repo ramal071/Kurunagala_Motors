@@ -25,7 +25,7 @@
 <!-- XZOOM JQUERY PLUGIN  -->
 <script type="text/javascript" src="{{ url('js/xzoom.min.js')}}"></script>
 
-
+{{-- 
 <script>
   $(function(){
 
@@ -78,7 +78,7 @@
         location.href = url;
 
     });
-</script>
+</script> --}}
 
 
 

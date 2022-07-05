@@ -33,6 +33,7 @@ class CustomerVehicleController extends Controller
         $data = $this->validate($request, [ 
             'bike_id'=> 'required',
             'brand_id'=>'required',
+            'user_id'=> 'required',
             'register_number'=>'required|unique:customer_vehicles,register_number',
         ]);
 

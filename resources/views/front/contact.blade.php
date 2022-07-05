@@ -19,35 +19,28 @@
             @csrf                      
                 <div class="row">
                     <div class="col-md-6">
-                        <input  name="name" type="text" class="form-control" id="name" required="required" placeholder="  Name">
+                        <input  name="name" type="text" class="form-control" id="name" placeholder="  Name">
                     </div>
                     </div>
                 <br>
 
                 <div class="row">
                     <div class="col-md-6">
-                        <input name="email" type="email" class="form-control" id="email" required="required" placeholder="  Email">
+                        <input name="email" type="email" class="form-control" id="email" placeholder="  Email">
+                    </div>
+                    </div>
+                <br>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <input name="phone" type="text" class="form-control" id="phone" placeholder="  phone">
                     </div>
                     </div>
                 <br>
 
                 <div class="row">
                     <div class="col-md-6">
-                        <input name="phone" type="text" class="form-control" id="phone" required="required" placeholder="  phone">
-                    </div>
-                    </div>
-                <br>
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <input name="phone" type="text" class="form-control" id="phone" required="required" placeholder="  phone">
-                    </div>
-                    </div>
-                <br>
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <textarea name="message" type="text" class="form-control" id="message" rows="7" required="required" placeholder="  Message"></textarea>
+                        <textarea name="message" type="text" class="form-control" id="message" rows="7" placeholder="  Message"></textarea>
                     </div>
                     </div>
                 <br>

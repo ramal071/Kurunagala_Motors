@@ -234,7 +234,9 @@
         </div>
         <!-- ./col -->
     </div>
-    <!-- /.row -->
+
+
+    <!-- user table -->
     <div class="row">
       <div class="col-md-4">
         <div class="box box-danger">
@@ -284,8 +286,6 @@
       </div>
     </div>
 
-
-
   
 {{--  canvas js line chart--}}
     <div class="col-md-8">
@@ -315,7 +315,7 @@
           
           var chart = new CanvasJS.Chart("chartContainer", {
               title: {
-                  text: "Attendance"
+                  text: "User Register"
               },
               axisY: {
                   title: "Number of Users"

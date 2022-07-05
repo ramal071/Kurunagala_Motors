@@ -26,13 +26,13 @@ class service extends Model
         return $this->hasMany(CustomerPendingPayment::class, 'service_id', 'id');
     }
 
-    // public function servicerepair()
-    // {
-    //     return $this->hasMany(ServiceRepair::class, 'service_id', 'id');
-    // }
-
-    public function servicerepairs()
+    public function servicerepair()
     {
-        return $this->belongsToMany(ServiceRepair::class,'service_service_repairs','service_id','service_repair_id')->withTimestamps();
+        return $this->hasMany(ServiceRepair::class, 'service_id', 'id');
     }
+
+    // public function servicerepairs()
+    // {
+    //     return $this->belongsToMany(ServiceRepair::class,'service_service_repairs','service_id','service_repair_id')->withTimestamps();
+    // }
 }

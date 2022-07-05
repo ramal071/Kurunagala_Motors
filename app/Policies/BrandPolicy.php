@@ -38,15 +38,15 @@ class BrandPolicy
         return false;
     }
 
-    // public function edit(User $user, brand $brand)
-    // {
-    //     if($user->permissions->contains('slug', 'edit')) {
-    //         return true;
-    //     } elseif ($user->role->contains('slug', 'manager')) {
-    //         return true;
-    //     }
-    //      return false;
-    // }
+    public function edit(User $user, brand $brand)
+    {
+        if($user->permissions->contains('slug', 'edit')) {
+            return true;
+        } elseif ($user->role->contains('slug', 'manager')) {
+            return true;
+        }
+         return false;
+    }
 
 
     public function update(User $user, brand $brand)

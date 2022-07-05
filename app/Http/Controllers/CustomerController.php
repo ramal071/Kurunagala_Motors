@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 use App\customerpendingservice;
 use App\CustomerPendingPayment;
 use App\ServiceRepair;
+use App\bike;
+use App\Brand;
+use App\Product;
+use App\CompleteJob;
 
 use App\User;
 use Auth;
@@ -48,6 +52,29 @@ class CustomerController extends Controller
         }
         return Redirect::route('login');
     }
+    
+    public function ServiceRepairStock($id)
+    {
+        if(Auth::check()){
+          
+            $user = User::where('id', Auth::User()->id)->first();
+            $servicerepair =  ServiceRepair::where('user_id', $user->id)->orderBy('id', 'desc')->get();
+            return view('customer.usedproduct',compact('user',  'servicerepair'));
+        }
+        return Redirect::route('login');
+    }
+
+    public function completeJob($id)
+    {
+        if(Auth::check()){
+          
+            $user = User::where('id', Auth::User()->id)->first();
+            $ServiceRepair =  ServiceRepair::where('user_id', $user->id)->orderBy('id', 'desc')->get();
+            return view('customer.complete',compact('user',  'ServiceRepair'));
+        }
+        return Redirect::route('login');
+    }
+
 
     public function ServiceRepair($id)
     {
@@ -58,6 +85,24 @@ class CustomerController extends Controller
             return view('customer.servicerepair',compact('user', 'servicerepair'));
         }
         return Redirect::route('login');
+    }
+
+    public function Bike()
+    {
+        $arr['bike'] = Bike::all();
+        return view('customer.bike')->with($arr);
+    }
+
+    public function Brand()
+    {
+        $arr['brand'] = Brand::all();
+        return view('customer.brand')->with($arr);
+    }
+
+    public function Product()
+    {
+        $arr['product'] = Product::all();
+        return view('customer.product')->with($arr);
     }
 
 }

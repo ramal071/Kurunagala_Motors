@@ -18,15 +18,16 @@
 
                 <div class="row">
                   <div class="col-md-6">
-                    <label for="exampleInputTit1e">{{ __('adminstaticword.employee') }}</label>
-                    <select name="employee_id" class="form-control js-example-basic-single col-md-7 col-xs-12">
+                    <label for="employee">{{ __('adminstaticword.employee') }}</label>
+                    <input type="text" class="form-control" name="employee" id="employee" value="{{ $attendance->employee->name }}" readonly>
+                    {{-- <select name="employee_id" class="form-control js-example-basic-single col-md-7 col-xs-12" readonly>
                       @foreach($employee as $br)
                         <option value="{{$br->id}}"
                             @if ($br->id == $attendance->employee_id)
                             selected
                         @endif
                             >{{$br->name}}</option>
-                      @endforeach
+                      @endforeach --}}
                     </select>
                   </div>
                 </div>
@@ -37,7 +38,7 @@
               <div class="row">
                   <div class="col-md-6">
                     <label for="time_start">{{ __('adminstaticword.timestart') }}:<sup class="redstar">*</sup></label>
-                    <input type="text" class="form-control" name="time_start" id="time_start" value="{{ $attendance->time_start }}">
+                    <input type="text" class="form-control" name="time_start" id="time_start" value="{{ $attendance->time_start }}" readonly>
                   </div>          
               </div>
               <br>

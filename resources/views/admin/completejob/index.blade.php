@@ -26,7 +26,7 @@
                                     <th>{{__('adminstaticword.complete') }}</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody>z
                                 <?php $i=0;?>
                                 @foreach($arr as $b)
                                 <?php $i++;?>

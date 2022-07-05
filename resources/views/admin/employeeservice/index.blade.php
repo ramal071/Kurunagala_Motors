@@ -21,7 +21,7 @@
                                 <tr>
                                     <th>{{__('adminstaticword.jobid') }}</th>
                                     <th>{{__('adminstaticword.startjob') }}</th>
-                                    <th>{{__('adminstaticword.name') }}</th>
+                                    <th>{{__('adminstaticword.lastupdate') }}</th>
                                     <th>{{__('adminstaticword.nickname') }}</th>                                    
                                     <th>{{__('adminstaticword.registernumber') }}</th>
                                     <th>{{__('adminstaticword.service') }}</th>
@@ -37,30 +37,10 @@
                                 <tr>
                                     <td>{{ $b->code}}</td>
                                     <td>{{ $b->created_at}}</td>
-
-                                    <td>
-                                        @foreach ($b->employee as $e)
-                                        <li>
-                                            {{$e->name}}
-                                        </li>
-                                        @endforeach
-                                    </td>
-
-                                    <td>
-                                        @foreach ($b->employee as $e)
-                                        <li>
-                                            {{$e->nick_name}}
-                                        </li>
-                                        @endforeach
-                                    </td>
+                                    <td>{{ $b->updated_at}}</td>
+                                    <td>{{ $b->employee->nick_name}}</td>
                                     <td>{{ $b->customervehicle->register_number}}</td>
-                                    <td>
-                                        @foreach ($b->service as $s)
-                                        <li>
-                                            {{$s->name}}
-                                        </li>
-                                        @endforeach
-                                    </td>
+                                    <td>{{ $b->service->name}}</td>
                                    
                                     <td>
                                         @foreach ($b->stock as $s)

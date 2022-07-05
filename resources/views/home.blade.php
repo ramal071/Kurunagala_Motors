@@ -92,10 +92,11 @@
                     <i class="fa fa-product-hunt" aria-hidden="true"></i>
                 </div>
                 <div class="feature-content">
-                    <h5>Service-Repair</h5>                   
+                    <h5>Service-Repair</h5> 
+                    <p>Here, Your bike services </p>                  
                 </div>
                 @if(Auth::check())
-                <a href="{{url('servicerepair/{id}')}}" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="{{url('customerService-repair/{id}')}}" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
                 @else
                 <a href="{{ route('login') }}">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a></li>
                 @endif
@@ -114,7 +115,7 @@
                     <p>Here, you can view our bike models we services </p>
                 </div>
                 @if(Auth::check())
-                <a href="{{url('bike')}}" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="{{url('customerService-stoct/{id}')}}" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
                 @else
                 <a href="{{ route('login') }}">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a></li>
                 @endif                    
@@ -133,7 +134,7 @@
                     <p>Here, you can view our bike brands we services </p>
                 </div>
                 @if(Auth::check())
-                <a href="{{url('brand')}}" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="{{url('completeJob/{id}')}}" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
                 @else
                 <a href="{{ route('login') }}">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a></li>
                 @endif
@@ -164,7 +165,7 @@
                         <p>Here, you can view our products available </p>
                     </div>
                     @if(Auth::check())
-                    <a href="{{url('product')}}" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="{{url('customerproduct')}}" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
                     @else
                     <a href="{{ route('login') }}">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a></li>
                     @endif
@@ -182,11 +183,11 @@
                         <h5>Bike</h5>
                         <p>Here, you can view our bike models we services </p>
                     </div>
-                    @if(Auth::check())
-                    <a href="{{url('bike')}}" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
+                    @if(Auth::check())         
+                    <a href="{{url('customerbike')}}" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
                     @else
                     <a href="{{ route('login') }}">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a></li>
-                    @endif                    
+                    @endif                   
                 </div>
             </div>
       
@@ -202,7 +203,7 @@
                         <p>Here, you can view our bike brands we services </p>
                     </div>
                     @if(Auth::check())
-                    <a href="{{url('brand')}}" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="{{url('customerbrand')}}" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
                     @else
                     <a href="{{ route('login') }}">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a></li>
                     @endif
@@ -212,7 +213,6 @@
         </div>
 
     </br>
- 
         
         <div class="row">
             <div class="col-lg-6">
@@ -302,6 +302,7 @@
         </div>
         <br>  
 
+       
          {{-- working hours --}}
          <div class="row">
             <div class="col-lg-6">
