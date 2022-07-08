@@ -76,4 +76,10 @@ class StockController extends Controller
         $stock->delete();
         return redirect()->route('stock.index')->with('delete', 'Stock detail deleted');
     }
+
+    // public function gnrview(Stock $stock)
+    // {
+    //     $arr['stocks'] = Stock::all(); 
+    //     return view('admin.gnr.index')->with($arr);
+    // }
 }

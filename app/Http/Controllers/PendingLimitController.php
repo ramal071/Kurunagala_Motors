@@ -4,17 +4,29 @@ namespace App\Http\Controllers;
 
 use App\PendingLimit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Stock;
 
 class PendingLimitController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+
+        $arr['stock'] = Stock::all();
+
+         //   return CompleteJob::find(0)->getServicerepair;  stocksstocks
+        // return view('admin.completejob.index')->with($arr);
+
+        // $arr=DB::table('stocks')
+        // ->SELECT('id',  'quantity' , 'lowestlimit')
+        //      ->FROM ('stocks')
+        //     ->WHERE  ((('quantity')<('lowestlimit')))
+        //     ->get();
+
+        // if((('quantity')<('lowestlimit')))
+        return view('admin.lowlimit.index', ['arr' => $arr]);
+    
     }
 
     /**

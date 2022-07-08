@@ -11,7 +11,7 @@
     <h3>Welcome to Kurunagala Motors !!!</h4>
 
 
-        <p>Dear {{ $servicerepair->users->fname}} {{ $servicerepair->users->lname}}({{ $servicerepair->users->idno}}),</p>
+        <p>Dear {{ $servicerepair->user->fname}} {{ $servicerepair->user->lname}}({{ $servicerepair->user->idno}}),</p>
 
         <p> Your job card id: {{ $servicerepair->code}}. </p>
         <p> Your bike details:<ul><li> {{ $servicerepair->customervehicle->register_number }} </li> </ul>

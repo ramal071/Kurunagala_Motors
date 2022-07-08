@@ -6,6 +6,7 @@ use App\ServiceServiceRepair;
 use Illuminate\Http\Request;
 use App\Service;
 use App\ServiceRepair;
+use Illuminate\Support\Facades\DB;
 
 class ServiceServiceRepairController extends Controller
 {
@@ -19,9 +20,22 @@ class ServiceServiceRepairController extends Controller
         return view('admin.service_servicerepair.index')->with($arr);    
     }
 
-    public function create()
+    public function search(Request $request)
     {
-        //
+        $arr['servicerepair'] = ServiceRepair::all();  
+        $arr['service'] = Service::all();  
+
+        $fromDate = $request->input('fromDate');
+        $toDate = $request->input('toDate');
+
+        $arr = DB::table('service_repairs')->select()
+        ->where('created_at', '>=', $fromDate)
+        ->where('created_at', '<=', $toDate)
+        ->get();
+
+      //  dd($arr);
+//return redirect()->back();
+       return view('admin.service_servicerepair.index')->with($arr);    
     }
 
     public function store(Request $request)

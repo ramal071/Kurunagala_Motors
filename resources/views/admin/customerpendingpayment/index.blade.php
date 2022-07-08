@@ -21,43 +21,53 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
+                                    <th>{{__('adminstaticword.code') }}</th>
                                     <th>{{__('adminstaticword.idno') }}</th>
-                                    <th>{{__('adminstaticword.fname') }}</th>
+                                    <th>{{__('adminstaticword.name') }}</th>
                                     <th>{{__('adminstaticword.registernumber') }}</th>
                                     <th>{{__('adminstaticword.email') }}</th>
                                     <th>{{__('adminstaticword.contact') }}</th>
                                     <th>{{__('adminstaticword.servicetype') }}</th>
-                                    <th>{{__('adminstaticword.price') }}</th>                  
-                                    <th>{{__('adminstaticword.edit') }}</th>
-                                    <th>{{__('adminstaticword.delete') }}</th>
+                                    <th>{{__('adminstaticword.amount') }}</th>                  
+                                    <th>{{__('adminstaticword.repaircomplete') }}</th>
+                                    <th>{{__('adminstaticword.complete') }}</th>
                                 </tr>
                             </thead>
 
                             <tbody>
                                 <?php $i=0;?>
-                                @foreach($customerpendingpayment as $b)
+                                @foreach($arr as $b)
                                 <?php $i++;?>
                                 <tr>
                                   <td><?php echo $i;?></td>
-                                    <td>{{ $b->users->idno}}</td>
-                                    <td>{{ $b->users->fname}} {{ $b->users->lname}}</td>
-                                    <td>{{ $b->customervehicle->register_number }}</td>
-                                    <td>{{ $b->users->email}}</td>
-                                    <td>{{ $b->users->contact}}</td>                                    
-                                    <td>{{ $b->service->name}}</td>
-                                    <td>{{ $b->price }}</td>
+                                  <td>{{ $b->code}}</td>
+                                    <td>{{ $b->idno}}</td>
+                                    <td>{{ $b->fname}} {{ $b->lname}}</td>
+                                    <td>{{ $b->register_number }}</td>
+                                    <td>{{ $b->email}}</td>
+                                    <td>{{ $b->contact}}</td>                                    
+                                    <td>{{ $b->name}}</td>
+                                    <td>{{ $b->amount }}</td>
+                                    {{-- <td>{{ $b->is_repaircomplete }}</td> --}}
                                     <td>
-                                    <a href="{{route('customerpendingpayment.edit', $b->id)}}" class="btn btn-success btn-sm" ><i class="glyphicon glyphicon-pencil"></i></a>
-                                    </td>
-                                    <td>
-                                    <a href="javascript:void(0)" onclick="$(this).parent().find('form').submit()" class="btn btn-danger"><i class="fa fa-fw fa-trash-o"></i></a>
-                                        
-                                    <form action="{{route('customerpendingpayment.destroy', $b->id)}}" method="post">
-                                    @method('DELETE')  
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    </form>
-                                </td>        
-                
+                                        <button type="Submit" class="btn btn-xs {{ $b->is_repaircomplete ==1 ? 'btn-success' : 'btn-danger' }} "> 
+                                        @if ($b->is_repaircomplete ==1)
+                                        {{__('adminstaticword.complete') }}         
+                                        @else
+                                        {{__('adminstaticword.notcomplete') }} 
+                                        @endif
+                                        </button>   
+                                    </td>  
+                                    
+                                    <td>                                       
+                                        <button type="Submit" class="btn btn-xs {{ $b->is_complete ==1 ? 'btn-success' : 'btn-danger' }} "> 
+                                        @if ($b->is_complete ==1)
+                                        {{__('adminstaticword.complete') }}         
+                                        @else
+                                        {{__('adminstaticword.notcomplete') }} 
+                                        @endif
+                                        </button>                                     
+                                    </td>                                         
                                 </tr>                        
                                
                                 @endforeach

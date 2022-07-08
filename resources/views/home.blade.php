@@ -212,7 +212,7 @@
             </div>
         </div>
 
-    </br>
+     </br>
         
         <div class="row">
             <div class="col-lg-6">
@@ -340,7 +340,55 @@
                 </div>
             </div>
         </div>
+        <br>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="section-title">
+                    <h2>SERVICE-REPAIR</h2>
+                </div>
+            </div>
+        </div>
+       <div style="height: 400px;width:900px; margin:auto;">
+        <canvas id="barChart"></canvas>
+       </div>
+
+
+    </section>
+  
+       @section('barchart')     
+       <script>
+            $(function(){
+                var datas = document.getElementById($datas); 
+                var barCanvas = $("#barChart");
+                var barChart = new Chart(barCanvas, {
+                    type:'bar',
+                    data: {
+                        labels:['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun' ,'Jul', 'Aug', 'Sep', 'Sep', 'Oct', 'Nov', 'Dec'],
+                        datasets:[
+                            {
+                                label:'New services',
+                                data:datas,
+                                backgroundColor: ['red', 'orange', 'yellow', 'green', 'blue', 'pink'],
+                            }
+                        ]
+                    },
+                    options:{
+                        scales:{
+                            yAxes:[{
+                                ticks:{
+                                    beginAtZero:true
+                                }
+                            }]
+                        }
+                    }
+                })
+            });
+        </script>
+
+       
     </div>
-</section>
+
 
 @endsection 
+@endsection

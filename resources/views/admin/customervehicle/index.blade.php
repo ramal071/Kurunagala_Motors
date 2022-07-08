@@ -14,6 +14,33 @@
 
                 </div>
 
+
+                <form action="{{route('customervehicle.search')}}" method="POST">
+                    @csrf
+                    <br>
+                    <div class="container">
+                      <div class="row">
+                        <div class="container-fluid">
+                          
+                          <div class="form-group row">
+                            <div class="col-md-4">
+                                <input type="date" name="fromDate" id="fromDate" class="form-control input-sm" placeholder="From Date"  />
+                            </div>
+                            <div class="col-md-4">
+                                <input type="date" name="toDate" id="toDate" class="form-control input-sm" placeholder="To Date"  />
+                            </div>
+                            <div class="col-md-4">
+                                <button type="submit" name="search" id="search" class="btn btn-primary">Search</button>
+                            </div>
+                        </div>
+                
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+
+                  
+
                 <div class="box-body">
                     <div class="table responsive">
                         <table id="example1" class="table table-bordered table-striped">

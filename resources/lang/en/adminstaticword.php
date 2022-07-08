@@ -180,4 +180,10 @@ return [
     'usedproduct' => 'Used Product',
     'balance' => 'Balance',
     'slip_id' => 'Slip Id',
+
+    'gnrcode' => 'GNR code',
+    'suppliername' => 'Supplier Name',
+    'date' => 'Date',
+    'pendinglimit' => 'Pending Limit',
+
 ];

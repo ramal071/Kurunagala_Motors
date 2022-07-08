@@ -3,83 +3,99 @@
 namespace App\Http\Controllers;
 
 use App\Gnr;
+use App\Product;
+use App\Helpers\Helper;
 use Illuminate\Http\Request;
 
 class GnrController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+  
+        $arr['gnrs'] = Gnr::all(); 
+        return view('admin.gnr.index')->with($arr);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $arr['product'] = Product::all();
+        return view('admin.gnr.create')->with($arr);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(Request $request, Gnr $gnr)
     {
-        //
+        $data = $this->validate($request, [ 
+            'supplier_name'=> 'required',
+            'product_id'=>'required',
+       
+           
+        ],
+            [
+            'supplier_name.required'=>'Please enter the supplier name !!!',
+            'product_id.required'=>'Please enter the product !!!',
+
+            ]
+        );        
+
+        $gnrcode = Helper::IDGenerator(new Gnr, 'gnrcode',5,'GNR');
+        $gnr->gnrcode=$gnrcode;
+
+        $gnr->product_id = $request->product_id;
+        $gnr->supplier_name = $request->supplier_name;
+        $gnr->contact = $request->contact;
+        $gnr->email = $request->email;
+        $gnr->quantity = $request->quantity;
+        $gnr->address = $request->address;
+        $gnr->date = $request->date;
+        $gnr->description = $request->description;
+        $gnr->save();
+        return redirect()->route('gnr.index')->with('success', 'GRN created successfully');
+   
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Gnr  $gnr
-     * @return \Illuminate\Http\Response
-     */
     public function show(Gnr $gnr)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Gnr  $gnr
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Gnr $gnr)
     {
-        //
+        $arr['gnr'] = $gnr;
+        $arr['product'] = Product::all();
+        return view('admin.gnr.edit')->with($arr);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Gnr  $gnr
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Gnr $gnr)
     {
-        //
+        $data = $this->validate($request, [ 
+            'supplier_name'=> 'required',
+            'product_id'=>'required',
+       
+           
+        ],
+            [
+            'supplier_name.required'=>'Please enter the supplier name !!!',
+            'product_id.required'=>'Please enter the product !!!',
+
+            ]
+        );        
+
+        $gnr->product_id = $request->product_id;
+        $gnr->supplier_name = $request->supplier_name;
+        $gnr->contact = $request->contact;
+        $gnr->email = $request->email;
+        $gnr->quantity = $request->quantity;
+        $gnr->address = $request->address;
+        $gnr->date = $request->date;
+        $gnr->description = $request->description;
+        $gnr->save();
+        return redirect()->route('gnr.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Gnr  $gnr
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Gnr $gnr)
     {
-        //
+        $gnr->delete();
+        return redirect()->route('gnr.index')->with('delete', 'gnr deleted');
     }
 }

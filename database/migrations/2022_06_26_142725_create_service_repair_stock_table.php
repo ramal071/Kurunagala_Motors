@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateStockServiceRepairsTable extends Migration
+class CreateServiceRepairStockTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateStockServiceRepairsTable extends Migration
      */
     public function up()
     {
-        Schema::create('stock_service_repairs', function (Blueprint $table) {
+        Schema::create('service_repair_stock', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('service_repair_id');
             $table->foreign('service_repair_id')->references('id')->on('service_repairs')->onDelete('cascade');
@@ -30,6 +30,6 @@ class CreateStockServiceRepairsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('stock_service_repairs');
+        Schema::dropIfExists('service_repair_stock');
     }
 }

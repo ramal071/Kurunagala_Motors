@@ -52,9 +52,9 @@
             <div class="inner">
               <h3>
               @php
-                  $brand = App\brand::get();
-                  if(count($brand)>0){
-                    echo count($brand);
+                  $servicerepair = App\ServiceRepair::get();
+                  if(count($servicerepair)>0){
+                    echo count($servicerepair);
                   }
                   else
                   {
@@ -62,12 +62,12 @@
                   }
               @endphp
               </h3>
-              <p>{{ __('adminstaticword.brand') }}</p>
+              <p>{{ __('adminstaticword.servicerepair') }}</p>
             </div>
             <div class="icon">
             	<i class="flaticon-layout"></i>
             </div>
-            <a href="{{url('brand')}}" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{url('servicerepair')}}" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
 
@@ -104,9 +104,9 @@
             <div class="inner">
               <h3>
               @php
-              $product = App\product::get();
-              if(count($product)>0){
-                echo count($product);
+              $stock = App\Stock::get();
+              if(count($stock)>0){
+                echo count($stock);
               }
               else
               {
@@ -114,12 +114,12 @@
               }
           @endphp
               </h3>
-              <p>{{ __('adminstaticword.product') }}</p>
+              <p>{{ __('adminstaticword.stock') }}</p>
             </div>
             <div class="icon">
               <i class="flaticon-book"></i>
             </div>
-            <a href="{{url('product')}}" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{url('stock')}}" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
 
@@ -144,7 +144,7 @@
             <div class="icon">
               <i class="flaticon-shopping-cart-1"></i>
             </div>
-            <a href="" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{url('customervehicle')}}" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
 

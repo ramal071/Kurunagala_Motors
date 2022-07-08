@@ -10,6 +10,7 @@ use App\User;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Registerd;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Support\Facades\DB;
 
 class CustomerVehicleController extends Controller
 {
@@ -108,5 +109,18 @@ class CustomerVehicleController extends Controller
         return response()->json($upload);
     }
 
-            
+    public function search(Request $request)
+    {
+        // $arr['servicerepair'] = ServiceRepair::all();  
+       //  $arr['customerVehicle'] = customerVehicle::all();  
+
+        $fromDate = $request->input('fromDate');
+        $toDate = $request->input('toDate');
+
+        $arr = CustomerVehicle::whereBetween('created_at',[$fromDate,$toDate])->get()->toArray();
+
+
+    //     return view('admin.customervehicle.index')->with('arr', $arr);
+     }
+       
 }

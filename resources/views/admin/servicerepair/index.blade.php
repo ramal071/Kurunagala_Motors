@@ -42,41 +42,47 @@
 
                                 <tbody>
                                     <?php $i = 0; ?>
-                                    @foreach ($servicerepair1 as $b)
+                                    @foreach ($recordes as $record)
                                         <?php $i++; ?>
                                         <tr>
-                                            <td>{{ $b->code }}</td>
+                                            <td>{{ $record['code'] }}</td>
                                           
-                                            {{-- <td>{{ $b->idno }}</td> --}}
-                                            <td>{{ $b->register_number }}</td>
-                                            {{-- <td>{{ $b->customervehicle->brand->name}} {{ $b->customervehicle->bike->name}}</td> --}}
-
-                                            <td>  </td>
-                                            {{-- <td>
-                                                @foreach ($b->stock as $s)
-                                                <li>
-                                                     {{$s->product->brand->name}} {{$s->product->bike->name}} {{$s->product->name}}
-                                                </li>
-                                                @endforeach
-                                            </td> --}}
-                                              
-                                            </td>
-                                            <td>{{ $b->sname }}</td>
-                                            {{-- <td>{{ $b->ename }}</td> --}}
-                                            <td>{{ $b->price }}</td>
-                                            {{-- <td>{{ $total }}</td> --}}
-                                            <td>{{ $b->selling }}</td>
-                                            <td>{{ $b->charge }}</td>                                            
-                                            <td> {{$b->price + $b->selling + $b->charge  }}</td>
-                                            <td>{{ $b->paid_amount }}</td>
-                                            <td>{{ $b->price + $b->selling + $b->charge - $b->paid_amount}}</td>
+                                            <td>{{ $record['customervehicle']['register_number'] }}</td>
 
                                             <td>
-                                                <form action="{{ route('servicerepair.quick', $b->id) }}" method="POST">
+                                                @php
+                                                $selling_price = 0;
+                                                @endphp
+                                                @foreach ($record['stock'] as $stock)
+                                                @php
+                                                    $product = App\Product::select('id','name','bike_id','brand_id')->where('id',$stock['product_id'])
+                                                                ->with('brand:id,name')
+                                                                ->with('bike:id,name')
+                                                                ->first();
+                                                    $selling_price += $stock['sellingprice'];
+                                                @endphp
+                                                <li>
+                                                     {{$product->brand->name}} {{$product->bike->name}} {{$product->name}}
+                                                </li>
+                                                @endforeach
+                                            </td>
+                                              
+                                            </td>
+                                            <td>{{ $record['service']['name'] }}</td>
+                                            <td>{{ $record['service']['price']  }}</td>
+
+                                            <td>{{ $selling_price  }}</td>
+                                            <td>{{ $record['charge'] }}</td>                                            
+                                            <td> {{$record['amount']  }}</td>
+                                            <td>{{ $record['paid_amount'] }}</td>
+                                            <td>{{ $record['amount']-$record['paid_amount'] }}</td>
+
+                                            <td>
+                                                <form action="{{ route('servicerepair.quick', $record['id']) }}" method="POST">
                                                     {{ csrf_field() }}
                                                     <button type="Submit"
-                                                        class="btn btn-xs {{ $b->status == 1 ? 'btn-success' : 'btn-danger' }} ">
-                                                        @if ($b->status == 1)
+                                                        class="btn btn-xs {{ $record['status'] == 1 ? 'btn-success' : 'btn-danger' }} ">
+                                                        @if ($record['status'] == 1)
                                                             {{ __('adminstaticword.active') }}
                                                         @else
                                                             {{ __('adminstaticword.deactive') }}
@@ -86,11 +92,11 @@
                                             </td>
 
                                             <td>
-                                                <form action="{{ route('isborrow.quick', $b->id) }}" method="POST">
+                                                <form action="{{ route('isborrow.quick', $record['id']) }}" method="POST">
                                                     {{ csrf_field() }}
                                                     <button type="Submit"
-                                                        class="btn btn-xs {{ $b->is_borrow == 1 ? 'btn-success' : 'btn-danger' }} ">
-                                                        @if ($b->is_borrow == 1)
+                                                        class="btn btn-xs {{ $record['is_borrow'] == 1 ? 'btn-success' : 'btn-danger' }} ">
+                                                        @if ($record['is_borrow'] == 1)
                                                             {{ __('adminstaticword.borrow') }}
                                                         @else
                                                             {{ __('adminstaticword.notborrow') }}
@@ -100,11 +106,11 @@
                                             </td>
 
                                             <td>
-                                                <form action="{{ route('iscomplete.quick', $b->id) }}" method="POST">
+                                                <form action="{{ route('iscomplete.quick', $record['id']) }}" method="POST">
                                                     {{ csrf_field() }}
                                                     <button type="Submit"
-                                                        class="btn btn-xs {{ $b->is_complete == 1 ? 'btn-success' : 'btn-danger' }} ">
-                                                        @if ($b->is_complete == 1)
+                                                        class="btn btn-xs {{ $record['is_complete'] == 1 ? 'btn-success' : 'btn-danger' }} ">
+                                                        @if ($record['is_complete'] == 1)
                                                             {{ __('adminstaticword.fullpayment') }}
                                                         @else
                                                             {{ __('adminstaticword.halfpayment') }}
@@ -114,12 +120,12 @@
                                             </td>
 
                                             <td>
-                                                <form action="{{ route('isrepaircomplete.quick', $b->id) }}"
+                                                <form action="{{ route('isrepaircomplete.quick', $record['id']) }}"
                                                     method="POST">
                                                     {{ csrf_field() }}
                                                     <button type="Submit"
-                                                        class="btn btn-xs {{ $b->is_repaircomplete == 1 ? 'btn-success' : 'btn-danger' }} ">
-                                                        @if ($b->is_repaircomplete == 1)
+                                                        class="btn btn-xs {{ $record['is_repaircomplete'] == 1 ? 'btn-success' : 'btn-danger' }} ">
+                                                        @if ($record['is_repaircomplete'] == 1)
                                                             {{ __('adminstaticword.complete') }}
                                                         @else
                                                             {{ __('adminstaticword.notcomplete') }}
@@ -129,14 +135,14 @@
                                             </td>
 
                                             <td>
-                                                <a href="{{ route('servicerepair.show', $b->id) }}" ><i class="fa fa-eye"></i></a>
+                                                <a href="{{ route('servicerepair.show', $record['id']) }}" ><i class="fa fa-eye"></i></a>
 
-                                                <a href="{{ route('servicerepair.edit', $b->id) }}"><i
+                                                <a href="{{ route('servicerepair.edit', $record['id']) }}"><i
                                                         class="glyphicon glyphicon-pencil"></i></a>
 
                                                 <a href="javascript:void(0)"
                                                     onclick="$(this).parent().find('form').submit()"><i class="fa fa-fw fa-trash-o"></i></a>
-                                                <form action="{{ route('servicerepair.destroy', $b->id) }}" method="post">
+                                                <form action="{{ route('servicerepair.destroy', $record['id']) }}" method="post">
                                                     @method('DELETE')
                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                 </form>
@@ -146,6 +152,12 @@
                                     @endforeach
                                 </tbody>
                             </table>
+
+                        </div>
+
+                    </div>
+
+
                         </div>
                     </div>
                 </div>

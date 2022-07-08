@@ -9,14 +9,25 @@
             <div class="box box-primary">
 
                 <div class="box-header with-border">
-                    <h3 class="box-title">{{__('adminstaticword.employeeservice') }}</h3>
-                    {{-- <a href="{{ route('servicerepair.create') }}" class="btn btn-info btn-sm">+ {{__('adminstaticword.servicerepair') }}</a>    
-                    <a href="{{ route('employee.index') }}" class="btn btn-info btn-sm"> {{__('adminstaticword.employee') }}</a>   --}}
+                    <h3 class="box-title">{{__('adminstaticword.employeeservice') }}</h3>                   
                 </div>
+
+                {{-- <div class="row input-daterange">
+                    <div class="col-md-4">
+                        <input type="date" name="from_date" id="from_date" class="form-control" placeholder="From Date"  />
+                    </div>
+                    <div class="col-md-4">
+                        <input type="date" name="to_date" id="to_date" class="form-control" placeholder="To Date"  />
+                    </div>
+                    <div class="col-md-4">
+                        <button type="button" name="filter" id="filter" class="btn btn-primary">Filter</button>
+                        <button type="button" name="refresh" id="refresh" class="btn btn-default">Refresh</button>
+                    </div>
+                </div> --}}
 
                 <div class="box-body">
                     <div class="table responsive">
-                    <table id="example1" class="table table-bordered table-striped">
+                    <table class="table table-bordered table-striped" id="example1"> 
                             <thead>
                                 <tr>
                                     <th>{{__('adminstaticword.jobid') }}</th>
@@ -71,4 +82,76 @@
     </div>
 </section>
 
+{{-- 
+
+@section('emp_pro')
+
+<script>
+    $(document).ready(function(){
+     $('.input-daterange').ready({
+      todayBtn:'linked',
+      format:'yyyy-mm-dd',
+      autoclose:true
+     });
+    
+     load_data();
+    
+     function load_data(from_date = '', to_date = '')
+     {
+      $('#order_table').DataTable({
+       processing: true,
+       serverSide: true,
+       ajax: {
+        url:'{{ route("employee_serviceRepair.index") }}',
+        data:{from_date:from_date, to_date:to_date}
+       },
+       columns: [
+        {
+         data:'id',
+         name:'id'
+        },
+        {
+         data:'code',
+         name:'code'
+        },
+        // {
+        //  data:'order_item',
+        //  name:'order_item'
+        // },
+        // {
+        //  data:'order_value',
+        //  name:'order_value'
+        // },
+        // {
+        //  data:'order_date',
+        //  name:'order_date'
+        // }
+       ]
+      });
+     }
+    
+     $('#filter').click(function(){
+      var from_date = $('#from_date').val();
+      var to_date = $('#to_date').val();
+      if(from_date != '' &&  to_date != '')
+      {
+       $('#order_table').DataTable().destroy();
+       load_data(from_date, to_date);
+      }
+      else
+      {
+       alert('Both Date is required');
+      }
+     });
+    
+     $('#refresh').click(function(){
+      $('#from_date').val('');
+      $('#to_date').val('');
+      $('#order_table').DataTable().destroy();
+      load_data();
+     });
+    
+    });
+    </script>
+@endsection --}}
 @endsection

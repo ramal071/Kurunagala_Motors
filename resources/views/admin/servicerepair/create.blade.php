@@ -111,18 +111,18 @@
                             <br>
                           
 
-                            {{-- <div class="row">
+                            <div class="row">
                                 <div class="col-md-6">
                                   <label for="paid_amount">{{ __('adminstaticword.paidamount') }}:</label>
                                   <input type="text" class="form-control" name="paid_amount" id="paid_amount" placeholder="Enter paid_amount" value="">
                                 </div>          
                           
                                 <div class="col-md-6">
-                                  <label for="amount">{{ __('adminstaticword.amount') }}:</label>
-                                  <input type="text" class="form-control" name="amount" id="amount" placeholder="Enter amount" value="">
+                                  <label for="charge">{{ __('adminstaticword.charge') }}:</label>
+                                  <input type="number" class="form-control" name="charge" id="charge" placeholder="Enter charge" value="">
                                 </div>          
                             </div>
-                            <br> --}}
+                            <br>
 
                             <div class="row">
                               <div class="col-md-6">
@@ -130,10 +130,10 @@
                                 <input type="text" class="form-control" name="description" id="description" placeholder="Enter description" value="">
                               </div>  
 
-                              {{-- <div class="col-md-6">
-                               <label for="charge">{{ __('adminstaticword.charge') }}:</label>
-                                <input type="text" class="form-control" name="charge" id="charge" placeholder="Enter charge" value="">
-                              </div>       --}}                                     
+                               {{-- <div class="col-md-6">
+                                <label for="amount">{{ __('adminstaticword.amount') }}:</label>
+                                <input type="text" class="form-control" name="amount" id="amount" placeholder="Enter amount" value="">                               
+                              </div>                                            --}}
                           </div>
                           <br>
 

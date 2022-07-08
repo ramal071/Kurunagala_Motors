@@ -26,30 +26,25 @@
                                     <th>{{__('adminstaticword.complete') }}</th>
                                 </tr>
                             </thead>
-                            <tbody>z
+                            <tbody>
                                 <?php $i=0;?>
                                 @foreach($arr as $b)
                                 <?php $i++;?>
                                 <tr>
                                   <td>{{ $b->code}}</td>
-                                  {{-- <td>{{ $b->users->idno}}</td>
-                                  <td>{{ $b->users->fname}}</td> --}}
-                                  {{-- <td>{{ $b->customervehicle->register_number }}</td>
-                                  <td>  
+                                  <td>{{ $b->idno}}</td>
+                                  <td>{{ $b->fname}}</td> 
+                                   <td>{{ $b->register_number }}</td>
+                                   <td>{{ $b->name }}</td>
+                                  {{-- <td>  
                                     @foreach ($b->stock as $s)
                                     <ul>  <li>
                                       {{$s->product->brand->name}} {{$s->product->bike->name}} {{$s->product->name}}
                              
                                     </li> </ul>
                                     @endforeach
-                                  </td>                               
-                                  <td>
-                                    @foreach ($b->service as $s)
-                                    <li>
-                                        {{$s->name}}
-                                    </li>
-                                    @endforeach
-                                  </td> --}}
+                                  </td>                                --}}
+                               
                             
                                   <td>                                       
                                     <button type="Submit" class="btn btn-xs {{ $b->is_repaircomplete ==1 ? 'btn-success' : 'btn-danger' }} "> 
@@ -59,7 +54,18 @@
                                     {{__('adminstaticword.notcomplete') }} 
                                     @endif
                                     </button>                                     
-                                </td>                                       
+                                </td>         
+                                
+                                <td>                                       
+                                    <button type="Submit" class="btn btn-xs {{ $b->is_complete ==1 ? 'btn-success' : 'btn-danger' }} "> 
+                                    @if ($b->is_complete ==1)
+                                    {{__('adminstaticword.complete') }}         
+                                    @else
+                                    {{__('adminstaticword.notcomplete') }} 
+                                    @endif
+                                    </button>                                     
+                                </td>         
+
                                 </tr>      
                                 @endforeach
                               </tbody>                 

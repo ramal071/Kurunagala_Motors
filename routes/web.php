@@ -5,6 +5,7 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@barchart')->name('barchart');
 
 
 Route::prefix('admins')->group(function (){
@@ -20,6 +21,10 @@ Route::resource('cashier', 'CashierController');
 
 Route::resource('customer', 'CustomerController'); 
 Route::resource('customervehicle', 'CustomerVehicleController');
+//   Route::post('customervehicle', 'CustomerVehicleController@search')->name('customervehicle.search');
+   Route::post('customervehicle', 'CustomerVehicleController@search')->name('customervehicle.search');
+
+
 Route::get('customerVehicle-show/{id}', 'CustomerController@customerVehiclePage')->name('customer.vehicle.show');
 Route::get('customerPending-service/{id}', 'CustomerController@PendingService')->name('customer.pending.serviice');
 Route::get('customerPending-payment/{id}', 'CustomerController@CustomerPendingPayment')->name('customer.pending.payment');
@@ -30,7 +35,6 @@ Route::get('customerbike', 'CustomerController@Bike')->name('customer.bike');
 Route::get('customerbrand', 'CustomerController@Brand')->name('customer.brand');
 Route::get('customerproduct', 'CustomerController@Product')->name('customer.product');
 Route::resource('leave', 'LeaveController'); 
-// Route::get('customervehicle/{id}', 'CustomerVehicleController');
 
 Route::resource('customerjobdetail', 'CustomerJobDetailController');    
 Route::resource('customerpendingpayment', 'CustomerPendingPaymentController');
@@ -41,23 +45,23 @@ Route::get("child-dropdown1","CustomerPendingServiceController@child_info1")->na
 
 Route::resource('completejob', 'CompleteJobController');     
 Route::resource('servicerepair', 'ServiceRepairController');
-// Route::get("jobdetails","ServiceRepairController@jobdetails")->name('jobdetails');
+
 
 Route::resource('calendar', 'CalendarController');
-
-// Route::get('add_to_cart', 'ServiceRepairController@addToCart');     
+ 
 Route::get('service-show', 'ServiceRepairController@usedProductService');
 Route::resource('service', 'ServiceController');
-// Route::resource('servicetype', 'ServiceTypeController');
 Route::get("dropdown2","ServiceRepairController@upload_info")->name('admin-dropdown2');
 Route::get("child-dropdown2","ServiceRepairController@child_info")->name('child-dropdown2');
 Route::resource('service_servicerepair', 'ServiceServiceRepairController');
+Route::resource('service_servicerepair', 'ServiceServiceRepairController');
 Route::resource('stock_servicerepair', 'StockServiceRepairController');
+  Route::post('service_servicerepair', 'ServiceServiceRepairController@search')->name('search');
+// Route::get("servicerepair","ServiceRepairController@barchart");
 
 Route::resource('role' , 'RoleController')->middleware('role:manager');
 Route::resource('employee', 'EmployeeController')->middleware('role:manager');
-Route::resource('salary', 'SalaryController')->middleware('role:cashier,manager');;
-//  Route::get('/employee/employeeservice', 'EmployeeController@employeeservice')->name('employeeservice');
+Route::resource('salary', 'SalaryController')->middleware('role:cashier,manager');
 Route::resource('employee_serviceRepair', 'EmployeeServiceRepairController');
 Route::resource('attendance', 'AttendanceController')->middleware('role:cashier,manager');   
 Route::resource('attendancereport', 'AttendanceReportController');
@@ -65,7 +69,6 @@ Route::resource('attendancereport', 'AttendanceReportController');
 
 Route::resource('bike', 'BikeController');
 Route::resource('brand', 'BrandController');
-//Route::post('/brand/fetch', 'BrandController@fetch')->name('brand.fetch');
 Route::resource('product', 'ProductController');
 Route::get("dropdown","ProductController@upload_info")->name('admin-dropdown');
 Route::get("child-dropdown","ProductController@child_info")->name('child-dropdown');
@@ -75,8 +78,10 @@ Route::get('/detail/{id}', 'ProductController@detail');
 Route::resource('stock', 'StockController')->middleware('role:cashier,manager');
 Route::resource('damage', 'DamageProductController')->middleware('role:manager');
 Route::resource('recondition', 'ReconditionProductController')->middleware('role:manager');
+Route::resource('gnr', 'GnrController');
+Route::resource('limit', 'PendingLimitController');
 
-// user profile
+// user profile     
 Route::resource('profile', 'UserProfileController');
 Route::get('profile-show/{id}', 'UserProfileController@userprofilepage')->name('profile.show');
 Route::put('profile-update','UserProfileController@userprofileUpdate')->name('user.profile_update');

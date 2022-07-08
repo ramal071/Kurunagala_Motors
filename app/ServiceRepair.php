@@ -7,7 +7,22 @@ use Illuminate\Database\Eloquent\Model;
 class ServiceRepair extends Model
 {
 
-    public function users()
+    protected $fillable = [
+        'user_id','customervehicle_id','amount',
+            'charge',
+            'description',
+            'service_id',
+            'employee_id',
+            'email',
+            'paid_amount',
+            'status',
+            'is_repaircomplete',
+            'is_borrow',
+            'is_complete',
+            'code'
+    ];
+
+    public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
@@ -49,7 +64,7 @@ class ServiceRepair extends Model
 
     public function stock()
     {
-        return $this->belongsToMany(Stock::class, 'stock_service_repairs', 'service_repair_id', 'stock_id');
+        return $this->belongsToMany(Stock::class)->withTimestamps();
     }
 
     // public function stockparts()

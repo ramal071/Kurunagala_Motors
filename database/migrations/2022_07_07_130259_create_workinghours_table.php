@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGnrTable extends Migration
+class CreateWorkinghoursTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,8 @@ class CreateGnrTable extends Migration
      */
     public function up()
     {
-        Schema::create('gnr', function (Blueprint $table) {
+        Schema::create('workinghours', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('date')->nullable();  
-            $table->string('supplier')->nullable();  
-            $table->string('address')->nullable();  
-            $table->string('code')->nullable();  
-            $table->string('contact')->nullable();  
             $table->timestamps();
         });
     }
@@ -31,6 +26,6 @@ class CreateGnrTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gnr');
+        Schema::dropIfExists('workinghours');
     }
 }

@@ -15,21 +15,21 @@ class EmployeeServiceRepairController extends Controller
         $arr['servicerepair'] = ServiceRepair::all();  
         $arr['employee'] = Employee::all();   
        
-    if(request()->ajax())
-     {
-      if(!empty($request->from_date))
-      {
-       $data = DB::table('service_repairs')
-         ->whereBetween('started_at', array($request->from_date, $request->to_date))
-         ->get();
-      }
-      else
-      {
-       $data = DB::table('service_repairs')
-         ->get();
-      }
-      return datatables()->of($data)->make(true);
-     }
+    // if(request()->ajax())
+    //  {
+    //   if(!empty($request->from_date))
+    //   {
+    //    $data = DB::table('service_repairs')
+    //      ->whereBetween('started_at', array($request->from_date, $request->to_date))
+    //      ->get();
+    //   }
+    //   else
+    //   {
+    //    $data = DB::table('service_repairs')
+    //      ->get();
+    //   }
+    //   return datatables()->of($data)->make(true);
+    //  }
      return view('admin.employeeservice.index')->with($arr); 
     
     }

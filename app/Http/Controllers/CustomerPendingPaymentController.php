@@ -7,33 +7,33 @@ use Illuminate\Http\Request;
 use App\CustomerVehicle;
 use App\Service;
 use App\User;
+use Illuminate\Support\Facades\DB;
 
 class CustomerPendingPaymentController extends Controller
 {
     public function index()
     {
-        $arr['customerpendingpayment'] = CustomerPendingPayment::all();
-        return view('admin.customerpendingpayment.index')->with($arr);
+       // $arr['customerpendingpayment'] = CustomerPendingPayment::all();
+        $arr= DB::table('service_repairs As sr')
+        ->leftJoin('users AS ur', 'ur.id', '=', 'sr.user_id')
+        ->leftJoin('customer_vehicles AS cv', 'sr.customervehicle_id', '=', 'cv.id')
+        ->leftJoin('services AS s', 'sr.service_id', 's.id')
+        ->select('ur.id', 'idno', 'sr.code','amount', 'is_repaircomplete', 'is_complete','fname', 'lname', 'ur.email','customervehicle_id', 'contact','paid_amount', 'charge','s.name', 'price', 'register_number')
+        ->groupBy('sr.id')
+        ->where('is_repaircomplete', '1')
+        ->where('is_complete', '0')
+        ->get();
+     //   dd($arr);
+        return view('admin.customerpendingpayment.index', ['arr' => $arr]);
     }
 
     public function create()
     {
-        $arr['service'] = Service::all();
-        $arr['customervehicle'] = CustomerVehicle::all();
-        $arr['user'] = User::all();
-
-        return view('admin.customerpendingpayment.create')->with($arr);
     }
 
     public function store(Request $request, CustomerPendingPayment $customerpendingpayment)
     {
-        $customerpendingpayment->user_id = $request->user_id;
-        $customerpendingpayment->customervehicle_id = $request->customervehicle_id;
-        $customerpendingpayment->service_id = $request->service_id;
-        $customerpendingpayment->price = $request->price;
-        $customerpendingpayment->save();
-        return redirect()->route('customerpendingpayment.index')->with('success', 'Created successfully');
-    }
+ }
 
     public function show(CustomerPendingPayment $customerpendingpayment)
     {
@@ -42,27 +42,15 @@ class CustomerPendingPaymentController extends Controller
 
     public function edit(Request $request, CustomerPendingPayment $customerpendingpayment)
     {
-         $arr['customerpendingpayment'] = $customerpendingpayment;
-        $arr['service'] = Service::all();
-        $arr['customervehicle'] = CustomerVehicle::all();
-        $arr['user'] = User::all();
-         return view('admin.customerpendingpayment.edit')->with($arr);
+
     }
 
     public function update(Request $request, CustomerPendingPayment $customerpendingpayment)
     {
-        $customerpendingpayment->user_id = $request->user_id;
-        $customerpendingpayment->customervehicle_id = $request->customervehicle_id;
-        $customerpendingpayment->service_id = $request->service_id;
-        $customerpendingpayment->price = $request->price;
-        $customerpendingpayment->save();
-        return redirect()->route('customerpendingpayment.index')->with('success', 'Created successfully');
-    }
+  }
 
     public function destroy($id)
     {
-        CustomerPendingPayment::destroy($id);
-        return redirect()->route('customerpendingpayment.index')->with('delete', 'customer pending service deleted');
-  
+ 
     }
 }

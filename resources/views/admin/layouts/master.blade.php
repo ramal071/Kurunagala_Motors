@@ -136,12 +136,16 @@
   <script src="{{ url('admin/js/buttons.html5.min.js')}}"></script>
   <script src="{{ url('admin/js/buttons.print.min.js')}}"></script>
 
+    {{-- chart --}}
+  {{-- <script src="{{ url('https://code.jquery.com/jquery-3.6.0.min.js')}}" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+ <script src="{{ url('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js')}}" integrity="sha512-vBmx0N/uQOXznm/Nbkp7h0P1RfLSj0HQrFSzV8m7rOGyj30fYAOKHYvCNez+yM8IrfnW0TCodDEjRqf6fodf/Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
+
   {{-- calandar --}}
   {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>  taginpt case --}}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>
 
-
+ 
 <script>
 $(document).ready(function() {
   $('#example1').DataTable( {
@@ -164,8 +168,12 @@ $(document).ready(function() {
 @yield('stock')
 @yield('sprice_scripts')
 @yield('calandar')
-@yield('salary')
+@yield('emp_pro')
+@yield('barchart')
+
   {{-- </script> --}}
   
 </body>
 </html>
+
+

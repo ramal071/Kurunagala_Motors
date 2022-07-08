@@ -18,7 +18,7 @@ class BikeController extends Controller
 
     public function create(Bike $bike)
     {
-        $this->authorize('create', $bike); 
+        //$this->authorize('create', $bike); 
 
         $arr['brand'] = brand::all();
         return view('admin.bike.create')->with($arr);
