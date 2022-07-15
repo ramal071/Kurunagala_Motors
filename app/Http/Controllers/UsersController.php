@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Role;
 use Illuminate\Http\Request;
 use App\User;
-use App\Permission;
+
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Registerd;
@@ -32,7 +32,7 @@ class UsersController extends Controller
 
         $arr['user'] = $user;
         $arr['role'] = Role::all();
-        $arr['permission'] = Permission::all();
+        // $arr['permission'] = Permission::all();
 
         return view('admin.users.create')->with($arr);
 
@@ -65,11 +65,11 @@ class UsersController extends Controller
         $user->password =  Hash::make($request->password);
       
         $user->save();
-         $user->permissions()->attach($request->permission);   
-        if($request->role !=null){
-            $user->role()->attach($request->role);        
-            $user->save();
-        }
+        //  $user->permissions()->attach($request->permission);   
+        // if($request->role !=null){
+        //     $user->role()->attach($request->role);        
+        //     $user->save();
+        // }
 
         // if($request->permissions != null){            
         //     foreach ($request->permissions as $permission) {
@@ -111,7 +111,7 @@ class UsersController extends Controller
 
         
         $arr['user'] = $user;
-        $arr['permission'] = Permission::all();
+        // $arr['permission'] = Permission::all();
         $arr['role'] = Role::all();
 
         return view('admin.users.edit')->with($arr);
@@ -134,21 +134,18 @@ class UsersController extends Controller
        $user->idno = $request->idno;
        $user->email = $request->email;
        $user->contact = $request->contact;
+       $user->role_id = $request->role_id;
        $user->status = ($request->status) ? 1:0;
        if($request->password != null){
           $user->password = Hash::make($request->password);
        }
        $user->save();
      //  $user->permissions()->attach($permission);
-       $user->role()->detach();
+       
     //    $user->permissions()->detach();
-    $user->permissions()->sync($request->permission); 
+    // $user->permissions()->sync($request->permission); 
 
-      if($request->role != null){
-          $user->role()->attach($request->role);
-          $user->save();
-    }
-
+ 
     //    if($request->permissions != null){            
     //         foreach ($request->permissions as $permission) {
     //          $user->permissions()->attach($permission);
@@ -161,8 +158,6 @@ class UsersController extends Controller
 
     public function destroy(User $user)
     {
-        $user->role()->detach();
-        $user->permissions()->detach();
         $user->delete();
         return redirect()->route('users.index')->with('delete', 'User Deleted');
 

@@ -32,7 +32,7 @@ class StockController extends Controller
         $stock->quantity = $request->quantity;
         $stock->dealerprice = $request->dealerprice;
         $stock->sellingprice = $request->sellingprice;
-        $stock->discount = $request->discount;
+ 
         $stock->color = $request->color;
         $stock->lowestlimit = $request->lowestlimit;
         $stock->description = $request->description;
@@ -63,7 +63,6 @@ class StockController extends Controller
         $stock->quantity = $request->quantity;
         $stock->dealerprice = $request->dealerprice;
         $stock->sellingprice = $request->sellingprice;
-        $stock->discount = $request->discount;
         $stock->color = $request->color;
         $stock->lowestlimit = $request->lowestlimit;
         $stock->description = $request->description;

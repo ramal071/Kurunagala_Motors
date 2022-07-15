@@ -15,15 +15,8 @@
                     <div class="form-group">
                         <form id="demo-form2" method="POST" action="{{ route('salary.store')}}">
                             {{ csrf_field() }}
-                            
-                                    {{-- <select class="select select2s-hidden-accessible style="width: 100%;" tabindex="-1" aria-hidden="true" id="name" name="name">
-                                        <option value="">-- Select --</option>
-                                        @foreach ($employeeList as $key=>$employee )
-                                            <option value="{{ $employee->name }}" data-employee_id={{ $employee->employee_id }}>{{ $employee->name }}</option>
-                                        @endforeach
-                                    </select> --}}
 
-                            <div class="row">
+                            {{-- <div class="row">
                                 <div class="col-md-6">
                                     <label for="employee">{{ __('adminstaticword.employee') }}</label>
                                     <select name="employee_id" class="form-control js-example-basic-single col-md-7 col-xs-12">
@@ -37,10 +30,29 @@
                                 <div class="col-md-6">
                                     <label for="salary">{{ __('adminstaticword.salary') }}:<sup class="redstar">*</sup></label>
                                     <input type="text" class="form-control" name="salary" id="salary" placeholder="Enter name" value="">
-                                    {{-- <input type="text" id="searchhere_id" placeholder="Search" /> --}}
+                                 
                                  </div>  
                             </div>
-                            <br>  
+                            <br>   --}}
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="employee">{{ __('adminstaticword.name') }}:<sup class="redstar">*</sup></label>
+                                    <select name="employee_id" id="employee_id" class="form-control js-example-basic-single col-md-7 col-xs-12" >
+                                        <option value="0">{{ __('adminstaticword.pleaseselect') }}</option>
+                                        @foreach($employee as $employee)
+                                        <option value="{{$employee->id}}">{{$employee->name}}</option>
+                                        @endforeach
+                                    </select>
+                                 </div>  
+                          
+                              <div class="col-md-6">
+                                <label for="attendance">{{ __('adminstaticword.attendance') }}</label>
+                                <select name="attendance_id" id="upload_id" class="form-control js-example-basic-single col-md-7 col-xs-12" >
+                                </select>
+                              </div>
+                            </div>
+                          <br>
                             
                             <div class="row">
                                 <div class="col-md-6">
@@ -96,3 +108,50 @@
     </div>
 
 @endsection
+
+
+
+@section('salary')
+<script>
+  (function($) {
+      "use strict";
+
+      $(function() {
+          var urlLike = '{{ route('salary-dropdown') }}';
+          $('#employee_id').change(function() {
+              var up = $('#upload_id').empty();
+              var pr_ids = $(this).val();
+              if (pr_ids) {
+                  $.ajax({
+                      headers: {
+                          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                      },
+                      type: "GET",
+                      url: urlLike,
+                      data: {
+                          prIds: pr_ids
+                      },
+                      success: function(data) {
+                          up.append('<option value="0">Please Choose</option>');
+                          $.each(data, function(id, title) {
+                              //   console.log(data.id);
+                              up.append($('<option>', {
+                                  value: title.id,
+                                  text: title.id,
+                              }));
+                              
+                          });
+                      },
+                      error: function(XMLHttpRequest, textStatus, errorThrown) {
+                          console.log(XMLHttpRequest);
+                      }
+                  });
+              }
+          });
+      });
+
+  })(jQuery);
+</script>
+
+@endsection
+ 

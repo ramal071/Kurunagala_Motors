@@ -19,7 +19,8 @@ class ServiceRepair extends Model
             'is_repaircomplete',
             'is_borrow',
             'is_complete',
-            'code'
+            'code',
+            'fixprice'
     ];
 
     public function user()
@@ -49,7 +50,7 @@ class ServiceRepair extends Model
 
     public function employee()
     {
-        return $this->belongsTo(Employee::class, 'service_id', 'id');
+        return $this->belongsTo(Employee::class, 'employee_id', 'id');
     }
 
     // public function employee()

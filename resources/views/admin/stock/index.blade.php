@@ -26,7 +26,6 @@
                                         <th>{{__('adminstaticword.qty') }}</th>
                                         <th>{{__('adminstaticword.dprice') }}</th>
                                         <th>{{__('adminstaticword.sprice') }}</th>
-                                        <th>{{__('adminstaticword.discount') }}</th>
                                         <th>{{__('adminstaticword.color') }}</th>
                                         <th>{{__('adminstaticword.lowestlimit') }}</th>
                                         {{-- <th>{{__('adminstaticword.status') }}</th> --}}
@@ -46,7 +45,6 @@
                                         <td>{{ $stock->quantity }}</td>
                                         <td>{{ $stock->dealerprice }}</td>
                                         <td>{{ $stock->sellingprice }}</td>
-                                        <td>{{ $stock->discount }}</td>
                                         <td style="background-color:{{ $stock->color }}"> </td>
 
                                         @if ($stock->quantity> $stock->lowestlimit)

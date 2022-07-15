@@ -11,4 +11,9 @@ class Salary extends Model
     {
         return $this->belongsTo(Employee::class, 'employee_id', 'id');
     }
+
+    public function attendance()
+    {
+        return $this->belongsTo(Attendances::class, 'attendance_id', 'id');
+    }
 }

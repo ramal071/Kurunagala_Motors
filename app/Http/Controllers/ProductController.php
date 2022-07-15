@@ -25,7 +25,7 @@ class ProductController extends Controller
 
     public function create(Product $product)
     {
-        $this->authorize('create', Product::class); //policy
+    //    $this->authorize('create', Product::class); //policy
 
         $arr['bike'] = Bike::all();
         $arr['brand'] = brand::all();
@@ -73,7 +73,7 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
-        $this->authorize('edit', $product); //policy
+     //   $this->authorize('edit', $product); //policy
 
         $arr['bike'] = Bike::all();
         $arr['brand'] = brand::all();
@@ -84,7 +84,7 @@ class ProductController extends Controller
 
     public function update(Request $request, Product $product)
     {
-        $this->authorize('update', $product); //policy
+      //  $this->authorize('update', $product); //policy
 
         $data = $this->validate($request, [
             'code'=>'required',
@@ -124,7 +124,7 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
-        $this->authorize('delete', $product); //policy
+       // $this->authorize('delete', $product); //policy
 
         $product->delete();
         return redirect()->route('product.index')->with('delete', 'Product deleted successfully');
@@ -143,11 +143,10 @@ class ProductController extends Controller
 
     public function child_info(Request $request) 
     {
-
         $id = $request['prId'];
         $bike = Bike::findOrFail($id);
-        $upload = $bike->product->where('bike_id',$id)->where('status',true)->pluck('name','id')->all();
-
+        $upload = $bike->product->where('bike_id',$id)
+        ->where('status',true)->pluck('name','id')->all();
         return response()->json($upload);
     }
 }

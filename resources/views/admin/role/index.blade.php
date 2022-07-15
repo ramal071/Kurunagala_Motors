@@ -25,7 +25,7 @@
                   <th>#</th>
                   <th>{{ __('adminstaticword.role') }}</th>
                   <th>{{ __('adminstaticword.slug') }}</th>
-                  <th>{{ __('adminstaticword.permission') }}</th>
+                  {{-- <th>{{ __('adminstaticword.permission') }}</th> --}}
                   <th>{{ __('adminstaticword.status') }}</th>
                   <th>{{ __('adminstaticword.edit') }}</th>
                   <th>{{ __('adminstaticword.delete') }}</th>
@@ -41,7 +41,7 @@
                         <td>{{ $r->name }}</td>
                         <td>{{ $r->slug }}</td>
 
-                        <td>
+                        {{-- <td>
                           @if ($r->permissions != null)
                                   
                               @foreach ($r->permissions as $permission)
@@ -51,7 +51,7 @@
                               @endforeach
                           
                           @endif
-                      </td>
+                      </td> --}}
 
                         <td>
                           <form action="{{ route('role.quick', $r->id) }}" method="POST">

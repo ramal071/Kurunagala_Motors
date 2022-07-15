@@ -31,10 +31,12 @@
                                 </tr>
                             </thead>
 
+                            <tbody>
                             <?php $i=0;?>
-                            @foreach($salary as $sal)            
+                            @foreach($recordes as $sal)   
+                            <?php $i++; ?>         
                                 <tr>      
-                                    <th>{{ $sal->slip_id}}</th>                          
+                                    <td>{{ $sal->slip_id}}</td>                          
                                     <td>{{ $sal->employee->name}}</td>                              
                                     <td>{{ $sal->salary }}</td>
                                     <td>{{ $sal->basic }}</td>

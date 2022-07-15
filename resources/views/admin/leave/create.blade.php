@@ -35,7 +35,7 @@
                            
                                 <div class="col-md-6">
                                     <label for="leave_reason">{{ __('adminstaticword.leavereason') }}:</label>
-                                    <input type="text" class="form-control" name="leave_reason" id="leave_reason" placeholder="Enter total cost" value="">
+                                    <input type="text" class="form-control" name="leave_reason" id="leave_reason" placeholder="Personal/medial" value="">
                                 </div>  
                             </div>
                             <br>  

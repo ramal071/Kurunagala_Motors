@@ -10,9 +10,9 @@
                     <div class="box-header with-border">
                         <h3 class="box-title">{{__('adminstaticword.brand') }}</h3>
                        
-                        @can('create', App\Brand::class)
+                       
                         <a href="{{ route('brand.create') }}" class="btn btn-info btn-sm">+{{__('adminstaticword.brand') }}</a>        
-                        @endcan                           
+                                                 
                                   
                     </div>
 
@@ -44,19 +44,19 @@
 
                                        
                                         <td>
-                                            @can('edit',$br)
+                                           
                                             <a href="{{route('brand.edit', $br->id)}}" class="btn btn-success btn-sm" ><i class="glyphicon glyphicon-pencil"></i></a>
-                                            @endcan
+                                          
                                         </td>
                                        
                                         <td>
-                                            @can('delete',$br)
+                                           
                                             <a href="javascript:void(0)" onclick="$(this).parent().find('form').submit()" class="btn btn-danger"><i class="fa fa-fw fa-trash-o"></i></a>
                                             <form action="{{ route('brand.destroy', $br->id) }}" method="post">
                                                 @method('DELETE')
                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                             </form>
-                                            @endcan
+                                          
                                         </td>
                                     </tr>
                                     @endforeach

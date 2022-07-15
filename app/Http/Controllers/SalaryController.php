@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Salary;
+use App\Attendance;
 use App\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -12,18 +13,13 @@ class SalaryController extends Controller
 {
     public function index()
     {
+        $recordes['salary'] = Salary::all();
+        // $recordes = Salary::with('employee: id, name')
+        //                 ->with('attendance: time_start,id')
+        //                 ->get()
+                      //  ->dd($recordes);
 
-        $arr['salary'] = Salary::all();
-        $arr['employee'] = Employee::all(); 
-    	 return view('admin.salary.index')->with($arr);
-
-        // $employee = DB::table('employees')
-        //             ->join('staff_salaries', 'employees.id', '=', 'staff_salaries.employee_id')
-        //             ->select('employees.*', 'staff_salaries.*')
-        //             ->get(); 
-        // $employeeList = DB::table('employees')->get();
-        // return view('admin.salary.index',compact('employee','employeeList'))->with($arr);
-
+    	 return view('admin.salary.index', compact('recordes'));
     }
 
     public function create()
@@ -121,4 +117,24 @@ class SalaryController extends Controller
         return redirect()->route('salary.index')->with('delete', 'salary deleted');
 
     }
+
+    public function upload_info(Request $request) 
+    {
+
+        $id = $request['prIds'];
+        $employeeId = Employee::findOrFail($id)->id;
+        $upload  = DB::table('attendances')->leftjoin('employees','employees.id','=','attendances.employee_id')->select('attendances.id','time_start')->where('employee_id',$employeeId)->get();
+        return response()->json($upload);
+    }
+
+    public function child_info(Request $request) 
+    {
+        $id = $request['prIds'];
+        $attendance = Attendance::findOrFail($id);
+        $upload = $attendance->salary->where('attendance_id',$id)->where('status',true)->pluck('name','id')->all();
+        $count = SUM($upload);
+        return response()->json($count);
+    }
+
+
 }

@@ -73,17 +73,14 @@ class ServiceRepairController extends Controller
             'email.required'=>'Please enter the email !!!',
             ]
         );   
+
         $service_id = $request->service_id;
         $stock_ids = $request->stock;
         $stock_items_sum = $this->getStockPrices($stockService,$stock_ids);
         $service_price = $serviceService->getPriceById($service_id);
         $service_charge = $request->charge;     
-        $totalservice_price = $stock_items_sum+$service_price['price']+ $service_charge;
-
-        
-        
-           
-        
+        $fixprice = $request->fixprice;     
+        $totalservice_price = $stock_items_sum+$service_price['price']+ $service_charge + $fixprice;
 
         $code = Helper::IDGenerator(new ServiceRepair, 'code',5,'Job');
         
@@ -93,6 +90,7 @@ class ServiceRepairController extends Controller
             'customervehicle_id' => $request->customervehicle_id, 
             'amount' => $totalservice_price,
             'charge' => $request->charge,
+            'fixprice' => $request->fixprice,
             'description' => $request->description,
             'service_id' => $request->service_id,
             'employee_id' => $request->employee_id,
@@ -105,27 +103,16 @@ class ServiceRepairController extends Controller
         ];
 
         $record = $servicerepair->create($data);
-            
 
-        
         $record->stock()->attach($request->stock); 
         //reduce from stock
         $stock_record = ServiceRepair::with('stock')->where('id',$record->id)->first();
         $stockService->reduceQuontity($stock_record->stock);
-        
-       // $servicerepair->employee()->attach($request->employee);   
-          
-      //  $servicerepair->service()->attach($request->service);   
 
         // send job start mail
-        $user_email=$request->email;
-        
-        Mail::to($user_email)->send(new SerRepair($record));
 
-        //  stock reduce 
-     // $servicerepair == ServiceRepair::where('code',  $servicerepair->stock_id)->first();
-      //  dd($servicerepair);
-    //  echo "original stock:".$servicerepair->stock_id;
+        $user_email=$request->email;        
+        Mail::to($user_email)->send(new SerRepair($record));
 
         return redirect()->route('servicerepair.index')->with('success', 'Created successfully');
     }
@@ -146,6 +133,7 @@ class ServiceRepairController extends Controller
 
     public function edit(Request $request, ServiceRepair $servicerepair)
     {
+
         $arr['servicerepair'] = $servicerepair;
         $arr['service'] = Service::all();
         $arr['stock'] = Stock::all();
@@ -164,28 +152,33 @@ class ServiceRepairController extends Controller
         return view('admin.servicerepair.edit')->with($arr);
     }
 
-    public function update(Request $request, ServiceRepair $servicerepair)
+    public function update(Request $request, ServiceRepair $servicerepair,StockService $stockService,SerivcesService $serviceService)
     {
-        $servicerepair->user_id = $request->user_id;
-        $servicerepair->customervehicle_id = $request->customervehicle_id;
-        $servicerepair->amount = $request->amount;
+
+        $service_id = $request->service_id;
+        $stock_ids = $request->stock;
+        $stock_items_sum = $this->getStockPrices($stockService,$stock_ids);
+        $service_price = $serviceService->getPriceById($service_id);
+        $service_charge = $request->charge;     
+        $fixprice = $request->fixprice;     
+        $totalservice_price = $stock_items_sum+$service_price['price']+ $service_charge + $fixprice;
+
+        $servicerepair->fixprice = $request->fixprice;
         $servicerepair->service_id = $request->service_id;
         $servicerepair->employee_id = $request->employee_id;
         $servicerepair->email = $request->email;
         $servicerepair->charge = $request->charge;
-        $servicerepair->description = $request->description;
+        $servicerepair->amount = $totalservice_price;
         $servicerepair->paid_amount = $request->paid_amount;
-        $servicerepair->status = ($request->status) ? 1:0 ;
-        $servicerepair->is_repaircomplete = ($request->is_repaircomplete) ? 1:0 ;
-        $servicerepair->is_borrow = ($request->is_borrow) ? 1:0 ;
-        $servicerepair->is_complete = ($request->is_complete) ? 1:0 ;
-      //  $servicerepair->employee()->sync($request->employee); 
+        $servicerepair->description = $request->description;
         $servicerepair->stock()->sync($request->stock); 
-   //     $servicerepair->service()->sync($request->service);   
         $servicerepair->save();
 
-     
+        $stock_record = ServiceRepair::with('stock')->where('id',$servicerepair->id)->first();
+        $stockService->reduceQuontity($stock_record->stock);
+        
         return redirect()->route('servicerepair.index');
+
     }
 
     public function destroy($id)

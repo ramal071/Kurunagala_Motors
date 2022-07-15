@@ -72,7 +72,7 @@
                     </div>
                     <div class="form-group">
                         <i class="fa fa-user" aria-hidden="true"></i>
-                        <input type="text" class="form-control{{ $errors->has('idno') ? ' is-invalid' : '' }}" name="idno" value="{{ old('idno') }}" id="idno" placeholder="ID Number">
+                        <input type="number" class="form-control{{ $errors->has('idno') ? ' is-invalid' : '' }}" name="idno" value="{{ old('idno') }}" id="idno" placeholder="ID Number">
                         @if($errors->has('idno'))
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('idno') }}</strong>
@@ -91,7 +91,7 @@
             
                     <div class="form-group">
                         <i class="fa fa-phone" aria-hidden="true"></i>
-                        <input type="text" class="form-control{{ $errors->has('contact') ? ' is-invalid' : '' }}" name="contact" value="{{ old('contact') }}" id="contact" placeholder="contact">
+                        <input type="tel" pattern="[0-9]{3}-[0-9]{4}-[0-9]{3}" class="form-control{{ $errors->has('contact') ? ' is-invalid' : '' }}" name="contact" value="{{ old('contact') }}" id="contact" placeholder="contact">
                         @if($errors->has('contact'))
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('contact') }}</strong>

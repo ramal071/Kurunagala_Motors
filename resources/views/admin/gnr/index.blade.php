@@ -25,7 +25,6 @@
                                         <th>{{__('adminstaticword.gnrcode') }}</th>
                                         <th>{{__('adminstaticword.product') }}</th>
                                         <th>{{__('adminstaticword.suppliername') }}</th>
-                                        <th>{{__('adminstaticword.qty') }}</th>
                                         <th>{{__('adminstaticword.contact') }}</th>
                                         <th>{{__('adminstaticword.address') }}</th>
                                         <th>{{__('adminstaticword.email') }}</th>
@@ -44,7 +43,6 @@
                                         <td>{{ $g->gnrcode }}</td>
                                         <td>{{ $g->product->brand->name }} {{ $g->product->brand->name }} {{ $g->product->name }} </td>                                
                                         <td>{{ $g->supplier_name }}</td>
-                                        <td>{{ $g->quantity }}</td>
                                         <td>{{ $g->contact }}</td>
                                         <td>{{ $g->address }}</td>
                                         <td>{{ $g->email }}</td>

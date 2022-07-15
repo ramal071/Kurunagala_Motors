@@ -27,8 +27,7 @@
                 </div>
              
                 <div class="col-md-6">
-                <label for="quantity">{{ __('adminstaticword.qty') }}:<sup class="redstar">*</sup></label>
-                <input type="number" class="form-control" name="quantity" id="quantity" placeholder="Enter quantity...." value="">
+               
                 </div>          
             </div>
             <br>

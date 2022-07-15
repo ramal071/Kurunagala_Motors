@@ -55,13 +55,13 @@ class BrandController extends Controller
     {
         $this->authorize('edit', $brand); //policy
 
-        $arr['brand'] = $brand;
+    //    $arr['brand'] = $brand;
         return view('admin.brand.edit')->with($arr);
     }
 
     public function update(Request $request, brand $brand)
     {
-        $this->authorize('update', $brand); //policy
+       //   $this->authorize('update', $brand); //policy
 
         //  if (Gate::allows('isAdmin')) {
         //  //   abort(403);
@@ -89,7 +89,7 @@ class BrandController extends Controller
 
     public function destroy(Request $request, brand $brand)
     {
-        $this->authorize('delete', $brand); //policy
+      //  $this->authorize('delete', $brand); //policy
         $brand->delete();
         return redirect()->route('brand.index')->with('delete', 'Brand deleted');
     }

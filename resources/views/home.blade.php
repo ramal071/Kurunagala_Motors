@@ -304,6 +304,19 @@
 
        
          {{-- working hours --}}
+
+         {{-- 
+              @php
+              $stock = App\Stock::get();
+              if(count($stock)>0){
+                echo count($stock);
+              }
+              else
+              {
+                echo "0";
+              }
+          @endphp
+           --}}
          <div class="row">
             <div class="col-lg-6">
                 <div class="section-title">
@@ -325,6 +338,11 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @php
+                                $workinghour = App\Workinghour::get();
+                                @endphp
+
+                                
                                 <?php $i=0;?>
                                 @foreach($workinghour as $w)
                                 <?php $i++;?>

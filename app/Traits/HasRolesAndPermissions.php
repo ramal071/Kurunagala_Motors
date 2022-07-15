@@ -14,10 +14,10 @@ trait HasRolesAndPermissions
         }
     }
 
-    public function role()
-    {
-        return $this->belongsToMany(Role::class,'users_roles');
-    }
+    // public function role()
+    // {
+    //     return $this->belongsToMany(Role::class,'users_roles');
+    // }
 
     // public function role()
     // {
@@ -30,10 +30,10 @@ trait HasRolesAndPermissions
     // }
 
 
-    public function permissions()
-    {
-        return $this->belongsToMany(Permission::class,'users_permissions');
-    }
+    // public function permissions()
+    // {
+    //     return $this->belongsToMany(Permission::class,'users_permissions');
+    // }
 
     public function hasRole($role)
     {   

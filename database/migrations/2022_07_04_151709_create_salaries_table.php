@@ -17,7 +17,9 @@ class CreateSalariesTable extends Migration
             $table->bigIncrements('id');  
             $table->string('slip_id');
             $table->unsignedBigInteger('employee_id');
-            $table->foreign('employee_id')->references('id')->on('employees');
+            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
+            $table->unsignedBigInteger('attendance_id');
+            $table->foreign('attendance_id')->references('id')->on('attendances')->onDelete('cascade');;
             $table->string('salary')->nullable();
             $table->string('basic')->nullable();
             $table->string('conveyance')->nullable();

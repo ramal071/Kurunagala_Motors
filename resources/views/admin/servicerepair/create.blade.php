@@ -63,7 +63,7 @@
                          
                             <div class="col-md-6">
                               <label for="email">{{ __('adminstaticword.email') }}:</sup></label>
-                              <input type="text" class="form-control" name="email" id="email" placeholder=" email" value="">
+                              <input type="email" class="form-control" name="email" id="email" placeholder=" email" value="">
                               {{--    fix login user email
                                   @if (auth()->user())
                                       <input type="email" class="form-control" id="email" name="email" value="{{ auth()->user()->email }}" readonly>
@@ -130,10 +130,10 @@
                                 <input type="text" class="form-control" name="description" id="description" placeholder="Enter description" value="">
                               </div>  
 
-                               {{-- <div class="col-md-6">
-                                <label for="amount">{{ __('adminstaticword.amount') }}:</label>
-                                <input type="text" class="form-control" name="amount" id="amount" placeholder="Enter amount" value="">                               
-                              </div>                                            --}}
+                               <div class="col-md-6">
+                                <label for="fixprice">{{ __('adminstaticword.fixprice') }}:</label>
+                                <input type="number" class="form-control" name="fixprice" id="fixprice" placeholder="Enter fixprice" value="">                               
+                              </div>                                           
                           </div>
                           <br>
 

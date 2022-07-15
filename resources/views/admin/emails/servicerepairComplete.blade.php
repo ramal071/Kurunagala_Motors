@@ -11,9 +11,9 @@
     <h3>Your job {{ $servicerepair->code}} complete!!!</h4>
 
 
-        <p>Dear {{ $servicerepair->users->fname}} {{ $servicerepair->users->lname}},</p>
+        <p>Dear {{ $servicerepair->user->fname}} {{ $servicerepair->user->lname}},</p>
 
-        <p> Your id: {{ $servicerepair->users->idno}}. </p>
+        <p> Your id: {{ $servicerepair->user->idno}}. </p>
         <p> Your bike details:<ul><li> {{ $servicerepair->customervehicle->register_number }} </li> </ul>
             <ul><li> {{ $servicerepair->customervehicle->brand->name}} {{ $servicerepair->customervehicle->bike->name}}.</li> </ul> </p>
             

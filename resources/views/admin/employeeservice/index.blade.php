@@ -49,7 +49,7 @@
                                     <td>{{ $b->code}}</td>
                                     <td>{{ $b->created_at}}</td>
                                     <td>{{ $b->updated_at}}</td>
-                                    <td>{{ $b->employee->nick_name}}</td>
+                                    <td>{{ $b->employee->name}}</td>
                                     <td>{{ $b->customervehicle->register_number}}</td>
                                     <td>{{ $b->service->name}}</td>
                                    

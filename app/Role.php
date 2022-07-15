@@ -15,19 +15,35 @@ class Role extends Model
         return $this->belongsToMany(Employee::class,'employee_role','role_id','employee_id');
     }
 
-    public function permissions()
-    {
-        return $this->belongsToMany(Permission::class, 'roles_permissions');
-    }
+    // public function permissions()
+    // {
+    //     return $this->belongsToMany(Permission::class, 'roles_permissions');
+    // }
 
-    public function allRolePermissions()
-    {
-        return $this->belongsToMany(Permission::class, 'roles_permissions');
-    }
+    // public function allRolePermissions()
+    // {
+    //     return $this->belongsToMany(Permission::class, 'roles_permissions');
+    // }
 
     public function users()
     {
         return $this->belongsTo(User::class, 'role_id', 'id');
     }
     
+    public function hasRole($role)
+    {   
+        if ($this->role->contains('slug', $role)) {
+                        return true;
+                    }
+                    return false; 
+
+       
+    }
+
+    public function isManager()
+    {
+        if($this->role->contains('slug', 'manager')){
+            return true;
+        }
+    }
 }

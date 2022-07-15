@@ -15,27 +15,30 @@
 
                     <div class="box-body">
                         <div class="table responsive">
-                            <table id="example1" class="table table-bordered table-striped">
+                            <table id="example" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
                                         <th>{{ __('adminstaticword.job') }}</th>
+                                        <th>{{ __('adminstaticword.tool') }}</th>
                                         {{-- <th>{{ __('adminstaticword.idno') }}</th> --}}
                                         {{-- <th>{{__('adminstaticword.fname') }}</th> --}}
                                         <th>{{ __('adminstaticword.registernumber') }}</th>
-                                        <th>{{ __('adminstaticword.stock') }}</th>
+                                        <th>{{ __('adminstaticword.stock') }} {{ __('adminstaticword.product') }}</th>
                                         <th>{{ __('adminstaticword.service') }}</th>
                                         {{-- <th>{{ __('adminstaticword.employee') }}</th> --}}
                                         <th>{{ __('adminstaticword.service') }} {{ __('adminstaticword.charge') }}</th>     
                                         <th>{{ __('adminstaticword.product') }} {{ __('adminstaticword.charge') }}</th>
                                         <th>{{ __('adminstaticword.fix') }} {{ __('adminstaticword.charge') }}</th>
+                                        <th> {{ __('adminstaticword.charge') }}</th>
                                         <th>{{ __('adminstaticword.amount') }}</th>
                                         <th>{{ __('adminstaticword.paidamount') }}</th>
                                         <th>{{ __('adminstaticword.balance') }}</th>
+                                      
                                         <th>{{ __('adminstaticword.status') }}</th>                                       
                                         <th>{{ __('adminstaticword.borrow') }}</th>
                                         <th>{{ __('adminstaticword.complete') }}</th>
                                         <th>{{ __('adminstaticword.repaircomplete') }}</th>
-                                        <th>{{ __('adminstaticword.tool') }}</th>
+                                      
                                  
                                     </tr>
                                 </thead>
@@ -46,6 +49,20 @@
                                         <?php $i++; ?>
                                         <tr>
                                             <td>{{ $record['code'] }}</td>
+
+                                            <td>
+                                                <a href="{{ route('servicerepair.show', $record['id']) }}" ><i class="fa fa-eye"></i></a>
+
+                                                <a href="{{ route('servicerepair.edit', $record['id']) }}"><i
+                                                        class="glyphicon glyphicon-pencil"></i></a>
+
+                                                <a href="javascript:void(0)"
+                                                    onclick="$(this).parent().find('form').submit()"><i class="fa fa-fw fa-trash-o"></i></a>
+                                                <form action="{{ route('servicerepair.destroy', $record['id']) }}" method="post">
+                                                    @method('DELETE')
+                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                </form>
+                                            </td>
                                           
                                             <td>{{ $record['customervehicle']['register_number'] }}</td>
 
@@ -69,12 +86,15 @@
                                               
                                             </td>
                                             <td>{{ $record['service']['name'] }}</td>
+                                            
                                             <td>{{ $record['service']['price']  }}</td>
 
                                             <td>{{ $selling_price  }}</td>
-                                            <td>{{ $record['charge'] }}</td>                                            
+                                            <td>{{ $record['fixprice'] }}</td>      
+                                            <td>{{ $record['charge'] }}</td>                                           
                                             <td> {{$record['amount']  }}</td>
                                             <td>{{ $record['paid_amount'] }}</td>
+                                           
                                             <td>{{ $record['amount']-$record['paid_amount'] }}</td>
 
                                             <td>
@@ -134,19 +154,7 @@
                                                 </form>
                                             </td>
 
-                                            <td>
-                                                <a href="{{ route('servicerepair.show', $record['id']) }}" ><i class="fa fa-eye"></i></a>
-
-                                                <a href="{{ route('servicerepair.edit', $record['id']) }}"><i
-                                                        class="glyphicon glyphicon-pencil"></i></a>
-
-                                                <a href="javascript:void(0)"
-                                                    onclick="$(this).parent().find('form').submit()"><i class="fa fa-fw fa-trash-o"></i></a>
-                                                <form action="{{ route('servicerepair.destroy', $record['id']) }}" method="post">
-                                                    @method('DELETE')
-                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                </form>
-                                            </td>
+                                            
 
                                         </tr>
                                     @endforeach

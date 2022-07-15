@@ -67,7 +67,7 @@
             </div> 
         
             
-            <div class="col-md-6">
+            {{-- <div class="col-md-6">
               <label for="permission">{{ __('adminstaticword.permission') }}</label>
               <select name="permission[]" class="form-control permission" multiple="multiple">
                 <option value="0"></option>
@@ -76,7 +76,7 @@
                 @endforeach
               </select>
             </div>
-          </div>
+          </div> --}}
         <br>    
 
         <div class="row">

@@ -17,42 +17,42 @@ class BikePolicy
 
     public function create(User $user)
     {
-        if ($user->role->contains('slug', 'manager')) { 
-            return true;
-        }elseif($user->permissions->contains('slug', 'create')){
-            return true;
-        }
-        return false;
+        // if ($user->role->contains('slug', 'manager')) { 
+        //     return true;
+        // }elseif($user->permissions->contains('slug', 'create')){
+        //     return true;
+        // }
+        // return false;
     }
     
     public function edit(User $user, Bike $bike)
     {
-        if($user->permissions->contains('slug', 'edit')) {
-            return true;
-        } elseif ($user->role->contains('slug', 'manager')) {
-            return true;
-        }
-         return false;
+        // if($user->permissions->contains('slug', 'edit')) {
+        //     return true;
+        // } elseif ($user->role->contains('slug', 'manager')) {
+        //     return true;
+        // }
+        //  return false;
     }
 
     public function update(User $user, Bike $bike)
     {
-        if($user->role->contains('slug', 'manager')){
-            return true;
-        } elseif($user->permissions->contains('slug', 'edit')) {
-            return true;
-        }
+        // if($user->role->contains('slug', 'manager')){
+        //     return true;
+        // } elseif($user->permissions->contains('slug', 'edit')) {
+        //     return true;
+        // }
 
-        return false;
+        // return false;
     }
 
     public function delete(User $user, Bike $bike)
     {
-        if($user->permissions->contains('slug', 'delete')) {
-            return true;
-        } elseif ($user->role->contains('slug', 'manager')) {
-            return true;
-        }
-        return false;
+        // if($user->permissions->contains('slug', 'delete')) {
+        //     return true;
+        // } elseif ($user->role->contains('slug', 'manager')) {
+        //     return true;
+        // }
+        // return false;
     }
 }

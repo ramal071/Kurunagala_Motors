@@ -35,7 +35,7 @@
             </div>  
           </br>
 
-            <div class="row">
+            {{-- <div class="row">
               <div class="col-md-6">
                 <label for="roles_permissions">{{ __('adminstaticword.permission') }}:<sup class="redstar">*</sup></label>
                 <input type="text" data-role="tagsinput" name="roles_permissions" class="form-control" id="roles_permissions" value="@foreach ($role->permissions as $permission)
@@ -43,7 +43,7 @@
                @endforeach">   
               </div>              
             </div>  
-          </br>
+          </br> --}}
 
           <div class="row">
           <div class="col-md-6">

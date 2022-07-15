@@ -13,7 +13,7 @@ Route::prefix('admins')->group(function (){
 });
 //Route::get('admins', 'AdminController@userChart');
 
-Route::resource('users', 'UsersController')->middleware('role:cashier,manager');
+Route::resource('users', 'UsersController');
 Route::get("dropdown3","UsersController@upload_info")->name('admin-dropdown3');
 Route::get("child-dropdown3","UsersController@child_info")->name('child-dropdown3');
 
@@ -22,7 +22,7 @@ Route::resource('cashier', 'CashierController');
 Route::resource('customer', 'CustomerController'); 
 Route::resource('customervehicle', 'CustomerVehicleController');
 //   Route::post('customervehicle', 'CustomerVehicleController@search')->name('customervehicle.search');
-   Route::post('customervehicle', 'CustomerVehicleController@search')->name('customervehicle.search');
+  // Route::post('customervehicle', 'CustomerVehicleController@search')->name('customervehicle.search');
 
 
 Route::get('customerVehicle-show/{id}', 'CustomerController@customerVehiclePage')->name('customer.vehicle.show');
@@ -56,15 +56,18 @@ Route::get("child-dropdown2","ServiceRepairController@child_info")->name('child-
 Route::resource('service_servicerepair', 'ServiceServiceRepairController');
 Route::resource('service_servicerepair', 'ServiceServiceRepairController');
 Route::resource('stock_servicerepair', 'StockServiceRepairController');
-  Route::post('service_servicerepair', 'ServiceServiceRepairController@search')->name('search');
+ // Route::post('service_servicerepair/search', 'ServiceServiceRepairController@search')->name('service_servicerepair/search');
 // Route::get("servicerepair","ServiceRepairController@barchart");
 
-Route::resource('role' , 'RoleController')->middleware('role:manager');
-Route::resource('employee', 'EmployeeController')->middleware('role:manager');
-Route::resource('salary', 'SalaryController')->middleware('role:cashier,manager');
+Route::resource('role' , 'RoleController');
+Route::resource('employee', 'EmployeeController');
+Route::resource('salary', 'SalaryController');
 Route::resource('employee_serviceRepair', 'EmployeeServiceRepairController');
-Route::resource('attendance', 'AttendanceController')->middleware('role:cashier,manager');   
+Route::resource('attendance', 'AttendanceController');   
 Route::resource('attendancereport', 'AttendanceReportController');
+
+Route::get("salary-dropdown","SalaryController@upload_info")->name('salary-dropdown');
+Route::get("salarychild-dropdown","SalaryController@child_info")->name('salarychild-dropdown');
 
 
 Route::resource('bike', 'BikeController');
@@ -75,9 +78,9 @@ Route::get("child-dropdown","ProductController@child_info")->name('child-dropdow
 
 Route::get('/detail/{id}', 'ProductController@detail');
 
-Route::resource('stock', 'StockController')->middleware('role:cashier,manager');
-Route::resource('damage', 'DamageProductController')->middleware('role:manager');
-Route::resource('recondition', 'ReconditionProductController')->middleware('role:manager');
+Route::resource('stock', 'StockController');
+Route::resource('damage', 'DamageProductController');
+Route::resource('recondition', 'ReconditionProductController');
 Route::resource('gnr', 'GnrController');
 Route::resource('limit', 'PendingLimitController');
 

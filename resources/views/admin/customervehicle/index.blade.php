@@ -14,8 +14,9 @@
 
                 </div>
 
+                
 
-                <form action="{{route('customervehicle.search')}}" method="POST">
+                {{-- <form action="{{route('customervehicle.search')}}" method="POST">
                     @csrf
                     <br>
                     <div class="container">
@@ -37,13 +38,15 @@
                         </div>
                       </div>
                     </div>
-                  </form>
+                  </form> --}}
 
                   
 
                 <div class="box-body">
                     <div class="table responsive">
-                        <table id="example1" class="table table-bordered table-striped">
+
+                        
+                        <table id="example2" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -82,12 +85,27 @@
                                     @method('DELETE')  
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     </form>
-                                </td>        
+                                    </td>        
                 
                                 </tr>                        
-                               
                                 @endforeach
+                               
                               </tbody>
+
+                              <tfoot>
+                                <tr>
+                                    <th></th>
+                                    <th>idno</th>
+                                    <th>name</th>
+                                    <th>email</th>
+                                    <th>contact</th>
+                                    <th>registernumber</th>                                  
+                                    <th>brand</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>                                  
+                                </tr>                              
+                            </tfoot>                       
                         </table>
                     </div>
                 </div>

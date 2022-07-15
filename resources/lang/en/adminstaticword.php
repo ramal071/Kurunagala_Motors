@@ -24,6 +24,7 @@ return [
     'show' => 'Show',
     'settings' => 'Settings',
     'workinghour' => 'Working Hour',
+    'fixprice' => 'Fix Price',
 
     'employee' => 'Employee',
     'addemployee' => 'Add Employee',
@@ -185,5 +186,6 @@ return [
     'suppliername' => 'Supplier Name',
     'date' => 'Date',
     'pendinglimit' => 'Pending Limit',
-
+    'workingday' => 'Working Day',
+    'leave_reason' => 'Leave Reason',
 ];

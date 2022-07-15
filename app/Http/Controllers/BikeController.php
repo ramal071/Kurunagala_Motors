@@ -56,7 +56,7 @@ class BikeController extends Controller
 
     public function edit(Bike $bike)
     {
-        $this->authorize('edit', $bike);
+      //  $this->authorize('edit', $bike);
 
         $arr['bike'] = $bike;
         $arr['brand'] = brand::all();
@@ -65,7 +65,7 @@ class BikeController extends Controller
 
     public function update(Request $request, Bike $bike)
     {
-        $this->authorize('update', $bike);
+      //  $this->authorize('update', $bike);
 
         $data = $this->validate($request, [ 
             'name'=> 'required',
@@ -89,7 +89,7 @@ class BikeController extends Controller
 
     public function destroy($id)
     {
-        $this->authorize('delete', $id); 
+      //  $this->authorize('delete', $id); 
 
         Bike::destroy($id);
         return redirect()->route('bike.index')->with('delete', 'Bike model deleted');

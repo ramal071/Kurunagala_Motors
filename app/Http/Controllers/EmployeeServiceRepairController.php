@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\ServiceRepair;
 use App\Employee;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class EmployeeServiceRepairController extends Controller
 {
@@ -14,22 +14,19 @@ class EmployeeServiceRepairController extends Controller
     {
         $arr['servicerepair'] = ServiceRepair::all();  
         $arr['employee'] = Employee::all();   
-       
-    // if(request()->ajax())
-    //  {
-    //   if(!empty($request->from_date))
-    //   {
-    //    $data = DB::table('service_repairs')
-    //      ->whereBetween('started_at', array($request->from_date, $request->to_date))
-    //      ->get();
-    //   }
-    //   else
-    //   {
-    //    $data = DB::table('service_repairs')
-    //      ->get();
-    //   }
-    //   return datatables()->of($data)->make(true);
-    //  }
+
+        // $arr= DB::table('service_repairs As sr')
+        // ->leftJoin('employees AS em', 'sr.employee_id', '=', 'em.id')
+        // ->leftJoin('customer_vehicles AS cv', 'sr.customervehicle_id', '=', 'cv.id')
+        // ->leftJoin('services AS s', 'sr.service_id', 's.id')
+        // ->select('em.id', 'sr.code', 'is_repaircomplete', 'is_complete','em.name', 'nick_name','customervehicle_id', 'charge','s.name', 'register_number')
+        // ->groupBy('sr.id')     
+        // ->get()
+        // ->dd($arr);
+
+   
+        // return view('admin.employeeservice.index', ['arr' => $arr]);
+    
      return view('admin.employeeservice.index')->with($arr); 
     
     }

@@ -19,8 +19,7 @@ class CreateStocksTable extends Migration
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->integer('quantity');
             $table->double('dealerprice');
-            $table->double('sellingprice');  
-            $table->double('discount')->default(0);
+            $table->double('sellingprice');          
             $table->string('color')->nullable();  
             $table->integer('lowestlimit');  
             $table->string('description')->nullable();  

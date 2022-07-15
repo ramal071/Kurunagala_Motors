@@ -132,8 +132,8 @@
                     <p class="sub-heading">{{__('adminstaticword.email') }}: {{ $servicerepair->email}}</h2>
                 </div>
                 <div class="col-6">
-                    <p class="sub-heading">{{__('adminstaticword.name') }}: {{ $servicerepair->users->fname}} {{ $servicerepair->users->lname}}</td>
-                      <p class="sub-heading">{{__('adminstaticword.idno') }}: {{ $servicerepair->users->idno}}</td>
+                    <p class="sub-heading">{{__('adminstaticword.name') }}: {{ $servicerepair->user->fname}} {{ $servicerepair->user->lname}}</td>
+                      <p class="sub-heading">{{__('adminstaticword.idno') }}: {{ $servicerepair->user->idno}}</td>
                     <p class="sub-heading">{{__('adminstaticword.registernumber') }}: {{ $servicerepair->customervehicle->register_number}}</td>
                     <p class="sub-heading">{{__('adminstaticword.bike') }}: {{$servicerepair->customervehicle->brand->name}} {{$servicerepair->customervehicle->bike->name}}
      
@@ -142,54 +142,57 @@
         </div>
 
         <div class="body-section">
-            <h3 class="heading">Service Details</h3>
+            <h3 class="heading">Service Payment Details</h3>
             <br>
             <table class="table-bordered">
                 <thead>
                     <tr>
                       <th> {{__('adminstaticword.service') }}</th>
-                      <th> {{__('adminstaticword.employee') }}</th> 
+                      <th> {{__('adminstaticword.service') }} {{__('adminstaticword.charge') }}</th>
+                      {{-- <th> {{__('adminstaticword.employee') }}</th>  --}}
                       <th> {{__('adminstaticword.product') }}</th>   
-                      <th> {{__('adminstaticword.amount') }}</th>   
+                      <th> {{__('adminstaticword.product') }} {{__('adminstaticword.charge') }}</th>   
                     </tr>
                 </thead>
                 <tbody>
                   <?php
-                  $a = (int)$servicerepair->price;
-                  $b = (int)$servicerepair->sellingprice;
-                  $c = (int)$servicerepair->charge;
+
+                  $c = (int)$servicerepair->amount;
+                  $e = (int)$servicerepair->paid_amount;
                  
-                  $pay = $a +$b +$c; 
-                  // $discount = $e;
-                  $total = $pay ;
+                  $pay = $c; 
+                  $deduction = $e;
+                  $total = $pay - $deduction ;
                   ?>
                     <tr>
-                      <td>{{ $servicerepair->service->name}}</td>
-                      <td>{{ $servicerepair->employee->name}}</td>   
+                      <td>{{ $servicerepair->service->name}} </td>
+                      <td>Rs.{{ $servicerepair->service->price}}</td>   
                       <td>
                       @foreach ($servicerepair->stock as $s)
                                   {{ $s->product->brand->name }} {{ $s->product->bike->name }} {{ $s->product->name }} <br>
                       @endforeach 
                       </td>
-                      <td>{{ $servicerepair->service->price}}</td> 
+                      <td>Rs.{{ $s->sellingprice }}</td>   
+                      
                       
                       <tr>
-                        <td colspan="3" class="text-right">paid_amount</td>
+                        <td colspan="3" class="text-right">paid_amount(Rs)</td>
                         <td> {{ $servicerepair->paid_amount }} </td>
                      
                     <tr>
-                        <td colspan="3" class="text-right">Charge</td>
+                        <td colspan="3" class="text-right">Charge(Rs)</td>
                         <td>{{ $servicerepair->charge }}</td>
                     </tr>
                     <tr>
-                        <td colspan="3" class="text-right">Amount</td>
-                        <td> {{$servicerepair->price + $servicerepair->sellingprice + $servicerepair->charge  }}</td>
+                        <td colspan="3" class="text-right">Amount(Rs)</td>
+                        <td> {{$servicerepair->amount }}</td>
                     </tr>
                     </tr>                  
                 </tbody>
             </table>
             <br>
             <p class="heading">Payment(Rs.): <?php echo $total ;?> </p>
+            <td>{{ $servicerepair->description}}</td> 
         </div>     
     </div>      
 

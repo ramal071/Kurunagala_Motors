@@ -26,10 +26,7 @@
                                         <input type="text" class="form-control" name="name" id="exampleInputname"
                                             value="{{ $employee->name }}">
                                     </div>
-                                </div>
-                                <br>
-
-                                <div class="row">
+                                
                                     <div class="col-md-6">
                                         <label for="exampleInputTit1e">{{ __('adminstaticword.role') }}</label>
                                          <select name="roles[]" value="{{ $employee->role_id }}"
@@ -54,14 +51,11 @@
                                         <input type="text" class="form-control" name="nick_name" id="exampleInputname"
                                             value="{{ $employee->nick_name }}">
                                     </div>
-                                </div>
-                                <br>
-
-                                <div class="row">
+                              
                                     <div class="col-md-6">
                                         <label for="exampleInputTit1e">{{ __('adminstaticword.phone') }}:<sup
                                                 class="redstar">*</sup></label>
-                                        <input type="text" class="form-control" name="phone" id="exampleInputname"
+                                        <input type="tel" pattern="[0-9]{3}-[0-9]{4}-[0-9]{3}" class="form-control" name="phone" id="exampleInputname"
                                             value="{{ $employee->phone }}">
                                     </div>
                                 </div>
@@ -74,11 +68,7 @@
                                         <input type="text" class="form-control" name="address" id="exampleInputname"
                                             value="{{ $employee->address }}">
                                     </div>
-                                </div>
-                                <br>
-
-
-                                <div class="row">
+                              
                                     <div class="col-md-6">
                                         <label for="exampleInputTit1e">{{ __('adminstaticword.empimage') }}:<sup
                                                 class="redstar">*</sup></label>
@@ -107,10 +97,7 @@
                                             </div>
                                         @endif
                                     </div>
-                                </div>
-                                <br>
-
-                                <div class="row">
+                              
                                     <div class="col-md-6">
                                         <label for="exampleInputTit1e">{{ __('adminstaticword.idback') }}:<sup
                                                 class="redstar">*</sup></label>

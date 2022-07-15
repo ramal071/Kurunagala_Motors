@@ -46,10 +46,20 @@
           <div class="row">
             <div class="col-md-6">
             <label for="name">Contact</label>
-            <input type="text" name="contact" class="form-control" id="contact" placeholder="Contact..." value="{{ old('contact') }}">
+            <input type="tel" name="contact" class="form-control" id="contact" pattern="[0-9]{3}-[0-9]{4}-[0-9]{3}"  placeholder="071-2398-456" value="{{ old('contact') }}">
           </div> 
-        </div>
-        <br>         
+      
+          <div class="col-md-6">
+              <label for="role">{{ __('adminstaticword.role') }}:<sup class="redstar">*</sup></label>
+              <select name="role_id" id="role_id" class="form-control" >
+                  <option value="0">{{ __('adminstaticword.pleaseselect') }}</option>
+                  @foreach($role as $r)
+                <option value="{{$r->id}}">{{$r->name}}</option>
+              @endforeach
+              </select>
+           </div>  
+          </div>
+          <br>
         
             {{-- <div class="col-md-6">
             <label for="role">Select Role</label>
@@ -69,18 +79,9 @@
               </div>
           </div>          --}}
 
-          <div class="row">
-            <div class="col-md-6">
-                <label for="role">{{ __('adminstaticword.role') }}:<sup class="redstar">*</sup></label>
-                <select name="role_id" id="role_id" class="form-control" >
-                    <option value="0">{{ __('adminstaticword.pleaseselect') }}</option>
-                    @foreach($role as $r)
-                  <option value="{{$r->id}}">{{$r->name}}</option>
-                @endforeach
-                </select>
-             </div>  
+         
              
-             <div class="col-md-6">
+             {{-- <div class="col-md-6">
               <label for="permission">{{ __('adminstaticword.permission') }}</label>
               <select name="permission[]" class="form-control permission" multiple="multiple">
                 <option value="0"></option>
@@ -89,7 +90,7 @@
                 @endforeach
               </select>
             </div>
-          </div>
+          </div> --}}
         <br>
                 
           <div class="row">

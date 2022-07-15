@@ -144,7 +144,7 @@
                         </div>
 
                         <div class="body-section">
-                            <h3 class="heading">Service Details</h3>
+                            <h3 class="heading">Salary Details</h3>
                             <br>
                             <table class="table-bordered">
                                 <thead>

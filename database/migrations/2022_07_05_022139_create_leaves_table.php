@@ -16,7 +16,7 @@ class CreateLeavesTable extends Migration
         Schema::create('leaves', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('employee_id');
-            $table->foreign('employee_id')->references('id')->on('employees');
+            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');;
             $table->string('leave_type')->nullable();
             $table->string('from_date')->nullable();
             $table->string('to_date')->nullable();

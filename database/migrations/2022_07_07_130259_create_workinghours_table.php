@@ -15,6 +15,9 @@ class CreateWorkinghoursTable extends Migration
     {
         Schema::create('workinghours', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('from')->nullable();
+            $table->string('to')->nullable();
+            $table->string('day')->nullable();
             $table->timestamps();
         });
     }

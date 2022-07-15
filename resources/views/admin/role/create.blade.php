@@ -42,12 +42,12 @@
     </div> 
 </div>
 <br>  
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-md-6">
         <label for="roles_permissions">Add Permissions</label>
         <input type="text" data-role="tagsinput" name="roles_permissions" class="form-control" id="roles_permissions" value="{{ old('roles_permissions') }}">   
     </div> 
-</div>
+</div> --}}
 <br>   
     
     <div class="row">

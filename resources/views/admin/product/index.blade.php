@@ -8,9 +8,9 @@
                 <div class="box box-primary">  {{-- red line --}}
                     <div class="box-header with-border">
                         <h3 class="box-title">{{__('adminstaticword.product') }}</h3>
-                        @can('create', App\Product::class)
+                    
                         <a href="{{ route('product.create') }}" class="btn btn-info btn-sm">+ {{__('adminstaticword.product') }}</a>    
-                        @endcan  
+                
                     </div>
 
                     <div class="box-body">
@@ -46,7 +46,7 @@
                                         <td>{{ $pr->slug }}</td>
                                         <td> <img src="{{ asset('storage/product/' .  $pr->product_image) }}" width="100px;" height="100px;" alt="Image"></td>
                                         <td>{{ $pr->description }}</td>
-                                        @if(!\Auth::user()->hasRole('customer') )         
+         
                                         <td>    
                                             <form action="{{ route('product.quick', $pr->id) }}" method="POST">
                                               {{ csrf_field() }}
@@ -59,7 +59,7 @@
                                               </button>
                                             </form>                                          
                                         </td>  
-                                    @else
+                      
                                         <td>
                                        
                                             <button type="Submit" class="btn btn-xs {{ $pr->status ==1 ? 'btn-success' : 'btn-danger' }} "> 
@@ -71,22 +71,21 @@
                                             </button>
                                     
                                         </td>   
-                                        @endif 
-
+                               
                                         <td>
-                                            @can('edit',$pr)
+                                        
                                             <a href="{{route('product.edit', $pr->id)}}" class="btn btn-success btn-sm" ><i class="glyphicon glyphicon-pencil"></i></a>
-                                            @endcan  
+                                
                                         </td>
 
                                         <td>
-                                            @can('delete',$pr)
+                          
                                             <a href="javascript:void(0)" onclick="$(this).parent().find('form').submit()" class="btn btn-danger"><i class="fa fa-fw fa-trash-o"></i></a>
                                             <form action="{{ route('product.destroy', $pr->id) }}" method="post">
                                                 @method('DELETE')
                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                             </form>
-                                            @endcan  
+                           
                                         </td>
 
                                     </tr>

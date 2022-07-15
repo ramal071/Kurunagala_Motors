@@ -180,7 +180,7 @@
           <div class="small-box bg-orange">
             <div class="inner">
               <h3>
-              20
+         0
               </h3>
               <p>{{ __('adminstaticword.income') }}</p>
             </div>

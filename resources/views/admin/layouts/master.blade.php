@@ -39,7 +39,11 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css" /> <!-- calandar -->
 
-  
+  {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css') }}">
+  <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.1.2/css/dataTables.dateTime.min.css') }}">
+
+   --}}
+
 
   @yield('stylesheets')
   @yield('css_role_page')
@@ -72,9 +76,11 @@
                 <span class="hidden-xs">
 
                   @auth
-                  Hi..{{ Auth::user()->fname }} {{ Auth::user()->role->isNotEmpty() ? Auth::user()->role->first()->name : "" }}
+                  Hi..{{ Auth::user()->fname }}  {{ Auth::user()->role_id }}
                   @endauth
                   {{-- Hi ! {{ Auth()->User()['fname'] }} --}}
+
+           
                 </span>
 
               </a>            
@@ -136,14 +142,11 @@
   <script src="{{ url('admin/js/buttons.html5.min.js')}}"></script>
   <script src="{{ url('admin/js/buttons.print.min.js')}}"></script>
 
-    {{-- chart --}}
-  {{-- <script src="{{ url('https://code.jquery.com/jquery-3.6.0.min.js')}}" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
- <script src="{{ url('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js')}}" integrity="sha512-vBmx0N/uQOXznm/Nbkp7h0P1RfLSj0HQrFSzV8m7rOGyj30fYAOKHYvCNez+yM8IrfnW0TCodDEjRqf6fodf/Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
-
   {{-- calandar --}}
   {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>  taginpt case --}}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>
+
 
  
 <script>
@@ -156,6 +159,54 @@ $(document).ready(function() {
   } );
 } );
 </script>
+
+<script>
+  $(document).ready(function() {
+    $('#example').DataTable( {
+      scrollX: true,
+        dom: 'Bfrtip',
+        buttons: [
+            'excel', 'pdf', 'print'
+        ]
+    } );
+  } );
+  </script>
+
+<script>
+$(document).ready(function () {
+  // Setup - add a text input to each footer cell
+  $('#example2 tfoot th').each(function () {
+      var title = $(this).text();
+      $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+  });
+
+  // DataTable
+  var table = $('#example2').DataTable({
+    dom: 'Bfrtip',
+        buttons: [
+            'excel', 'pdf', 'print'
+        ],
+    scrollX: true,
+    
+      initComplete: function () {
+          // Apply the search
+          this.api()
+              .columns()
+              .every(function () {
+                  var that = this;
+
+                  $('input', this.footer()).on('keyup change clear', function () {
+                      if (that.search() !== this.value) {
+                          that.search(this.value).draw();
+                      }
+                  });
+              });
+      },
+  });
+});
+</script>
+
+
 
 
   {{-- <script> --}}
@@ -170,10 +221,15 @@ $(document).ready(function() {
 @yield('calandar')
 @yield('emp_pro')
 @yield('barchart')
-
-  {{-- </script> --}}
+@yield('salary')
+@yield('add_new_product')
+@yield('product_sr')
+@yield('cv-range')
+  {{-- </script> --}} 
   
 </body>
+
+
 </html>
 
 

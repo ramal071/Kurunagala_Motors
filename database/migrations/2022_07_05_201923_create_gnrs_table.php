@@ -19,7 +19,6 @@ class CreateGnrsTable extends Migration
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->string('supplier_name')->nullable();
-            $table->string('quantity')->nullable();
             $table->string('contact')->nullable();
             $table->string('email')->nullable();
             $table->string('address')->nullable();

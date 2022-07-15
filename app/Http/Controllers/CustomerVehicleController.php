@@ -109,18 +109,18 @@ class CustomerVehicleController extends Controller
         return response()->json($upload);
     }
 
-    public function search(Request $request)
-    {
-        // $arr['servicerepair'] = ServiceRepair::all();  
-       //  $arr['customerVehicle'] = customerVehicle::all();  
+    // public function search(Request $request)
+    // {
+    //     // $arr['servicerepair'] = ServiceRepair::all();  
+    //    //  $arr['customerVehicle'] = customerVehicle::all();  
 
-        $fromDate = $request->input('fromDate');
-        $toDate = $request->input('toDate');
+    //     $fromDate = $request->input('fromDate');
+    //     $toDate = $request->input('toDate');
 
-        $arr = CustomerVehicle::whereBetween('created_at',[$fromDate,$toDate])->get()->toArray();
+    //     $arr = CustomerVehicle::whereBetween('created_at',[$fromDate,$toDate])->get()->toArray();
 
 
-    //     return view('admin.customervehicle.index')->with('arr', $arr);
-     }
+    // //     return view('admin.customervehicle.index')->with('arr', $arr);
+    //  }
        
 }

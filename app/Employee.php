@@ -8,7 +8,16 @@ class Employee extends Model
 {
     protected $table = 'employees';
 
-    protected $fillable =[];
+    protected $fillable = [
+       
+            'name',
+            'nick_name',
+            'phone',
+            'id',
+            'email',
+            'address',
+           
+    ];
 
 
     public function roles(){

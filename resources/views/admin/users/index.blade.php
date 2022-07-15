@@ -24,7 +24,6 @@
                                         <th>{{__('adminstaticword.email') }}</th>
                                         <th>{{__('adminstaticword.contact') }}</th>
                                         <th>{{__('adminstaticword.role') }}</th>
-                                        <th>{{__('adminstaticword.permission') }}</th>
                                         <th>{{__('adminstaticword.status') }}</th>
                                         <th>{{__('adminstaticword.tool') }}</th>
                                     </tr>
@@ -33,7 +32,7 @@
                                 <tbody>
                                     <?php $i=0;?>
                                     @foreach ($users as $user)
-                                    @if(!\Auth::user()->hasRole('manager') && $user->hasRole('manager')) @continue; @endif                 
+                                     {{-- @if(!\Auth::user()->hasRole('manager') && $user->hasRole('manager')) @continue; @endif   --}}
                                     <?php $i++;?>
                                         <tr>
                                             <td> <?php echo $i;?> </td>
@@ -44,7 +43,7 @@
                                             <td> {{ $user->contact }} </td>
                                             <td>{{ $user->role_id }}</td>
                                        
-                                             <td>
+                                             {{-- <td>
                                                 @if ($user->permissions->isNotEmpty())
                                                                 
                                                     @foreach ($user->permissions as $permission)
@@ -54,7 +53,7 @@
                                                     @endforeach
                                                 
                                                 @endif
-                                            </td>
+                                            </td> --}}
                                             
                                             <td>
                                                 <form action="{{ route('user.quick', $user->id) }}" method="POST">
