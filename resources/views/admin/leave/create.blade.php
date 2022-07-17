@@ -34,11 +34,22 @@
                                 </div>
                            
                                 <div class="col-md-6">
-                                    <label for="leave_reason">{{ __('adminstaticword.leavereason') }}:</label>
-                                    <input type="text" class="form-control" name="leave_reason" id="leave_reason" placeholder="Personal/medial" value="">
+                                    <label for="leave_type">{{ __('adminstaticword.leave_type') }}:</label>
+                                    <select name="leave_type"  class="form-control" id="leave_type">
+                                        <option value="half day">half day</option>
+                                        <option value="full leave">full leave</option>
+                                    </select>
                                 </div>  
                             </div>
                             <br>  
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="leave_reason">{{ __('adminstaticword.leavereason') }}:</label>
+                                    <input type="text" class="form-control" name="leave_reason" id="leave_reason" placeholder="....." value="">
+                                </div>  
+                            </div>
+                        <br>  
                             
                             <div class="row">
                                 <div class="col-md-6">

@@ -65,6 +65,8 @@ Route::resource('salary', 'SalaryController');
 Route::resource('employee_serviceRepair', 'EmployeeServiceRepairController');
 Route::resource('attendance', 'AttendanceController');   
 Route::resource('attendancereport', 'AttendanceReportController');
+Route::resource('loan', 'LoanController');
+Route::resource('allowance', 'AllowanceController');
 
 Route::get("salary-dropdown","SalaryController@upload_info")->name('salary-dropdown');
 Route::get("salarychild-dropdown","SalaryController@child_info")->name('salarychild-dropdown');

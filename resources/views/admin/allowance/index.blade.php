@@ -1,5 +1,5 @@
 @extends('admin/layouts.master')
-@section('title', 'View Leave')
+@section('title', 'View allowance')
 @section('body')
 @include('admin.message')
 
@@ -9,8 +9,8 @@
         <div class="col-xs-12">
             <div class="box box-primary">  {{-- red line --}}
                 <div class="box-header with-border">  
-                    <h3 class="box-title">{{__('adminstaticword.leave') }}</h3>                  
-                    <a href="{{ route('leave.create') }}" class="btn btn-info btn-sm">+ {{__('adminstaticword.leave') }}</a>       
+                    <h3 class="box-title">{{__('adminstaticword.allowance') }}</h3>                  
+                    <a href="{{ route('allowance.create') }}" class="btn btn-info btn-sm">+ {{__('adminstaticword.allowance') }}</a>       
                 </div>
 
                 <div class="box-body">
@@ -19,33 +19,28 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>{{__('adminstaticword.employee') }} {{__('adminstaticword.id') }}</th>
-                                    <th>{{__('adminstaticword.leave_type') }}</th> 
-                                    <th>{{__('adminstaticword.fromdate') }}</th>  
-                                    <th>{{__('adminstaticword.todate') }}</th>
-                                    <th>{{__('adminstaticword.day') }}</th>  
-                                    <th>{{__('adminstaticword.leave_reason') }}</th>
-                                  
+                                    <th>{{__('adminstaticword.employee') }}</th>
+                                    <th>{{__('adminstaticword.allowance_type') }}</th>   
+                                    <th>{{__('adminstaticword.allowance') }}</th>   
+                                    <th>{{__('adminstaticword.description') }}</th>
                                     <th>{{__('adminstaticword.tool') }}</th>
                                 </tr>
                             </thead>
 
                             <?php $i=0;?>
-                            @foreach($leaves as $lev)            
+                            @foreach($allowance as $all)            
                                 <tr>      
-                                    <th>{{ $lev->id}}</th>     
-                                    <td>{{ $lev->employee->name}}</td>         
-                                    <th>{{ $lev->leave_type}}</th>
-                                    <th>{{ $lev->from_date}}</th>
-                                    <th>{{ $lev->to_date}}</th>
-                                    <th>{{ $lev->day}}</th>
-                                    <th>{{ $lev->leave_reason}}</th>                                                
+                                    <th>{{ $all->id}}</th>     
+                                    <th>{{ $all->employee->name}}</th>   
+                                    <th>{{ $all->allowance_type}}</th>     
+                                    <th>{{ $all->allowance}}</th>
+                                    <th>{{ $all->description}}</th>                                              
                                                                
                                     <td>
-                                        <a href="{{route('leave.edit', $lev->id)}}" ><i class="glyphicon glyphicon-pencil"></i></a>
+                                        <a href="{{route('allowance.edit', $all->id)}}" ><i class="glyphicon glyphicon-pencil"></i></a>
                             
                                         <a href="javascript:void(0)" onclick="$(this).parent().find('form').submit()"><i class="fa fa-fw fa-trash-o"></i></a>
-                                        <form action="{{ route('leave.destroy', $lev->id) }}" method="post">
+                                        <form action="{{ route('allowance.destroy', $all->id) }}" method="post">
                                             @method('DELETE')
                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         </form>                                    

@@ -46,12 +46,12 @@ class ServiceRepairController extends Controller
         return view('admin.servicerepair.create')->with($arr);
     }
 
-    private function getStockPrices($stockService, $array)
+    private function getStockPrices($stockService, $stock_ids,$qty)
     {
         $price = [];
-        foreach ($array as $key => $value) {
+        foreach ($stock_ids as $key => $value) {
             $result = $stockService->getPriceById($value);
-            array_push($price,$result->sellingprice);
+            array_push($price,$result->sellingprice*$qty[$key]);
         }
          $sum = array_sum($price);
          return $sum;
@@ -59,6 +59,7 @@ class ServiceRepairController extends Controller
 
     public function store(Request $request, ServiceRepair $servicerepair,StockService $stockService,SerivcesService $serviceService)
     {
+        //dd($request->all());
         $data = $this->validate($request, [ 
             'user_id'=> 'required',
             'customervehicle_id'=>'required',
@@ -76,11 +77,12 @@ class ServiceRepairController extends Controller
 
         $service_id = $request->service_id;
         $stock_ids = $request->stock;
-        $stock_items_sum = $this->getStockPrices($stockService,$stock_ids);
+        $stock_qty = $request->qty;
+        $stock_items_sum = $this->getStockPrices($stockService,$stock_ids,$stock_qty);
         $service_price = $serviceService->getPriceById($service_id);
         $service_charge = $request->charge;     
         $fixprice = $request->fixprice;     
-        $totalservice_price = $stock_items_sum+$service_price['price']+ $service_charge + $fixprice;
+        $totalservice_price = $stock_items_sum + $service_price['price']+ $service_charge + $fixprice;
 
         $code = Helper::IDGenerator(new ServiceRepair, 'code',5,'Job');
         
@@ -99,20 +101,41 @@ class ServiceRepairController extends Controller
             'status' => ($request->status) ? 1:0,
             'is_repaircomplete' => ($request->is_repaircomplete) ? 1:0,
             'is_borrow' => ($request->is_borrow) ? 1:0,
-            'is_complete' => ($request->is_complete) ? 1:0
+            'is_complete' => ($request->is_complete) ? 1:0,
+          //  'qty' => $request->qty,
         ];
 
         $record = $servicerepair->create($data);
 
-        $record->stock()->attach($request->stock); 
+        
+        // $record->stock()->attach($request->stock);
+        $stock = $request->stock;
+        $qty = $request->qty;
+        $arr = [];
+        foreach ($stock as $key => $value) {
+            
+            $data =[
+                'stock_id'=> $stock[$key],
+                'qty'=> $qty[$key]
+            ];
+            array_push($arr,$data);
+            
+            
+        }
+        $record->stock()->sync($arr);
+        
+        
+        
         //reduce from stock
         $stock_record = ServiceRepair::with('stock')->where('id',$record->id)->first();
+        //dd($stock_record->all());
         $stockService->reduceQuontity($stock_record->stock);
 
         // send job start mail
+// dd($data);
 
-        $user_email=$request->email;        
-        Mail::to($user_email)->send(new SerRepair($record));
+        // $user_email=$request->email;        
+        // Mail::to($user_email)->send(new SerRepair($record));
 
         return redirect()->route('servicerepair.index')->with('success', 'Created successfully');
     }
@@ -157,11 +180,12 @@ class ServiceRepairController extends Controller
 
         $service_id = $request->service_id;
         $stock_ids = $request->stock;
-        $stock_items_sum = $this->getStockPrices($stockService,$stock_ids);
+        $stock_qty = $request->qty;
+        $stock_items_sum = $this->getStockPrices($stockService,$stock_ids,$stock_qty);
         $service_price = $serviceService->getPriceById($service_id);
         $service_charge = $request->charge;     
         $fixprice = $request->fixprice;     
-        $totalservice_price = $stock_items_sum+$service_price['price']+ $service_charge + $fixprice;
+        $totalservice_price = $stock_items_sum + $service_price['price']+ $service_charge + $fixprice;
 
         $servicerepair->fixprice = $request->fixprice;
         $servicerepair->service_id = $request->service_id;
@@ -170,9 +194,26 @@ class ServiceRepairController extends Controller
         $servicerepair->charge = $request->charge;
         $servicerepair->amount = $totalservice_price;
         $servicerepair->paid_amount = $request->paid_amount;
-        $servicerepair->description = $request->description;
-        $servicerepair->stock()->sync($request->stock); 
+        $servicerepair->description = $request->description; 
+
+        $stock = $request->stock;
+        $qty = $request->qty;
+        $arr = [];
+        foreach ($stock as $key => $value) {
+            
+            $data =[
+                'stock_id'=> $stock[$key],
+                'qty'=> $qty[$key]
+            ];
+            array_push($arr,$data);
+            
+            
+        }
+        $servicerepair->stock()->sync($arr);
+        
         $servicerepair->save();
+
+      
 
         $stock_record = ServiceRepair::with('stock')->where('id',$servicerepair->id)->first();
         $stockService->reduceQuontity($stock_record->stock);

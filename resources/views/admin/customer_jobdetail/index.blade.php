@@ -38,8 +38,8 @@
                                 <?php $i++;?>
                                 <tr>
                                     <td>{{ $b->id}}</td>
-                                    <td>{{ $b->users->idno}}</td>
-                                    <td>{{ $b->users->fname}} {{ $b->users->lname}}</td>
+                                    <td>{{ $b->user->idno}}</td>
+                                    <td>{{ $b->user->fname}} {{ $b->user->lname}}</td>
                                     <td>{{ $b->customervehicle->register_number }}</td>
                                     <td>{{ $b->customervehicle->brand->name}}</td>
                                     <td>{{ $b->customervehicle->bike->name}}</td>

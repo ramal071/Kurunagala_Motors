@@ -40,7 +40,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label for="fromdate">{{ __('adminstaticword.fromdate') }}:<sup class="redstar">*</sup></label>
-                        <input type="date" class="form-control" name="fromdate" id="fromdate" value="{{ $leave->fromdate }}" readonly>
+                        {{-- <input type="date" class="form-control" name="fromdate" id="fromdate" value="{{ $leave->fromdate }}" readonly> --}}
                         <input type="text" class="form-control" name="fromdate" id="fromdate" value="{{ $leave->fromdate }}" >
                     </div>          
                 
@@ -50,6 +50,18 @@
                     </div>          
                 </div>
                 <br>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <label for="leave_type">{{ __('adminstaticword.leave_type') }}:</label>
+                    <select name="leave_type"  class="form-control" id="leave_type"  value="{{ $leave->leave_type }}">
+                        <option value="half day">half day</option>
+                        <option value="full leave">full leave</option>
+                    </select>
+                    <br><br>
+                </div>  
+            </div>
+            <br>  
 
                 <div class="col-md-6">
                     <input type="submit" class="btn btn-info" value="Update">

@@ -16,6 +16,8 @@ class Employee extends Model
             'id',
             'email',
             'address',
+            'basic_salary',
+            'loan_amount',
            
     ];
 
@@ -24,11 +26,6 @@ class Employee extends Model
         return $this->belongsToMany(Role::class,
          'employee_role', 'employee_id', 'role_id')->withTimestamps();
     }
-
-    // public function servicerepairs()
-    // {
-    //     return $this->belongsToMany(ServiceRepair::class,'employee_service_repairs','employee_id','service_repair_id')->withTimestamps();
-    // }
 
     public function servicerepair()
     {
@@ -50,4 +47,13 @@ class Employee extends Model
         return $this->hasMany(Leave::class, 'employee_id' , 'id');
     }
 
+    public function loan()
+    {
+        return $this->hasMany(Loan::class, 'employee_id' , 'id');
+    }
+
+    public function allowance()
+    {
+        return $this->hasMany(Allowance::class, 'employee_id' , 'id');
+    }
 }

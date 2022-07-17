@@ -81,8 +81,8 @@ class CustomerController extends Controller
         if(Auth::check()){
           
             $user = User::where('id', Auth::User()->id)->first();
-            $servicerepair =  ServiceRepair::where('user_id', $user->id)->orderBy('id', 'desc')->get();
-            return view('customer.servicerepair',compact('user', 'servicerepair'));
+            $recordes =  ServiceRepair::where('user_id', $user->id)->orderBy('id', 'desc')->get();
+            return view('customer.servicerepair',compact('user', 'recordes'));
         }
         return Redirect::route('login');
     }

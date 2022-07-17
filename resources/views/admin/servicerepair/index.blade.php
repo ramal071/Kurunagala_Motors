@@ -24,10 +24,10 @@
                                         {{-- <th>{{__('adminstaticword.fname') }}</th> --}}
                                         <th>{{ __('adminstaticword.registernumber') }}</th>
                                         <th>{{ __('adminstaticword.stock') }} {{ __('adminstaticword.product') }}</th>
-                                        <th>{{ __('adminstaticword.service') }}</th>
-                                        {{-- <th>{{ __('adminstaticword.employee') }}</th> --}}
+                                        <th>{{ __('adminstaticword.service') }}</th>                                      
                                         <th>{{ __('adminstaticword.service') }} {{ __('adminstaticword.charge') }}</th>     
                                         <th>{{ __('adminstaticword.product') }} {{ __('adminstaticword.charge') }}</th>
+                                        <th>{{ __('adminstaticword.employee') }}</th>
                                         <th>{{ __('adminstaticword.fix') }} {{ __('adminstaticword.charge') }}</th>
                                         <th> {{ __('adminstaticword.charge') }}</th>
                                         <th>{{ __('adminstaticword.amount') }}</th>
@@ -76,7 +76,7 @@
                                                                 ->with('brand:id,name')
                                                                 ->with('bike:id,name')
                                                                 ->first();
-                                                    $selling_price += $stock['sellingprice'];
+                                                    $selling_price += $stock['sellingprice']*$stock['pivot']['qty'];
                                                 @endphp
                                                 <li>
                                                      {{$product->brand->name}} {{$product->bike->name}} {{$product->name}}
@@ -90,6 +90,7 @@
                                             <td>{{ $record['service']['price']  }}</td>
 
                                             <td>{{ $selling_price  }}</td>
+                                            <td>{{ $record['employee']['name']  }}</td>
                                             <td>{{ $record['fixprice'] }}</td>      
                                             <td>{{ $record['charge'] }}</td>                                           
                                             <td> {{$record['amount']  }}</td>

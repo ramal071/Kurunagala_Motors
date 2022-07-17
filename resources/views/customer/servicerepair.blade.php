@@ -15,7 +15,6 @@
             <div class="col-xl-40 col-lg-35">
                 <div class="profile-info-block">
                     <div class="row">
-    
                         <table class="table">
                             <thead class="thead-dark">
                                 <tr>

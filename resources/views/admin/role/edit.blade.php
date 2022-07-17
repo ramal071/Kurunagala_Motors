@@ -18,7 +18,6 @@
               {{ csrf_field() }}
                 @method('PUT')
 
-  
               <div class="row">
                 <div class="col-md-6">
                   <label for="role_name">{{ __('adminstaticword.role') }}:<sup class="redstar">*</sup></label>
@@ -33,29 +32,19 @@
                 <input type="text" class="form-control" name="role_slug" id="role_slug" value="{{ $role->slug }}">
               </div>              
             </div>  
-          </br>
+            </br>
 
-            {{-- <div class="row">
+            <div class="row">
               <div class="col-md-6">
-                <label for="roles_permissions">{{ __('adminstaticword.permission') }}:<sup class="redstar">*</sup></label>
-                <input type="text" data-role="tagsinput" name="roles_permissions" class="form-control" id="roles_permissions" value="@foreach ($role->permissions as $permission)
-                {{$permission->name. ","}}
-               @endforeach">   
-              </div>              
-            </div>  
-          </br> --}}
-
-          <div class="row">
-          <div class="col-md-6">
-            <label for="exampleInputTit1e">{{ __('adminstaticword.status') }}:</label>           
-            <li class="tg-list-item">              
-              <input class="tgl tgl-skewed" id="status" type="checkbox" name="status" {{ $role->status == '1' ? 'checked' : '' }} >
-              <label class="tgl-btn" data-tg-off="Disable" data-tg-on="Enable" for="status"></label>
-            </li>
-            <input type="hidden"  name="free" value="0" for="status" id="status">
-          </div>
-        </div>
-        </br>
+                <label for="exampleInputTit1e">{{ __('adminstaticword.status') }}:</label>           
+                <li class="tg-list-item">              
+                  <input class="tgl tgl-skewed" id="status" type="checkbox" name="status" {{ $role->status == '1' ? 'checked' : '' }} >
+                  <label class="tgl-btn" data-tg-off="Disable" data-tg-on="Enable" for="status"></label>
+                </li>
+                <input type="hidden"  name="free" value="0" for="status" id="status">
+              </div>
+            </div>
+            </br>
          
               <div class="row box-footer">
                 <button type="submit" class="btn btn-md col-lg-2 btn-primary">{{ __('adminstaticword.save') }}</button>
@@ -72,22 +61,22 @@
 @endsection
 
 @section('js_slug_page')
-    <script src="/js/admin/bootstrap-tagsinput.js">
-    </script>
+<script src="/js/admin/bootstrap-tagsinput.js">
+</script>
 
-    <script>
-        $(document).ready(function(){
-            $('#role_name').keyup(function(e){
-                var str = $('#role_name').val();
-                str = str.replace(/\W+(?!$)/g, '-').toLowerCase();//rplace stapces with dash
-                $('#role_slug').val(str);
-                $('#role_slug').attr('placeholder', str);
-            });
+<script>
+    $(document).ready(function(){
+        $('#role_name').keyup(function(e){
+            var str = $('#role_name').val();
+            str = str.replace(/\W+(?!$)/g, '-').toLowerCase();//rplace stapces with dash
+            $('#role_slug').val(str);
+            $('#role_slug').attr('placeholder', str);
         });
-        
-    </script>
+    });
+    
+</script>
 
 @endsection
 
-  @endsection
+@endsection
   

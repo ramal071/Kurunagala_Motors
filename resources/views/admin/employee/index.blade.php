@@ -17,16 +17,16 @@
           <div class="box-body">
             <div class="table-responsive">
               <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                  
-                  <tr>
-                    
+                <thead>                  
+                  <tr>                    
                     <th>#</th>
                     <th>{{ __('adminstaticword.name') }}</th>
                     <th>{{ __('adminstaticword.nickname') }}</th>
                     <th>{{ __('adminstaticword.role') }}</th>
                     <th>{{ __('adminstaticword.phone') }}</th>
                     <th>{{ __('adminstaticword.address') }}</th>
+                    <th>{{ __('adminstaticword.basic') }}</th>   
+                    <th>{{ __('adminstaticword.half_salary') }}</th>  
                     <th>{{ __('adminstaticword.employeeimage') }}</th>
                     <th>{{ __('adminstaticword.idfront') }}</th>
                     <th>{{ __('adminstaticword.idback') }}</th>
@@ -52,6 +52,8 @@
                     </td>
                     <td>{{ $e->phone }}</td>
                     <td>{{ $e->address}}</td>
+                    <td>{{ $e->basic_salary }}</td>   
+                    <td>{{ $e->half_salary }}</td>
                     <td> <img src="{{ asset('storage/employee/' .  $e->emp_image) }}" width="100px;" height="100px;" alt="Image"></td>
                     <td> <img src="{{ asset('storage/employee/' .  $e->id_front) }}" width="100px;" height="100px;" alt="Image"></td>
                     <td> <img src="{{ asset('storage/employee/' .  $e->id_back) }}" width="100px;" height="100px;" alt="Image"></td>
@@ -82,20 +84,14 @@
                       </form>
                     </td>
                   </tr>
-                
-                
                   @endforeach
                 </tbody>
               </table>
             </div>
           </div>
-          <!-- /.box-body -->
         </div>
-        <!-- /.box -->
       </div>
-      <!-- /.col -->
     </div>
-    <!-- /.row -->
   </section>
   @endsection
   

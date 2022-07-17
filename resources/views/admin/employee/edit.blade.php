@@ -112,6 +112,22 @@
                                     </div>
                                 </div>
                                 <br>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="basic_salary">{{ __('adminstaticword.basic_salary') }}:<sup
+                                                class="redstar">*</sup></label>
+                                        <input type="number" class="form-control" name="basic_salary" id="basic_salary"
+                                            value="{{ $employee->basic_salary }}">
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="half_salary">{{ __('adminstaticword.half_salary') }}:<sup
+                                                class="redstar">*</sup></label>
+                                        <input type="number" class="form-control" name="half_salary" id="half_salary"
+                                            value="{{ $employee->half_salary }}">
+                                    </div>
+                                </div>
+                                <br>
 
                                 <div class="col-md-6">
                                     <label for="exampleInputDetails">{{ __('adminstaticword.status') }}:</label>
@@ -123,6 +139,7 @@
                                     </li>
                                 </div>
                                 </br>
+
 
                                 <div class="col-md-6">
                                     <input type="submit" class="btn btn-info" value="Update">

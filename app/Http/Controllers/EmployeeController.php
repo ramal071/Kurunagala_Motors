@@ -74,6 +74,8 @@ class EmployeeController extends Controller
       
     $employee->emp_image = $file;
     $employee->id_front = $file1;
+    $employee->basic_salary = $request->basic_salary;
+    $employee->half_salary = $request->half_salary;
     $employee->id_back = $file2;
     $employee->phone = $request->phone;
     $employee->address = $request->address;
@@ -156,6 +158,8 @@ class EmployeeController extends Controller
        $employee->emp_image = $file;
        $employee->id_front = $file1;
        $employee->id_back = $file2;
+       $employee->basic_salary = $request->basic_salary;
+       $employee->half_salary = $request->half_salary;
        $employee->name = $request->name;
        $employee->nick_name = $request->nick_name;
        $employee->phone = $request->phone;

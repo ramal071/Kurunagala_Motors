@@ -16,24 +16,20 @@
                         <form id="demo-form2" method="POST" action="{{ route('salary.store')}}">
                             {{ csrf_field() }}
 
-                            {{-- <div class="row">
+                            <div class="row text-center">
                                 <div class="col-md-6">
-                                    <label for="employee">{{ __('adminstaticword.employee') }}</label>
-                                    <select name="employee_id" class="form-control js-example-basic-single col-md-7 col-xs-12">
-                                    @foreach($employee as $br)
-                                        <option value="{{$br->id}}">{{$br->name}}</option>
-                                    @endforeach
-                                    </select>
+                                    <label for="">Salery Prepairing Month</label>
+                                    <input type="date" id="calender" class="form-control" value="">
                                 </div>
-                                    
-                           
-                                <div class="col-md-6">
-                                    <label for="salary">{{ __('adminstaticword.salary') }}:<sup class="redstar">*</sup></label>
-                                    <input type="text" class="form-control" name="salary" id="salary" placeholder="Enter name" value="">
-                                 
-                                 </div>  
+                             
+                                    <div class="col-md-6">
+                                        <label for="total_salary">{{ __('adminstaticword.total_salary') }}:<sup class="redstar">*</sup></label>
+                                        <input type="number" class="form-control" name="total_salary" id="total_salary" placeholder="Enter total_salary" value="">
+                                   </div>                                               
+                               
                             </div>
-                            <br>   --}}
+                            <div class="box box-primary">
+                            </div> 
 
                             <div class="row">
                                 <div class="col-md-6">
@@ -48,49 +44,49 @@
                           
                               <div class="col-md-6">
                                 <label for="attendance">{{ __('adminstaticword.attendance') }}</label>
-                                <select name="attendance_id" id="upload_id" class="form-control js-example-basic-single col-md-7 col-xs-12" >
-                                </select>
+                                <input type="text" class="form-control" name="workdays" id="upload_id"> 
                               </div>
                             </div>
-                          <br>
+                          <br>  
+
+                             <div class="row">
+                                <div class="col-md-6">
+                                    <label for="allowance">{{ __('adminstaticword.allowance') }}:<sup class="redstar">*</sup></label>
+                                    <input type="text" class="form-control" name="allowance" id="allowance"  value="">
+                                </div> 
+                                
+                                {{-- <div class="col-md-6">
+                                    <label for="total_salary">{{ __('adminstaticword.total_salary') }}:<sup class="redstar">*</sup></label>
+                                    <input type="number" class="form-control" name="total_salary" id="total_salary" placeholder="Enter total_salary" value="">
+                                </div>   --}}
+                            </div>  
                             
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="basic">{{ __('adminstaticword.basic') }}:<sup class="redstar">*</sup></label>
-                                    <input type="text" class="form-control" name="basic" id="basic" placeholder="Enter ...." value="">
-                                </div> 
-                            
-                                <div class="col-md-6">
-                                    <label for="conveyance">{{ __('adminstaticword.conveyance') }}:<sup class="redstar">*</sup></label>
-                                    <input type="text" class="form-control" name="conveyance" id="conveyance" placeholder="Enter ..." value="">
-                                </div> 
-                            </div>
-                            <br>
-
-                            {{-- <div class="row">
-                                <div class="col-md-6">
-                                    <label for="allowance">{{ __('adminstaticword.allowance') }}:<sup class="redstar">*</sup></label>
-                                    <input type="text" class="form-control" name="allowance" id="allowance" placeholder="Enter contact" value="">
+                                    <label for="half_days">{{ __('adminstaticword.half_days') }}:<sup class="redstar">*</sup></label>
+                                    <input type="text" class="form-control" name="half_days" id="half_days" placeholder="Enter contact" value="">
                                 </div> 
                                 
                                 <div class="col-md-6">
-                                    <label for="labour_welfare">{{ __('adminstaticword.labour_welfare') }}:<sup class="redstar">*</sup></label>
-                                    <input type="text" class="form-control" name="labour_welfare" id="labour_welfare" placeholder="Enter total cost" value="">
+                                    <label for="full_leave">{{ __('adminstaticword.full_leave') }}:<sup class="redstar">*</sup></label>
+                                    <input type="number" class="form-control" name="full_leave" id="full_leave" placeholder="Enter full_leave" value="">
                                 </div>  
-                            </div> --}}                            
+                            </div> 
 
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="leave">{{ __('adminstaticword.leave') }} :<sup class="redstar">*</sup></label>
-                                    <input type="text" class="form-control" name="leave" id="leave" placeholder="Enter price" value="">
+                                    <label for="job">{{ __('adminstaticword.job_amount') }} :<sup class="redstar">*</sup></label>
+                                    <input type="text" class="form-control" name="job_amount" id="servicerepair_id" placeholder="Enter price" value="">
                                 </div>  
 
                                 <div class="col-md-6">
-                                    <label for="medical_allowance">{{ __('adminstaticword.medical_allowance') }}:<sup class="redstar">*</sup></label>
-                                    <input type="text" class="form-control" name="medical_allowance" id="medical_allowance" placeholder="Enter total cost" value="">
+                                    <label for="loan_amount">{{ __('adminstaticword.loan_amount') }}:<sup class="redstar">*</sup></label>
+                                    <input type="text" class="form-control" name="loan_amount" id="loan_amount" placeholder="Enter loan_amount" value="">
                                 </div>  
                             </div>
-                            <br>                          
+                            <br>        
+                            
+                          
                               
                             <div class="row">
                                 <div class="col-md-6">
@@ -121,6 +117,7 @@
           $('#employee_id').change(function() {
               var up = $('#upload_id').empty();
               var pr_ids = $(this).val();
+              let prev_month = $('#calender').val();
               if (pr_ids) {
                   $.ajax({
                       headers: {
@@ -129,18 +126,17 @@
                       type: "GET",
                       url: urlLike,
                       data: {
-                          prIds: pr_ids
+                          prIds: pr_ids,prev_month:prev_month
                       },
                       success: function(data) {
-                          up.append('<option value="0">Please Choose</option>');
-                          $.each(data, function(id, title) {
-                              //   console.log(data.id);
-                              up.append($('<option>', {
-                                  value: title.id,
-                                  text: title.id,
-                              }));
-                              
-                          });
+                        console.log(data);
+                         $('#upload_id').val(data['days']);
+                         $('#total_salary').val(data['basic']);
+                         $('#servicerepair_id').val(data['job_amount']);
+                         $('#loan_amount').val(data['loan_amount']);
+                         $('#half_days').val(data['halfday']);
+                         $('#full_leave').val(data['full_leave']);  
+                         $('#allowance').val(data['allowance']);
                       },
                       error: function(XMLHttpRequest, textStatus, errorThrown) {
                           console.log(XMLHttpRequest);

@@ -31,7 +31,7 @@
                 </select>
               </div>
             </div>
-          <br>
+            <br>
 
             <div class="row">
               <div class="col-md-6">
@@ -39,10 +39,10 @@
                 <input type="text" class="form-control" name="nick_name" id="exampleInputname" placeholder="Enter nick name" value="{{ old('nick_name') }}">
               </div>          
          
-                <div class="col-md-6">
-                  <label for="phone">{{ __('adminstaticword.phone') }}:<sup class="redstar">*</sup></label>
-                  <input type="tel" pattern="[0-9]{3}-[0-9]{4}-[0-9]{3}" class="form-control" name="phone" id="phone" placeholder="123-45-678" value="{{ old('phone') }}">
-                </div>          
+              <div class="col-md-6">
+                <label for="phone">{{ __('adminstaticword.phone') }}:<sup class="redstar">*</sup></label>
+                <input type="tel" pattern="[0-9]{3}-[0-9]{4}-[0-9]{3}" class="form-control" name="phone" id="phone" placeholder="123-45-678" value="{{ old('phone') }}">
+              </div>          
             </div>
             <br>
 
@@ -72,7 +72,20 @@
             </div>
             <br>
 
-            <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-6">
+                <label for="basic_salary">{{ __('adminstaticword.basic_salary') }}:<sup class="redstar">*</sup></label>
+                <input type="number" class="form-control" name="basic_salary" id="basic_salary" placeholder="Enter basic_salary " value="{{ old('basic_salary') }}">
+              </div> 
+              
+              <div class="col-md-6">
+                <label for="half_salary">{{ __('adminstaticword.half_salary') }}:<sup class="redstar">*</sup></label>
+                <input type="number" class="form-control" name="half_salary" id="half_salary" placeholder="Enter half_salary " value="{{ old('half_salary') }}">
+              </div>  
+            </div>
+            <br>
+
+            <div class="row">
               <div class="col-md-6">
                 <label for="exampleInputDetails">{{ __('adminstaticword.status') }}:</label>
                 <li class="tg-list-item">              
@@ -83,13 +96,11 @@
             </div>          
               <br>
 
-  
-            <div class="col-md-6">
-                <input type="submit" class="btn btn-info" value="Save">
-                <a href="{{route('employee.index')}}" class="btn btn-primary">Back</a>
-            </div> 
-
-
+          <div class="col-md-6">
+              <input type="submit" class="btn btn-info" value="Save">
+              <a href="{{route('employee.index')}}" class="btn btn-primary">Back</a>
+          </div> 
+          
       </form>
     </div>
   </section>  

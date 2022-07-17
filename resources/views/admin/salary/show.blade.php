@@ -131,7 +131,7 @@
                         <div class="body-section">
                             <div class="row">
                                 <div class="col-6">
-                                    <h2 class="heading">{{__('adminstaticword.job') }}: {{ $salary->id}}</h2>
+                                    <h2 class="heading">{{__('adminstaticword.job') }}: {{ $salary->slip_id}}</h2>
                                     <p class="sub-heading">Pay Sheet - {{ \Carbon\Carbon::now()->year}}/{{ \Carbon\Carbon::now()->format('M')}}  </p>
                                     <p class="sub-heading">{{__('adminstaticword.address') }}: {{ $salary->employee->address}}</h2>
                                 </div>
@@ -149,49 +149,35 @@
                             <table class="table-bordered">
                                 <thead>
                                     <tr>
-                                        <th> {{__('adminstaticword.salary') }}</th> 
-                                    <th> {{__('adminstaticword.basic') }}</th> 
-                                    <th> {{__('adminstaticword.conveyance') }}</th>   
-                                    <th> {{__('adminstaticword.allowance') }}</th>   
-                                    <th> {{__('adminstaticword.medical_allowance') }}</th>
-                                    <th> {{__('adminstaticword.leave') }}</th> 
-                                    <th> {{__('adminstaticword.labour_welfare') }}</th> 
+                                        <th>{{__('adminstaticword.worked_days') }}</th>
+                                        <th>{{__('adminstaticword.basic_salary') }}</th>
+                                        <th>{{__('adminstaticword.half_salary') }}</th>                                  
+                                        <th>{{__('adminstaticword.loan_amount') }}</th>
+                                        <th>{{__('adminstaticword.full_leave') }}</th>
+                                        <th>{{__('adminstaticword.half_days') }}</th>  
+                                        <th>{{__('adminstaticword.job_amount') }}</th>
+                                        <th>{{__('adminstaticword.allowance') }}</th>                                      
+                                        <th></th>  
                                       
                                     </tr>
                                 </thead>
                                 <tbody>
-
-                                    <?php
-                                        $a = (int)$salary->basic;
-                                        $b = (int)$salary->conveyance;
-                                        $c = (int)$salary->allowance;
-                                        $d = (int)$salary->medical_allowance;
-                                        $e = (int)$salary->leave;
-                                        $f = (int)$salary->labour_welfare;
-                                        $g = (int)$salary->salary;
-
-
-                                        $earn = $a +$b +$c +$d +$g; 
-                                        $deduction = $e + $f;
-                                        $total = $earn - $deduction;
-                                        ?>
                                     <tr>
-                                    <td>{{ $salary->salary}}</td>
-                                    <td>{{ $salary->basic}}</td>
-                                    <td>{{ $salary->conveyance}}</td>
+                                    <td>{{ $salary->worked_days}}</td>
+                                    <td>{{ $salary->employee->basic_salary}}</td>
+                                    <td>{{ $salary->employee->half_salary}}</td>
+                                    <td>{{ $salary->loan_amount}}</td>
+                                    <td>{{ $salary->full_leave}}</td>
+                                    <td>{{ $salary->half_days}}</td>
+                                    <td>{{ $salary->job_amount}}</td>
                                     <td>{{ $salary->allowance}}</td>
-                                    <td>{{ $salary->medical_allowance}}</td>
-                                    <td>{{ $salary->leave}}</td>
-                                    <td>{{ $salary->labour_welfare}}</td>
-                                   
                                     </tr>  
                                 </tbody>
                             </table>
                             <br>
                            
-                            <p class="heading">Deduction (Rs.): <?php echo $deduction ;?> </p>
-                            <p class="heading">Gross Salary (Rs.): <?php echo $total ;?> </p>
-                            <p class="heading">Net Salary (Rs.): <?php echo $earn ;?> </p>
+
+                            <p class="heading">{{__('adminstaticword.total_salary') }} (Rs.): {{ $salary->total_salary}} </p>
                         </div>     
                     </div>   
                 </body>

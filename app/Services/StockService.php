@@ -14,7 +14,7 @@ class StockService{
         foreach ($array as $key => $value) {
             $stockrecord = Stock::where('id',$value['id'])->first();
             $data = [
-                'quantity'=>$value['quantity']-1
+                'quantity'=>$value['quantity']- $value['pivot']['qty']
             ];
             $stockrecord->update($data);
         }

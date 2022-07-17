@@ -19,14 +19,16 @@
                             <thead>
                                 <tr>
                                     <th>{{__('adminstaticword.slip_id') }}</th>
-                                    <th>{{__('adminstaticword.employee') }} {{__('adminstaticword.id') }}</th>
-                                    <th>{{__('adminstaticword.salary') }}</th>
-                                    <th>{{__('adminstaticword.basic') }}</th>  
-                                    <th>{{__('adminstaticword.conveyance') }}</th>
-                                    <th>{{__('adminstaticword.allowance') }}</th>  
-                                    <th>{{__('adminstaticword.medical_allowance') }}</th>
-                                    <th>{{__('adminstaticword.leave') }}</th>  
-                                    <th>{{__('adminstaticword.labour_welfare') }}</th>         
+                                    <th>{{__('adminstaticword.employee') }}</th>
+                                    <th>{{__('adminstaticword.worked_days') }}</th>
+                                    <th>{{__('adminstaticword.basic_salary') }}</th>
+                                    <th>{{__('adminstaticword.half_salary') }}</th>                                  
+                                    <th>{{__('adminstaticword.loan_amount') }}</th>
+                                    <th>{{__('adminstaticword.full_leave') }}</th>
+                                    <th>{{__('adminstaticword.half_days') }}</th>  
+                                    <th>{{__('adminstaticword.job_amount') }}</th>
+                                    <th>{{__('adminstaticword.allowance') }}</th>                                      
+                                    <th>{{__('adminstaticword.total_salary') }}</th>         
                                     <th>{{__('adminstaticword.tool') }}</th>
                                 </tr>
                             </thead>
@@ -36,20 +38,25 @@
                             @foreach($recordes as $sal)   
                             <?php $i++; ?>         
                                 <tr>      
-                                    <td>{{ $sal->slip_id}}</td>                          
-                                    <td>{{ $sal->employee->name}}</td>                              
-                                    <td>{{ $sal->salary }}</td>
-                                    <td>{{ $sal->basic }}</td>
-                                    <td>{{ $sal->conveyance }}</td>
-                                    <td>{{ $sal->allowance }}</td>
-                                    <td>{{ $sal->medical_allowance }}</td>
-                                    <td>{{ $sal->leave }}</td>
-                                    <td>{{ $sal->labour_welfare }}</td>                                 
+                                    {{-- <td>{{ $sal->slip_id}}</td> --}}
+                                    <td>{{ $sal['slip_id'] }}</td>      
+                                    <td>{{ $sal['employee']['name'] }}</td>   
+                                    <td>{{ $sal['worked_days'] }}</td>     
+                                    <td>{{ $sal['employee']['basic_salary'] }}</td>     
+                                    <td>{{ $sal['employee']['half_salary'] }}</td>       
+                                    <td>{{ $sal['loan_amount'] }}</td>     
+                                    <td>{{ $sal['full_leave'] }}</td>      
+                                    <td>{{ $sal['half_days'] }}</td>      
+                                    <td>{{ $sal['job_amount'] }}</td>      
+                                    <td>{{ $sal['allowance'] }}</td>      
+                                
+                                    <td>{{ $sal['total_salary'] }}</td>      
+                                                               
                                     <td>
-                                        <a href="{{route('salary.edit', $sal->id)}}" ><i class="glyphicon glyphicon-pencil"></i></a>
-                                        <a href="{{route('salary.show', $sal->id)}}" ><i class="fa fa-eye"></i></a>
+                                        {{-- <a href="{{route('salary.edit', $sal['id'])}}" ><i class="glyphicon glyphicon-pencil"></i></a> --}}
+                                        <a href="{{route('salary.show', $sal['id'])}}" ><i class="fa fa-eye"></i></a>
                                         <a href="javascript:void(0)" onclick="$(this).parent().find('form').submit()"><i class="fa fa-fw fa-trash-o"></i></a>
-                                        <form action="{{ route('salary.destroy', $sal->id) }}" method="post">
+                                        <form action="{{ route('salary.destroy', $sal['id']) }}" method="post">
                                             @method('DELETE')
                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         </form>                                    
@@ -57,6 +64,22 @@
                                 </tr>
                                 @endforeach
                             </tbody>
+
+                            {{-- <tfoot>
+                                <tr>
+                                    <th></th>
+                                    <th>idno</th>
+                                    <th>name</th>
+                                    <th>email</th>
+                                    <th>contact</th>
+                                    <th>registernumber</th>                                  
+                                    <th>brand</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>                                  
+                                </tr>                              
+                            </tfoot>         --}}
+
                         </table>
                     </div>
                 </div>

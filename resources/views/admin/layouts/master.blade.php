@@ -225,6 +225,7 @@ $(document).ready(function () {
 @yield('add_new_product')
 @yield('product_sr')
 @yield('cv-range')
+@yield('add-btn')
   {{-- </script> --}} 
   
 </body>

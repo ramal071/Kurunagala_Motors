@@ -9,7 +9,7 @@
     <h3 class="box-title">{{ __('adminstaticword.serviceforjob') }}</h3>
   </div>
 
-  <form action="{{ route('service_servicerepair/search') }}" method="POST">
+  {{-- <form action="{{ route('service_servicerepair/search') }}" method="POST">
     @csrf
     <br>
     <div class="container">
@@ -31,7 +31,7 @@
         </div>
       </div>
     </div>
-  </form>
+  </form> --}}
   
 
   <div class="row">

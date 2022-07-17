@@ -22,6 +22,8 @@ class CreateEmployeesTable extends Migration
             $table->string('emp_image');
             $table->string('id_front');
             $table->string('id_back');
+            $table->string('basic_salary');
+            $table->string('half_salary');
             $table->boolean('status')->default(1);
             $table->timestamps();
         });

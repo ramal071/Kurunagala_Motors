@@ -10,9 +10,9 @@
                     <div class="box-header with-border">
                         <h3 class="box-title">{{__('adminstaticword.stock') }}</h3>
                        
-               
+                        @if (Auth::User()->role_id =="1")
                         <a href="{{ route('stock.create') }}" class="btn btn-info btn-sm">+{{__('adminstaticword.stock') }}</a>        
-                                    
+                              @endif      
                                   
                     </div>
 
@@ -55,7 +55,7 @@
                                         
                                         <td>{{ $stock->description }}</td>
 
-                                       
+                                        @if (Auth::User()->role_id =="1")
                                         <td>
                                             <a href="{{route('stock.edit', $stock->id)}}" class="btn btn-success btn-sm" ><i class="glyphicon glyphicon-pencil"></i></a>
                                         
@@ -65,6 +65,8 @@
                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                             </form>
                                         </td>
+                                        @endif
+                                        
                                     </tr>
                                     @endforeach
                                 </tbody>

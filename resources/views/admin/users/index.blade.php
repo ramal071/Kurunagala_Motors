@@ -32,7 +32,7 @@
                                 <tbody>
                                     <?php $i=0;?>
                                     @foreach ($users as $user)
-                                     {{-- @if(!\Auth::user()->hasRole('manager') && $user->hasRole('manager')) @continue; @endif   --}}
+                                     @if(!\Auth::User()->role_id =="1" && $user->role_id =="1") @continue; @endif  
                                     <?php $i++;?>
                                         <tr>
                                             <td> <?php echo $i;?> </td>
@@ -42,18 +42,6 @@
                                             <td> {{ $user->email }} </td>
                                             <td> {{ $user->contact }} </td>
                                             <td>{{ $user->role_id }}</td>
-                                       
-                                             {{-- <td>
-                                                @if ($user->permissions->isNotEmpty())
-                                                                
-                                                    @foreach ($user->permissions as $permission)
-                                                        <span class="badge badge-secondary">
-                                                            {{ $permission->name }}                                    
-                                                        </span>
-                                                    @endforeach
-                                                
-                                                @endif
-                                            </td> --}}
                                             
                                             <td>
                                                 <form action="{{ route('user.quick', $user->id) }}" method="POST">

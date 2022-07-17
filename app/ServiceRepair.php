@@ -20,7 +20,9 @@ class ServiceRepair extends Model
             'is_borrow',
             'is_complete',
             'code',
-            'fixprice'
+            'fixprice',
+            'qty',
+            'servicerepair_id'
     ];
 
     public function user()
@@ -38,10 +40,6 @@ class ServiceRepair extends Model
         return $this->belongsTo(CustomerVehicle::class, 'customervehicle_id', 'id');
     }
 
-    // public function stock()
-    // {
-    //     return $this->belongsTo(Stock::class, 'stock_id', 'id');
-    // }
 
     public function service()
     {
@@ -53,23 +51,14 @@ class ServiceRepair extends Model
         return $this->belongsTo(Employee::class, 'employee_id', 'id');
     }
 
-    // public function employee()
-    // {
-    //     return $this->belongsToMany(Employee::class, 'employee_service_repairs', 'service_repair_id','employee_id')->withTimestamps();
-    // }
-
-    // public function service()
-    // {
-    //     return $this->belongsToMany(Service::class, 'service_service_repairs', 'service_repair_id','service_id')->withTimestamps();
-    // }
 
     public function stock()
     {
-        return $this->belongsToMany(Stock::class)->withTimestamps();
+        return $this->belongsToMany(Stock::class)->withTimestamps()->withPivot('qty','service_repair_id','stock_id');
     }
 
-    // public function stockparts()
-    // {
-    // return $this->belongsToMany(Stock::class,'service_repair_stock','service_repair_id','stock_id')->withTimestamps();
-    // }
+    public function salary()
+    {
+        return $this->hasMany(Salary::class, 'servicerepair_id' , 'id');
+    }
 }

@@ -45,7 +45,6 @@ class GnrController extends Controller
         $gnr->supplier_name = $request->supplier_name;
         $gnr->contact = $request->contact;
         $gnr->email = $request->email;
-        $gnr->quantity = $request->quantity;
         $gnr->address = $request->address;
         $gnr->date = $request->date;
         $gnr->description = $request->description;
@@ -85,7 +84,6 @@ class GnrController extends Controller
         $gnr->supplier_name = $request->supplier_name;
         $gnr->contact = $request->contact;
         $gnr->email = $request->email;
-        $gnr->quantity = $request->quantity;
         $gnr->address = $request->address;
         $gnr->date = $request->date;
         $gnr->description = $request->description;

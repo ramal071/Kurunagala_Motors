@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSalariesTable extends Migration
+class CreateLoansTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,12 @@ class CreateSalariesTable extends Migration
      */
     public function up()
     {
-        Schema::create('salaries', function (Blueprint $table) {
-            $table->bigIncrements('id');  
-            $table->string('slip_id');
+        Schema::create('loans', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->unsignedBigInteger('employee_id');
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
-            $table->string('worked_days')->default(0);
-            $table->string('half_days')->default(0);
-            $table->string('full_leave')->default(0);
-            $table->string('job_amount')->default(0);
             $table->string('loan_amount')->default(0);
-            $table->string('allowance')->nullable();  
-            $table->string('total_salary')->default(0);
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }
@@ -36,6 +30,6 @@ class CreateSalariesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('salaries');
+        Schema::dropIfExists('loans');
     }
 }

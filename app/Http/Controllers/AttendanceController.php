@@ -11,7 +11,7 @@ class AttendanceController extends Controller
     public function index()
     {
         $arr['employee'] = Employee::all();
-         $arr['attendance'] = Attendance::all();
+        $arr['attendance'] = Attendance::all();
         return view('admin.attendance.index')->with($arr);
     }
 
