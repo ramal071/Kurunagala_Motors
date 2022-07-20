@@ -33,8 +33,8 @@
                                         <th>{{ __('adminstaticword.amount') }}</th>
                                         <th>{{ __('adminstaticword.paidamount') }}</th>
                                         <th>{{ __('adminstaticword.balance') }}</th>
-                                      
-                                        <th>{{ __('adminstaticword.status') }}</th>                                       
+                                        <th>{{ __('adminstaticword.status') }}</th>  
+                                        <th>{{ __('adminstaticword.remind') }}</th>                                       
                                         <th>{{ __('adminstaticword.borrow') }}</th>
                                         <th>{{ __('adminstaticword.complete') }}</th>
                                         <th>{{ __('adminstaticword.repaircomplete') }}</th>
@@ -107,6 +107,20 @@
                                                             {{ __('adminstaticword.active') }}
                                                         @else
                                                             {{ __('adminstaticword.deactive') }}
+                                                        @endif
+                                                    </button>
+                                                </form>
+                                            </td>       
+
+                                            <td>
+                                                <form action="{{ route('isremind.quick', $record['id']) }}" method="POST">
+                                                    {{ csrf_field() }}
+                                                    <button type="Submit"
+                                                        class="btn btn-xs {{ $record['is_remind'] == 1 ? 'btn-success' : 'btn-danger' }} ">
+                                                        @if ($record['is_remind'] == 1)
+                                                            {{ __('adminstaticword.remind') }}
+                                                        @else
+                                                            {{ __('adminstaticword.notremind') }}
                                                         @endif
                                                     </button>
                                                 </form>

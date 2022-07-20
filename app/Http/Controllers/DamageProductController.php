@@ -7,19 +7,32 @@ use Illuminate\Http\Request;
 use App\Stock;
 use App\Product;
 
+
 class DamageProductController extends Controller
 {
     public function index()
     {
+        $arr['stock'] = Stock::all();
+        $arr['product'] = Product::all();
         $arr['damages'] = DamageProduct::all();
+        
         return view('admin.damage.index')->with($arr);
+        
+    //     $damages = DamageProduct::with('stock:id,quantity,product_id')
+    //     ->with('product')
+    //     ->with('brand:id,code,name')
+    //      ->with('bike:id,brand_id,code,name')
+    //     ->latest()
+    //     ->get()
+    //     ->toArray();
+    //   // dd($recordes);
+
+    //     return view('admin.damage.index',compact('damages'));
     }
 
     public function create()
     {
-        $arr['product'] = Product::all();
-      
-        // $arr['stock'] = Stock::all();
+        $arr['stock'] = Stock::all();
         return view('admin.damage.create')->with($arr);
     }
 
@@ -28,10 +41,10 @@ class DamageProductController extends Controller
         $data = $this->validate($request, [ 
             'quantity'=> 'required',
             'is_return'=>'required',
-            'product_id'=>'required'
+            'stock_id'=>'required'
         ]);
 
-        $damage->product_id = $request->product_id;
+        $damage->stock_id = $request->stock_id;
         $damage->quantity = $request->quantity;
         $damage->reason = $request->reason;
         $damage->is_return = ($request->is_return) ? 1:0 ;
@@ -48,13 +61,13 @@ class DamageProductController extends Controller
     public function edit(DamageProduct $damage)
     {
         $arr['damage'] = $damage;
-        $arr['product'] = Product::all();
+        $arr['stock'] = Stock::all();
         return view('admin.damage.edit')->with($arr); 
     }
 
     public function update(Request $request, DamageProduct $damage)
     {
-        $damage->product_id = $request->product_id;
+        $damage->stock_id = $request->stock_id;
         $damage->quantity = $request->quantity;
         $damage->reason = $request->reason;
         $damage->is_return = ($request->is_return) ? 1:0 ;

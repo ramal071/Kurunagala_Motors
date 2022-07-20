@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
-
 use App\Employee;
 use App\Role;
 use Illuminate\Support\Facades\DB;
@@ -22,20 +21,21 @@ class EmployeeController extends Controller
     public function create()
     {
         $roles = Role::all();
-        // $employee = Employee::all();
         return view('admin.employee.create', compact('roles'));
     }
 
     public function store(Request $request, Employee $employee)
     {
         $data = $this->validate($request, [
-            'name'=>'required',
-            'nick_name'=>'required',
+            'name'=>'required|string|min:1|max:255',
+            'nick_name'=>'required|string|min:1|max:255',
             'emp_image'=>'required',
             'id_front'=>'required',
             'id_back'=>'required',
-            'phone'=>'required',
-            'address'=>'required',
+            'phone'=>'required|numeric',
+            'address'=>'required|string|min:1|max:255',
+            'basic_salary'=>'required',
+            'half_salary'=>'required',
             'status'=>'required',
         ]);
         
@@ -91,7 +91,7 @@ class EmployeeController extends Controller
     {
         
     }
-
+     
     public function edit(Employee $employee)
     {
         $arr['employee'] =$employee;
@@ -103,17 +103,19 @@ class EmployeeController extends Controller
                 ->select('*')
                  ->where('er.employee_id' , $employee->id)
                 ->get();
-// dd($arr['empolyee_roles']);
+    // dd($arr['empolyee_roles']);
         return view('admin.employee.edit')->with($arr);
     }
 
     public function update(Request $request, Employee $employee)
     {
         $data = $this->validate($request, [
-            'name'=>'required',
-            'nick_name'=>'required',
+            'name'=>'required|string|min:1|max:255',
+            'nick_name'=>'required|string|min:1|max:255',
             'phone'=>'required',
-            'address'=>'required',
+            'basic_salary'=>'required',
+            'half_salary'=>'required',
+            'address'=>'required|string|min:1|max:255',
         ]);
       
         if(isset($request->emp_image) && $request->emp_image->getClientOriginalName()){
@@ -176,9 +178,4 @@ class EmployeeController extends Controller
         Employee::destroy($id);
         return redirect()->route('employee.index')->with('delete','Employee deleted');
     }
-
-    // public function employeeservice(Request $request)
-    // {       
-    //     return view('admin.employeeservice.index');
-    // }
 }

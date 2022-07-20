@@ -23,15 +23,14 @@ class BrandController extends Controller
 
     public function create(brand $brand)
     {
-     //   $this->authorize('create', brand::class); //policy
         return view('admin.brand.create');
     }
 
     public function store(Request $request, Brand $brand)
     {
         $data = $this->validate($request, [
-            'code'=> 'required',
-            'name'=> 'required',
+            'code'=> 'required|string|min:1|max:255',
+            'name'=> 'required|string|min:1|max:255',
         ],
         [
             'code.required'=>'Please enter the code !!!',
@@ -53,26 +52,16 @@ class BrandController extends Controller
 
     public function edit(brand $brand)
     {
-        $this->authorize('edit', $brand); //policy
-
-    //    $arr['brand'] = $brand;
+        $arr['brand'] = $brand;
         return view('admin.brand.edit')->with($arr);
     }
 
     public function update(Request $request, brand $brand)
     {
-       //   $this->authorize('update', $brand); //policy
-
-        //  if (Gate::allows('isAdmin')) {
-        //  //   abort(403);
-        //    dd('admin');
-        // }else{
-        //     dd('not admin');
-        // }
 
         $data = $this->validate($request, [
-            'code'=> 'required',
-            'name'=> 'required',
+            'code'=> 'required|string|min:1|max:255',
+            'name'=> 'required|string|min:1|max:255',
         ],
         [
             'code.required'=>'Please enter the code !!!',
@@ -89,27 +78,7 @@ class BrandController extends Controller
 
     public function destroy(Request $request, brand $brand)
     {
-      //  $this->authorize('delete', $brand); //policy
         $brand->delete();
         return redirect()->route('brand.index')->with('delete', 'Brand deleted');
     }
-
-    // function fetch(Request $request)
-    // {
-    //     if($request->get('query'))
-    //     {
-    //         $query = $request->get('query');
-    //         $data = DB::table('brands')->where('name', 'LIKE', '%{$query}%')->get();
-    //         $output = '<ul class="dropdown-menu"
-    //         style="display:block;
-    //         position:relative"
-    //         >';
-    //         foreach ($data as $row) 
-    //         {
-    //             $output .='<li><a href="#">'.$row->name.'</a></li>';
-    //         }
-    //         $output .='<ul>';
-    //         echo $output;
-    //     }
-    // }
 }

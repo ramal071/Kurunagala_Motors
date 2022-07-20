@@ -26,10 +26,7 @@
                   @endforeach
                 </select>
               </div>
-            </div>
-          <br>
-
-            <div class="row">
+       
               <div class="col-md-6">
                 <label for="exampleInputTit1e1">{{ __('adminstaticword.bike') }}</label>
                 <select name="bike_id" id="upload_id" class="form-control js-example-basic-single col-md-7 col-xs-12" >
@@ -38,63 +35,57 @@
             </div>
           <br>
 
-        <div class="row">
-            <div class="col-md-6">
-              <label for="code">{{ __('adminstaticword.code') }}:<sup class="redstar">*</sup></label>
-              <input type="text" class="form-control" name="code" id="code" placeholder="Enter bike product code" value="" >
-            </div>          
-        </div>
-        <br>
-
-        <div class="row">
-            <div class="col-md-6">
-              <label for="name">{{ __('adminstaticword.productname') }}:<sup class="redstar">*</sup></label>
-              <input type="text" class="form-control" name="name" id="name" >
-            </div>          
-        </div>
-        <br>
-
-        <div class="row">
-          <div class="col-md-6">
-            <label for="product_image">{{ __('adminstaticword.image') }}:<sup class="redstar">*</sup></label>
-            <input type="file" class="form-control" name="product_image" id="product_image" placeholder="product image" value="">
-          </div>          
-        </div>
-        <br>
-
-        <div class="row">
-          <div class="col-md-6">
-            <label for="slug">{{ __('adminstaticword.slug') }}:</label>
-            <input type="text" class="form-control" name="slug" id="slug" >
-          </div>          
-        </div>
-        <br>
-  
-        <div class="row">
-            <div class="col-md-6">
-              <label for="description">{{ __('adminstaticword.description') }}:</label>
-              <input type="text" class="form-control" name="description" id="description" >
-            </div> 
-        </div>
-        <br>        
-        
-        <div class="col-md-6">
-          <div class="col-md-6">
-            <label for="exampleInputDetails">{{ __('adminstaticword.status') }}:</label>
-            <li class="tg-list-item">              
-              <input class="tgl tgl-skewed" id="status" type="checkbox" name="status" >
-              <label class="tgl-btn" data-tg-off="Disable" data-tg-on="Enable" for="status"></label>
-            </li>
+          <div class="row">
+              <div class="col-md-6">
+                <label for="code">{{ __('adminstaticword.code') }}:<sup class="redstar">*</sup></label>
+                <input type="text" class="form-control" name="code" id="code" placeholder="Enter bike product code" value="{{ old('code') }}" >
+              </div>          
+    
+              <div class="col-md-6">
+                <label for="name">{{ __('adminstaticword.productname') }}:<sup class="redstar">*</sup></label>
+                <input type="text" class="form-control" name="name" id="name" value="{{ old('name') }}">
+              </div>          
           </div>
-        </div>          
-          <br>  
+          <br>
 
           <div class="row">
             <div class="col-md-6">
-                <input type="submit" class="btn btn-info" value="Save">
-                <a href="{{route('brand.index')}}" class="btn btn-primary">Back</a>
-            </div> 
+              <label for="product_image">{{ __('adminstaticword.image') }}:<sup class="redstar">*</sup></label>
+              <input type="file" class="form-control" name="product_image" id="product_image" placeholder="product image" value="{{ old('product_image') }}">
+            </div>          
+
+            <div class="col-md-6">
+              <label for="slug">{{ __('adminstaticword.slug') }}:</label>
+              <input type="text" class="form-control" name="slug" id="slug" >
+            </div>          
           </div>
+          <br>
+    
+          <div class="row">
+              <div class="col-md-6">
+                <label for="description">{{ __('adminstaticword.description') }}:</label>
+                <input type="text" class="form-control" name="description" id="description" value="{{ old('description') }}">
+              </div> 
+          </div>
+          <br>        
+          
+          <div class="col-md-6">
+            <div class="col-md-6">
+              <label for="exampleInputDetails">{{ __('adminstaticword.status') }}:</label>
+              <li class="tg-list-item">              
+                <input class="tgl tgl-skewed" id="status" type="checkbox" name="status" >
+                <label class="tgl-btn" data-tg-off="Disable" data-tg-on="Enable" for="status"></label>
+              </li>
+            </div>
+          </div>          
+            <br>  
+
+            <div class="row">
+              <div class="col-md-6">
+                  <input type="submit" class="btn btn-info" value="Save">
+                  <a href="{{route('brand.index')}}" class="btn btn-primary">Back</a>
+              </div> 
+            </div>
 
       </form>
     </div>

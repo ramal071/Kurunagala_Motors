@@ -25,11 +25,12 @@ class CreateServiceRepairsTable extends Migration
             $table->unsignedBigInteger('employee_id');
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');;
             $table->string('email');
-            $table->string('charge')->nullable();
-            $table->string('fixprice')->nullable();
+            $table->decimal('charge')->nullable();
+            $table->decimal('fixprice')->nullable();
             $table->decimal('amount')->nullable();
-            $table->string('description')->nullable();;
+            $table->string('description')->nullable();
             $table->boolean('is_repaircomplete')->default(false);
+            $table->boolean('is_remind')->default(false);
             $table->boolean('is_borrow')->default(false);   
             $table->decimal('paid_amount')->nullable(); //borrowed with some amount paid
             $table->boolean('is_complete')->default(false); //if full payment ok

@@ -29,8 +29,6 @@ class SalaryController extends Controller
         return view('admin.salary.index',compact('recordes'))->with($arr);
     }
 
-  
-
     public function create()
     {
         $arr['employee'] = Employee::all();
@@ -44,12 +42,6 @@ class SalaryController extends Controller
     {
         $data = $this->validate($request, [ 
             'employee_id'=> 'required|string|max:255',
-
-        //    'conveyance'=> 'required|string|max:255',
-         //   'allowance'=> 'required|string|max:255',
-           // 'medical_allowance'=> 'required|string|max:255',
-           // 'leave'=> 'required|string|max:255',
-         //   'labour_welfare'=> 'required|string|max:255',
         ],
             [
             'employee_id.required'=>'Please enter the employee id !!!',
@@ -156,8 +148,8 @@ class SalaryController extends Controller
                     ->sum('loan_amount');
 
         $allowance = Allowance::where('employee_id',$id)
-                    ->whereBetween('created_at', [$firstday." 00:00:00", $lastday." 23:59:59"])
-                    ->sum('allowance');
+                                ->whereBetween('created_at', [$firstday." 00:00:00", $lastday." 23:59:59"])
+                                ->sum('allowance');
 
         $employee = Employee::where('id',$id)->first();
         $salary = Salary::where('id',$id)->first();
@@ -171,19 +163,15 @@ class SalaryController extends Controller
         $days = $attendance - $halfday_reduce -$fulleave;
         $days = ($days<0)? 0:$days;
 
-        //jobs
+          //jobs
         $jobs = ServiceRepair::where('employee_id',$id)
                                 ->whereBetween('created_at', [$firstday." 00:00:00", $lastday." 23:59:59"])
                                 ->sum('charge');
         //return $jobs;
-
-        // $allowance = Salary::where('employee_id',$id)
-        //                         ->whereBetween('created_at', [$firstday." 00:00:00", $lastday." 23:59:59"])
-        //                         ->sum('allowance');
         
         //  25+ days for full payment
         $basic_salery = 0;
-        if($days >=2){
+        if($days >=25){
             $basic_salery = $employee->basic_salary+$jobs+$allowance-$loan;
         }
         else{

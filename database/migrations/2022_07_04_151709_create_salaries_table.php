@@ -22,9 +22,9 @@ class CreateSalariesTable extends Migration
             $table->string('half_days')->default(0);
             $table->string('full_leave')->default(0);
             $table->string('job_amount')->default(0);
-            $table->string('loan_amount')->default(0);
-            $table->string('allowance')->nullable();  
-            $table->string('total_salary')->default(0);
+            $table->decimal('loan_amount')->default(0);
+            $table->decimal('allowance')->nullable();  
+            $table->decimal('total_salary')->default(0);
             $table->timestamps();
         });
     }

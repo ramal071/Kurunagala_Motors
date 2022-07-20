@@ -101,8 +101,58 @@
                           @endforeach 
                         </select>
                       </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-6">
+                        <td>
+                          @foreach ($servicerepair->stock as $s)
+                          <li>
+                              {{$s->product->brand->name}} {{$s->product->bike->name}} {{$s->product->name}}
+                          </li>
+                          @endforeach
+                      </td>  
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-6">
+                       
+                        <table class="table table_bordered">
+                          <thead>
+                            <tr>
+                              <th>product</th>
+                              <th>quantity</th>
+                              <th>action</th>
+                            </tr>
+                          </thead>
+
+                          <tbody>
+                            <td>
+                              <select name="stock[]" id="stock_id" class="form-control js-example-basic-single col-md-7 col-xs-12 select_dropdown" >
+                                <option value="0">--{{ __('adminstaticword.pleaseselect') }}--</option>
+                                @foreach($stock as $s)
+                                <option value="{{$s->id}}">{{$s->id}}: {{$s->sellingprice}} {{ $s->product->brand->name }} {{ $s->product->bike->name }} {{$s->product->name}}</option>
+                                @endforeach
+                              </select>
+                          </td>
+
+                            <td>
+                              <input type="number" class="form-control" name="qty[]" placeholder="Enter qty">
+                            </td>
+
+                            <td>
+                              <button type="button" class="btn btn-primary" id="add_btn"> <i class="glyphicon glyphicon-plus"></i></button>
+                            </td>
+                          </tbody>
+
+                        </table>
+
+                      </div>
+                    </div>
                   
-                      {{-- <div class="col-md-6">
+                      {{--                         
+                        <div class="col-md-6">
                           <label for="stock">{{ __('adminstaticword.stock') }}</label>
                           <select name="stock[]" class="form-control stock" multiple="multiple" >
                             <option value="">Choose stock</option>
@@ -118,56 +168,6 @@
                       
                        @foreach($stock as $s)<option value="{{ $s->id }}"@if($s->id == $servicerepair->stock_id)selected @endif>{{ $s->id }}: {{ $s->product->brand->name }} {{ $s->product->bike->name }} {{$s->product->name}}</option>@endforeach
                       --}}
-
-                      <div class="box box-primary">
-
-                        <table class="table table_bordered">
-                          <thead>
-                            <tr>
-                              <th>product</th>
-                              <th>quantity</th>
-                              <th>action</th>
-                            </tr>
-                          </thead>
-
-                          <tbody>
-                            <td>
-                              <select name="stock[]" id="stock_id" class="form-control js-example-basic-single col-md-7 col-xs-12 select_dropdown" >
-                                <option value="0">--{{ __('adminstaticword.pleaseselect') }}--</option>
-                                @foreach($stock as $s)
-                              <option value="{{ $s->id }}"               
-                                @if($s->id == $servicerepair->stock_id)
-                                selected
-                                @endif              
-                                >{{ $s->id }}: {{ $s->product->brand->name }} {{ $s->product->bike->name }} {{$s->product->name}}</option>
-                            @endforeach
-                              </select>
-
-                              {{-- 
-                                <select name="roles[]" value="{{ $employee->role_id }}"
-                                            class="form-control js-example-basic-single col-md-7 col-xs-12">
-                                            <option value="">Choose role</option>
-                                   
-                                            @foreach ($roles as $r)
-                                                <option value="{{ $r->id }}"
-                                                  {{ $r->id == $empolyee_roles[0]->role_id ? 'selected' : '' }}>
-                                                  {{ $r->name }} 
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                --}}
-                          </td>
-
-                            <td>
-                              <input type="number" class="form-control" name="qty[]" value="{{ $servicerepair->qty }}">
-                            </td>
-
-                            <td>
-                              <button type="button" class="btn btn-primary" id="add_btn"> <i class="glyphicon glyphicon-plus"></i></button>
-                            </td>
-                          </tbody>
-
-                        </table>
                                 
                
                     <div class="row">
@@ -221,8 +221,8 @@
       let length = $('.select_dropdown').length+1;
    var html='';
    html+="<tr>";
-   html+='<td><select name="stock[]" id="stock_id" class="form-control js-example-basic-single col-md-7 col-xs-12 select_dropdown" ><option value="0">--{{ __('adminstaticword.pleaseselect') }}--</option>@foreach($stock as $s)<option value="{{ $s->id }}"@if($s->id == $servicerepair->stock_id)selected @endif>{{ $s->id }}: {{ $s->product->brand->name }} {{ $s->product->bike->name }} {{$s->product->name}}</option>@endforeach</select></td>';
-   html+='<td><input type="number" class="form-control" name="qty[]" placeholder="Enter qty" value="{{ $servicerepair->qty }}"></td>';
+    html+='<td><select name="stock[]" id="stock_id" class="form-control js-example-basic-single col-md-7 col-xs-12 select_dropdown" ><option value="0">--{{ __('adminstaticword.pleaseselect') }}--</option>@foreach($stock as $s)<option value="{{$s->id}}">{{$s->id}}: {{$s->sellingprice}} {{ $s->product->brand->name }} {{ $s->product->bike->name }} {{$s->product->name}}</option> @endforeach</select></td>';
+   html+='<td><input type="number" class="form-control" name="qty[]" placeholder="Enter qty"></td>';
    html+='<td><button type="button" class="btn btn-primary" id="remove"> <i class="glyphicon glyphicon-remove"></i></button></td>';
    html+="</tr>";
    $('tbody').append(html);

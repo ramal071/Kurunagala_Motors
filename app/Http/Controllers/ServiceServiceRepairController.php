@@ -41,33 +41,33 @@ class ServiceServiceRepairController extends Controller
 
     public function search(Request $request)
     {
-        $arr['servicerepair'] = ServiceRepair::all();  
-        $arr['service'] = Service::all();  
+        // $arr['servicerepair'] = ServiceRepair::all();  
+        // $arr['service'] = Service::all();  
 
-        if ($request->ajax()) {
+        // if ($request->ajax()) {
 
-            if ($request->input('start_date') && $request->input('end_date')) {
+        //     if ($request->input('start_date') && $request->input('end_date')) {
 
-                $start_date = Carbon::parse($request->input('start_date'));
-                $end_date = Carbon::parse($request->input('end_date'));
+        //         $start_date = Carbon::parse($request->input('start_date'));
+        //         $end_date = Carbon::parse($request->input('end_date'));
 
-                if ($end_date->greaterThan($start_date)) {
-                    $servicerepair = servicerepair::whereBetween('created_at', [$start_date, $end_date])->get();
-                } else {
-                    $servicerepair = servicerepair::latest()->get();
-                }
-            } else {
-                $servicerepair = servicerepair::latest()->get();
-            }
+        //         if ($end_date->greaterThan($start_date)) {
+        //             $servicerepair = servicerepair::whereBetween('created_at', [$start_date, $end_date])->get();
+        //         } else {
+        //             $servicerepair = servicerepair::latest()->get();
+        //         }
+        //     } else {
+        //         $servicerepair = servicerepair::latest()->get();
+        //     }
 
-            return response()->json([
-                'servicerepair' => $servicerepair
-            ]);
-        } else {
-            abort(403);
-        }
+        //     return response()->json([
+        //         'servicerepair' => $servicerepair
+        //     ]);
+        // } else {
+        //     abort(403);
+        // }
 
-        return view('admin.service_servicerepair.search')->with($arr);    
+        // return view('admin.service_servicerepair.search')->with($arr);    
     }
 
     public function store(Request $request)

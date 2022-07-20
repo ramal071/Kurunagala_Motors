@@ -41,7 +41,7 @@
          
               <div class="col-md-6">
                 <label for="phone">{{ __('adminstaticword.phone') }}:<sup class="redstar">*</sup></label>
-                <input type="tel" pattern="[0-9]{3}-[0-9]{4}-[0-9]{3}" class="form-control" name="phone" id="phone" placeholder="123-45-678" value="{{ old('phone') }}">
+                <input type="tel" pattern="[0-9]{10}" class="form-control" name="phone" id="phone" placeholder="0454554678" value="{{ old('phone') }}">
               </div>          
             </div>
             <br>

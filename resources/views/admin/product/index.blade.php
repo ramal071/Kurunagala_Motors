@@ -46,19 +46,6 @@
                                         <td>{{ $pr->slug }}</td>
                                         <td> <img src="{{ asset('storage/product/' .  $pr->product_image) }}" width="100px;" height="100px;" alt="Image"></td>
                                         <td>{{ $pr->description }}</td>
-         
-                                        <td>    
-                                            <form action="{{ route('product.quick', $pr->id) }}" method="POST">
-                                              {{ csrf_field() }}
-                                              <button type="Submit" class="btn btn-xs {{ $pr->status ==1 ? 'btn-success' : 'btn-danger' }} "> 
-                                                @if ($pr->status ==1)
-                                                {{__('adminstaticword.active') }}         
-                                                @else
-                                                {{__('adminstaticword.deactive') }} 
-                                                @endif
-                                              </button>
-                                            </form>                                          
-                                        </td>  
                       
                                         <td>
                                        

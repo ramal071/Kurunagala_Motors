@@ -26,10 +26,11 @@ class GnrController extends Controller
     public function store(Request $request, Gnr $gnr)
     {
         $data = $this->validate($request, [ 
-            'supplier_name'=> 'required',
+            'supplier_name'=> 'required|string|min:1|max:255',
             'product_id'=>'required',
-       
-           
+            'contact'=>'required',
+            'email'=>'required',
+            'address'=>'required|string|min:1|max:255',
         ],
             [
             'supplier_name.required'=>'Please enter the supplier name !!!',
@@ -68,10 +69,8 @@ class GnrController extends Controller
     public function update(Request $request, Gnr $gnr)
     {
         $data = $this->validate($request, [ 
-            'supplier_name'=> 'required',
+            'supplier_name'=> 'required|string|min:1|max:255',
             'product_id'=>'required',
-       
-           
         ],
             [
             'supplier_name.required'=>'Please enter the supplier name !!!',

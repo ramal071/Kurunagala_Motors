@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Registerd;
 
-
 class UsersController extends Controller
 {
     public function index()
@@ -23,21 +22,10 @@ class UsersController extends Controller
     public function create(Request $request, User $user)
     {
 
-        // if($request->ajax()){
-        //     $role = Role::where('id', $request->role_id)->first();
-        //     $permissions = $role->permissions;
-
-        //     return $permissions;
-        // }
-
         $arr['user'] = $user;
         $arr['role'] = Role::all();
-        // $arr['permission'] = Permission::all();
 
         return view('admin.users.create')->with($arr);
-
-        // $arr['role'] = Role::all();
-        // return view('admin.users.create')->with($arr);
     }
 
     public function store(Request $request, User $user)
@@ -65,19 +53,7 @@ class UsersController extends Controller
         $user->password =  Hash::make($request->password);
       
         $user->save();
-        //  $user->permissions()->attach($request->permission);   
-        // if($request->role !=null){
-        //     $user->role()->attach($request->role);        
-        //     $user->save();
-        // }
-
-        // if($request->permissions != null){            
-        //     foreach ($request->permissions as $permission) {
-        //         $user->permissions()->attach($permission);
-        //         $user->save();
-        //     }
-        // }
-      //  $user = $this->index($request, null);
+      
         $user_email=$request->email;
         Mail::to($user_email)->send(new Registerd($user));
 
@@ -90,28 +66,8 @@ class UsersController extends Controller
     }
 
     public function edit(User $user)
-    {
-    //    $arr['user'] = $user;
-        // $role = Role::get();
-        // $userRole = $user->role->first();
-        // if($userRole != null){
-        //     $rolePermissions = $userRole->allRolePermissions;
-        // }else{
-        //     $rolePermissions = null;
-        // }
-        // $userPermissions = $user->permissions;
-
-
-        // return view('admin.users.edit', [
-        //     'user'=> $user,
-        //     'role'=>$role,
-       
-       
-        // ]);
-
-        
+    {        
         $arr['user'] = $user;
-        // $arr['permission'] = Permission::all();
         $arr['role'] = Role::all();
 
         return view('admin.users.edit')->with($arr);
@@ -125,7 +81,6 @@ class UsersController extends Controller
             'email'=>'required|email',
             'idno'=>'required',
             'contact'=>'required',
-            // 'password'=>'confirmed',
         ]);
        // dd($request);
 
@@ -140,19 +95,6 @@ class UsersController extends Controller
           $user->password = Hash::make($request->password);
        }
        $user->save();
-     //  $user->permissions()->attach($permission);
-       
-    //    $user->permissions()->detach();
-    // $user->permissions()->sync($request->permission); 
-
- 
-    //    if($request->permissions != null){            
-    //         foreach ($request->permissions as $permission) {
-    //          $user->permissions()->attach($permission);
-    //          $user->save();
-    //     }
-    // }
-
        return redirect('/users');
     }
 

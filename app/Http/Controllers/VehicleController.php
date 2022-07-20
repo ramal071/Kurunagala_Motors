@@ -22,8 +22,8 @@ class VehicleController extends Controller
     public function store(Request $request, Vehicle $vehicle)
     {
         $data = $this->validate($request, [
-            'code'=> 'required',
-            'name'=> 'required',
+            'code'=> 'required|string|min:1|max:255',
+            'name'=> 'required|string|min:1|max:255',
         ],
         [
             'code.required'=>'Please enter the code !!!',
@@ -51,8 +51,8 @@ class VehicleController extends Controller
     public function update(Request $request, vehicle $vehicle)
     {
         $data = $this->validate($request, [
-            'code'=> 'required',
-            'name'=> 'required',
+            'code'=> 'required|string|min:1|max:255',
+            'name'=> 'required|string|min:1|max:255',
         ],
         [
             'code.required'=>'Please enter the code !!!',

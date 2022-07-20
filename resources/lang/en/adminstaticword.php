@@ -103,6 +103,8 @@ return [
     'productforjob' => 'Product For Job',
     'jobdetails' => 'Job Details',
     'completejob' => 'Complete Job',
+    'remind' => 'Remind',
+    'notremind' => 'Not Remind' ,
 
     'job' => 'Job',
     'jobid' => 'Job ID',
@@ -112,6 +114,7 @@ return [
 
     'borrow' => 'Borrow',
     'notborrow' => 'Not Borrow',
+    'payment' => 'Payment',
     'halfpayment' => 'Half Payment',
     'fullpayment' => 'Full Payment',
     'notcomplete' => 'Not Complete',
@@ -161,6 +164,7 @@ return [
     'proformance' => 'Employee Proformance',
     'profit' => 'Profit',
     'income' => 'Income',
+    'total_income' => 'Total Income', 
     'search' => 'Search',
     'day' => 'Day',
     'from' => 'From',
@@ -199,5 +203,5 @@ return [
     'loan_amount' => 'Loan Amount', 
     'loan' => 'Loan',
     'full_leave' => 'Full Leave',
-
+    'income' => 'Income', 
 ];

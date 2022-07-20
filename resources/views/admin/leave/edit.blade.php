@@ -38,16 +38,15 @@
                 <br>
 
                 <div class="row">
-                    <div class="col-md-6">
-                        <label for="fromdate">{{ __('adminstaticword.fromdate') }}:<sup class="redstar">*</sup></label>
-                        {{-- <input type="date" class="form-control" name="fromdate" id="fromdate" value="{{ $leave->fromdate }}" readonly> --}}
-                        <input type="text" class="form-control" name="fromdate" id="fromdate" value="{{ $leave->fromdate }}" >
-                    </div>          
-                
-                    <div class="col-md-6">
-                        <label for="todate">{{ __('adminstaticword.todate') }}:<sup class="redstar">*</sup></label>
-                        <input type="date" class="form-control" name="convetodateyance" id="todate" value="{{ $leave->todate }}">
-                    </div>          
+                  <div class="col-md-6">
+                      <label for="fromdate">{{ __('adminstaticword.fromdate') }}:<sup class="redstar">*</sup></label>
+                      <input type="date" class="form-control" name="fromdate" id="fromdate" value="{{ $leave->fromdate }}" >
+                  </div>          
+              
+                  <div class="col-md-6">
+                      <label for="todate">{{ __('adminstaticword.todate') }}:<sup class="redstar">*</sup></label>
+                      <input type="date" class="form-control" name="todate" id="todate" value="{{ $leave->todate }}">
+                  </div>          
                 </div>
                 <br>
 

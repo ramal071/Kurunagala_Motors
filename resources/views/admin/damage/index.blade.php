@@ -32,7 +32,7 @@
                                         <?php $i++;?>
                                     <tr>
                                         <td><?php echo $i;?></td>
-                                        <td>{{ $damage->product_id }}</td>
+                                        <td> {{$damage->stock->product->brand->name}} {{$damage->stock->product->bike->name}} {{$damage->stock->product->name}}</td>
                                         <td>{{ $damage->quantity }}</td>
                                         <td>{{ $damage->reason }}</td>
                                         

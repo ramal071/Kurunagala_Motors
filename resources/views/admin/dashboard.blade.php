@@ -71,7 +71,7 @@
           </div>
         </div>
 
-        {{-- <!-- ./col -->
+        <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-yellow">
@@ -95,7 +95,32 @@
             </div>
             <a href="{{url('bike')}}" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
           </div>
-        </div> --}}
+        </div>
+
+    
+         <div class="col-lg-3 col-xs-6">
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <h3>
+              @php
+              $brand = App\brand::get();
+              if(count($brand)>0){
+                echo count($brand);
+              }
+              else
+              {
+                echo "0";
+              }
+          @endphp
+              </h3>
+              <p>{{ __('adminstaticword.brand') }}</p>
+            </div>
+            <div class="icon">
+              <i class="flaticon-book"></i>
+            </div>
+            <a href="{{url('brand')}}" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
 
          <!-- ./col -->
          <div class="col-lg-3 col-xs-6">
@@ -175,12 +200,12 @@
         </div>
 
         <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
+        {{-- <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-orange">
             <div class="inner">
               <h3>
-         0
+  
               </h3>
               <p>{{ __('adminstaticword.income') }}</p>
             </div>
@@ -206,7 +231,8 @@
             </div>
             <a href="" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
           </div>
-        </div>
+        </div> --}}
+
         <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->

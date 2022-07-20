@@ -10,9 +10,6 @@
             <div class="box box-primary">  {{-- red line --}}
                 <div class="box-header with-border">
                     <h3 class="box-title"> {{ Auth::User()->fname }} {{__('adminstaticword.pendingpayment') }}</h3>
-                    
-                    <a href="{{ route('customerpendingpayment.create') }}" class="btn btn-info btn-sm">+ {{__('adminstaticword.pendingpayment') }}</a>        
-
                 </div>
 
                 <div class="box-body">
@@ -28,9 +25,13 @@
                                     <th>{{__('adminstaticword.email') }}</th>
                                     <th>{{__('adminstaticword.contact') }}</th>
                                     <th>{{__('adminstaticword.servicetype') }}</th>
-                                    <th>{{__('adminstaticword.amount') }}</th>                  
+                                    <th>{{__('adminstaticword.amount') }}</th> 
+                                    <th>{{__('adminstaticword.paidamount') }}</th>          
+                                    <th>{{__('adminstaticword.balance') }}</th>     
+                                              
                                     <th>{{__('adminstaticword.repaircomplete') }}</th>
-                                    <th>{{__('adminstaticword.complete') }}</th>
+                                    <th>{{ __('adminstaticword.remind') }}</th>            
+                                    <th>{{__('adminstaticword.payment') }} {{__('adminstaticword.complete') }}</th>
                                 </tr>
                             </thead>
 
@@ -48,7 +49,9 @@
                                     <td>{{ $b->contact}}</td>                                    
                                     <td>{{ $b->name}}</td>
                                     <td>{{ $b->amount }}</td>
-                                    {{-- <td>{{ $b->is_repaircomplete }}</td> --}}
+                                    <td>{{ $b->paid_amount }}</td>
+                                    <td>{{ $b->amount - $b->paid_amount }}</td>
+                                 
                                     <td>
                                         <button type="Submit" class="btn btn-xs {{ $b->is_repaircomplete ==1 ? 'btn-success' : 'btn-danger' }} "> 
                                         @if ($b->is_repaircomplete ==1)
@@ -58,6 +61,21 @@
                                         @endif
                                         </button>   
                                     </td>  
+
+                                    <td>
+                                
+                                            <button type="Submit"
+                                                class="btn btn-xs {{  $b->is_remind ==1? 'btn-success' : 'btn-danger' }} ">
+                                                @if ( $b->is_remind ==1)
+                                                    {{ __('adminstaticword.remind') }}
+                                                @else
+                                                    {{ __('adminstaticword.notremind') }}
+                                                @endif
+                                            </button>
+                                        </form>
+                                    </td> 
+                                    
+
                                     
                                     <td>                                       
                                         <button type="Submit" class="btn btn-xs {{ $b->is_complete ==1 ? 'btn-success' : 'btn-danger' }} "> 

@@ -17,7 +17,7 @@ class CreateLoansTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('employee_id');
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
-            $table->string('loan_amount')->default(0);
+            $table->decimal('loan_amount')->default(0);
             $table->string('description')->nullable();
             $table->timestamps();
         });

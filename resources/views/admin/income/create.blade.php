@@ -1,5 +1,5 @@
 @extends('admin/layouts.master')
-@section('title', 'Create Salary Payment')
+@section('title', 'Create income ')
 @section('body')
 @include('admin.message')
 
@@ -8,23 +8,23 @@
         <div class="col-xs-12">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">{{__('adminstaticword.salary') }}</h3>
+                    <h3 class="box-title">{{__('adminstaticword.income') }}</h3>
                 </div>
 
                 <div class="box-body">
                     <div class="form-group">
-                        <form id="demo-form2" method="POST" action="{{ route('salary.store')}}">
+                        <form id="demo-form2" method="POST" action="{{ route('income.store')}}">
                             {{ csrf_field() }}
 
                             <div class="row text-center">
                                 <div class="col-md-6">
-                                    <label for="">Salery Prepairing Month</label>
+                                    <label for="">income Prepairing Month</label>
                                     <input type="date" id="calender" class="form-control" value="">
                                 </div>
                              
                                     <div class="col-md-6">
-                                        <label for="total_salary">{{ __('adminstaticword.total_salary') }}:<sup class="redstar">*</sup></label>
-                                        <input type="number" class="form-control" name="total_salary" id="total_salary" readonly value="">
+                                        <label for="total_income">{{ __('adminstaticword.total_income') }}:<sup class="redstar">*</sup></label>
+                                        <input type="number" class="form-control" name="total_income" id="total_income" placeholder="Enter total_income" value="">
                                    </div>                                               
                                
                             </div>
@@ -34,25 +34,28 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="employee">{{ __('adminstaticword.name') }}:<sup class="redstar">*</sup></label>
-                                    <select name="employee_id" id="employee_id" class="form-control js-example-basic-single col-md-7 col-xs-12" >
+                                    <select name="code" id="code" class="form-control js-example-basic-single col-md-7 col-xs-12" >
                                         <option value="0">{{ __('adminstaticword.pleaseselect') }}</option>
-                                        @foreach($employee as $employee)
-                                        <option value="{{$employee->id}}">{{$employee->name}}</option>
+                                        @foreach($servicerepair as $servicerepair)
+                                        <option value="{{$servicerepair->id}}">{{$servicerepair->code}}</option>
                                         @endforeach
                                     </select>
                                  </div>  
                           
                               <div class="col-md-6">
-                                <label for="attendance">{{ __('adminstaticword.attendance') }}</label>
-                                <input type="text" class="form-control" name="workdays" id="upload_id" readonly> 
+                                <label for="dealerprice">{{ __('adminstaticword.dprice') }}</label>
+                                <input type="text" class="form-control" name="dealerprice" id="dealerprice"> 
                               </div>
                             </div>
                           <br>  
 
                              <div class="row">
                                 <div class="col-md-6">
-                                    <label for="allowance">{{ __('adminstaticword.allowance') }}:<sup class="redstar">*</sup></label>
-                                    <input type="text" class="form-control" name="allowance" id="allowance" readonly value="">
+                                    {{-- <label for="price">{{ __('adminstaticword.price') }}:<sup class="redstar">*</sup></label>
+                                    <input type="text" class="form-control" name="price" id="upload_id"  value=""> --}}
+                                    <label for="exampleInputTit1e1">{{ __('adminstaticword.price') }}</label>
+                                    <select name="price" id="upload_id" class="form-control js-example-basic-single col-md-7 col-xs-12" >
+                                    </select>
                                 </div> 
                                 
                                 {{-- <div class="col-md-6">
@@ -63,35 +66,43 @@
                             
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="half_days">{{ __('adminstaticword.half_days') }}:<sup class="redstar">*</sup></label>
-                                    <input type="text" class="form-control" name="half_days" id="half_days" readonly value="">
+                                    <label for="charge">{{ __('adminstaticword.charge') }}:<sup class="redstar">*</sup></label>
+                                    <input type="text" class="form-control" name="charge" id="charge" value="">
                                 </div> 
                                 
                                 <div class="col-md-6">
                                     <label for="full_leave">{{ __('adminstaticword.full_leave') }}:<sup class="redstar">*</sup></label>
-                                    <input type="number" class="form-control" name="full_leave" id="full_leave" readonly value="">
+                                    <input type="number" class="form-control" name="full_leave" id="full_leave" placeholder="Enter full_leave" value="">
                                 </div>  
                             </div> 
 
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="job">{{ __('adminstaticword.job_amount') }} :<sup class="redstar">*</sup></label>
-                                    <input type="text" class="form-control" name="job_amount" id="servicerepair_id" value="" readonly>
+                                    <label for="fixprice">{{ __('adminstaticword.fixprice') }} :<sup class="redstar">*</sup></label>
+                                    <input type="text" class="form-control" name="fixprice" id="fixprice" placeholder="Enter fixprice" value="">
                                 </div>  
 
                                 <div class="col-md-6">
-                                    <label for="loan_amount">{{ __('adminstaticword.loan_amount') }}:<sup class="redstar">*</sup></label>
-                                    <input type="text" class="form-control" name="loan_amount" id="loan_amount" value="" readonly>
+                                    <label for="sellingprice">{{ __('adminstaticword.sprice') }}:<sup class="redstar">*</sup></label>
+                                    <input type="text" class="form-control" name="sellingprice" id="sellingprice"  value="">
+
+                                    
                                 </div>  
                             </div>
                             <br>        
                             
-                          
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="description">{{ __('adminstaticword.description') }} :<sup class="redstar">*</sup></label>
+                                    <input type="text" class="form-control" name="description" id="description" placeholder="Enter description" value="">
+                                </div>   
+                            </div>
+                            <br>   
                               
                             <div class="row">
                                 <div class="col-md-6">
                                     <input type="submit" class="btn btn-info" value="Save">
-                                    <a href="{{route('salary.index')}}" class="btn btn-primary">Back</a>
+                                    <a href="{{route('income.index')}}" class="btn btn-primary">Back</a>
                                 </div>
                             </div>
                             <br>
@@ -107,15 +118,15 @@
 
 
 
-@section('salary')
+@section('income')
 <script>
-  (function($) {
+    (function($) {
       "use strict";
-
+    
       $(function() {
-          var urlLike = '{{ route('salary-dropdown') }}';
-          $('#employee_id').change(function() {
-              var up = $('#upload_id').empty();
+        var urlLike = '{{ route('income-dropdown') }}';
+        $('#code').change(function() {
+            var up = $('#upload_id').empty();
               var pr_ids = $(this).val();
               let prev_month = $('#calender').val();
               if (pr_ids) {
@@ -130,13 +141,8 @@
                       },
                       success: function(data) {
                         console.log(data);
-                         $('#upload_id').val(data['days']);
-                         $('#total_salary').val(data['basic']);
-                         $('#servicerepair_id').val(data['job_amount']);
-                         $('#loan_amount').val(data['loan_amount']);
-                         $('#half_days').val(data['halfday']);
-                         $('#full_leave').val(data['full_leave']);  
-                         $('#allowance').val(data['allowance']);
+                         $('#upload_id').val(data['price']);
+                     
                       },
                       error: function(XMLHttpRequest, textStatus, errorThrown) {
                           console.log(XMLHttpRequest);
@@ -145,9 +151,9 @@
               }
           });
       });
-
-  })(jQuery);
-</script>
+    
+    })(jQuery);
+    </script> 
 
 @endsection
  

@@ -17,7 +17,7 @@ class CreateServicesTable extends Migration
             $table->bigIncrements('id');
             $table->string('code');
             $table->string('name');    
-            $table->string('price')->nullable();  
+            $table->decimal('price')->default(0); 
             $table->string('description')->nullable();  
             $table->timestamps();
         });

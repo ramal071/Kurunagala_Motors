@@ -28,8 +28,8 @@ class AllowanceController extends Controller
     {
         $data = $this->validate($request, [ 
             'employee_id'=> 'required',
-            'allowance'=>'required',
-            'allowance_type'=>'required',
+            'allowance'=>'required|string|max:255',
+            'allowance_type'=>'required|string|max:255',
         ],
             [
             'employee_id.required'=>'Please enter the employee !!!',
@@ -62,8 +62,8 @@ class AllowanceController extends Controller
     {
         $data = $this->validate($request, [ 
             'employee_id'=> 'required',
-            'allowance'=>'required',
-            'allowance_type'=>'required',
+            'allowance'=>'required|max:255',
+            'allowance_type'=>'required|string|max:255',
         ],
             [
             'employee_id.required'=>'Please enter the employee !!!',

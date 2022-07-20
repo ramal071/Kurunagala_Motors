@@ -7,6 +7,7 @@ use App\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use DateTime;
+use Carbon\Carbon;
 
 class LeaveController extends Controller
 {
@@ -16,30 +17,21 @@ class LeaveController extends Controller
         $arr['leaves'] = Leave::all();
         $arr['employee'] = Employee::all(); 
         return view('admin.leave.index')->with($arr);
-
-//         $leaves = DB::table('leaves')
-//                     ->join('employees', 'employees.id', '=', 'leaves.employee_id')
-//                     ->select('leaves.*', 'employees.*')
-//                     ->get();
-// // dd($leaves);
-//        return view('admin.leave.index',compact('leaves'))->with($arr);
   
     }
 
     public function create(Request $request)
     {
         $arr['employee'] = Employee::all();
-
         return view('admin.leave.create')->with($arr);
     }
 
     public function store(Request $request, Leave $leave)
     {
         $request->validate([
-            // 'leave_type'   => 'required|string|max:255',
+            'leave_type'   => 'required|string|max:255',
             'from_date'    => 'required|string|max:255',
             'to_date'      => 'required|string|max:255',
-            // 'leave_reason' => 'required|string|max:255',
         ]);
 
       
@@ -59,8 +51,8 @@ class LeaveController extends Controller
             $leaves->leave_reason  = $request->leave_reason;
             $leaves->save();
             
-           
-            return redirect()->back();
+            return redirect()->route('leave.index')->with('success','Created new leave successfully');
+
         } catch(\Exception $e) {
            
             return redirect()->back();

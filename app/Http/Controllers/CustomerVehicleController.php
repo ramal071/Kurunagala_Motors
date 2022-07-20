@@ -51,11 +51,6 @@ class CustomerVehicleController extends Controller
         //     ->to('testramal071@gmail.com', 'Code Online')
         //     ->subject('Your bike registered');
         // });  Auth::user()->email;
-
-
-        // $user_email=$request->$customervehicle->email;
-        // Mail::to($user_email)->send(new CusVehicle($customervehicle));
-
         return redirect()->route('customervehicle.index')->with('success', 'Created successfully');
     }
 
@@ -108,19 +103,5 @@ class CustomerVehicleController extends Controller
 
         return response()->json($upload);
     }
-
-    // public function search(Request $request)
-    // {
-    //     // $arr['servicerepair'] = ServiceRepair::all();  
-    //    //  $arr['customerVehicle'] = customerVehicle::all();  
-
-    //     $fromDate = $request->input('fromDate');
-    //     $toDate = $request->input('toDate');
-
-    //     $arr = CustomerVehicle::whereBetween('created_at',[$fromDate,$toDate])->get()->toArray();
-
-
-    // //     return view('admin.customervehicle.index')->with('arr', $arr);
-    //  }
        
 }

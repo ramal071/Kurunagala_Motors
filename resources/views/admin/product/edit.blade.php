@@ -28,88 +28,78 @@
                     @endforeach 
                   </select>
                 </div>
+         
+                <div class="col-md-6">
+                  <label for="exampleInputTit1e1">{{ __('adminstaticword.bike') }}</label>
+                  <select name="bike_id" id="upload_id" class="form-control js-example-basic-single">
+                    @php
+                      $bike = App\Bike::all();
+                    @endphp  
+                    @foreach($bike as $caat)
+                      <option {{ $product->bike_id == $caat->id ? 'selected' : "" }} value="{{ $caat->id }}">{{ $caat->name }}</option>
+                    @endforeach 
+                  </select>
+                </div>
               </div>
-            <br>        
-             
-              
-          <div class="row">
-            <div class="col-md-6">
-              <label for="exampleInputTit1e1">{{ __('adminstaticword.bike') }}</label>
-              <select name="bike_id" id="upload_id" class="form-control js-example-basic-single">
-                @php
-                  $bike = App\Bike::all();
-                @endphp  
-                @foreach($bike as $caat)
-                  <option {{ $product->bike_id == $caat->id ? 'selected' : "" }} value="{{ $caat->id }}">{{ $caat->name }}</option>
-                @endforeach 
-              </select>
-            </div>
-          </div>
-        <br>      
+            <br>      
 
-        <div class="row">
-            <div class="col-md-6">
-              <label for="code">{{ __('adminstaticword.code') }}:<sup class="redstar">*</sup></label>
-              <input type="text" class="form-control" name="code" id="code" value=" {{ $product->code }}">
-            </div>          
-        </div>
-        <br>
-
-        <div class="row">
-            <div class="col-md-6">
-              <label for="name">{{ __('adminstaticword.productname') }}:<sup class="redstar">*</sup></label>
-              <input type="text" class="form-control" name="name" id="name" value=" {{ $product->name }}">
-            </div>          
-        </div>
-        <br>
-
-        <div class="row">
-          <div class="col-md-6">
-            <label for="slug">{{ __('adminstaticword.slug') }}:<sup class="redstar">*</sup></label>
-            <input type="text" class="form-control" name="slug" id="slug" value=" {{ $product->slug }}">
-          </div>          
-        </div>
-        <br>
-
-        <div class="row">
-          <div class="col-md-6">
-            <label for="exampleInputTit1e">{{ __('adminstaticword.productimage') }}:<sup class="redstar">*</sup></label>
-            <input type="file" class="form-control" name="product_image" id="product_image">
-            @if ($product->product_image)
-            <div class="col-md-3"></div>
-            <div class="col-md-9">
-              <img src="{{ asset('storage/product/'.$product->product_image) }}" style="width: 150px;">
-            </div>
-        @endif
-          </div>          
-      </div>
-      <br>
-  
-        <div class="row">
-            <div class="col-md-6">
-              <label for="description">{{ __('adminstaticword.description') }}:</label>
-              <input type="text" class="form-control" name="description" id="description" value=" {{ $product->description }}">
-            </div> 
-        </div>
-        <br>        
+            <div class="row">
+                <div class="col-md-6">
+                  <label for="code">{{ __('adminstaticword.code') }}:<sup class="redstar">*</sup></label>
+                  <input type="text" class="form-control" name="code" id="code" value=" {{ $product->code }}">
+                </div>          
         
-        <div class="col-md-6">
-          <div class="col-md-6">
-            <label for="exampleInputDetails">{{ __('adminstaticword.status') }}:</label>
-            <li class="tg-list-item">              
-              <input class="tgl tgl-skewed" id="status" type="checkbox" name="status"  {{ $product->status == '1' ? 'checked' : '' }}>
-              <label class="tgl-btn" data-tg-off="Disable" data-tg-on="Enable" for="status"></label>
-            </li>
-          </div>
-        </div>          
-          <br>  
+                <div class="col-md-6">
+                  <label for="name">{{ __('adminstaticword.productname') }}:<sup class="redstar">*</sup></label>
+                  <input type="text" class="form-control" name="name" id="name" value=" {{ $product->name }}">
+                </div>          
+            </div>
+            <br>
 
-          <div class="row">
-            <div class="col-md-6">
-                <input type="submit" class="btn btn-info" value="Update">
-                <a href="{{route('product.index')}}" class="btn btn-primary">Back</a>
-            </div> 
+            <div class="row">
+              <div class="col-md-6">
+                <label for="slug">{{ __('adminstaticword.slug') }}:<sup class="redstar">*</sup></label>
+                <input type="text" class="form-control" name="slug" id="slug" value=" {{ $product->slug }}">
+              </div>          
+
+              <div class="col-md-6">
+                <label for="exampleInputTit1e">{{ __('adminstaticword.productimage') }}:<sup class="redstar">*</sup></label>
+                <input type="file" class="form-control" name="product_image" id="product_image">
+                @if ($product->product_image)
+                <div class="col-md-3"></div>
+                <div class="col-md-9">
+                  <img src="{{ asset('storage/product/'.$product->product_image) }}" style="width: 150px;">
+                </div>
+            @endif
+              </div>          
           </div>
+          <br>
+      
+            <div class="row">
+                <div class="col-md-6">
+                  <label for="description">{{ __('adminstaticword.description') }}:</label>
+                  <input type="text" class="form-control" name="description" id="description" value=" {{ $product->description }}">
+                </div> 
+            </div>
+            <br>        
+            
+            <div class="col-md-6">
+              <div class="col-md-6">
+                <label for="exampleInputDetails">{{ __('adminstaticword.status') }}:</label>
+                <li class="tg-list-item">              
+                  <input class="tgl tgl-skewed" id="status" type="checkbox" name="status"  {{ $product->status == '1' ? 'checked' : '' }}>
+                  <label class="tgl-btn" data-tg-off="Disable" data-tg-on="Enable" for="status"></label>
+                </li>
+              </div>
+            </div>          
+              <br>  
+
+              <div class="row">
+                <div class="col-md-6">
+                    <input type="submit" class="btn btn-info" value="Update">
+                    <a href="{{route('product.index')}}" class="btn btn-primary">Back</a>
+                </div> 
+              </div>
 
       </form>
     </div>

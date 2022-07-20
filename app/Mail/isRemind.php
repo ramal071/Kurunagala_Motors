@@ -8,7 +8,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\ServiceRepair;
 
-class SerRepairComplete extends Mailable
+class isRemind extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -21,7 +21,7 @@ class SerRepairComplete extends Mailable
 
     public function build()
     {      
-        return $this->subject('Your Job Complete')
-                    ->view('admin.emails.servicerepairComplete');
+        return $this->subject('Your pending payment details')
+                    ->view('admin.emails.customerRemind');
     }
 }

@@ -41,12 +41,12 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="allowance">{{ __('adminstaticword.allowance') }}:</label>
-                                    <input type="number" class="form-control" name="allowance" id="allowance" placeholder="allowance..." value="">
+                                    <input type="number" class="form-control" name="allowance" id="allowance" placeholder="allowance..." value="{{ old('allowance') }}">
                                 </div>  
 
                                 <div class="col-md-6">
                                     <label for="description">{{ __('adminstaticword.description') }}:</label>
-                                    <input type="text" class="form-control" name="description" id="description" placeholder="description..." value="">
+                                    <input type="text" class="form-control" name="description" id="description" placeholder="description..." value="{{ old('description') }}">
                                 </div>  
                             </div>
                         <br>  

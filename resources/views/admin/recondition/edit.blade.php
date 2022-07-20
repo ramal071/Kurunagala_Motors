@@ -16,46 +16,36 @@
               {{ csrf_field() }}
                 @method('PUT')
 
-                <div class="row">
-                  <div class="col-md-6">
-                    <label for="stock">{{ __('adminstaticword.stock') }}</label>
-                    <select name="stock_id" class="form-control js-example-basic-single col-md-7 col-xs-12">
-                      @foreach($stock as $stock)
-                        <option value="{{$stock->id}}"
-                            @if ($stock->id == $stock->stock_id)
-                            selected
-                        @endif
-                            >{{$stock->id}}</option>
-                      @endforeach
-                    </select>
-                  </div>
-                </div>
-              <br>
-  
-       
-  
-          <div class="row">
+            <div class="row">
               <div class="col-md-6">
-                <label for="name">{{ __('adminstaticword.qty') }}:<sup class="redstar">*</sup></label>
-                <input type="text" class="form-control" name="name" id="name" placeholder="Enter name....." value="{{ $recondition->name }}">
-              </div>          
-          </div>
+                <label for="exampleInputTit1e">{{ __('adminstaticword.brand') }}</label>
+                <select name="stock_id" id="stock_id" class="form-control js-example-basic-single">
+                  
+                  @php
+                    $stock = App\Stock::all();
+                  @endphp  
+                  @foreach($stock as $s)
+                    <option {{ $recondition->stock_id == $s->id ? 'selected' : "" }} value="{{ $s->id }}">{{$s->product->bike->name}} {{$s->product->name}}</option>
+                  @endforeach 
+                </select>
+              </div>
+            </div>
           <br>
   
-          <div class="row">
-             <div class="col-md-6">
-               <label for="description">{{ __('adminstaticword.description') }}:</sup></label>
-               <input type="text" class="form-control" name="description" placeholder="description......" id="description" value="{{ $recondition->description }}">
-              </div>          
-          </div>
-          <br>
-    
-          <div class="row">
-            <div class="col-md-6">
-                <input type="submit" class="btn btn-info" value="Update">
-                <a href="{{route('recondition.index')}}" class="btn btn-primary">Back</a>
-            </div> 
-          </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label for="description">{{ __('adminstaticword.description') }}:</sup></label>
+                <input type="text" class="form-control" name="description" placeholder="description......" id="description" value="{{ $recondition->description }}">
+                </div>          
+            </div>
+            <br>
+      
+            <div class="row">
+              <div class="col-md-6">
+                  <input type="submit" class="btn btn-info" value="Update">
+                  <a href="{{route('recondition.index')}}" class="btn btn-primary">Back</a>
+              </div> 
+            </div>
 
       </form>
     </div>

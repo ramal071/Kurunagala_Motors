@@ -15,8 +15,8 @@ class CreateDamageProductsTable extends Migration
     {
         Schema::create('damage_products', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('product_id');
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->unsignedBigInteger('stock_id');
+            $table->foreign('stock_id')->references('id')->on('stocks')->onDelete('cascade');
             $table->integer('quantity');
             $table->string('reason')->nullable();  
             $table->boolean('is_return')->default(0);  

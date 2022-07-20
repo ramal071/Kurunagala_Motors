@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Customer;
 use App\customervehicle;
 use Illuminate\Http\Request;
@@ -12,7 +11,6 @@ use App\bike;
 use App\Brand;
 use App\Product;
 use App\CompleteJob;
-
 use App\User;
 use Auth;
 use Redirect;
@@ -24,8 +22,7 @@ class CustomerController extends Controller
         if(Auth::check()){
           
             $user = User::where('id', Auth::User()->id)->first();
-            $customervehicle =  customervehicle::where('user_id', $user->id)->orderBy('id', 'desc')->get();
-         //   $customervehicle = customervehicle::select('id','register_number')->get(Auth::User()->id);       
+            $customervehicle =  customervehicle::where('user_id', $user->id)->orderBy('id', 'desc')->get();   
             return view('customer.index',compact('user', 'customervehicle'));
         }
         return Redirect::route('login');
@@ -78,11 +75,10 @@ class CustomerController extends Controller
 
     public function ServiceRepair($id)
     {
-        if(Auth::check()){
-          
-            $user = User::where('id', Auth::User()->id)->first();
-            $recordes =  ServiceRepair::where('user_id', $user->id)->orderBy('id', 'desc')->get();
-            return view('customer.servicerepair',compact('user', 'recordes'));
+        if(Auth::check()){          
+            $user = User::where('id',Auth::User()->id)->first();
+            $recordes = ServiceRepair::where('user_id', $user->id)->orderBy('id','desc')->get();
+            return view('customer.servicerepair',compact('user','recordes'));
         }
         return Redirect::route('login');
     }

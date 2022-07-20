@@ -2,7 +2,6 @@
 @section('title', 'Add Role')
 @section('body')
 
-
 @if ($errors->any())
     <div class="alert alert-danger" role="alert">
         <ul>

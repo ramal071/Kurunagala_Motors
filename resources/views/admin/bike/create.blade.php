@@ -30,7 +30,7 @@
             <div class="row">
                 <div class="col-md-6">
                   <label for="code">{{ __('adminstaticword.code') }}:<sup class="redstar">*</sup></label>
-                  <input type="text" class="form-control" name="code" id="code" placeholder="Enter your bike code" value="" >
+                  <input type="text" class="form-control" name="code" id="code" placeholder="Enter your bike code" value="{{ old('code') }}" >
                 </div>          
             </div>
             <br>
@@ -38,7 +38,7 @@
             <div class="row">
                 <div class="col-md-6">
                   <label for="name">{{ __('adminstaticword.bikename') }}:<sup class="redstar">*</sup></label>
-                  <input type="text" class="form-control" name="name" id="name" placeholder="Enter your bike name" value="">
+                  <input type="text" class="form-control" name="name" id="name" placeholder="Enter your bike name" value="{{ old('name') }}">
                 </div>          
             </div>
             <br>
@@ -46,7 +46,7 @@
             <div class="row">
               <div class="col-md-6">
                 <label for="slug">{{ __('adminstaticword.slug') }}:<sup class="redstar">*</sup></label>
-                <input type="text" class="form-control" name="slug" id="slug" placeholder="Slug bike name" value="">
+                <input type="text" class="form-control" name="slug" id="slug" placeholder="Slug bike name" value="{{ old('slug') }}">
               </div>          
             </div>
             <br>
@@ -54,7 +54,7 @@
             <div class="row">
                 <div class="col-md-6">
                   <label for="description">{{ __('adminstaticword.description') }}:</label>
-                  <input type="text" class="form-control" name="description" id="description" placeholder="Enter your Description" value="">
+                  <input type="text" class="form-control" name="description" id="description" placeholder="Enter your Description" value="{{ old('description') }}">
                 </div> 
             </div>
             <br>         

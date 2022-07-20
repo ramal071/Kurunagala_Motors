@@ -24,15 +24,19 @@ class StockController extends Controller
 
     public function store(Request $request, Stock $stock)
     {
-        // $data = $this->validate($request,[
-
-        // ]);
+        $data = $this->validate($request, [
+            'product_id'=> 'required',
+            'dealerprice'=> 'required',
+            'quantity'=> 'required',
+            'sellingprice'=> 'required',
+            'color'=> 'required',
+            'lowestlimit'=> 'required',
+        ]);
 
         $stock->product_id = $request->product_id;
         $stock->quantity = $request->quantity;
         $stock->dealerprice = $request->dealerprice;
         $stock->sellingprice = $request->sellingprice;
- 
         $stock->color = $request->color;
         $stock->lowestlimit = $request->lowestlimit;
         $stock->description = $request->description;
@@ -55,8 +59,13 @@ class StockController extends Controller
 
     public function update(Request $request, Stock $stock)
     {
-        $data = $this->validate($request,[
-
+        $data = $this->validate($request, [
+            'product_id'=> 'required',
+            'dealerprice'=> 'required',
+            'quantity'=> 'required',
+            'sellingprice'=> 'required',
+            'color'=> 'required',
+            'lowestlimit'=> 'required',
         ]);
 
         $stock->product_id = $request->product_id;
@@ -75,10 +84,4 @@ class StockController extends Controller
         $stock->delete();
         return redirect()->route('stock.index')->with('delete', 'Stock detail deleted');
     }
-
-    // public function gnrview(Stock $stock)
-    // {
-    //     $arr['stocks'] = Stock::all(); 
-    //     return view('admin.gnr.index')->with($arr);
-    // }
 }

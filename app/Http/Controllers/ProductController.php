@@ -25,8 +25,6 @@ class ProductController extends Controller
 
     public function create(Product $product)
     {
-    //    $this->authorize('create', Product::class); //policy
-
         $arr['bike'] = Bike::all();
         $arr['brand'] = brand::all();
         return view('admin.product.create')->with($arr);
@@ -35,8 +33,8 @@ class ProductController extends Controller
     public function store(Request $request, Product $product)
     {
         $data = $this->validate($request, [
-            'code'=>'required',
-            'name'=>'required',
+            'code'=>'required|string|min:1|max:255',
+            'name'=>'required|string|min:1|max:255',
             'product_image' => 'required',
             'status'=>'required',
             'bike_id'=>'required',
@@ -73,8 +71,7 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
-     //   $this->authorize('edit', $product); //policy
-
+    
         $arr['bike'] = Bike::all();
         $arr['brand'] = brand::all();
         $arr['product'] =$product;
@@ -84,11 +81,10 @@ class ProductController extends Controller
 
     public function update(Request $request, Product $product)
     {
-      //  $this->authorize('update', $product); //policy
-
+     
         $data = $this->validate($request, [
-            'code'=>'required',
-            'name'=>'required',
+            'code'=>'required|string|min:1|max:255',
+            'name'=>'required|string|min:1|max:255',
             'status'=>'required',
             'bike_id'=>'required',
             'brand_id'=>'required',
@@ -124,8 +120,6 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
-       // $this->authorize('delete', $product); //policy
-
         $product->delete();
         return redirect()->route('product.index')->with('delete', 'Product deleted successfully');
     }

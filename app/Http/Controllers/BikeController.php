@@ -18,8 +18,6 @@ class BikeController extends Controller
 
     public function create(Bike $bike)
     {
-        //$this->authorize('create', $bike); 
-
         $arr['brand'] = brand::all();
         return view('admin.bike.create')->with($arr);
     }
@@ -28,7 +26,7 @@ class BikeController extends Controller
     {
         // $request->validate([
         $data = $this->validate($request, [ 
-            'name'=> 'required',
+            'name'=> 'required|string|min:1|max:255',
             'code'=>'required|unique:bikes,name',
             'brand_id'=>'required'
         ],
@@ -38,8 +36,7 @@ class BikeController extends Controller
             'code.unique' => 'This code already used',
             ]
         );
-
-     
+    
         $bike->brand_id = $request->brand_id;
         $bike->code = $request->code;
         $bike->name = $request->name;
@@ -56,7 +53,6 @@ class BikeController extends Controller
 
     public function edit(Bike $bike)
     {
-      //  $this->authorize('edit', $bike);
 
         $arr['bike'] = $bike;
         $arr['brand'] = brand::all();
@@ -65,19 +61,16 @@ class BikeController extends Controller
 
     public function update(Request $request, Bike $bike)
     {
-      //  $this->authorize('update', $bike);
-
         $data = $this->validate($request, [ 
-            'name'=> 'required',
-            'code'=>'required',
+            'name'=> 'required|string|min:1|max:255',
+            'code'=>'required|string|min:1|max:255',
         ],
             [
             'name.required'=>'Please enter the name !!!',
             'code.required'=>'Please enter the code !!!',
             ]
         );
-        
-        
+
         $bike->code = $request->code;
         $bike->name = $request->name;
         $bike->slug = $request->slug;
@@ -89,8 +82,6 @@ class BikeController extends Controller
 
     public function destroy($id)
     {
-      //  $this->authorize('delete', $id); 
-
         Bike::destroy($id);
         return redirect()->route('bike.index')->with('delete', 'Bike model deleted');
     }

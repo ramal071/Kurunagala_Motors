@@ -16,18 +16,13 @@ class Stock extends Model
 
     public function damage()
     {
-        return $this->belongsTo(DamageProduct::class, 'damage_id', 'id');
+        return $this->hasMany(DamageProduct::class, 'damage_id', 'id');
     }
 
     public function recondition()
     {
-        return $this->belongsTo(ReconditionProduct::class, 'recondition_id', 'id');
+        return $this->hasMany(ReconditionProduct::class, 'recondition_id', 'id');
     }
-
-    // public function servicerepair()
-    // {
-    //     return $this->hasMany(ServiceRepair::class, 'stock_id', 'id');
-    // }
 
     public function servicerepair()
     {

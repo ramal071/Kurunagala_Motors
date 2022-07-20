@@ -11,9 +11,6 @@ class CompleteJobController extends Controller
 {
     public function index()
     {
-    //   return CompleteJob::find(0)->getServicerepair;  
-        // return view('admin.completejob.index')->with($arr);
-
         
         $arr= DB::table('service_repairs As sr')
         ->leftJoin('users AS ur', 'ur.id', '=', 'sr.user_id')

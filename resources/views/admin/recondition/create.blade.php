@@ -25,26 +25,8 @@
                   </select>
                 </div>
               </div>
-
-              {{-- <div class="row">
-                <div class="col-md-6">
-                  <label for="stock">{{ __('adminstaticword.product') }}</label>
-                  <select name="stock_id" class="form-control js-example-basic-single col-md-7 col-xs-12">
-                    @foreach($stock as $s)
-                      <option value="{{$s->id}}">{{$s->id}}: {{$s->brand->name}} {{$s->bike->name}} {{$s->name}}</option>
-                    @endforeach
-                  </select>
-                </div> --}}
               </div>    
-    
-              <div class="row">
-                <div class="col-md-6">
-                  <label for="name">{{ __('adminstaticword.name') }}:<sup class="redstar">*</sup></label>
-                  <input type="text" class="form-control" name="name" id="name" placeholder="Enter name....." value="">
-                </div>          
-              </div>
-              <br>
-
+  
               <div class="row">
                 <div class="col-md-6">
                   <label for="description">{{ __('adminstaticword.description') }}:</sup></label>

@@ -21,7 +21,6 @@
                                     <tr>
                                         <th>#</th>
                                         <th>{{__('adminstaticword.stock') }}</th>
-                                        <th>{{__('adminstaticword.name') }}</th>
                                         <th>{{__('adminstaticword.description') }}</th>
                                         <th>{{__('adminstaticword.edit') }}</th>
                                         <th>{{__('adminstaticword.delete') }}</th>
@@ -34,8 +33,7 @@
                                         <?php $i++;?>
                                     <tr>
                                         <td><?php echo $i;?></td>
-                                        <td>{{ $recondition->stock_id }}</td>
-                                        <td>{{ $recondition->name }}</td>
+                                        <td> {{$recondition->stock->product->brand->name}} {{$recondition->stock->product->bike->name}} {{$recondition->stock->product->name}}</td>
                                         <td>{{ $recondition->description }}</td>
                                       
                                         <td>

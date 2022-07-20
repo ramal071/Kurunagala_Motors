@@ -23,28 +23,4 @@ class StockServiceRepairController extends Controller
     }
 
 
-    public function store(Request $request)
-    {
-        //
-    }
-
-    public function show(StockServiceRepair $stockServiceRepair)
-    {
-        //
-    }
-
-    public function edit(StockServiceRepair $stockServiceRepair)
-    {
-        //
-    }
-
-    public function update(Request $request, StockServiceRepair $stockServiceRepair)
-    {
-        //
-    }
-
-    public function destroy(StockServiceRepair $stockServiceRepair)
-    {
-        //
-    }
 }

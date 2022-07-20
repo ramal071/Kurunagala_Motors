@@ -32,7 +32,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="register_number">{{ __('adminstaticword.registernumber') }}:<sup class="redstar">*</sup></label>
-                                    <input type="text" class="form-control" name="register_number" id="register_number" placeholder="Enter name" value="">
+                                    <input type="text" class="form-control" name="register_number" id="register_number" placeholder="Enter name" value="{{ old('phone') }}">
                                 </div> 
                             </div>
                             <br>

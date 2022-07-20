@@ -31,33 +31,4 @@ class EmployeeServiceRepairController extends Controller
     
     }
 
-    public function create()
-    {
-        //  return view('admin.employeeservice.index')->with($arr); 
-    }
-
-    public function store(Request $request)
-    {
-        //
-    }
-
-    public function show(Request $request, ServiceRepair $servicerepair)
-    {
-        //
-    }
-
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    public function destroy($id)
-    {
-        //
-    }
 }

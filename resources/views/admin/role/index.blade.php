@@ -12,20 +12,14 @@
           <h3 class="box-title">{{ __('adminstaticword.role') }}</h3>
           <a href="{{route('role.create')}}" class="btn btn-info btn-sm">+ {{ __('adminstaticword.role') }}</a> 
         </div>
-     
-
-        <!-- /.box-header -->
         <div class="box-body">
           <div class="table-responsive">
             <table id="example1" class="table table-bordered table-striped">
               <thead>
-                
                 <tr>
-                  
                   <th>#</th>
                   <th>{{ __('adminstaticword.role') }}</th>
                   <th>{{ __('adminstaticword.slug') }}</th>
-                  {{-- <th>{{ __('adminstaticword.permission') }}</th> --}}
                   <th>{{ __('adminstaticword.status') }}</th>
                   <th>{{ __('adminstaticword.edit') }}</th>
                   <th>{{ __('adminstaticword.delete') }}</th>
@@ -40,19 +34,6 @@
 
                         <td>{{ $r->name }}</td>
                         <td>{{ $r->slug }}</td>
-
-                        {{-- <td>
-                          @if ($r->permissions != null)
-                                  
-                              @foreach ($r->permissions as $permission)
-                              <span class="badge badge-secondary">
-                                  {{ $permission->name }}                                    
-                              </span>
-                              @endforeach
-                          
-                          @endif
-                      </td> --}}
-
                         <td>
                           <form action="{{ route('role.quick', $r->id) }}" method="POST">
                             {{ csrf_field() }}
@@ -65,13 +46,10 @@
                             </button>
                           </form>
                         </td>   
-
-                        
                       <td>
                         <a href="{{route('role.edit', $r->id)}}" class="btn btn-success btn-sm" ><i class="glyphicon glyphicon-pencil"></i></a>
                       </td>
-
-                    <td>
+                      <td>
                         <a href="javascript:void(0)" onclick="$(this).parent().find('form').submit()" class="btn btn-danger"><i class="fa fa-fw fa-trash-o"></i></a>
                               
                         <form action="{{route('role.destroy', $r->id)}}" method="post">
@@ -79,7 +57,6 @@
                           <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         </form>
                       </td>
-
                   </td>
                 </tr>               
                 @endforeach
@@ -87,12 +64,8 @@
             </table>
           </div>
         </div>
-        <!-- /.box-body -->
       </div>
-      <!-- /.box -->
     </div>
-    <!-- /.col -->
   </div>
-  <!-- /.row -->
 </section>
 @endsection

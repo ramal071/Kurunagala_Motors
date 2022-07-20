@@ -33,6 +33,7 @@ class Product extends Model
 
     public function damage()
     {
-        return $this->belongsTo(DamageProduct::class, 'damage_id', 'id');
+        return $this->hasMany(DamageProduct::class, 'damage_id', 'id');
     }
+    
 }

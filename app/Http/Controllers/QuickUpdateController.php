@@ -13,7 +13,8 @@ use App\DamageProduct;
 use App\ServiceRepair;
 
 use Illuminate\Support\Facades\Mail;
-use App\Mail\SerRepairComplete;
+use App\Mail\SerRepairComplete;   
+use App\Mail\isRemind; 
 
 class QuickUpdateController extends Controller
 {
@@ -179,7 +180,25 @@ class QuickUpdateController extends Controller
 
             return back()->with('success', 'complete');
         }
+    }
 
-        
+    public function isremindQuick($id)
+    {
+        $servicerepair = ServiceRepair::findorfail($id);
+
+        if($servicerepair->is_remind)
+        {
+            ServiceRepair::where('id', '=', $id)->update(['is_remind' => false]);
+            return back()->with('delete',  'Pending payent');
+        }
+        else
+        {
+            ServiceRepair::where('id', '=', $id)->update(['is_remind' => true]);
+
+            $user_email=$servicerepair->email;
+            Mail::to($user_email)->send(new isRemind($servicerepair));
+
+            return back()->with('success', 'Reminder Send !');
+        }
     }
 }

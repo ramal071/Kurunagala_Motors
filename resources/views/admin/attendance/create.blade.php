@@ -30,12 +30,12 @@
             <div class="row">
                 <div class="col-md-6">
                   <label for="time_start">{{ __('adminstaticword.timestart') }}:<sup class="redstar">*</sup></label>
-                  <input type="datetime-local" class="form-control" name="time_start" id="time_start" placeholder="Enter time_start" value="" >
+                  <input type="datetime-local" class="form-control" name="time_start" id="time_start" placeholder="Enter time_start" value="{{ old('time_start') }}" >
                 </div>          
           
                 <div class="col-md-6">
                   <label for="time_end">{{ __('adminstaticword.timeend') }}:<sup class="redstar">*</sup></label>
-                  <input type="datetime-local" class="form-control" name="time_end" id="time_end" placeholder="Enter time_end" value="">
+                  <input type="datetime-local" class="form-control" name="time_end" id="time_end" placeholder="Enter time_end" value="{{ old('time_end') }}">
                 </div>          
             </div>
             <br>

@@ -41,26 +41,7 @@ class RoleController extends Controller
         $role->status = ($request->status) ? 1:0 ;
         $role->save();
 
-        
-        // $listOfPermissions = explode(',', $request->roles_permissions);//create array from separated/coma permissions
-        
-        // foreach ($listOfPermissions as $permission) {
-        //     $permissions = new Permission();
-        //     $permissions->name = $permission;
-        //     $permissions->slug = strtolower(str_replace(" ", "-", $permission));
-        //     $permissions->save();
-        //     $role->permissions()->attach($permissions->id);
-        //     $role->save();
-
-        // } 
-
         return redirect()->route('role.index')->with('success','Created new role successfully');
-    }
-    
-
-    public function show($id)
-    {
-        //
     }
 
     public function edit(Role $role)
@@ -73,7 +54,8 @@ class RoleController extends Controller
     {
         $data = $this->validate($request, [
             'role_name'=> 'required',          
-        ],    [
+        ],   
+        [
         'role_name.required'=>'Please Enter Role Name',        
     ]);
     
@@ -82,28 +64,12 @@ class RoleController extends Controller
         $role->status = ($request->status) ? 1:0 ;
         $role->save();
 
-        // $role->permissions()->delete();
-        // $role->permissions()->detach();
-
-        // $listOfPermissions = explode(',', $request->roles_permissions);
-        
-        // foreach ($listOfPermissions as $permission) {
-        //     $permissions = new Permission();
-        //     $permissions->name = $permission;
-        //     $permissions->slug = strtolower(str_replace(" ", "-", $permission));
-        //     $permissions->save();
-        //     $role->permissions()->attach($permissions->id);
-        //     $role->save();
-        // }
-
         return redirect()->route('role.index');
     }
 
     public function destroy(Role $role)
     {        
-       // $role->permissions()->delete();
         $role->delete();
-      //  $role->permissions()->detach();
         return redirect()->route('role.index')->with('delete', 'Role deleted successfully');
     }
 }

@@ -17,11 +17,11 @@ class CreateStocksTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
-            $table->integer('quantity');
-            $table->double('dealerprice');
-            $table->double('sellingprice');          
+            $table->integer('quantity')->default(0);
+            $table->decimal('dealerprice')->default(0);
+            $table->decimal('sellingprice')->default(0);          
             $table->string('color')->nullable();  
-            $table->integer('lowestlimit');  
+            $table->integer('lowestlimit')->default(0);
             $table->string('description')->nullable();  
             $table->timestamps();
         });

@@ -28,36 +28,4 @@ class CalendarController extends Controller
         return view('admin.calendar.index', ['events' => $events]);
     }
 
-    public function create()
-    {
-        //
-    }
-
-
-    public function store(Request $request)
-    {
-        //
-    }
-
-
-    public function show(Calendar $calendar)
-    {
-        //
-    }
-
-
-    public function edit(Calendar $calendar)
-    {
-        //
-    }
-
-    public function update(Request $request, Calendar $calendar)
-    {
-        //
-    }
-
-    public function destroy(Calendar $calendar)
-    {
-        //
-    }
 }

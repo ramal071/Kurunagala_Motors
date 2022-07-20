@@ -18,7 +18,7 @@ class CreateAllowancesTable extends Migration
             $table->unsignedBigInteger('employee_id');
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
             $table->string('allowance_type');
-            $table->string('allowance')->default(0);
+            $table->decimal('allowance')->default(0);
             $table->string('description')->nullable();
             $table->timestamps();
         });

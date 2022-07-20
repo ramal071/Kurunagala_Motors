@@ -32,7 +32,7 @@
                 
                     <div class="col-md-6">
                       <label for="loan_amount">{{ __('adminstaticword.loan_amount') }}:</label>
-                      <input type="text" class="form-control" name="loan_amount" id="loan_amount" value="{{ $loan->loan_amount }}">
+                      <input type="number" class="form-control" name="loan_amount" id="loan_amount" value="{{ $loan->loan_amount }}">
                     </div>           
                 </div>
                 <br>

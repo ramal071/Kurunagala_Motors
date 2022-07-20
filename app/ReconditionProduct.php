@@ -10,6 +10,7 @@ class ReconditionProduct extends Model
 
     public function stock()
     {
-        return $this->hasMany(Stock::class, 'stock_id', 'id');
+        return $this->belongsTo(Stock::class, 'stock_id', 'id');
     }
+
 }

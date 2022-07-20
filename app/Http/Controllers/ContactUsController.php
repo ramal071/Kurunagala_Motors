@@ -17,7 +17,7 @@ class ContactUsController extends Controller
         $this->validate($request,[
             'name' => 'required',
             'email' => 'required|email',
-            'phone' => 'required|max:11numeric',
+            'phone' => 'required|numeric',
             'message' => 'required|max:255',
         ],
         [
@@ -38,8 +38,6 @@ class ContactUsController extends Controller
         $contact->phone = $request->phone;
         $contact->message = $request->message;
         $contact->save();
-
-      //  Toastr::success('Your message successfully send.','Success',["positionClass" => "toast-top-right"]);
         return redirect()->back()->with('success', 'Message sent');
     }
 }

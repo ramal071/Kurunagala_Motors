@@ -36,7 +36,8 @@
                                 @foreach($recordes as $b)
                                 <?php $i++;?>
                                 <tr>
-                                    <td>{{ $b[['code']]}}</td>
+                                    
+                                    <td>{{ $b['code']}}</td>
                                     <td>{{ $b['user']['fname']}}</td>
                                     <td>{{ $b['customervehicle']['register_number']}}</td>
                                     <td>

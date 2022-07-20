@@ -101,13 +101,13 @@ class ServiceRepairController extends Controller
             'status' => ($request->status) ? 1:0,
             'is_repaircomplete' => ($request->is_repaircomplete) ? 1:0,
             'is_borrow' => ($request->is_borrow) ? 1:0,
+            'is_remind' => ($request->is_remind) ? 1:0,
             'is_complete' => ($request->is_complete) ? 1:0,
           //  'qty' => $request->qty,
         ];
 
         $record = $servicerepair->create($data);
 
-        
         // $record->stock()->attach($request->stock);
         $stock = $request->stock;
         $qty = $request->qty;
@@ -119,12 +119,8 @@ class ServiceRepairController extends Controller
                 'qty'=> $qty[$key]
             ];
             array_push($arr,$data);
-            
-            
         }
         $record->stock()->sync($arr);
-        
-        
         
         //reduce from stock
         $stock_record = ServiceRepair::with('stock')->where('id',$record->id)->first();
@@ -132,10 +128,9 @@ class ServiceRepairController extends Controller
         $stockService->reduceQuontity($stock_record->stock);
 
         // send job start mail
-// dd($data);
 
-        // $user_email=$request->email;        
-        // Mail::to($user_email)->send(new SerRepair($record));
+        $user_email=$request->email;        
+        Mail::to($user_email)->send(new SerRepair($record));
 
         return redirect()->route('servicerepair.index')->with('success', 'Created successfully');
     }
@@ -165,12 +160,13 @@ class ServiceRepairController extends Controller
         $arr['employee'] = Employee::all();
         $arr['product'] = Product::all();
 
-        // $arr['empolyee_service_repairs']  = DB::table('employee_service_repairs as esr')
-        // ->leftjoin('service_repairs as sr','sr.id','=','esr.service_repair_id')
-        //         ->leftjoin('employees as e','e.id','=','esr.employee_id')               
-        //         ->select('*')
-        //          ->where('esr.service_repair_id' , $servicerepair->id)
-        //         ->get();
+        $arr['service_repair_stocks']  = DB::table('service_repair_stock as srs')
+        ->leftjoin('service_repairs as sr','sr.id','=','srs.service_repair_id')
+                ->leftjoin('stocks as e','e.id','=','srs.stock_id')               
+                ->select('*')
+                 ->where('srs.service_repair_id' , $servicerepair->id)
+                ->get();
+           // dd($arr);
 
         return view('admin.servicerepair.edit')->with($arr);
     }
@@ -187,14 +183,28 @@ class ServiceRepairController extends Controller
         $fixprice = $request->fixprice;     
         $totalservice_price = $stock_items_sum + $service_price['price']+ $service_charge + $fixprice;
 
-        $servicerepair->fixprice = $request->fixprice;
-        $servicerepair->service_id = $request->service_id;
-        $servicerepair->employee_id = $request->employee_id;
-        $servicerepair->email = $request->email;
-        $servicerepair->charge = $request->charge;
-        $servicerepair->amount = $totalservice_price;
-        $servicerepair->paid_amount = $request->paid_amount;
-        $servicerepair->description = $request->description; 
+        $data = [
+          
+            'user_id' => $request->user_id,
+            'customervehicle_id' => $request->customervehicle_id, 
+            'amount' => $totalservice_price,
+            'charge' => $request->charge,
+            'fixprice' => $request->fixprice,
+            'description' => $request->description,
+            'service_id' => $request->service_id,
+            'employee_id' => $request->employee_id,
+            'email' => $request->email,
+            'paid_amount' => $request->paid_amount,
+            'status' => ($request->status) ? 1:0,
+            'is_remind' => ($request->is_remind) ? 1:0,
+            'is_repaircomplete' => ($request->is_repaircomplete) ? 1:0,
+            'is_borrow' => ($request->is_borrow) ? 1:0,
+            'is_complete' => ($request->is_complete) ? 1:0,
+          //  'qty' => $request->qty,   
+        ];
+
+               $servicerepair->save();
+            //  $record = $servicerepair->create($data);
 
         $stock = $request->stock;
         $qty = $request->qty;
@@ -207,13 +217,8 @@ class ServiceRepairController extends Controller
             ];
             array_push($arr,$data);
             
-            
         }
         $servicerepair->stock()->sync($arr);
-        
-        $servicerepair->save();
-
-      
 
         $stock_record = ServiceRepair::with('stock')->where('id',$servicerepair->id)->first();
         $stockService->reduceQuontity($stock_record->stock);
@@ -233,7 +238,9 @@ class ServiceRepairController extends Controller
 
         $id = $request['prId1'];
         $userId = User::findOrFail($id)->id;
-        $upload  = DB::table('customer_vehicles')->leftjoin('users','users.id','=','customer_vehicles.user_id')->select('customer_vehicles.id','register_number')->where('user_id',$userId)->get();
+        $upload  = DB::table('customer_vehicles')
+        ->leftjoin('users','users.id','=','customer_vehicles.user_id')
+        ->select('customer_vehicles.id','register_number')->where('user_id',$userId)->get();
         return response()->json($upload);
     }
 
@@ -244,25 +251,5 @@ class ServiceRepairController extends Controller
         $upload = $customervehicle->customerpendingservice->where('customervehicle_id',$id)->where('status',true)->pluck('name','id')->all();
         return response()->json($upload);
     }
-
-    // public function barchart(Request $request, ServiceRepair $servicerepair)
-    // {
-    //        $servicerepair = ServiceRepair::select(DB::raw("COUNT(*) as count"))
-    //                         ->whereYear('created_at', date('Y'))
-    //                         ->groupBy(DB::raw("Month(created_at)"))
-    //                         ->pluck('count');
-
-    //         $months = ServiceRepair::select(DB::raw("Month(created_at) as month"))
-    //         ->whereYear('created_at', date('Y'))
-    //         ->groupBy(DB::raw("Month(created_at)"))
-    //         ->pluck('month');
-
-    //         $datas = array(0,0,0,0,0,0,0,0,0,0,0,0);
-
-    //         foreach ($months as $index => $month) {
-    //             $datas[$month] = $servicerepair[$index];
-    //         }
-    //         return view('admin.servicerepair.index',compact('datas'));
-    // }
 
 }

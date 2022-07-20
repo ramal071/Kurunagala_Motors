@@ -24,8 +24,9 @@ class ServiceController extends Controller
     {
         $data = $this->validate($request, [
          //   'name'=> 'required|unique:services,name',
-            'name'=> 'required',
+            'name'=> 'required|string|min:1|max:255',
             'code'=> 'required|unique:services,code',
+            'price' => 'required|string|min:1|max:255',
              ],
     [
         'name.required'=>'Please Enter service Name',
@@ -56,8 +57,9 @@ class ServiceController extends Controller
     public function update(Request $request, service $service)
     {
         $data = $this->validate($request, [
-            'name'=> 'required',     
-            'code'=> 'required',        
+            'name'=> 'required|string|min:1|max:255',     
+            'code'=> 'required|string|min:1|max:255',    
+            'price' => 'required|string|min:1|max:255',    
         ],    
         [
         'name.required'=>'Please Enter service Name',        

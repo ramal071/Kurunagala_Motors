@@ -18,22 +18,19 @@
 
                 <div class="row">
                   <div class="col-md-6">
-                    <label for="stock">{{ __('adminstaticword.stock') }}</label>
-                    <select name="stock_id" class="form-control js-example-basic-single col-md-7 col-xs-12">
-                      @foreach($stock as $stock)
-                        <option value="{{$stock->id}}"
-                            @if ($stock->id == $stock->stock_id)
-                            selected
-                        @endif
-                            >{{$stock->id}}: {{$stock->product->brand->name}} {{$stock->product->bike->name}} {{$stock->product->name}}</option>
-                      @endforeach
+                    <label for="exampleInputTit1e">{{ __('adminstaticword.brand') }}</label>
+                    <select name="stock_id" id="stock_id" class="form-control js-example-basic-single">
+                      @php
+                        $stock = App\Stock::all();
+                      @endphp  
+                      @foreach($stock as $s)
+                        <option {{ $damage->stock_id == $s->id ? 'selected' : "" }} value="{{ $s->id }}">{{$s->product->bike->name}} {{$s->product->name}}</option>
+                      @endforeach 
                     </select>
                   </div>
                 </div>
               <br>
-  
-       
-  
+              
           <div class="row">
               <div class="col-md-6">
                 <label for="quantity">{{ __('adminstaticword.qty') }}:<sup class="redstar">*</sup></label>
