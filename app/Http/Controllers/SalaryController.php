@@ -16,6 +16,11 @@ use App\Loan;
 
 class SalaryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $arr['employee'] = Employee::all(); 

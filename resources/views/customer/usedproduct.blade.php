@@ -22,8 +22,8 @@
                                   <th>{{__('adminstaticword.code') }}</th>
                                   <th>{{__('adminstaticword.starttime') }}</th>
                                   <th>{{ __('adminstaticword.product') }}</th>
-                                  <th>{{ __('adminstaticword.sprice') }}</th>
-                                  <th>{{ __('adminstaticword.dprice') }}</th>
+                                  <th>{{ __('adminstaticword.price') }} {{ __('adminstaticword.price') }}</th>
+                                  <th>{{ __('adminstaticword.price') }}</th>
                                 </tr>
                               </thead>
                               <tbody>

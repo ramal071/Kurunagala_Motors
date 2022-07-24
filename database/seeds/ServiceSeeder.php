@@ -34,7 +34,7 @@ class ServiceSeeder extends Seeder
 
             [
                 'code' => 'ser3',
-                'name' => 'Engine Repair Half',
+                'name' => 'Engine Repair',
                 'price' => '3500',
                 'description' => 'ddbg half gfbg ',
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -43,7 +43,7 @@ class ServiceSeeder extends Seeder
 
             [
                 'code' => 'ser4',
-                'name' => 'Engine Repair Full',
+                'name' => 'Fiber & paint',
                 'price' => '5500',
                 'description' => 'ddbg gfbg ',
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),

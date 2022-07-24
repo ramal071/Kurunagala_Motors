@@ -5,7 +5,7 @@
 
 <section id="blog-home" class="blog-home-main-block">
     <div class="container">
-        <h1 class="blog-home-heading text-white text-center">{{ strtoupper(__('frontstaticword.userbikeregister')) }}</h1>
+        <h1 class="blog-home-heading text-white text-center">{{ strtoupper(__('frontstaticword.product')) }}</h1>
     </div>
 </section>
 

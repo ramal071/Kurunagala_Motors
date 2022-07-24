@@ -8,6 +8,7 @@ use App\CustomerVehicle;
 use App\Service;
 use App\User;
 use Illuminate\Support\Facades\DB;
+use App\ServiceRepair;
 
 class CustomerPendingPaymentController extends Controller
 {

@@ -44,7 +44,7 @@ class CustomerController extends Controller
         if(Auth::check()){
           
             $user = User::where('id', Auth::User()->id)->first();
-            $customerpendingpayment =  CustomerPendingPayment::where('user_id', $user->id)->orderBy('id', 'desc')->get();
+            $customerpendingpayment =  ServiceRepair::where('user_id', $user->id)->orderBy('id', 'desc')->get();
             return view('customer.customerpendingpayment',compact('user',  'customerpendingpayment'));
         }
         return Redirect::route('login');

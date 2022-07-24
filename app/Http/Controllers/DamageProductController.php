@@ -40,7 +40,7 @@ class DamageProductController extends Controller
     {
         $data = $this->validate($request, [ 
             'quantity'=> 'required',
-            'is_return'=>'required',
+           // 'is_return'=>'required',
             'stock_id'=>'required'
         ]);
 
@@ -67,6 +67,12 @@ class DamageProductController extends Controller
 
     public function update(Request $request, DamageProduct $damage)
     {
+        $data = $this->validate($request, [ 
+            'quantity'=> 'required',
+           // 'is_return'=>'required',
+            'stock_id'=>'required'
+        ]);
+
         $damage->stock_id = $request->stock_id;
         $damage->quantity = $request->quantity;
         $damage->reason = $request->reason;
