@@ -10,6 +10,7 @@
             <div class="box box-primary">  {{-- red line --}}
                 <div class="box-header with-border">
                     <h3 class="box-title">{{__('adminstaticword.jobdetails') }}</h3>
+                    <p>The status of the service repair</p>  
                 </div>
 
                 <div class="box-body">

@@ -19,7 +19,7 @@
                             <div class="row text-center">
                                 <div class="col-md-6">
                                     <label for="">Salery Prepairing Month</label>
-                                    <input type="date" id="calender" class="form-control" value="">
+                                    <input type="date" id="calender" class="form-control" value="" required>
                                 </div>
                              
                                     <div class="col-md-6">
@@ -33,8 +33,8 @@
 
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="employee">{{ __('adminstaticword.name') }}:<sup class="redstar">*</sup></label>
-                                    <select name="employee_id" id="employee_id" class="form-control js-example-basic-single col-md-7 col-xs-12" >
+                                    <label for="employee">{{ __('adminstaticword.employee') }} {{ __('adminstaticword.name') }}:<sup class="redstar">*</sup></label>
+                                    <select name="employee_id" id="employee_id" class="form-control js-example-basic-single col-md-7 col-xs-12" required>
                                         <option value="0">{{ __('adminstaticword.pleaseselect') }}</option>
                                         @foreach($employee as $employee)
                                         <option value="{{$employee->id}}">{{$employee->name}}</option>

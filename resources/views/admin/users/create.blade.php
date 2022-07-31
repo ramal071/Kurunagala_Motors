@@ -46,9 +46,10 @@
           <div class="row">
             <div class="col-md-6">
             <label for="name">Contact</label>
-            <input type="tel" name="contact" class="form-control" id="contact" pattern="[0-9]{3}-[0-9]{4}-[0-9]{3}"  placeholder="071-2398-456" value="{{ old('contact') }}">
+            <input type="tel" name="contact" class="form-control" id="contact" pattern="[0-9]{10}"  placeholder="0712398456" value="{{ old('contact') }}">
           </div> 
-      
+          
+          @if(Auth::User()->roles->slug == "manager")
           <div class="col-md-6">
               <label for="role">{{ __('adminstaticword.role') }}:<sup class="redstar">*</sup></label>
               <select name="role_id" id="role_id" class="form-control" >
@@ -60,6 +61,18 @@
            </div>  
           </div>
           <br>
+          @endif
+
+          @if(Auth::User()->roles->slug == "cashier")
+          <div class="col-md-6">
+              <label for="role">{{ __('adminstaticword.role') }}:<sup class="redstar">*</sup></label>
+              <select name="role_id"  class="form-control" id="role_id">
+                <option value="3">Customer</option>
+            </select>
+           </div>  
+          </div>
+          <br>
+          @endif
         
             {{-- <div class="col-md-6">
             <label for="role">Select Role</label>

@@ -11,10 +11,11 @@ use App\Cashier;
 use App\User;
 use App\DamageProduct;
 use App\ServiceRepair;
-
+use App\customerpendingservice;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SerRepairComplete;   
 use App\Mail\isRemind; 
+use App\Mail\NextService; 
 
 class QuickUpdateController extends Controller
 {
@@ -199,6 +200,28 @@ class QuickUpdateController extends Controller
             Mail::to($user_email)->send(new isRemind($servicerepair));
 
             return back()->with('success', 'Reminder Send !');
+        }
+    }
+
+    public function nextserviceQuick($id)
+    {
+        $customerpendingservice = customerpendingservice::findorfail($id);
+
+        if($customerpendingservice->is_remind)
+        {
+            customerpendingservice::where('id', '=', $id)->update(['is_remind' => false]);
+            return back()->with('delete',  'Not Send');
+        }
+        else
+        {
+            customerpendingservice::where('id', '=', $id)->update(['is_remind' => true]);
+
+            //send reminder e-mail
+
+            $user_email=$customerpendingservice->email;
+            Mail::to($user_email)->send(new NextService($customerpendingservice));
+
+            return back()->with('success', 'Next Service Reminder Send !');
         }
     }
 }

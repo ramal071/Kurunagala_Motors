@@ -15,7 +15,6 @@ class Salary extends Model
             'total_salary',
             'job_amount',
             'allowance',
-
     ];
 
     public function employee()

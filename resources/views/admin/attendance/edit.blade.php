@@ -46,7 +46,7 @@
               <div class="row">
                 <div class="col-md-6">
                   <label for="time_end">{{ __('adminstaticword.timeend') }}:<sup class="redstar">*</sup></label>
-                  <input type="text" class="form-control" name="time_end" id="time_end" value="{{ $attendance->time_end }}">
+                  <input type="datetime-local" class="form-control" name="time_end" id="time_end" value="{{ $attendance->time_end }}">
                 </div>          
             </div>
             <br>           

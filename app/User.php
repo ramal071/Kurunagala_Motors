@@ -7,14 +7,14 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 // use Illuminate\Databas\Eloquent\HasFactory;
 
-use App\Traits\HasRolesAndPermissions;
+
 
 class User extends Authenticatable
 {
-    use Notifiable, HasRolesAndPermissions;
+    use Notifiable;
 
     protected $fillable = [
-        'idno', 'email','fname','lname','password','status','email_verified_at','role','contact', 'permission'
+        'idno', 'email','fname','lname','password','status','email_verified_at','role','contact'
     ];
 
     protected $hidden = [
@@ -28,13 +28,8 @@ class User extends Authenticatable
 
     public function roles()
     {
-        return $this->hasOne(Role::class, 'role_id', 'id');
+        return $this->belongsTo(Role::class, 'role_id', 'id');
     }
-
-    // public function permissions(){
-    //     return $this->belongsToMany(Permission::class,
-    //      'users_permissions', 'user_id', 'permission_id')->withTimestamps();
-    // }
 
     public function isCustomer(){
         return $this->hasOne(Customer::class, 'user_id', 'id');

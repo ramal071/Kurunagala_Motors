@@ -16,9 +16,12 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\SerRepair;
 use App\Services\StockService;
 use App\Services\SerivcesService;
+use Illuminate\Support\Facades\Gate;
 
 class ServiceRepairController extends Controller
 {
+    private $accept_quantity  = [];
+
     public function index()
     {
         $recordes = ServiceRepair::with('user:id,fname,email')
@@ -31,35 +34,55 @@ class ServiceRepairController extends Controller
                   ->toArray();
 
         //dd($recordes);
- 
-    return view('admin.servicerepair.index',compact('recordes'));
+        if(Gate::allows('isManager')){
+          return view('admin.servicerepair.index',compact('recordes'));
+        }
+        elseif (Gate::allows('isCashier')){
+            return view('admin.servicerepair.index',compact('recordes'));
+        }
+        else{
+            abort(403);
+        }
     }
 
     public function create()
     {
-        $arr['service'] = Service::all();
-        $arr['stock'] = Stock::all();
-        $arr['customervehicle'] = CustomerVehicle::all();
-        $arr['user'] = User::all();
-        $arr['employee'] = Employee::all();
-        $arr['product'] = Product::all();
-        return view('admin.servicerepair.create')->with($arr);
+            $arr['service'] = Service::all();
+            $arr['stock'] = Stock::all();
+            $arr['customervehicle'] = CustomerVehicle::all();
+            $arr['user'] = User::all();
+            $arr['employee'] = Employee::all();
+            $arr['product'] = Product::all();
+            if(Gate::allows('isManager')){
+                return view('admin.servicerepair.create')->with($arr);
+            }
+            elseif (Gate::allows('isCashier')){
+                return view('admin.servicerepair.create')->with($arr);
+            }
+            else{
+                abort(403);
+            }
     }
 
+    //total amount selling p  with qty
     private function getStockPrices($stockService, $stock_ids,$qty)
     {
         $price = [];
-        foreach ($stock_ids as $key => $value) {
-            $result = $stockService->getPriceById($value);
-            array_push($price,$result->sellingprice*$qty[$key]);
-        }
-         $sum = array_sum($price);
-         return $sum;
+        
+            foreach ($stock_ids as $key => $value) {
+                $result = $stockService->getPriceById($value);
+                $quantity = ($result->quantity - $qty[$key]) >0? $qty[$key]:$result->quantity;
+                array_push($this->accept_quantity,$quantity);
+                array_push($price,$result->sellingprice*$quantity);
+            }
+            $sum = array_sum($price);
+            return $sum;
+    
     }
 
     public function store(Request $request, ServiceRepair $servicerepair,StockService $stockService,SerivcesService $serviceService)
     {
-        //dd($request->all());
+    
         $data = $this->validate($request, [ 
             'user_id'=> 'required',
             'customervehicle_id'=>'required',
@@ -78,7 +101,7 @@ class ServiceRepairController extends Controller
         $service_id = $request->service_id;
         $stock_ids = $request->stock;
         $stock_qty = $request->qty;
-        $stock_items_sum = $this->getStockPrices($stockService,$stock_ids,$stock_qty);
+        $stock_items_sum = in_array('empty',$stock_ids) ? 0: $this->getStockPrices($stockService,$stock_ids,$stock_qty);
         $service_price = $serviceService->getPriceById($service_id);
         $service_charge = $request->charge;     
         $fixprice = $request->fixprice;     
@@ -93,6 +116,8 @@ class ServiceRepairController extends Controller
             'amount' => $totalservice_price,
             'charge' => $request->charge,
             'fixprice' => $request->fixprice,
+            'stock_items_sum' => $stock_items_sum,
+            'service_price' => $service_price['price'],
             'description' => $request->description,
             'service_id' => $request->service_id,
             'employee_id' => $request->employee_id,
@@ -110,34 +135,38 @@ class ServiceRepairController extends Controller
 
         // $record->stock()->attach($request->stock);
         $stock = $request->stock;
-        $qty = $request->qty;
+        $qty = $this->accept_quantity;
         $arr = [];
-        foreach ($stock as $key => $value) {
-            
-            $data =[
-                'stock_id'=> $stock[$key],
-                'qty'=> $qty[$key]
-            ];
-            array_push($arr,$data);
+        if(!in_array('empty',$stock)){
+
+            foreach ($stock as $key => $value) {
+                
+                $data =[
+                    'stock_id'=> $stock[$key],
+                    'qty'=> $qty[$key]
+                ];
+                array_push($arr,$data);
+            }
+            $record->stock()->sync($arr);
+            //reduce from stock
+            $stock_record = ServiceRepair::with('stock')->where('id',$record->id)->first();
+
+
+            $stockService->reduceQuontity($stock_record->stock);
         }
-        $record->stock()->sync($arr);
         
-        //reduce from stock
-        $stock_record = ServiceRepair::with('stock')->where('id',$record->id)->first();
-        //dd($stock_record->all());
-        $stockService->reduceQuontity($stock_record->stock);
+
 
         // send job start mail
 
-        $user_email=$request->email;        
-        Mail::to($user_email)->send(new SerRepair($record));
+        // $user_email=$request->email;        
+        // Mail::to($user_email)->send(new SerRepair($record));
 
         return redirect()->route('servicerepair.index')->with('success', 'Created successfully');
     }
 
     public function show(Request $request, ServiceRepair $servicerepair)
     {
-        
         $arr['servicerepair'] = $servicerepair;
         $arr['service'] = Service::all();
         $arr['stock'] = Stock::all();
@@ -145,8 +174,15 @@ class ServiceRepairController extends Controller
         $arr['user'] = User::all();
         $arr['employee'] = Employee::all();
         $arr['product'] = Product::all();
-
-        return view('admin.servicerepair.show')->with($arr);
+        if(Gate::allows('isManager')){
+            return view('admin.servicerepair.show')->with($arr);
+        }
+        elseif (Gate::allows('isCashier')){
+            return view('admin.servicerepair.show')->with($arr);
+        }
+        else{
+            abort(403);
+        }
     }
 
     public function edit(Request $request, ServiceRepair $servicerepair)
@@ -166,34 +202,47 @@ class ServiceRepairController extends Controller
                 ->select('*')
                  ->where('srs.service_repair_id' , $servicerepair->id)
                 ->get();
-           // dd($arr);
-
-        return view('admin.servicerepair.edit')->with($arr);
+          //dd($arr);
+        
+        if(Gate::allows('isManager')){
+            return view('admin.servicerepair.edit')->with($arr);
+        }
+        elseif (Gate::allows('isCashier')){
+            return view('admin.servicerepair.edit')->with($arr);
+        }
+        else{
+            abort(403);
+        }
     }
 
     public function update(Request $request, ServiceRepair $servicerepair,StockService $stockService,SerivcesService $serviceService)
     {
+        //dd($request);
+        
 
         $service_id = $request->service_id;
         $stock_ids = $request->stock;
         $stock_qty = $request->qty;
-        $stock_items_sum = $this->getStockPrices($stockService,$stock_ids,$stock_qty);
+    
+        $stock_items_sum = isset($request->stock)? $this->getStockPrices($stockService,$stock_ids,$stock_qty):0;
         $service_price = $serviceService->getPriceById($service_id);
         $service_charge = $request->charge;     
         $fixprice = $request->fixprice;     
         $totalservice_price = $stock_items_sum + $service_price['price']+ $service_charge + $fixprice;
 
+
+
         $data = [
           
-            'user_id' => $request->user_id,
-            'customervehicle_id' => $request->customervehicle_id, 
             'amount' => $totalservice_price,
             'charge' => $request->charge,
             'fixprice' => $request->fixprice,
             'description' => $request->description,
             'service_id' => $request->service_id,
-            'employee_id' => $request->employee_id,
-            'email' => $request->email,
+            'stock_items_sum' => $stock_items_sum,
+            'service_price' => $service_price['price'],
+        // 'employee_id' => $request->employee_id,
+        // 'email' => $request->email,
             'paid_amount' => $request->paid_amount,
             'status' => ($request->status) ? 1:0,
             'is_remind' => ($request->is_remind) ? 1:0,
@@ -202,26 +251,32 @@ class ServiceRepairController extends Controller
             'is_complete' => ($request->is_complete) ? 1:0,
           //  'qty' => $request->qty,   
         ];
+        //dd($servicerepair);
 
-               $servicerepair->save();
+               $servicerepair->update($data);
             //  $record = $servicerepair->create($data);
 
         $stock = $request->stock;
-        $qty = $request->qty;
+        $qty = $this->accept_quantity;
         $arr = [];
-        foreach ($stock as $key => $value) {
-            
-            $data =[
-                'stock_id'=> $stock[$key],
-                'qty'=> $qty[$key]
-            ];
-            array_push($arr,$data);
-            
-        }
-        $servicerepair->stock()->sync($arr);
+        if(isset($request->stock)){
 
-        $stock_record = ServiceRepair::with('stock')->where('id',$servicerepair->id)->first();
-        $stockService->reduceQuontity($stock_record->stock);
+            foreach ($stock as $key => $value) {
+            
+                $data =[
+                    'stock_id'=> $stock[$key],
+                    'qty'=> $qty[$key]
+                ];
+                array_push($arr,$data);
+                
+            }
+            $servicerepair->stock()->sync($arr);
+    
+            $stock_record = ServiceRepair::with('stock')->where('id',$servicerepair->id)->first();
+            $stockService->reduceQuontity($stock_record->stock);
+
+        }
+
         
         return redirect()->route('servicerepair.index');
 
@@ -229,8 +284,17 @@ class ServiceRepairController extends Controller
 
     public function destroy($id)
     {
+       
         ServiceRepair::destroy($id);
-        return redirect()->route('servicerepair.index')->with('delete', 'Job deleted');
+        if(Gate::allows('isManager')){
+            return redirect()->route('servicerepair.index')->with('delete', 'Job deleted');
+        }
+        elseif (Gate::allows('isCashier')){
+            return redirect()->route('servicerepair.index')->with('delete', 'Job deleted');
+        }
+        else{
+            abort(403);
+        }
     }
 
     public function upload_info(Request $request) 

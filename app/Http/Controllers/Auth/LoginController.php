@@ -44,12 +44,13 @@ class LoginController extends Controller
         if(Auth::User()->status == 1)
         {
           //  if(Auth::user()->role->first()->name  == "manager")
-          if(Auth::User()->role_id == "1")
+        //   if(Auth::User()->role_id == "1")
+        if(Auth::User()->roles->slug == "manager")
             {
                 return redirect()->route('admin.index');
             }
            // elseif(Auth::user()->role->first()->name  == "cashier")
-           elseif(Auth::User()->role_id == "2")
+           elseif(Auth::User()->roles->slug == "cashier")
             {
                 return redirect()->route('admin.index');
             }
@@ -60,7 +61,6 @@ class LoginController extends Controller
         }
         else
         {
-            
             Auth::logout();
             return redirect()->route('login'); 
         }

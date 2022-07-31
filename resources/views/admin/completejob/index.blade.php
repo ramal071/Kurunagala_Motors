@@ -9,7 +9,8 @@
         <div class="col-xs-12">
             <div class="box box-primary">  {{-- red line --}}
                 <div class="box-header with-border">
-                    <h3 class="box-title">{{__('adminstaticword.job') }} {{__('adminstaticword.status') }}</h3>
+                    <h3 class="box-title"> {{__('adminstaticword.complete') }} {{__('adminstaticword.job') }}</h3>
+                    <p>service repair complete and custmer full payment complete</p>
                 </div>
 
                 <div class="box-body">
@@ -18,12 +19,14 @@
                             <thead>
                                 <tr>
                                     <th>{{__('adminstaticword.jobid') }}</th>
+                                    <th>{{__('adminstaticword.starttime') }}</th>
+                                    <th>{{__('adminstaticword.lastupdate') }}</th>
                                     <th>{{__('adminstaticword.idno') }}</th>
                                     <th>{{__('adminstaticword.fname') }}</th>
                                     <th>{{__('adminstaticword.registernumber') }}</th>
-                                    <th>{{__('adminstaticword.product') }}</th>
-                                    <th>{{__('adminstaticword.service') }}</th>                                                                   
-                                    <th>{{__('adminstaticword.complete') }}</th>
+                                    <th>{{__('adminstaticword.service') }}</th>
+                                    <th>{{__('adminstaticword.status') }}</th>                                                                   
+                                    <th>{{__('adminstaticword.payment') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -32,19 +35,12 @@
                                 <?php $i++;?>
                                 <tr>
                                   <td>{{ $b->code}}</td>
+                                  <td>{{ $b->created_at}}</td>
+                                  <td>{{ $b->updated_at}}</td>
                                   <td>{{ $b->idno}}</td>
                                   <td>{{ $b->fname}}</td> 
                                    <td>{{ $b->register_number }}</td>
                                    <td>{{ $b->name }}</td>
-                                  {{-- <td>  
-                                    @foreach ($b->stock as $s)
-                                    <ul>  <li>
-                                      {{$s->product->brand->name}} {{$s->product->bike->name}} {{$s->product->name}}
-                             
-                                    </li> </ul>
-                                    @endforeach
-                                  </td>                                --}}
-                               
                             
                                   <td>                                       
                                     <button type="Submit" class="btn btn-xs {{ $b->is_repaircomplete ==1 ? 'btn-success' : 'btn-danger' }} "> 

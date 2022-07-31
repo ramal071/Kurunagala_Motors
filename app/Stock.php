@@ -28,4 +28,9 @@ class Stock extends Model
     {
         return $this->belongsToMany(ServiceRepair::class,'stock_service_repair','service_repair_id', 'stock_id');
     }
+
+    public function income()
+    {
+        return $this->hasMany(Income::class, 'stock_id' , 'id');
+    }
 }

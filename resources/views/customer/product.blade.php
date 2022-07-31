@@ -59,7 +59,7 @@
             <div class="col-xl-40 col-lg-35">
                 <div class="profile-info-block">
                     <div class="row">
-                        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search..." title="Type in a name">                   
+                        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search Brand..." title="Type in a name">                   
                             <table id="myTable" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>                                       

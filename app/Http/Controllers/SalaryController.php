@@ -19,7 +19,7 @@ class SalaryController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-    }
+    }   
     
     public function index()
     {
@@ -30,7 +30,7 @@ class SalaryController extends Controller
                     ->latest()
                     ->get()
                     ->toArray();
-               //     dd($recordes);
+                 //   dd($recordes);
         return view('admin.salary.index',compact('recordes'))->with($arr);
     }
 
@@ -46,10 +46,24 @@ class SalaryController extends Controller
     public function store(Request $request, Salary $salary)
     {
         $data = $this->validate($request, [ 
-            'employee_id'=> 'required|string|max:255',
+            'employee_id'=> 'required|numeric',
+            'workdays'=> 'required|numeric',
+            'full_leave'=> 'required|numeric',
+            'half_days'=> 'required|numeric',
+            'job_amount'=> 'required|numeric',
+            'allowance'=> 'required|numeric',
+            'loan_amount'=> 'required|numeric',
+            'total_salary'=> 'required|numeric',
         ],
             [
-            'employee_id.required'=>'Please enter the employee id !!!',
+            'employee_id.required'=>'Please enter the employee name !!!',
+            'workdays.required'=>'workdays required. Please enter the employee name !!!',
+            'full_leave.required'=>'full_leave required. Please enter the employee name !!!',
+            'half_days.required'=>'half_days required. Please enter the employee name !!!',
+            'job_amount.required'=>'job_amount required. Please enter the employee name !!!',
+            'allowance.required'=>'allowance required. Please enter the employee name !!!',
+            'loan_amount.required'=>'loan_amount required. Please enter the employee name !!!',
+            'total_salary.required'=>'total_salary required. Please enter the employee name !!!',
             ]
         );
 
@@ -64,7 +78,7 @@ class SalaryController extends Controller
         $salary->loan_amount = $request->loan_amount;
         $salary->total_salary = $request->total_salary;
         $salary->save();
-        return redirect()->route('salary.index')->with('success', 'salary Marked');
+        return redirect()->route('salary.index')->with('success', 'Salary Marked');
     }
 
     // public function show($id)
@@ -95,22 +109,7 @@ class SalaryController extends Controller
 
     public function update(Request $request, Salary $salary)
     {
-        // $data = $this->validate($request, [ 
-        //     'employee_id'=> 'required',
-        // ],
 
-        // );
-
-        // $salary->employee_id = $request->employee_id;
-        // $salary->worked_days = $request->workdays;
-        // $salary->full_leave = $request->full_leave;  
-        // $salary->half_days = $request->half_days;  
-        // $salary->job_amount = $request->job_amount;
-        // $salary->allowance = $request->allowance;
-        // $salary->loan_amount = $request->loan_amount;
-        // $salary->total_salary = $request->total_salary;
-        // $salary->save();
-        // return redirect()->route('salary.index')->with('success', 'salary Marked');
 
     }
 
@@ -183,7 +182,6 @@ class SalaryController extends Controller
             $basic_salery = $employee->half_salary+$jobs+$allowance-$loan;
         }
         
-
         return response()->json(['days'=>$days,'basic'=>$basic_salery,'halfday'=>$halfday,'full_leave'=>$fulleave,'job_amount'=>$jobs, 'loan_amount'=>$loan, 'allowance'=>$allowance]);
     }
 

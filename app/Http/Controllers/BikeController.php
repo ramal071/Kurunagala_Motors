@@ -24,7 +24,6 @@ class BikeController extends Controller
 
     public function store(Request $request, Bike $bike)
     {
-        // $request->validate([
         $data = $this->validate($request, [ 
             'name'=> 'required|string|min:1|max:255',
             'code'=>'required|unique:bikes,name',

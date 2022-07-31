@@ -77,7 +77,8 @@
                 <span class="hidden-xs">
 
                   @auth
-                  Hi..{{ Auth::user()->fname }}  {{ Auth::user()->role_id }}
+                  {{-- Hi..{{ Auth::user()->fname }}  {{ Auth::user()->role_id }} --}}
+                  Hi..{{ Auth::user()->fname }}  {{ Auth::User()->roles->slug }}
                   @endauth
                   {{-- Hi ! {{ Auth()->User()['fname'] }} --}}
 
@@ -116,7 +117,7 @@
     <div class="control-sidebar-bg"></div>
   </div>
   <!-- ./wrapper -->
-
+  
   <!-- jQuery 3 -->
   <script src="{{url('admin/bower_components/jquery/dist/jquery.min.js')}}"></script>
   <script src="{{ url('admin/js/select2.min.js')}}"></script>

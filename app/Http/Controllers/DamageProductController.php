@@ -6,17 +6,27 @@ use App\DamageProduct;
 use Illuminate\Http\Request;
 use App\Stock;
 use App\Product;
-
+use Illuminate\Support\Facades\Gate;
 
 class DamageProductController extends Controller
 {
     public function index()
     {
-        $arr['stock'] = Stock::all();
-        $arr['product'] = Product::all();
-        $arr['damages'] = DamageProduct::all();
-        
-        return view('admin.damage.index')->with($arr);
+        if(Gate::allows('isManager')){
+            $arr['stock'] = Stock::all();
+            $arr['product'] = Product::all();
+            $arr['damages'] = DamageProduct::all();            
+            return view('admin.damage.index')->with($arr);
+        }
+        elseif (Gate::allows('isCashier')){
+            $arr['stock'] = Stock::all();
+            $arr['product'] = Product::all();
+            $arr['damages'] = DamageProduct::all();            
+            return view('admin.damage.index')->with($arr);
+        }
+        else{
+            abort(403);
+        }
         
     //     $damages = DamageProduct::with('stock:id,quantity,product_id')
     //     ->with('product')
@@ -32,8 +42,13 @@ class DamageProductController extends Controller
 
     public function create()
     {
-        $arr['stock'] = Stock::all();
-        return view('admin.damage.create')->with($arr);
+        if(Gate::allows('isManager')){
+            $arr['stock'] = Stock::all();
+            return view('admin.damage.create')->with($arr);
+        }
+        else{
+            abort(403);
+        }
     }
 
     public function store(Request $request , DamageProduct $damage)
@@ -60,9 +75,14 @@ class DamageProductController extends Controller
 
     public function edit(DamageProduct $damage)
     {
-        $arr['damage'] = $damage;
-        $arr['stock'] = Stock::all();
-        return view('admin.damage.edit')->with($arr); 
+        if(Gate::allows('isManager')){
+            $arr['damage'] = $damage;
+            $arr['stock'] = Stock::all();
+            return view('admin.damage.edit')->with($arr); 
+        }
+        else{
+            abort(403);
+        }
     }
 
     public function update(Request $request, DamageProduct $damage)
@@ -83,7 +103,12 @@ class DamageProductController extends Controller
 
     public function destroy($id)
     {
-        DamageProduct::destroy($id);
-        return redirect()->route('damage.index')->with('delete', 'Deleted successfully');
+        if(Gate::allows('isManager')){
+            DamageProduct::destroy($id);
+            return redirect()->route('damage.index')->with('delete', 'Deleted successfully');
+        }
+        else{
+            abort(403);
+        }
     }
 }

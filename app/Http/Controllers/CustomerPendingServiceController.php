@@ -8,6 +8,7 @@ use App\CustomerVehicle;
 use App\Service;
 use App\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class CustomerPendingServiceController extends Controller
 {
@@ -15,7 +16,16 @@ class CustomerPendingServiceController extends Controller
     public function index()
     {
         $arr['customerpendingservice'] = CustomerPendingService::all();
-        return view('admin.customerpendingservice.index')->with($arr);
+       
+        if(Gate::allows('isManager')){
+            return view('admin.customerpendingservice.index')->with($arr);
+        }
+        if(Gate::allows('isCashier')){
+            return view('admin.customerpendingservice.index')->with($arr);
+        }
+        else{
+            abort(403);
+        }
     }
 
     public function create()
@@ -24,7 +34,15 @@ class CustomerPendingServiceController extends Controller
         $arr['customervehicle'] = CustomerVehicle::all();
         $arr['user'] = User::all();
       
-        return view('admin.customerpendingservice.create')->with($arr);
+        if(Gate::allows('isManager')){
+            return view('admin.customerpendingservice.create')->with($arr);
+        }
+        if(Gate::allows('isCashier')){
+            return view('admin.customerpendingservice.create')->with($arr);
+        }
+        else{
+            abort(403);
+        }
     }
 
     public function store(Request $request, CustomerPendingService $customerpendingservice)
@@ -33,7 +51,10 @@ class CustomerPendingServiceController extends Controller
         $customerpendingservice->customervehicle_id = $request->customervehicle_id;
         $customerpendingservice->service_id = $request->service_id;
         $customerpendingservice->next_date = $request->next_date;
+        $customerpendingservice->email = $request->email;
         $customerpendingservice->reminder_date = $request->reminder_date;
+        // $customerpendingservice->reminder_date = ($request->status) ? 1:0;
+        $customerpendingservice->description = $request->description;
         $customerpendingservice->save();
         return redirect()->route('customerpendingservice.index')->with('success', 'Created successfully');
     }
@@ -49,7 +70,16 @@ class CustomerPendingServiceController extends Controller
         $arr['service'] = Service::all();
         $arr['customervehicle'] = CustomerVehicle::all();
         $arr['user'] = User::all();
-        return view('admin.customerpendingservice.edit')->with($arr);
+
+        if(Gate::allows('isManager')){
+            return view('admin.customerpendingservice.edit')->with($arr);
+        }
+        if(Gate::allows('isCashier')){
+            return view('admin.customerpendingservice.edit')->with($arr);
+        }
+        else{
+            abort(403);
+        }
     }
 
     public function update(Request $request, CustomerPendingService $customerpendingservice)
@@ -58,7 +88,10 @@ class CustomerPendingServiceController extends Controller
         $customerpendingservice->customervehicle_id = $request->customervehicle_id;
         $customerpendingservice->service_id = $request->service_id;
         $customerpendingservice->next_date = $request->next_date;
+        $customerpendingservice->email = $request->email;
         $customerpendingservice->reminder_date = $request->reminder_date;
+        // $customerpendingservice->reminder_date = ($request->status) ? 1:0;
+        $customerpendingservice->description = $request->description;
         $customerpendingservice->save();
         return redirect()->route('customerpendingservice.index')->with('success', 'Created successfully');
     }
@@ -66,8 +99,16 @@ class CustomerPendingServiceController extends Controller
     public function destroy($id)
     {
         CustomerPendingService::destroy($id);
-        return redirect()->route('customerpendingservice.index')->with('delete', 'customer pending service deleted');
-  
+
+        if(Gate::allows('isManager')){
+            return redirect()->route('customerpendingservice.index')->with('delete', 'customer pending service deleted');
+        }
+        if(Gate::allows('isCashier')){
+            return redirect()->route('customerpendingservice.index')->with('delete', 'customer pending service deleted');
+        }
+        else{
+            abort(403);
+        }
     }
 
     public function upload_info(Request $request) 

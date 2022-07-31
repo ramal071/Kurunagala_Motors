@@ -14,11 +14,7 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @var array
      */
-    protected $policies = [
-         'App\brand' => 'App\Policies\BrandPolicy',
-         'App\Product' => 'App\Policies\ProductPolicy',
-         'App\Bike' => 'App\Policies\BikePolicy',
-    ];
+
 
     /**
      * Register any authentication / authorization services.
@@ -30,15 +26,15 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define('isManager', function ($user) {
-            return $user->first()->slug == 'manager';
+            return $user->roles->slug == 'manager';
         });
 
         Gate::define('isCashier', function ($user) {
-            return $user->first()->slug == 'cashier';
+            return $user->roles->slug == 'cashier';
         });
 
         Gate::define('isCustomer', function ($user) {
-            return $user->first()->slug == 'customer';
+            return $user->first()->roles->slug == 'customer';
         });
     }
 }

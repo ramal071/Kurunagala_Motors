@@ -5,21 +5,36 @@ namespace App\Http\Controllers;
 use App\Stock;
 use Illuminate\Http\Request;
 use App\Product;
+use Illuminate\Support\Facades\Gate;
 
 class StockController extends Controller
 {
 
     public function index()
     {       
-        $arr['stocks'] = Stock::all();
-        return view('admin.stock.index')->with($arr);
+        if(Gate::allows('isManager')){
+            $arr['stocks'] = Stock::all();
+            return view('admin.stock.index')->with($arr);
+        }
+        if(Gate::allows('isCashier')){
+            $arr['stocks'] = Stock::all();
+            return view('admin.stock.index')->with($arr);
+        }
+        else{
+            abort(403);
+        }
     }
 
 
     public function create()
     {
-        $arr['product'] = Product::all();
-        return view('admin.stock.create')->with($arr);
+        if(Gate::allows('isManager')){
+            $arr['product'] = Product::all();
+            return view('admin.stock.create')->with($arr);
+        }
+        else{
+            abort(403);
+        }
     }
 
     public function store(Request $request, Stock $stock)
@@ -51,9 +66,14 @@ class StockController extends Controller
 
     public function edit(Stock $stock)
     {
-        $arr['stock'] = $stock;
-        $arr['product'] = Product::all();
-        return view('admin.stock.edit')->with($arr);
+        if(Gate::allows('isManager')){
+            $arr['stock'] = $stock;
+            $arr['product'] = Product::all();
+            return view('admin.stock.edit')->with($arr);
+        }
+        else{
+            abort(403);
+        }
     }
 
 
@@ -81,7 +101,12 @@ class StockController extends Controller
 
     public function destroy(Stock $stock)
     {
-        $stock->delete();
-        return redirect()->route('stock.index')->with('delete', 'Stock detail deleted');
+        if(Gate::allows('isManager')){
+            $stock->delete();
+            return redirect()->route('stock.index')->with('delete', 'Stock detail deleted');
+        }
+        else{
+            abort(403);
+        }
     }
 }

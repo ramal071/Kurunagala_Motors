@@ -17,6 +17,7 @@ class CreateReconditionProductsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('stock_id');
             $table->foreign('stock_id')->references('id')->on('stocks')->onDelete('cascade');
+            $table->integer('quantity')->default(0);
             $table->string('description')->nullable();  
             $table->timestamps();
         });

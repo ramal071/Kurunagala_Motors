@@ -12,7 +12,7 @@ class CreateIncomesTable extends Migration
      * @return void
      */
     public function up()
-    {
+    {   
         Schema::create('incomes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('code');

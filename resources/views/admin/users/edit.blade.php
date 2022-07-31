@@ -46,7 +46,7 @@
           <div class="row">
             <div class="col-md-6">
             <label for="name">Contact</label>
-            <input type="integer" name="contact" class="form-control" id="contact" placeholder="Contact..." value="{{ $user->contact }}">
+            <input type="integer" name="contact" pattern="[0-9]{10}" class="form-control" id="contact" placeholder="Contact..." value="{{ $user->contact }}">
           </div>
           
             <div class="col-md-6">
@@ -55,6 +55,7 @@
           </div>
           </div>
 
+          @if(Auth::User()->roles->slug == "manager")
           <div class="row">
             <div class="col-md-6">
                 <label for="role">{{ __('adminstaticword.role') }}:<sup class="redstar">*</sup></label>
@@ -65,18 +66,18 @@
                 @endforeach
                 </select>
             </div> 
+            @endif
         
-            
-            {{-- <div class="col-md-6">
-              <label for="permission">{{ __('adminstaticword.permission') }}</label>
-              <select name="permission[]" class="form-control permission" multiple="multiple">
-                <option value="0"></option>
-                @foreach($permission as $s)
-                  <option value="{{$s->id}}">{{$s->name}}</option>
-                @endforeach
-              </select>
-            </div>
-          </div> --}}
+            @if(Auth::User()->roles->slug == "cashier")
+          <div class="col-md-6">
+              <label for="role">{{ __('adminstaticword.role') }}:<sup class="redstar">*</sup></label>
+              <select name="role_id"  class="form-control" id="role_id">
+                <option value="3">Customer</option>
+            </select>
+           </div>  
+          </div>
+          <br>
+          @endif
         <br>    
 
         <div class="row">
@@ -86,6 +87,7 @@
               <label class="tgl-btn" data-tg-off="Disable" data-tg-on="Enable" for="status"></label>
             </li>
           </div>
+      
        
           <div class="col-md-6">
               <input class="btn btn-primary" type="submit" value="Submit">

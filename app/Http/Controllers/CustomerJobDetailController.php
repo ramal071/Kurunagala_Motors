@@ -12,7 +12,7 @@ class CustomerJobDetailController extends Controller
 
     public function index()
     {
-        $arr['customerjobdetail'] = CustomerJobDetail::all();
+      //  $arr['customerjobdetail'] = CustomerJobDetail::all();
         $arr['servicerepair'] = ServiceRepair::all();  
         $arr['product'] = Product::all(); 
         return view('admin.customer_jobdetail.index')->with($arr);

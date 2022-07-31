@@ -32,7 +32,10 @@
                                 <tbody>
                                     <?php $i=0;?>
                                     @foreach ($users as $user)
-                                     @if(!\Auth::User()->role_id =="1" && $user->role_id =="1") @continue; @endif  
+                                    {{--   @if(!\Auth::user()->hasRole('manager') && $user->hasRole('manager')) @continue; @endif  --}}
+
+                                    @if(!\Auth::User()->roles->slug == "manager" && $user->role_id =="1" ) @continue; @endif 
+                                   
                                     <?php $i++;?>
                                         <tr>
                                             <td> <?php echo $i;?> </td>
@@ -41,7 +44,7 @@
                                             <td> {{ $user->idno }} </td>
                                             <td> {{ $user->email }} </td>
                                             <td> {{ $user->contact }} </td>
-                                            <td>{{ $user->role_id }}</td>
+                                            <td>{{ $user->roles->name }}</td>
                                             
                                             <td>
                                                 <form action="{{ route('user.quick', $user->id) }}" method="POST">

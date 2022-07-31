@@ -27,6 +27,8 @@ class CreateServiceRepairsTable extends Migration
             $table->string('email');
             $table->decimal('charge')->nullable();
             $table->decimal('fixprice')->nullable();
+            $table->decimal('stock_items_sum')->nullable();
+            $table->decimal('service_price')->nullable();
             $table->decimal('amount')->nullable();
             $table->string('description')->nullable();
             $table->boolean('is_repaircomplete')->default(false);

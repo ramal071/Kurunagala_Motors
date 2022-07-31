@@ -26,9 +26,7 @@
                                 ><div class="logotext">
                                     {{ $logo->project_title }}
                                 </div></b
-                            ></a
-                        >
-                    
+                            ></a>                   
                     </div>
                 </div>
                 <div class="col-lg-4 col-4">
@@ -91,7 +89,7 @@
             
                     <div class="form-group">
                         <i class="fa fa-phone" aria-hidden="true"></i>
-                        <input type="tel" pattern="[0-9]{3}-[0-9]{4}-[0-9]{3}" class="form-control{{ $errors->has('contact') ? ' is-invalid' : '' }}" name="contact" value="{{ old('contact') }}" id="contact" placeholder="contact">
+                        <input type="tel" pattern="[0-9]{10}" class="form-control{{ $errors->has('contact') ? ' is-invalid' : '' }}" name="contact" value="{{ old('contact') }}" id="contact" placeholder="contact">
                         @if($errors->has('contact'))
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('contact') }}</strong>

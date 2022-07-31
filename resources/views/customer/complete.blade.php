@@ -20,7 +20,8 @@
                             <thead>
                                 <tr>
                                     <th>{{__('adminstaticword.jobid') }}</th>
-                                    <th>{{__('adminstaticword.idno') }}</th>
+                                    <th>{{__('adminstaticword.starttime') }}</th>
+                                    <th>{{__('adminstaticword.idno') }}</th>                            
                                     <th>{{__('adminstaticword.fname') }}</th>
                                     <th>{{__('adminstaticword.registernumber') }}</th>
                                     <th>{{__('adminstaticword.product') }}</th>
@@ -34,9 +35,10 @@
                                 <?php $i++;?>
                                 <tr>
                                   <td>{{ $b->code}}</td>
-                                  {{-- <td>{{ $b->users->idno}}</td>
-                                  <td>{{ $b->users->fname}}</td> --}}
-                                  {{-- <td>{{ $b->customervehicle->register_number }}</td>
+                                  <td>{{ $b->created_at}}</td>
+                                  <td>{{ $b->user->idno}}</td>
+                                  <td>{{ $b->user->fname}}</td>
+                                  <td>{{ $b->customervehicle->register_number }}</td>
                                   <td>  
                                     @foreach ($b->stock as $s)
                                     <ul>  <li>
@@ -46,12 +48,8 @@
                                     @endforeach
                                   </td>                               
                                   <td>
-                                    @foreach ($b->service as $s)
-                                    <li>
-                                        {{$s->name}}
-                                    </li>
-                                    @endforeach
-                                  </td> --}}
+                                    {{ $b->service->name}}
+                                  </td>
                             
                                   <td>                                       
                                     <button type="Submit" class="btn btn-xs {{ $b->is_repaircomplete ==1 ? 'btn-success' : 'btn-danger' }} "> 

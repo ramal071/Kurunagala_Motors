@@ -31,11 +31,7 @@
                             @endforeach 
                           </select>
                         </div>
-                      </div>
-                    <br>        
-                     
-                      
-                    <div class="row">
+                   
                         <div class="col-md-6">
                         <label for="exampleInputTit1e1">{{ __('adminstaticword.registernumber') }}</label>
                         <select name="customervehicle_id" id="upload_id" class="form-control js-example-basic-single">
@@ -62,24 +58,35 @@
                         @endforeach 
                       </select>
                     </div>
+
+                    <div class="col-md-6">
+                      <label for="email">{{ __('adminstaticword.email') }}:<sup class="redstar">*</sup></label>
+                      <input type="email" class="form-control" name="email" id="email" value=" {{ $customerpendingservice->email }}">
+                  </div>  
                   </div>
                 <br>        
                  
                 <div class="row">
                   <div class="col-md-6">
                       <label for="next_date">{{ __('adminstaticword.nextdate') }}:<sup class="redstar">*</sup></label>
-                      <input type="date" class="form-control" name="next_date" id="next_date" value=" {{ $customerpendingservice->next_date }}">
+                      <input type="text" class="form-control" name="next_date" id="next_date" value=" {{ $customerpendingservice->next_date }}">
                   </div>  
-              </div>
-              <br> 
-              
-              <div class="row">
+             
                   <div class="col-md-6">
                       <label for="reminder_date">{{ __('adminstaticword.reminderdate') }}:<sup class="redstar">*</sup></label>
-                      <input type="date" class="form-control" name="reminder_date" id="reminder_date" value=" {{ $customerpendingservice->reminder_date }}">
+                      <input type="text" class="form-control" name="reminder_date" id="reminder_date" value=" {{ $customerpendingservice->reminder_date }}">
                   </div>  
               </div>
-              <br>     
+              <br>  
+              
+              <div class="row">
+
+                <div class="col-md-6">
+                  <label for="description">{{ __('adminstaticword.description') }}:<sup class="redstar">*</sup></label>
+                  <input type="text" class="form-control" name="description" id="description" value=" {{ $customerpendingservice->description }}">
+              </div>  
+              </div>
+            <br>   
 
                 <div class="row">
                     <div class="col-md-6">

@@ -16,7 +16,7 @@ class CompleteJobController extends Controller
         ->leftJoin('users AS ur', 'ur.id', '=', 'sr.user_id')
         ->leftJoin('customer_vehicles AS cv', 'sr.customervehicle_id', '=', 'cv.id')
         ->leftJoin('services AS s', 'sr.service_id', 's.id')
-        ->select('ur.id', 'idno', 'sr.code','amount', 'is_repaircomplete', 'is_complete','fname', 'lname', 'ur.email','customervehicle_id', 'contact','paid_amount', 'charge','s.name', 'price', 'register_number')
+        ->select('ur.id', 'idno', 'sr.code','amount', 'is_repaircomplete', 'sr.created_at', 'sr.updated_at', 'is_complete','fname', 'lname', 'ur.email','customervehicle_id', 'contact','paid_amount', 'charge','s.name', 'price', 'register_number')
         ->groupBy('sr.id')
         ->where('is_repaircomplete', '1')
         ->where('is_complete', '1')

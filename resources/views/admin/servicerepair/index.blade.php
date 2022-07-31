@@ -20,8 +20,7 @@
                                     <tr>
                                         <th>{{ __('adminstaticword.job') }}</th>
                                         <th>{{ __('adminstaticword.tool') }}</th>
-                                        {{-- <th>{{ __('adminstaticword.idno') }}</th> --}}
-                                        {{-- <th>{{__('adminstaticword.fname') }}</th> --}}
+                                        <th>{{__('adminstaticword.fname') }}</th>
                                         <th>{{ __('adminstaticword.registernumber') }}</th>
                                         <th>{{ __('adminstaticword.stock') }} {{ __('adminstaticword.product') }}</th>
                                         <th>{{ __('adminstaticword.service') }}</th>                                      
@@ -63,7 +62,8 @@
                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                 </form>
                                             </td>
-                                          
+                                            <td>{{ $record['user']['fname'] }}</td>
+                                           
                                             <td>{{ $record['customervehicle']['register_number'] }}</td>
 
                                             <td>
@@ -89,14 +89,14 @@
                                             
                                             <td>{{ $record['service']['price']  }}</td>
 
-                                            <td>{{ $selling_price  }}</td>
+                                            <td>{{ $selling_price}}.00</td>
                                             <td>{{ $record['employee']['name']  }}</td>
                                             <td>{{ $record['fixprice'] }}</td>      
                                             <td>{{ $record['charge'] }}</td>                                           
                                             <td> {{$record['amount']  }}</td>
                                             <td>{{ $record['paid_amount'] }}</td>
                                            
-                                            <td>{{ $record['amount']-$record['paid_amount'] }}</td>
+                                            <td>{{ $record['amount']-$record['paid_amount'] }}.00</td>
 
                                             <td>
                                                 <form action="{{ route('servicerepair.quick', $record['id']) }}" method="POST">

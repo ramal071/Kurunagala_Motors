@@ -9,126 +9,148 @@ use App\Employee;
 use Illuminate\Support\Facades\DB;
 use DateTime;
 use App\Service;
+use App\Stock;
 
 class IncomeController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-    //     $query_date = $request->prev_month;
-    //     $date = new DateTime($query_date);
-    //     //First day of month
-    //     $date->modify('first day of this month');
-    //     $firstday= $date->format('Y-m-d');
-    //     //Last day of month
-    //     $date->modify('last day of this month');
-    //     $lastday= $date->format('Y-m-d');
-   
-    //     $arr= DB::table('service_repairs As sr')
-    //     ->select('is_complete','sr.code','amount','paid_amount', 'charge','created_at')
-    //     ->whereBetween('created_at', [$firstday." 00:00:00", $lastday." 23:59:59"])
-    //     ->sum('sr.amount');
-      
-    // //dd($arr);
-    //        return view('admin.income.index')->with($arr);
-
-
-//         $recordes = ServiceRepair::with('user:id,fname,email')
-//         ->with('customervehicle:register_number,id')
-//         ->with('service:id,price,name')
-//         ->with('employee:id,name')
-//         ->with('stock')
-//         ->latest()
-//         ->get()
-//         ->toArray();
-
-// //dd($recordes);
-
-// return view('admin.income.index',compact('recordes'));
-
-   // $arr['servicerepair'] = ServiceRepair::all(); 
-
-    $recordes = ServiceRepair::with('user:id,fname,email')
-                  ->with('customervehicle:register_number,id')
-                  ->with('service:id,price,name')
-                  ->with('employee:id,name')
-                  ->with('stock')
-                  ->latest()
-                  ->get()
-                  ->toArray();
-               //   dd($arr);
-     return view('admin.income.index',compact('recordes'));
-
-    
+        $recordes['servicerepair'] = ServiceRepair::all();
+        $recordes = Income::with('servicerepair:id,code,fixprice')
+                    //   ->with('customervehicle:register_number,id')
+                    ->with('service:id,price,name')
+                    //   ->with('employee:id,name')
+                    ->with('stock:id,sellingprice,dealerprice')
+                    ->latest()
+                    ->get()
+                    ->toArray();
+                    // dd($recordes);
+        return view('admin.income.index',compact('recordes'));
     }
+
+        //total amount selling p  with qty
+        // private function getStockPrices($stockService, $stock_ids,$qty)
+        // {
+        //     $price = [];
+            
+        //         foreach ($stock_ids as $key => $value) {
+        //             $result = $stockService->getPriceById($value);
+        //             $quantity = ($result->quantity - $qty[$key]) >0? $qty[$key]:$result->quantity;
+        //             array_push($this->accept_quantity,$quantity);
+        //             array_push($price,$result->sellingprice*$quantity);
+        //         }
+        //         $sum = array_sum($price);
+        //         return $sum;
+        
+        // }
 
     public function create()
     {
         $arr['servicerepair'] = ServiceRepair::all();
-        $arr['employee'] = Employee::all();
         return view('admin.income.create')->with($arr);
+    }
+
+    public function createMonth()
+    {
+        $arr['servicerepair'] = ServiceRepair::all();
+        return view('admin.income.createMonth')->with($arr);
+    }
+
+    public function store(Request $request, Income $income)
+    {
+        $data = $this->validate($request, [ 
+            'code'=> 'required|string|max:255',
+        ],
+            [
+            'code.required'=>'Please enter the code !!!',
+            ]
+        );
+        $income->code = $request->code;
+        $income->total_income = $request->amount;
+        // $income->dealerprice = $request->dealerprice;
+        // $income->sellingprice = $request->sellingprice;  
+        // $income->charge = $request->charge;  
+        // $income->fixprice = $request->fixprice;
+        // $income->price = $request->price;
+        // $income->total_income = $request->total_income;
+        // $income->description = $request->description;
+        $income->save();
+        return redirect()->route('income.index')->with('success', 'Income Marked');
+    }
+
+    public function destroy(Income $income)
+    {
+        $income->delete();
+        return redirect()->route('income.index')->with('delete', 'income deleted');
     }
 
     public function upload_info(Request $request) 
     {
+        $id = $request['prIds'];
+    
+        $amount = ServiceRepair::where('code',$id)->sum('amount');
 
-        $id = $request['prIdi'];
-        $servicerepairId = ServiceRepair::findOrFail($id)->id;
+        $price = Service::where('code',$id)->sum('price');   
 
-        $query_date = $request->prev_month;
-        $date = new DateTime($query_date);
-        //First day of month
-        $date->modify('first day of this month');
-        $firstday= $date->format('Y-m-d');
-        //Last day of month
-        $date->modify('last day of this month');
-        $lastday= $date->format('Y-m-d');
+        $fixprice = ServiceRepair::where('code',$id)->sum('fixprice'); 
 
-        $price = ServiceRepair::where('code',$id)
-        ->whereBetween('created_at', [$firstday." 00:00:00", $lastday." 23:59:59"])
-        ->sum('price');
+        $charge = ServiceRepair::where('code',$id)->sum('charge'); 
 
-        return response()->json(['price'=>$price]);
+        $stock_items_sum = ServiceRepair::where('code',$id)->sum('stock_items_sum'); 
+
+        $service_price = ServiceRepair::where('code',$id)->sum('service_price'); 
+
+        $sellingprice = Stock::where('sellingprice',$id)
+                                
+                                ->sum('sellingprice'); 
+
+        $dealerprice = Stock::where('dealerprice',$id)
+                            
+                            ->sum('dealerprice'); 
+
+        $total_income = $sellingprice - $dealerprice + $fixprice + $charge ;
+
+        return response()->json(['amount'=>$amount, 'charge'=>$charge, 'price'=>$price, 'service_price'=>$service_price, 'stock_items_sum'=>$stock_items_sum, 'fixprice'=>$fixprice, 'total_income'=>$total_income]);
+    }
+    public function getJobsperDate(Request $request)
+    {
+        $date = new DateTime($request->date);
+
+        $givenDate= $date->format('Y-m-d');
+      //   $amount = ServiceRepair::whereBetween('created_at', [$date." 00:00:00", $date." 23:59:59"])->sum('amount');
+         
+
+        // $price = Service::where('code',$id)->sum('price');   
+
+        // $fixprice = ServiceRepair::where('code',$id)->sum('fixprice'); 
+
+        // $charge = ServiceRepair::where('code',$id)->sum('charge'); 
+
+        // $sellingprice = Stock::where('sellingprice',$id)
+                                
+        //                         ->sum('sellingprice'); 
+
+        // $dealerprice = Stock::where('dealerprice',$id)
+                            
+        //                     ->sum('dealerprice'); 
+
+        // $total_income = $sellingprice - $dealerprice + $fixprice + $charge + 5;
+        // $total_income = $amount + 5;
+
+         $totalRepairs = ServiceRepair::whereBetween('created_at', [$givenDate." 00:00:00", $givenDate." 23:59:59"])->get();
+
+
+        return response()->json(['totalRepairs'=>$totalRepairs]);
+        
+        
     }
 
     public function child_info(Request $request) 
     {
-        $id = $request['prIdi'];
-        $service = Service::findOrFail($id);
-        $upload = $service->income->where('service_id',$id)->where('status',true)->pluck('price','id')->all();
-        return response()->json($upload);
+        $id = $request['prIds'];
+        $servicerepair = ServiceRepair::findOrFail($id);
+        $upload = $servicerepair->income->where('servicerepair_id',$id)->where('status',true)->pluck('amount','id')->all();
+        $count = SUM($upload);
+        return response()->json($count);
     }
-
-    // public function upload_info(Request $request) 
-    // {
-
-    //     $id = $request['prIds'];
-    //     $servicerepair = servicerepair::findOrFail($id);
-    //     //$upload  = DB::table('attendances')->leftjoin('employees','employees.id','=','attendances.employee_id')->select('attendances.id','time_start')->where('employee_id',$employeeId)->get();
-    //     $query_date = $request->prev_month;
-    //     $date = new DateTime($query_date);
-    //     //First day of month
-    //     $date->modify('first day of this month');
-    //     $firstday= $date->format('Y-m-d');
-    //     //Last day of month
-    //     $date->modify('last day of this month');
-    //     $lastday= $date->format('Y-m-d');
-    //     $upload = $servicerepair->service->where('code',$id)->pluck('id','id')->all();
-
-    //     $servicerepair = servicerepair::where('service_id',$id)
-    //     ->whereBetween('created_at', [$firstday." 00:00:00", $lastday." 23:59:59"])
-    //     ->count('price');
-
-    //     return response()->json(['service'=>$service]);
-    // }
-
-    // public function child_info(Request $request) 
-    // {
-
-    //     $id = $request['prId'];
-    //     $service = Service::findOrFail($id);
-    //     $upload = $service->income->where('price',$id)->where('status',true)
-    //                             ->pluck('price','id')->all();
-
-    //     return response()->json($upload);
-    // }
 }

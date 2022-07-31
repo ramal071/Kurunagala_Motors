@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Workinghour;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class WorkinghourController extends Controller
 {
@@ -25,7 +26,12 @@ class WorkinghourController extends Controller
 
     public function create(Request $request)
     {
-        return view('admin.workinghour.create');
+        if(Gate::allows('isManager')){
+            return view('admin.workinghour.create');
+        }
+        else{
+            abort(403);
+        }
     }
 
     public function store(Request $request)
@@ -52,8 +58,13 @@ class WorkinghourController extends Controller
 
     public function edit($id)
     {
+        if(Gate::allows('isManager')){
         $workinghour = DB::table('workinghours')->where('id', $id)->first();        
         return view('admin.workinghour.edit', compact('workinghour'));
+    }
+        else{
+            abort(403);
+        }
     }
 
     public function update(Request $request, Workinghour $workinghour)
@@ -69,7 +80,13 @@ class WorkinghourController extends Controller
 
     public function destroy($id)
     {
-        DB::table('workinghours')->where('id', $id)->delete();
-        return redirect()->route('workinghour.index')->with('delete', 'Delete successfully');
+        if(Gate::allows('isManager')){
+            DB::table('workinghours')->where('id', $id)->delete();
+            return redirect()->route('workinghour.index')->with('delete', 'Delete successfully');
+        }
+    
+        else{
+            abort(403);
+        }
     }
 }

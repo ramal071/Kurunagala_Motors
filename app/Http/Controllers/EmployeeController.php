@@ -34,8 +34,8 @@ class EmployeeController extends Controller
             'id_back'=>'required',
             'phone'=>'required|numeric',
             'address'=>'required|string|min:1|max:255',
-            'basic_salary'=>'required',
-            'half_salary'=>'required',
+            'basic_salary'=>'required|numeric',
+            'half_salary'=>'required|numeric',
             'status'=>'required',
         ]);
         
@@ -112,9 +112,9 @@ class EmployeeController extends Controller
         $data = $this->validate($request, [
             'name'=>'required|string|min:1|max:255',
             'nick_name'=>'required|string|min:1|max:255',
-            'phone'=>'required',
-            'basic_salary'=>'required',
-            'half_salary'=>'required',
+            'phone'=>'required|numeric',
+            'basic_salary'=>'required|numeric',
+            'half_salary'=>'required|numeric',
             'address'=>'required|string|min:1|max:255',
         ]);
       

@@ -15,7 +15,7 @@ class CreateServiceRepairStockTable extends Migration
     {
         Schema::create('service_repair_stock', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('service_repair_id');
+            $table->unsignedBigInteger('service_repair_id')->nullable();
             $table->foreign('service_repair_id')->references('id')->on('service_repairs')->onDelete('cascade');
             $table->unsignedBigInteger('stock_id')->nullable();  
             $table->foreign('stock_id')->references('id')->on('stocks')->onDelete('cascade');

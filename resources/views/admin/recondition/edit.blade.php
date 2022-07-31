@@ -34,6 +34,14 @@
   
             <div class="row">
               <div class="col-md-6">
+                <label for="quantity">{{ __('adminstaticword.qty') }}:</sup></label>
+                <input type="number" class="form-control" name="quantity" placeholder="quantity......" id="quantity" value="{{ $recondition->quantity }}">
+                </div>          
+            </div>
+            <br>
+
+            <div class="row">
+              <div class="col-md-6">
                 <label for="description">{{ __('adminstaticword.description') }}:</sup></label>
                 <input type="text" class="form-control" name="description" placeholder="description......" id="description" value="{{ $recondition->description }}">
                 </div>          

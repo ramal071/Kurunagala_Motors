@@ -20,6 +20,7 @@
                                 <div class="col-md-6">
                                     <label for="employee">{{ __('adminstaticword.employee') }}</label>
                                     <select name="employee_id" class="form-control js-example-basic-single col-md-7 col-xs-12">
+                                        <option value="0">--{{ __('adminstaticword.pleaseselect') }}-- </option>
                                     @foreach($employee as $br)
                                         <option value="{{$br->id}}">{{$br->name}}</option>
                                     @endforeach
@@ -29,6 +30,7 @@
                                 <div class="col-md-6">
                                     <label for="allowance_type">{{ __('adminstaticword.allowance_type') }}:</label>
                                     <select name="allowance_type"  class="form-control" id="allowance_type">
+                                        <option value="0">--{{ __('adminstaticword.pleaseselect') }}-- </option>
                                         <option value="medical">Medical allowance</option>
                                         <option value="transport">Transport allowance</option>
                                         <option value="other">Other allowance</option>

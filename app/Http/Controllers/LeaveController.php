@@ -17,7 +17,6 @@ class LeaveController extends Controller
         $arr['leaves'] = Leave::all();
         $arr['employee'] = Employee::all(); 
         return view('admin.leave.index')->with($arr);
-  
     }
 
     public function create(Request $request)
@@ -29,6 +28,7 @@ class LeaveController extends Controller
     public function store(Request $request, Leave $leave)
     {
         $request->validate([
+            'employee_id'  => 'required',
             'leave_type'   => 'required|string|max:255',
             'from_date'    => 'required|string|max:255',
             'to_date'      => 'required|string|max:255',
@@ -74,6 +74,13 @@ class LeaveController extends Controller
 
     public function update(Request $request, Leave $leave)
     {
+        $request->validate([
+            'employee_id'   => 'required',
+            'leave_type'   => 'required|string|max:255',
+            'from_date'    => 'required|string|max:255',
+            'to_date'      => 'required|string|max:255',
+        ]);
+
             $from_date = new DateTime($request->from_date);
             $to_date = new DateTime($request->to_date);
             $day     = $from_date->diff($to_date);

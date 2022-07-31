@@ -32,7 +32,7 @@
                                          <select name="roles[]" value="{{ $employee->role_id }}"
                                             class="form-control js-example-basic-single col-md-7 col-xs-12">
                                             <option value="">Choose role</option>
-                                            {{-- {{ dd($empolyee_roles) }} --}}
+                                            {{-- {{ dd($empolyee_roles) }} --}}   
                                             @foreach ($roles as $r)
                                                 <option value="{{ $r->id }}"
                                                   {{ $r->id == $empolyee_roles[0]->role_id ? 'selected' : '' }}>

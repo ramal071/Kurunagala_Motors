@@ -25,4 +25,4 @@ class ContactController extends Controller
         Contact::find($id)->delete();
         return redirect()->back();
     }
-}
+}   

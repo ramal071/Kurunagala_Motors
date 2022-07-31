@@ -27,8 +27,10 @@
                                     <th>{{__('adminstaticword.brand') }}</th>
                                     <th>{{__('adminstaticword.model') }}</th>                                 
                                     <th>{{__('adminstaticword.whatareservices') }}</th>  
+                                    <th>{{__('adminstaticword.email') }}</th> 
                                     <th>{{__('adminstaticword.nextdate') }}</th> 
-                                    <th>{{__('adminstaticword.reminderdate') }}</th>                     
+                                    <th>{{__('adminstaticword.reminderdate') }}</th> 
+                                    <th>{{ __('adminstaticword.remind') }}</th>                       
                                     <th>{{__('adminstaticword.edit') }}</th>
                                     <th>{{__('adminstaticword.delete') }}</th>
                                 </tr>
@@ -46,8 +48,24 @@
                                     <td>{{ $b->customervehicle->brand->name}}</td>
                                     <td>{{ $b->customervehicle->bike->name}}</td>
                                     <td>{{ $b->service->name}}</td>
+                                    <td>{{ $b->email }}</td>
                                     <td>{{ $b->next_date }}</td>
                                     <td>{{ $b->reminder_date }}</td>
+
+                                    <td>
+                                        <form action="{{ route('nextservice.quick',$b->id ) }}" method="POST">
+                                            {{ csrf_field() }}
+                                            <button type="Submit"
+                                                class="btn btn-xs {{ $b->is_remind ==1 ? 'btn-success' : 'btn-danger' }} ">
+                                                @if ( $b->is_remind == 1)
+                                                    {{ __('adminstaticword.remind') }}
+                                                @else
+                                                    {{ __('adminstaticword.notremind') }}
+                                                @endif
+                                            </button>
+                                        </form>
+                                    </td>
+                                    
                                     <td>
                                     <a href="{{route('customerpendingservice.edit', $b->id)}}" class="btn btn-success btn-sm" ><i class="glyphicon glyphicon-pencil"></i></a>
                                     </td>

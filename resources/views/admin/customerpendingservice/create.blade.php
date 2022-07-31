@@ -28,10 +28,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                </div>
-                                <br>
-
-                                <div class="row">
+                          
                                     <div class="col-md-6">
                                         <label for="exampleInputTit1e1">{{ __('adminstaticword.registernumber') }}</label>
                                         <select name="customervehicle_id" id="upload_id"
@@ -39,19 +36,6 @@
                                         </select>
                                     </div>
                                 </div>
-
-                                {{-- <div class="row">
-                                <div class="col-md-6">
-                                    <label for="register_number">{{ __('adminstaticword.registernumber') }}:<sup class="redstar">*</sup></label>
-                                    <select name="customervehicle_id" id="customervehicle_id" class="form-control js-example-basic-single col-md-7 col-xs-12" >
-                                        <option value="0">{{ __('adminstaticword.pleaseselect') }}</option>
-                                        @foreach ($customervehicle as $customervehicle)
-                                        <option value="{{$customervehicle->id}}">{{$customervehicle->register_number}}</option>
-                                        @endforeach
-                                    </select>
-                                 </div>  
-                            </div>
-                            <br> --}}
 
                                 <div class="row">
                                     <div class="col-md-6">
@@ -65,6 +49,11 @@
                                             @endforeach
                                         </select>
                                     </div>
+
+                                    <div class="col-md-6">
+                                        <label for="email">{{ __('adminstaticword.email') }}:</sup></label>
+                                        <input type="email" class="form-control" name="email" id="email" placeholder=" email ..." value="">
+                                      </div>        
                                 </div>
                                 <br>
 
@@ -75,16 +64,22 @@
                                         <input type="date" class="form-control" name="next_date" id="next_date"
                                             placeholder="Enter next date" value="">
                                     </div>
-                                </div>
-                                <br>
-
-                                <div class="row">
+                             
                                     <div class="col-md-6">
                                         <label for="reminder_date">{{ __('adminstaticword.reminderdate') }}:<sup
                                                 class="redstar">*</sup></label>
                                         <input type="date" class="form-control" name="reminder_date" id="reminder_date"
                                             placeholder="Enter reminder date" value="">
                                     </div>
+                                </div>
+                                <br>
+
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        <label for="text">{{ __('adminstaticword.description') }}:</sup></label>
+                                        <input type="text" class="form-control" name="description" id="description" placeholder=" description ..." value="">
+                                      </div>        
                                 </div>
                                 <br>
 

@@ -7,8 +7,78 @@
 <section class="section services-section" id="services">
     <div class="container">
 
-        @auth
+        <div class="row">
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box user-->
+              <div class="small-box bg-aqua">
+                <div class="inner">
+                  <h3>
+                      @php
+                          $user = App\User::get();
+                          if(count($user)>0){
+    
+                              echo count($user);
+                          }
+                          else
+                      {
+                              echo "0";
+                          }
+                      @endphp
+                  </h3>
+                  <p>{{ __('adminstaticword.users') }}</p>
+                </div>
+                <div class="icon">
+                  <i class="flaticon-user"></i>
+                </div>
+                <a href="{{url('users')}}" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+        </div>
 
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="section-title">
+                    <h2>Services </h2>
+                </div>
+            </div>
+        </div>
+       
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="box-body">
+                    <div class="table responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>                 
+                                    <th>{{__('adminstaticword.code') }}</th>
+                                    <th>{{__('adminstaticword.name') }}</th>
+                                    <th>{{__('adminstaticword.price') }}</th>                       
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @php
+                                $service = App\Service::get();
+                                @endphp
+
+                                
+                                <?php $i=0;?>
+                                @foreach($service as $key)
+                                <?php $i++;?>
+                                <tr>
+                                    <td>{{ $key->code }}</td>
+                                    <td>{{ $key->name }}</td>
+                                    <td>{{ $key->price }}</td> 
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+
+    @auth
         <div class="row">
             <div class="col-lg-6">
                 <div class="section-title">
@@ -151,6 +221,49 @@
                     <h2>PRODUCTS</h2>
                 </div>
             </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+            
+            <table id="myTable" class="table table-bordered table-striped">
+                <thead>
+                    <tr>                                       
+                        <th>{{__('adminstaticword.brand') }}</th>
+                        <th>{{__('adminstaticword.bike') }}</th>
+                        <th>{{__('adminstaticword.code') }}</th>
+                        <th>{{__('adminstaticword.name') }}</th>
+                        <th>{{__('adminstaticword.productimage') }}</th>     
+                        <th>{{__('adminstaticword.status') }}</th>    
+                    </tr>
+                </thead>
+                <tbody>                                
+                    @foreach($product as $pr)
+                    <tr>                                    
+                        <td>{{ $pr->brand->name}}</td>
+                        <td>{{ $pr->bike->name}}</td>
+                        <td>{{ $pr->code }}</td>
+                        <td>{{ $pr->name }}</td>
+                        <td> <img src="{{ asset('storage/product/' .  $pr->product_image) }}" width="100px;" height="100px;" alt="Image"></td>
+               
+                        <td>                                    
+                            <button type="Submit" class="btn btn-xs {{ $pr->status ==1 ? 'btn-success' : 'btn-danger' }} "> 
+                                @if ($pr->status ==1)
+                            {{__('adminstaticword.active') }}         
+                            @else
+                            {{__('adminstaticword.deactive') }} 
+                            @endif
+                            </button>        
+                        </td>   
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+
+
+</div>
+
+
         </div>
        
         <div class="row">
@@ -360,6 +473,62 @@
         </div>
         <br>
 
+
+        {{--  --}}
+
+
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="section-title">
+                    <h2>Contact-Us</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <form class="contact-form" method="post" action="{{ route('contact.send') }}">
+                @csrf                      
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input  name="name" type="text" class="form-control" id="name" placeholder="  Name">
+                        </div>
+                        </div>
+                    <br>
+    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input name="email" type="email" class="form-control" id="email" placeholder="  Email">
+                        </div>
+                        </div>
+                    <br>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input name="phone" type="text" class="form-control" id="phone" placeholder="  phone">
+                        </div>
+                        </div>
+                    <br>
+    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <textarea name="message" type="text" class="form-control" id="message" rows="7" placeholder="  Message"></textarea>
+                        </div>
+                        </div>
+                    <br>
+                    
+                </div>
+    
+                <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
+                    <div class="text-center">
+                        <button type="submit" id="submit" name="submit" class="btn btn-send">Send </button>
+                    </div>
+                </div>
+            </form>
+      <br>
+
+
+        {{--  --}}
+
         <div class="row">
             <div class="col-lg-6">
                 <div class="section-title">
@@ -367,46 +536,106 @@
                 </div>
             </div>
         </div>
+
+
+
+{{--  canvas js line chart--}}
+<div class="col-lg-6">
+    <div class="box box-danger">
+      <div class="box-header with-border">
+          
+        <?php
+        $months = array();
+        $count = 0;
+        while ($count <= 3) {
+            $months[] = date('M Y', strtotime("-".$count." month"));
+        $count++;
+        }
+
+        $dataPoints = array(
+        // array("y" => $usersCount[7], "label" => $months[7]),
+        // array("y" => $usersCount[6], "label" => $months[6]),
+        // array("y" => $usersCount[5], "label" => $months[5]),
+        // array("y" => $usersCount[4], "label" => $months[4]),
+        array("y" => $usersCount[3], "label" => $months[3]),
+        array("y" => $usersCount[2], "label" => $months[2]),
+        array("y" => $usersCount[1], "label" => $months[1]),
+        array("y" => $usersCount[0], "label" => $months[0]),
+
+        );
+
+        ?>
+
+        <script>
+        window.onload = function () {
+        
+        var chart = new CanvasJS.Chart("chartContainer", {
+            title: {
+                text: "Monthly Service-Repair"
+            },
+            axisY: {
+                title: "Number of Service-Repair"
+            },
+            data: [{
+                type: "line",
+                dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+            }]
+        });
+        chart.render();
+        
+        }
+        </script>
+
+        <div id="chartContainer" style="height: 370px; width: 80%;"></div>
+        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
        <div style="height: 400px;width:900px; margin:auto;">
         <canvas id="barChart"></canvas>
        </div>
 
 
     </section>
-  
-       @section('barchart')     
-       <script>
-            $(function(){
-                var datas = document.getElementById($datas); 
-                var barCanvas = $("#barChart");
-                var barChart = new Chart(barCanvas, {
-                    type:'bar',
-                    data: {
-                        labels:['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun' ,'Jul', 'Aug', 'Sep', 'Sep', 'Oct', 'Nov', 'Dec'],
-                        datasets:[
-                            {
-                                label:'New services',
-                                data:datas,
-                                backgroundColor: ['red', 'orange', 'yellow', 'green', 'blue', 'pink'],
-                            }
-                        ]
-                    },
-                    options:{
-                        scales:{
-                            yAxes:[{
-                                ticks:{
-                                    beginAtZero:true
-                                }
-                            }]
-                        }
-                    }
-                })
-            });
-        </script>
+    @endsection
+    //    @section('barchart')     
+    //    <script>
+    //         $(function(){
+    //             var datas = document.getElementById($datas); 
+    //             var barCanvas = $("#barChart");
+    //             var barChart = new Chart(barCanvas, {
+    //                 type:'bar',
+    //                 data: {
+    //                     labels:['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun' ,'Jul', 'Aug', 'Sep', 'Sep', 'Oct', 'Nov', 'Dec'],
+    //                     datasets:[
+    //                         {
+    //                             label:'New services',
+    //                             data:datas,
+    //                             backgroundColor: ['red', 'orange', 'yellow', 'green', 'blue', 'pink'],
+    //                         }
+    //                     ]
+    //                 },
+    //                 options:{
+    //                     scales:{
+    //                         yAxes:[{
+    //                             ticks:{
+    //                                 beginAtZero:true
+    //                             }
+    //                         }]
+    //                     }
+    //                 }
+    //             })
+    //         });
+    //     </script>
 
        
-    </div>
+    // </div>
+ 
 
 
-@endsection 
-@endsection

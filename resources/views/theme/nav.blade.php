@@ -61,13 +61,24 @@
                     </div>
                 </div>
             </div>
+
+            {{-- <div class="col-lg-5">
+                <div class="row">
+                    <div class="col-lg-8 col-md-12 col-sm-12">
+                        <div class="logo">  
+                            <span class="logo-lg"> <img title="{{ $project_title }}" width="100px" src="{{ url('images/logo/'.$gsetting->logo) }}" alt=""/></span>          
+                        </div>
+                    </div>
+                </div>
+            </div> --}}
+
             <div class="col-lg-7">
                 @guest
                 <div class="row">               
                     <div class="col-lg-1">
                     </div>
           
-                    <div class="col-lg-8">
+                    <div class="col-lg-12">
                         <div class="Login-btn">                            
                             <a href="{{ route('login') }}" class="btn btn-secondary" title="login">{{ __('frontstaticword.login') }}</a>
                             <a href="{{ route('register') }}" class="btn btn-primary" title="register">{{ __('frontstaticword.signup') }}</a>                            
@@ -79,7 +90,7 @@
                 @auth
        
                     {{-- Drop down --}}
-                    <div class="col-lg-8 col-md-8 col-sm-8 col-8">
+                    <div class="col-lg-12 col-md-8 col-sm-8 col-8">
                         <div class="my-container">
                           <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle  my-dropdown" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -97,7 +108,6 @@
                                     </div>
                                 </div>
                                  
-                                <a href=""><li><i class="fa fa-users"></i>{{ __('frontstaticword.service') }}</li></a>  
                                 <a href="{{route('profile.show',Auth::User()->id)}}"><li ><i class="fa fa-user"></i>{{ __('frontstaticword.userprofile') }}</li></a>    
                                 <a href="{{route('password.update',Auth::User()->id)}}"><li ><i class="fa fa-user"></i>{{ __('frontstaticword.passwordupdate') }}</li></a>                                   
 

@@ -11,13 +11,23 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\Registerd;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class CustomerVehicleController extends Controller
 {
     public function index()
     {
         $arr['customervehicle'] = CustomerVehicle::all();
-        return view('admin.customervehicle.index')->with($arr);
+
+        if(Gate::allows('isManager')){
+            return view('admin.customervehicle.index')->with($arr);
+        }
+        if(Gate::allows('isCashier')){
+            return view('admin.customervehicle.index')->with($arr);
+        }
+        else{
+            abort(403);
+        }
     }
 
     public function create()
@@ -25,7 +35,16 @@ class CustomerVehicleController extends Controller
         $arr['user'] = User::all();
         $arr['bike'] = Bike::all();
         $arr['brand'] = brand::all();
-        return view('admin.customervehicle.create')->with($arr);
+
+        if(Gate::allows('isManager')){
+            return view('admin.customervehicle.create')->with($arr);
+        }
+        if(Gate::allows('isCashier')){
+            return view('admin.customervehicle.create')->with($arr);
+        }
+        else{
+            abort(403);
+        }
     }
 
     public function store(Request $request, CustomerVehicle $customervehicle)
@@ -65,7 +84,16 @@ class CustomerVehicleController extends Controller
         $arr['bike'] = Bike::all();
         $arr['brand'] = brand::all();
         $arr['user'] = User::all();
-        return view('admin.customervehicle.edit')->with($arr);
+
+        if(Gate::allows('isManager')){
+            return view('admin.customervehicle.edit')->with($arr);
+        }
+        if(Gate::allows('isCashier')){
+            return view('admin.customervehicle.edit')->with($arr);
+        }
+        else{
+            abort(403);
+        }
     }
 
     public function update(Request $request, CustomerVehicle $customervehicle)
@@ -81,8 +109,18 @@ class CustomerVehicleController extends Controller
     public function destroy($id)
     {
         customerVehicle::destroy($id);
-        return redirect()->route('customervehicle.index')->with('delete', 'customer vehicle deleted');
+        
+        if(Gate::allows('isManager')){
+            return redirect()->route('customervehicle.index')->with('delete', 'customer vehicle deleted');
+        }
+        if(Gate::allows('isCashier')){
+            return redirect()->route('customervehicle.index')->with('delete', 'customer vehicle deleted');
+        }
+        else{
+            abort(403);
+        }
     }
+
 
     public function upload_info(Request $request) 
     {

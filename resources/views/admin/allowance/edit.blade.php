@@ -20,6 +20,7 @@
                   <div class="col-md-6">
                     <label for="employee">{{ __('adminstaticword.employee') }}</label>
                     <select name="employee_id" id="employee_id" class="form-control js-example-basic-single col-md-7 col-xs-12" >
+                      
                       @foreach($employee as $br)
                         <option value="{{$br->id}} "
                             @if ($br->id == $allowance->employee_id)

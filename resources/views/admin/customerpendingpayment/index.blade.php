@@ -28,7 +28,6 @@
                                     <th>{{__('adminstaticword.amount') }}</th> 
                                     <th>{{__('adminstaticword.paidamount') }}</th>          
                                     <th>{{__('adminstaticword.balance') }}</th>     
-                                              
                                     <th>{{__('adminstaticword.repaircomplete') }}</th>
                                     <th>{{ __('adminstaticword.remind') }}</th>            
                                     <th>{{__('adminstaticword.payment') }} {{__('adminstaticword.complete') }}</th>
@@ -64,17 +63,17 @@
 
                                     <td>
                                 
-                                            <button type="Submit"
-                                                class="btn btn-xs {{  $b->is_remind ==1? 'btn-success' : 'btn-danger' }} ">
-                                                @if ( $b->is_remind ==1)
-                                                    {{ __('adminstaticword.remind') }}
-                                                @else
-                                                    {{ __('adminstaticword.notremind') }}
-                                                @endif
-                                            </button>
-                                        </form>
-                                    </td> 
-                                    
+                                        <button type="Submit"
+                                            class="btn btn-xs {{  $b->is_remind ==1? 'btn-success' : 'btn-danger' }} ">
+                                            @if ( $b->is_remind ==1)
+                                                {{ __('adminstaticword.remind') }}
+                                            @else
+                                                {{ __('adminstaticword.notremind') }}
+                                            @endif
+                                        </button>
+                                    </form>
+                                </td> 
+                                
 
                                     
                                     <td>                                       

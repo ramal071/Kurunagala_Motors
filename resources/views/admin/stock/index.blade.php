@@ -28,9 +28,10 @@
                                         <th>{{__('adminstaticword.sprice') }}</th>
                                         <th>{{__('adminstaticword.color') }}</th>
                                         <th>{{__('adminstaticword.lowestlimit') }}</th>
-                                        {{-- <th>{{__('adminstaticword.status') }}</th> --}}
                                         <th>{{__('adminstaticword.description') }}</th>
+                                        @if (Auth::User()->roles->slug == "manager")
                                         <th>{{__('adminstaticword.tool') }}</th>
+                                        @endif
                                     </tr>
                                 </thead>
 
@@ -55,7 +56,7 @@
                                         
                                         <td>{{ $stock->description }}</td>
 
-                                        @if (Auth::User()->role_id =="1")
+                                        @if (Auth::User()->roles->slug == "manager")
                                         <td>
                                             <a href="{{route('stock.edit', $stock->id)}}" class="btn btn-success btn-sm" ><i class="glyphicon glyphicon-pencil"></i></a>
                                         

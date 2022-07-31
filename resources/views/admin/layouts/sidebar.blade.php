@@ -12,13 +12,14 @@
 
         <ul class="sidebar-menu" data-widget="tree">
           <li class="header">{{ __('adminstaticword.navigation') }}</li>
-
-          <li class="{{ Nav::isRoute('admin.index') }}"><a href="{{route('admin.index')}}"><i class="flaticon-web-browser" aria-hidden="true"></i><span>{{ __('adminstaticword.dashboard') }}</span></a></li>
-
+   
+            <li class="{{ Nav::isRoute('admin.index') }}"><a href="{{route('admin.index')}}"><i class="flaticon-web-browser" aria-hidden="true"></i><span>{{ __('adminstaticword.dashboard') }}</span></a></li>
+      
 
 {{-- Employee = role/ employee --}}
-          @if(Auth::User()->role_id == "1")
-        
+          {{-- @if(Auth::User()->role_id == "1") --}}
+          @if(Auth::User()->roles->slug == "manager")
+
             <li class="{{ Nav::isRoute('employee') }} {{ Nav::isResource('employee') }} treeview">
               <a href="#">
                   <i class="flaticon-location"></i>{{ __('adminstaticword.employees') }}
@@ -40,7 +41,7 @@
           @endif
 
 {{--  Product = bike , brand ,  product --}}
-            @if (Auth::User()->role_id =="1")
+            @if (Auth::User()->roles->slug == "manager")
             <li class="{{ Nav::isRoute('product') }} {{ Nav::isResource('product') }} treeview">
               <a href="#">
                   <i class="flaticon-location"></i>{{ __('adminstaticword.product') }}
@@ -80,15 +81,16 @@
               <li class="{{ Nav::isRoute('stock_servicerepair.index') }}"><a href="{{route('stock_servicerepair.index')}}"><i class="flaticon-rec"></i>{{__('adminstaticword.productforjob')}}</a></li>   
               <li class="{{ Nav::isRoute('servicerepair.index') }}"><a href="{{route('servicerepair.index')}}"><i class="flaticon-rec"></i>{{ __('adminstaticword.servicerepair') }}</a></li>
               <li class="{{ Nav::isRoute('completejob.index') }}"><a href="{{route('completejob.index')}}"><i class="flaticon-rec"></i>{{__('adminstaticword.job') }} {{__('adminstaticword.status') }}</a></li>
-              @if (Auth::User()->role_id =="1")
-              <li class="{{ Nav::isRoute('income.index') }}"><a href="{{route('income.index')}}"><i class="flaticon-rec"></i>{{__('adminstaticword.income') }}</a></li>
-              @endif
+              <li class="{{ Nav::isRoute('income.index') }}"><a href="{{route('income.index')}}"><i class="flaticon-rec"></i>{{__('adminstaticword.income')}}</a></li>   
+              
             </ul>
           </li> 
 
 {{-- user add --}}
+          @canany(['isManager', 'isCashier'])
             <li class="{{ Nav::isRoute('users.index') }}"><a href="{{route('users.index')}}"><i class="flaticon-web-browser" aria-hidden="true"></i><span>{{ __('adminstaticword.users') }}</span></a></li>
-{{-- stock , damage, recondition --}}
+          @endcanany
+            {{-- stock , damage, recondition --}}
 
             <li class="{{ Nav::isRoute('stock') }} {{ Nav::isResource('stock') }} treeview">
               <a href="#">
@@ -110,15 +112,16 @@
                  <i class="fa fa-angle-left pull-right"></i>
              </a> 
              <ul class="treeview-menu">            
+              @can('isManager')
                <li class="{{ Nav::isRoute('workinghour.index') }}"><a href="{{route('workinghour.index')}}"><i class="flaticon-rec"></i>{{ __('adminstaticword.workinghour') }} </a></li>
+              @endcan
                <li class="{{ Nav::isRoute('calendar.index') }}"><a href="{{route('calendar.index')}}"><i class="flaticon-web-browser" aria-hidden="true"></i><span>{{ __('adminstaticword.calendar') }}</span></a></li>
+               <li class="{{ Nav::isRoute('profile.show') }}"><a href="{{route('profile.show',Auth::User()->id)}}"><i class="flaticon-web-browser" aria-hidden="true"></i><span>{{ __('adminstaticword.userprofile') }}</span></a></li>
+               <li class="{{ Nav::isRoute('password.update') }}"><a href="{{route('password.update',Auth::User()->id)}}"><i class="flaticon-web-browser" aria-hidden="true"></i><span>{{ __('adminstaticword.passwordupdate') }}</span></a></li>     
                 </ul>
            </li> 
   
-          <li class="{{ Nav::isRoute('profile.show') }}"><a href="{{route('profile.show',Auth::User()->id)}}"><i class="flaticon-web-browser" aria-hidden="true"></i><span>{{ __('adminstaticword.userprofile') }}</span></a></li>
-
-          <li class="{{ Nav::isRoute('password.update') }}"><a href="{{route('password.update',Auth::User()->id)}}"><i class="flaticon-web-browser" aria-hidden="true"></i><span>{{ __('adminstaticword.passwordupdate') }}</span></a></li>
-        
+      
           <li class="{{ Nav::isRoute('contact.index') }}"><a href="{{route('contact.index')}}"><i class="flaticon-web-browser" aria-hidden="true"></i><span>{{ __('adminstaticword.contact') }}</span></a></li>
 
         </ul>

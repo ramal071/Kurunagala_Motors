@@ -22,7 +22,10 @@ class ServiceRepair extends Model
             'code',
             'fixprice',
             'qty',
-            'servicerepair_id'
+            'servicerepair_id',
+            'service_price',
+            'stock_items_sum',
+         
     ];
 
     public function user()
@@ -60,5 +63,10 @@ class ServiceRepair extends Model
     public function salary()
     {
         return $this->hasMany(Salary::class, 'servicerepair_id' , 'id');
+    }
+
+    public function income()
+    {
+        return $this->hasMany(Income::class, 'servicerepair_id' , 'id');
     }
 }

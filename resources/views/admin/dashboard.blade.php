@@ -2,9 +2,6 @@
 @section('title', 'Dashboard') 
 @section('body')
 
-{{-- @if(Auth()->User()->role == "admin") --}}
-
-
 <section class="content-header">
   <h1>
     {{ __('adminstaticword.dashboard') }}
@@ -20,7 +17,7 @@
 	<!-- Main row -->
     <div class="row">
         <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
+          <!-- small box user-->
           <div class="small-box bg-aqua">
             <div class="inner">
               <h3>
@@ -99,7 +96,7 @@
 
     
          <div class="col-lg-3 col-xs-6">
-          <div class="small-box bg-yellow">
+          <div class="small-box bg-maroon">
             <div class="inner">
               <h3>
               @php
@@ -116,7 +113,7 @@
               <p>{{ __('adminstaticword.brand') }}</p>
             </div>
             <div class="icon">
-              <i class="flaticon-book"></i>
+              <i class="flaticon-repair"></i>
             </div>
             <a href="{{url('brand')}}" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
           </div>
@@ -125,7 +122,7 @@
          <!-- ./col -->
          <div class="col-lg-3 col-xs-6">
           <!-- small box -->
-          <div class="small-box bg-yellow">
+          <div class="small-box bg-lime">
             <div class="inner">
               <h3>
               @php
@@ -193,45 +190,12 @@
               <p>{{ __('adminstaticword.employee') }}</p>
             </div>
             <div class="icon">
-              <i class="flaticon-faq"></i>
+              <i class="flaticon-customer-1"></i>
             </div>
             <a href="{{url('employee')}}" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
 
-        <!-- ./col -->
-        {{-- <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-orange">
-            <div class="inner">
-              <h3>
-  
-              </h3>
-              <p>{{ __('adminstaticword.income') }}</p>
-            </div>
-            <div class="icon">
-             <i class="flaticon-report"></i>
-            </div>
-            <a href="" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-green">
-            <div class="inner">
-              <h3>
-                10
-              </h3>
-              <p>{{ __('adminstaticword.profit') }}</p>
-            </div>
-            <div class="icon">
-             <i class="flaticon-teacher"></i>
-            </div>
-            <a href="" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div> --}}
 
         <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
@@ -240,9 +204,9 @@
             <div class="inner">
               <h3>
                 @php
-                $servicerepair = App\servicerepair::get();
-                if(count($servicerepair)>0){
-                  echo count($servicerepair);
+                $contacts = App\contact::get();
+                if(count($contacts)>0){
+                  echo count($contacts);
                 }
                 else
                 {
@@ -250,12 +214,12 @@
                 }
                 @endphp
               </h3>
-              <p>+ {{ __('adminstaticword.servicerepair') }}</p>
+              <p>+ {{ __('adminstaticword.contact') }}</p>
             </div>
             <div class="icon">
-             <i class="flaticon-customer-1"></i>
+             <i class="flaticon-faq"></i>
             </div>
-            <a href="{{ url('servicerepair') }}" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{ url('contact') }}" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -333,7 +297,6 @@
           array("y" => $usersCount[0], "label" => $months[0]),
 
           );
-
           ?>
 
           <script>

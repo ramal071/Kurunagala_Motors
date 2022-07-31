@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Role;
 use Illuminate\Http\Request;
 use App\User;
-
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Registerd;
@@ -14,9 +14,22 @@ class UsersController extends Controller
 {
     public function index()
     {
-        $users = User::orderBy('id', 'desc')->get();
-        return view('admin.users.index', ['users' => $users]);
-
+        
+        $users = User::with('roles')
+                       ->whereHas('roles',function($query){
+                        $query->whereNotIn('name',['manager']);
+                       })
+                       ->orderBy('id', 'desc')->get();
+        
+        if(Gate::allows('isManager')){
+            return view('admin.users.index', ['users' => $users]);
+        }
+        elseif (Gate::allows('isCashier')){
+            return view('admin.users.index', ['users' => $users]);
+        }
+        else{
+            abort(403);
+        }
     }
 
     public function create(Request $request, User $user)
@@ -25,7 +38,16 @@ class UsersController extends Controller
         $arr['user'] = $user;
         $arr['role'] = Role::all();
 
-        return view('admin.users.create')->with($arr);
+        if(Gate::allows('isManager')){
+            return view('admin.users.create')->with($arr);
+        }
+        elseif (Gate::allows('isCashier')){
+            return view('admin.users.create')->with($arr);
+        }
+        else{
+            abort(403);
+        }
+    
     }
 
     public function store(Request $request, User $user)
@@ -62,7 +84,15 @@ class UsersController extends Controller
 
     public function show(User $user)
     {
-        return view('admin.users.show',['user'=>$user]);
+        if(Gate::allows('isManager')){
+            return view('admin.users.show',['user'=>$user]);
+        }
+        if(Gate::allows('isCashier')){
+            return view('admin.users.show',['user'=>$user]);
+        }
+        else{
+            abort(403);
+        }
     }
 
     public function edit(User $user)
@@ -70,7 +100,15 @@ class UsersController extends Controller
         $arr['user'] = $user;
         $arr['role'] = Role::all();
 
-        return view('admin.users.edit')->with($arr);
+        if(Gate::allows('isManager')){
+            return view('admin.users.edit')->with($arr);
+        }
+        if(Gate::allows('isCashier')){
+            return view('admin.users.edit')->with($arr);
+        }
+        else{
+            abort(403);
+        }
     }
 
     public function update(Request $request, User $user)
@@ -101,9 +139,15 @@ class UsersController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->route('users.index')->with('delete', 'User Deleted');
-
-        // return redirect('/users);
+        if(Gate::allows('isManager')){
+            return redirect()->route('users.index')->with('delete', 'User Deleted');
+        }
+        if(Gate::allows('isCashier')){
+            return redirect()->route('users.index')->with('delete', 'User Deleted');
+        }
+        else{
+            abort(403);
+        }
     }
 
 

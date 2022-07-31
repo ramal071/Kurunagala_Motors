@@ -70,20 +70,15 @@
                                 <select name="service_id" id="service_id" class="form-control js-example-basic-single col-md-7 col-xs-12" >
                                     <option value="0">--{{ __('adminstaticword.pleaseselect') }}--</option>
                                     @foreach($service as $service)
-                                    <option value="{{$service->id}}">{{$service->name}}</option>
+                                    <option value="{{$service->id}}">{{$service->name}} - price: Rs.{{$service->price}}</option>
                                     @endforeach
                                 </select>
                              </div>  
 
-                              {{-- <div class="col-md-6">
-                                <label for="stock">{{ __('adminstaticword.stock') }}</label>
-                                <select name="stock[]" class="form-control stock" multiple="multiple">
-                                  <option value="0"></option>
-                                  @foreach($stock as $s)
-                                    <option value="{{$s->id}}">{{$s->id}}: {{$s->sellingprice}} {{ $s->product->brand->name }} {{ $s->product->bike->name }} {{$s->product->name}}</option>
-                                  @endforeach
-                                </select>
-                              </div> --}}
+                             <div class="col-md-6">
+                              <label for="charge">{{ __('adminstaticword.charge') }}:</label>
+                              <input type="number" class="form-control" name="charge" id="charge" placeholder="Enter charge" value="">
+                             </div>
                             </div>
                             <br>
 
@@ -101,9 +96,9 @@
                                 <tbody>
                                   <td>
                                     <select name="stock[]" id="stock_id" class="form-control js-example-basic-single col-md-7 col-xs-12 select_dropdown" >
-                                      <option value="0">--{{ __('adminstaticword.pleaseselect') }}--</option>
+                                      <option value="empty">--{{ __('adminstaticword.pleaseselect') }}--</option>
                                       @foreach($stock as $s)
-                                      <option value="{{$s->id}}">{{$s->id}}: {{$s->sellingprice}} {{ $s->product->brand->name }} {{ $s->product->bike->name }} {{$s->product->name}}</option>
+                                      <option value="{{$s->id}}">{{$s->product->code}}: {{ $s->product->brand->name }} {{ $s->product->bike->name }} {{$s->product->name}} price: Rs.{{$s->sellingprice}} qty: {{$s->quantity}} </option>
                                       @endforeach
                                     </select>
                                 </td>
@@ -120,35 +115,18 @@
                               </table>
   
 
-
-                            
-
                             <div class="row">
                                 <div class="col-md-6">
                                   <label for="paid_amount">{{ __('adminstaticword.paidamount') }}:</label>
                                   <input type="number" class="form-control" name="paid_amount" id="paid_amount" placeholder="Enter paid_amount" value="">
                                 </div>          
-                          
                                 <div class="col-md-6">
-                                  <label for="charge">{{ __('adminstaticword.charge') }}:</label>
-                                  <input type="number" class="form-control" name="charge" id="charge" placeholder="Enter charge" value="">
-                                </div>          
+                                  <label for="description">{{ __('adminstaticword.description') }}</label>
+                                  <input type="text" class="form-control" name="description" id="description" placeholder="Enter description" value="">
+                                </div> 
+                                       
                             </div>
                             <br>
-
-                            <div class="row">
-                              <div class="col-md-6">
-                                <label for="description">{{ __('adminstaticword.description') }}</label>
-                                <input type="text" class="form-control" name="description" id="description" placeholder="Enter description" value="">
-                              </div>  
-
-                               <div class="col-md-6">
-                                <label for="fixprice">{{ __('adminstaticword.fixprice') }}:</label>
-                                <input type="number" class="form-control" name="fixprice" id="fixprice" placeholder="Enter fixprice" value="">                               
-                              </div>                                           
-                          </div>
-                          <br>
-
                             
                             <div class="col-md-6">
                                 <div class="col-md-6">
@@ -222,7 +200,7 @@
       let length = $('.select_dropdown').length+1;
    var html='';
    html+="<tr>";
-   html+='<td><select name="stock[]" id="stock_id" class="form-control js-example-basic-single col-md-7 col-xs-12 select_dropdown" ><option value="0">--{{ __('adminstaticword.pleaseselect') }}--</option>@foreach($stock as $s)<option value="{{$s->id}}">{{$s->id}}: {{$s->sellingprice}} {{ $s->product->brand->name }} {{ $s->product->bike->name }} {{$s->product->name}}</option> @endforeach</select></td>';
+   html+='<td><select name="stock[]" id="stock_id" class="form-control js-example-basic-single col-md-7 col-xs-12 select_dropdown" ><option value="0">--{{ __('adminstaticword.pleaseselect') }}--</option>@foreach($stock as $s)<option value="{{$s->id}}">{{$s->product->code}}: {{ $s->product->brand->name }} {{ $s->product->bike->name }} {{$s->product->name}} price: Rs.{{$s->sellingprice}} qty: {{$s->quantity}} </option> @endforeach</select></td>';
    html+='<td><input type="number" class="form-control" name="qty[]" placeholder="Enter qty"></td>';
    html+='<td><button type="button" class="btn btn-primary" id="remove"> <i class="glyphicon glyphicon-remove"></i></button></td>';
    html+="</tr>";
