@@ -47,13 +47,30 @@ class CustomerPendingServiceController extends Controller
 
     public function store(Request $request, CustomerPendingService $customerpendingservice)
     {
+        $data = $this->validate($request, [ 
+            'user_id'=> 'required',
+            'customervehicle_id'=>'required',
+            'service_id'=>'required',
+            'next_date'=> 'required|string|min:1|max:255',
+            'email'=>'required',
+            'reminder_date'=>'required'
+        ],
+            [
+            'user_id.required'=>'Please enter the user !!!',
+            'customervehicle_id.required'=>'Please enter the customer vehicle !!!',
+            'service_id.required' => 'service_id required',
+            'next_date.required'=>'Please enter the next_date !!!',
+            'email.required'=>'Please enter the email !!!',
+            'reminder_date.required' => 'The reminder_date required',
+            ]
+        );
+
         $customerpendingservice->user_id = $request->user_id;
         $customerpendingservice->customervehicle_id = $request->customervehicle_id;
         $customerpendingservice->service_id = $request->service_id;
         $customerpendingservice->next_date = $request->next_date;
         $customerpendingservice->email = $request->email;
         $customerpendingservice->reminder_date = $request->reminder_date;
-        // $customerpendingservice->reminder_date = ($request->status) ? 1:0;
         $customerpendingservice->description = $request->description;
         $customerpendingservice->save();
         return redirect()->route('customerpendingservice.index')->with('success', 'Created successfully');
@@ -84,13 +101,24 @@ class CustomerPendingServiceController extends Controller
 
     public function update(Request $request, CustomerPendingService $customerpendingservice)
     {
+        $data = $this->validate($request, [ 
+            'next_date'=> 'required|string|min:1|max:255',
+            'email'=>'required',
+            'reminder_date'=>'required'
+        ],
+            [
+            'next_date.required'=>'Please enter the next_date !!!',
+            'email.required'=>'Please enter the email !!!',
+            'reminder_date.required' => 'The reminder_date required',
+            ]
+        );
+
         $customerpendingservice->user_id = $request->user_id;
         $customerpendingservice->customervehicle_id = $request->customervehicle_id;
         $customerpendingservice->service_id = $request->service_id;
         $customerpendingservice->next_date = $request->next_date;
         $customerpendingservice->email = $request->email;
         $customerpendingservice->reminder_date = $request->reminder_date;
-        // $customerpendingservice->reminder_date = ($request->status) ? 1:0;
         $customerpendingservice->description = $request->description;
         $customerpendingservice->save();
         return redirect()->route('customerpendingservice.index')->with('success', 'Created successfully');

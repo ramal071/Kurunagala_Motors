@@ -16,7 +16,7 @@ class IncomeController extends Controller
     public function index()
     {
         $recordes['servicerepair'] = ServiceRepair::all();
-        $recordes = Income::with('servicerepair:id,code,fixprice')
+        $recordes = Income::with('servicerepair:id,code,fixprice,paid_amount')
                     //   ->with('customervehicle:register_number,id')
                     ->with('service:id,price,name')
                     //   ->with('employee:id,name')
@@ -60,20 +60,24 @@ class IncomeController extends Controller
     {
         $data = $this->validate($request, [ 
             'code'=> 'required|string|max:255',
+            'amount' => 'required',
+            'stock_items_sum' => 'required',
+            'charge' => 'required',
+            'service_price' => 'required',
+            'fixprice' => 'required',
+
         ],
             [
             'code.required'=>'Please enter the code !!!',
             ]
         );
         $income->code = $request->code;
-        $income->total_income = $request->amount;
-        // $income->dealerprice = $request->dealerprice;
-        // $income->sellingprice = $request->sellingprice;  
-        // $income->charge = $request->charge;  
-        // $income->fixprice = $request->fixprice;
-        // $income->price = $request->price;
-        // $income->total_income = $request->total_income;
-        // $income->description = $request->description;
+        $income->amount = $request->amount;
+        $income->stock_items_sum = $request->stock_items_sum;
+        $income->charge = $request->charge;  
+        $income->fixprice = $request->fixprice;
+        $income->service_price = $request->service_price;
+        $income->description = $request->description;
         $income->save();
         return redirect()->route('income.index')->with('success', 'Income Marked');
     }

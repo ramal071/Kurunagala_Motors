@@ -48,14 +48,14 @@ Route::resource('servicerepair', 'ServiceRepairController');
 Route::resource('calendar', 'CalendarController');
  
 Route::get('service-show', 'ServiceRepairController@usedProductService');
-Route::resource('service', 'ServiceController')->middleware('can:isManager');
+Route::resource('service', 'ServiceController');
 Route::get("dropdown2","ServiceRepairController@upload_info")->name('admin-dropdown2');
 Route::get("child-dropdown2","ServiceRepairController@child_info")->name('child-dropdown2');
 Route::resource('service_servicerepair', 'ServiceServiceRepairController');
 Route::resource('service_servicerepair', 'ServiceServiceRepairController');
 Route::resource('stock_servicerepair', 'StockServiceRepairController');
 
-Route::resource('income', 'IncomeController');
+Route::resource('income', 'IncomeController')->middleware('can:isManager');
 Route::get("income-dropdown","IncomeController@upload_info")->name('income-dropdown');
 Route::get("incomechild-dropdown","IncomeController@child_info")->name('incomechild-dropdown');
 Route::get("job-per-date","IncomeController@getJobsperDate")->name('job.date');
@@ -86,7 +86,7 @@ Route::resource('stock', 'StockController');
 Route::resource('damage', 'DamageProductController');
 Route::resource('recondition', 'ReconditionProductController');
 Route::resource('gnr', 'GnrController')->middleware('can:isManager');
-Route::resource('limit', 'PendingLimitController');
+Route::resource('limit', 'LimitController');
 
 // user profile     
 Route::resource('profile', 'UserProfileController');

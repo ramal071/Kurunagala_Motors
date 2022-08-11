@@ -24,6 +24,12 @@
 {{-- <script src="{{ url('js/perfect-scrollbar.js')}}"></script> --}}
 
 
+{{-- <link href="{{ url('//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css')}}" rel="stylesheet" id="bootstrap-css"> --}}
+<script src="{{ url('//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js')}}"></script>
+<script src="{{ url('//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js')}}"></script>
+
+
+
 <script src="{{url('admin/dist/js/adminlte.min.js')}}"></script> <!-- AdminLTE for demo purposes -->
 <script src="{{url('admin/dist/js/demo.js')}}"></script>
 <script src="{{ URL::asset('admin/bower_components/PACE/pace.min.js') }}"></script> 

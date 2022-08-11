@@ -25,7 +25,7 @@
                                     <th>{{__('adminstaticword.fname') }}</th>
                                     <th>{{__('adminstaticword.registernumber') }}</th>
                                     <th>{{__('adminstaticword.service') }}</th>
-                                    <th>{{__('adminstaticword.status') }}</th>                                                                   
+                                    <th>{{__('adminstaticword.repaircomplete') }}</th>                                                                   
                                     <th>{{__('adminstaticword.payment') }}</th>
                                 </tr>
                             </thead>

@@ -4,20 +4,37 @@ namespace App\Http\Controllers;
 
 use App\service;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Gate;
 
 class ServiceController extends Controller
 {
 
     public function index()
     {
-        $arr['services'] = service::all();
-    	return view('admin.service.index')->with($arr);
+        if(Gate::allows('isManager')){
+            $arr['services'] = service::all();
+            return view('admin.service.index')->with($arr);
+        }
+        if(Gate::allows('isCashier')){
+            $arr['services'] = service::all();
+            return view('admin.service.index')->with($arr);
+        }
+        else{
+            abort(403);
+        }
+
+       
     }
 
     public function create()
     {
-        return view('admin.service.create');
+        if(Gate::allows('isManager')){
+            return view('admin.service.create');
+        }
+        else{
+            abort(403);
+        }
+     
     }
 
     public function store(Request $request, service $service)
@@ -50,8 +67,15 @@ class ServiceController extends Controller
 
     public function edit(service $service)
     {
-        $arr['service'] = $service;
-        return view('admin.service.edit')->with($arr);
+        if(Gate::allows('isManager')){
+            $arr['service'] = $service;
+            return view('admin.service.edit')->with($arr);
+        }
+        else{
+            abort(403);
+        }
+
+       
     }
 
     public function update(Request $request, service $service)
@@ -75,7 +99,13 @@ class ServiceController extends Controller
 
     public function destroy($id)
     {
-        service::destroy($id);
+        if(Gate::allows('isManager')){
+            service::destroy($id);
         return redirect()->route('service.index')->with('delete', 'Service model deleted');
+        }
+        else{
+            abort(403);
+        }
+       
     }
 }

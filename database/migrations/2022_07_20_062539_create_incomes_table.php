@@ -16,13 +16,12 @@ class CreateIncomesTable extends Migration
         Schema::create('incomes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('code');
-            $table->decimal('dealerprice')->nullable();
-            $table->decimal('sellingprice')->nullable();   
-            $table->decimal('charge')->nullable();
-            $table->decimal('fixprice')->nullable();  
-            $table->decimal('price')->nullable(); 
-            $table->decimal('total_income')->nullable(); 
-            $table->string('description')->nullable();
+            $table->decimal('stock_items_sum')->nullable();
+            $table->decimal('charge')->nullable();   
+            $table->decimal('fixprice')->nullable();
+            $table->decimal('service_price')->nullable();  
+            $table->string('amount')->nullable();   
+            $table->string('description')->nullable(); 
             $table->timestamps();
         });
     }

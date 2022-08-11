@@ -7,33 +7,7 @@
 <section class="section services-section" id="services">
     <div class="container">
 
-        <div class="row">
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box user-->
-              <div class="small-box bg-aqua">
-                <div class="inner">
-                  <h3>
-                      @php
-                          $user = App\User::get();
-                          if(count($user)>0){
-    
-                              echo count($user);
-                          }
-                          else
-                      {
-                              echo "0";
-                          }
-                      @endphp
-                  </h3>
-                  <p>{{ __('adminstaticword.users') }}</p>
-                </div>
-                <div class="icon">
-                  <i class="flaticon-user"></i>
-                </div>
-                <a href="{{url('users')}}" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-        </div>
+
 
         <div class="row">
             <div class="col-lg-6">
@@ -540,7 +514,7 @@
 
 
 {{--  canvas js line chart--}}
-<div class="col-lg-6">
+<div class="col-lg-12">
     <div class="box box-danger">
       <div class="box-header with-border">
           
@@ -604,38 +578,7 @@
 
     </section>
     @endsection
-    //    @section('barchart')     
-    //    <script>
-    //         $(function(){
-    //             var datas = document.getElementById($datas); 
-    //             var barCanvas = $("#barChart");
-    //             var barChart = new Chart(barCanvas, {
-    //                 type:'bar',
-    //                 data: {
-    //                     labels:['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun' ,'Jul', 'Aug', 'Sep', 'Sep', 'Oct', 'Nov', 'Dec'],
-    //                     datasets:[
-    //                         {
-    //                             label:'New services',
-    //                             data:datas,
-    //                             backgroundColor: ['red', 'orange', 'yellow', 'green', 'blue', 'pink'],
-    //                         }
-    //                     ]
-    //                 },
-    //                 options:{
-    //                     scales:{
-    //                         yAxes:[{
-    //                             ticks:{
-    //                                 beginAtZero:true
-    //                             }
-    //                         }]
-    //                     }
-    //                 }
-    //             })
-    //         });
-    //     </script>
-
-       
-    // </div>
+ 
  
 
 

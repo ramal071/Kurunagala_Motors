@@ -35,10 +35,8 @@
                                         <th>{{ __('adminstaticword.status') }}</th>  
                                         <th>{{ __('adminstaticword.remind') }}</th>                                       
                                         <th>{{ __('adminstaticword.borrow') }}</th>
-                                        <th>{{ __('adminstaticword.complete') }}</th>
-                                        <th>{{ __('adminstaticword.repaircomplete') }}</th>
-                                      
-                                 
+                                        <th>{{ __('adminstaticword.payment') }}</th>
+                                        <th>{{ __('adminstaticword.repaircomplete') }}</th>                                        
                                     </tr>
                                 </thead>
 
@@ -48,7 +46,6 @@
                                         <?php $i++; ?>
                                         <tr>
                                             <td>{{ $record['code'] }}</td>
-
                                             <td>
                                                 <a href="{{ route('servicerepair.show', $record['id']) }}" ><i class="fa fa-eye"></i></a>
 
@@ -168,19 +165,12 @@
                                                     </button>
                                                 </form>
                                             </td>
-
-                                            
-
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
-
                         </div>
-
                     </div>
-
-
                         </div>
                     </div>
                 </div>

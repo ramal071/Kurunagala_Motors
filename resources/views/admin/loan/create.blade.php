@@ -20,7 +20,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="employee">{{ __('adminstaticword.employee') }}</label>
-                                    <select name="employee_id" class="form-control js-example-basic-single col-md-7 col-xs-12">
+                                    <select name="employee_id" class="form-control js-example-basic-single col-md-7 col-xs-12" required>
                                         <option value="0">--{{ __('adminstaticword.pleaseselect') }}-- </option>
                                     @foreach($employee as $br)
                                         <option value="{{$br->id}}">{{$br->name}}</option>
@@ -31,7 +31,7 @@
                
                                 <div class="col-md-6">
                                     <label for="loan_amount">{{ __('adminstaticword.loan_amount') }}:</label>
-                                    <input type="number" class="form-control" name="loan_amount" id="loan_amount" placeholder="loan amount....." value="{{ old('loan_amount') }}">
+                                    <input type="number" class="form-control" name="loan_amount" id="loan_amount" placeholder="loan amount....." value="{{ old('loan_amount') }}" >
                                 </div>  
                             </div>
                             <br>  

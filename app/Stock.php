@@ -33,4 +33,9 @@ class Stock extends Model
     {
         return $this->hasMany(Income::class, 'stock_id' , 'id');
     }
+
+    public function limit()
+    {
+        return $this->hasMany(Limit::class, 'stock_id', 'id');
+    }
 }

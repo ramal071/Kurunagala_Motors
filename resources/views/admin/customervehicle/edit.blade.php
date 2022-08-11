@@ -23,7 +23,7 @@
                         <select name="user_id" class="form-control js-example-basic-single col-md-7 col-xs-12">
    
                             @foreach($user as $cou)
-                             <option value="{{ $cou->id }}" {{$customervehicle->user_id == $cou->id  ? 'selected' : ''}}>{{ $cou->idno}}</option>
+                             <option value="{{ $cou->id }}" {{$customervehicle->user_id == $cou->id  ? 'selected' : ''}}>{{ $cou->idno}} - {{$cou->fname}} {{$cou->lname}}</option>
                             @endforeach
                           </select>
                      </div>  

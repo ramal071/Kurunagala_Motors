@@ -22,7 +22,7 @@
                                     <select name="user_id" id="user_id" class="form-control js-example-basic-single col-md-7 col-xs-12" >
                                         <option value="0">{{ __('adminstaticword.pleaseselect') }}</option>
                                         @foreach($user as $user)
-                                        <option value="{{$user->id}}">{{$user->idno}}</option>
+                                        <option value="{{$user->id}}">{{$user->idno}} - {{$user->fname}} {{$user->lname}} </option>
                                         @endforeach
                                     </select>
                                  </div>  
@@ -32,7 +32,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="register_number">{{ __('adminstaticword.registernumber') }}:<sup class="redstar">*</sup></label>
-                                    <input type="text" class="form-control" name="register_number" id="register_number" placeholder="Enter name" value="{{ old('phone') }}">
+                                    <input type="text" class="form-control" name="register_number" id="register_number" placeholder="Enter name" value="{{ old('register_number') }}">
                                 </div> 
                             </div>
                             <br>

@@ -18,13 +18,13 @@
 
                             <div class="row text-center">
                                 <div class="col-md-6">
-                                    <label for="">income Prepairing Month</label>
+                                    <label for="">Today Income Prepairing</label>
                                     <input type="date" id="calender" class="form-control" value="">
                                 </div>
                              
                                     <div class="col-md-6">
-                                        <label for="total_income">{{ __('adminstaticword.total_income') }}:<sup class="redstar">*</sup></label>
-                                        <input type="number" class="form-control" name="total_income" id="total_income" placeholder="Enter total_income" value="">
+                                        <label for="amount">{{ __('adminstaticword.amount') }}</label>
+                                        <input type="text" name="amount" id="upload_id" class="form-control js-example-basic-single col-md-7 col-xs-12" readonly>
                                    </div>                                               
                     
                             </div>
@@ -34,7 +34,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="code">{{ __('adminstaticword.code') }}:<sup class="redstar">*</sup></label>
-                                    <select name="code" id="code" class="form-control js-example-basic-single col-md-7 col-xs-12" >
+                                    <select name="code" id="code" class="form-control js-example-basic-single col-md-7 col-xs-12" required>
                                         <option value="0">{{ __('adminstaticword.pleaseselect') }}</option>
                                         @foreach($servicerepair as $servicerepair)
                                         <option value="{{$servicerepair->code}}">{{$servicerepair->code}}</option>
@@ -43,59 +43,36 @@
                                  </div>  
                           
                               <div class="col-md-6">
-                                <label for="stock_items_sum">{{ __('adminstaticword.product') }}</label>
-                                <input type="text" class="form-control" name="stock_items_sum" id="stock_items_sum"> 
+                                <label for="stock_items_sum">{{ __('adminstaticword.product') }} {{ __('adminstaticword.price') }}</label>
+                                <input type="text" class="form-control" name="stock_items_sum" id="stock_items_sum" readonly> 
                               </div>
                             </div>
                           <br>  
-
-                             <div class="row">
-                                <div class="col-md-6">
-                                    {{-- <label for="price">{{ __('adminstaticword.price') }}:<sup class="redstar">*</sup></label>
-                                    <input type="text" class="form-control" name="price" id="upload_id"  value=""> --}}
-                                    <label for="amount">{{ __('adminstaticword.amount') }}</label>
-                                    <input type="text" name="amount" id="upload_id" class="form-control js-example-basic-single col-md-7 col-xs-12" >
-                                    {{-- </select> --}}
-                                </div> 
- 
-                            </div>  
-                            <br>
                             
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="charge">{{ __('adminstaticword.charge') }}:<sup class="redstar">*</sup></label>
-                                    <input type="text" class="form-control" name="charge" id="charge" value="">
+                                    <label for="charge">{{ __('adminstaticword.employee') }} {{ __('adminstaticword.charge') }}:<sup class="redstar">*</sup></label>
+                                    <input type="text" class="form-control" name="charge" id="charge" value="" readonly>
                                 </div> 
                                 
                                 <div class="col-md-6">
-                                    <label for="price">{{ __('adminstaticword.price') }}:<sup class="redstar">*</sup></label>
-                                    <input type="number" class="form-control" name="price" id="price" placeholder="Enter price" value="">
+                                    <label for="fixprice">{{ __('adminstaticword.fixprice') }} :<sup class="redstar">*</sup></label>
+                                    <input type="text" class="form-control" name="fixprice" id="fixprice" value="" readonly>
                                 </div>  
                             </div> 
 
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="fixprice">{{ __('adminstaticword.fixprice') }} :<sup class="redstar">*</sup></label>
-                                    <input type="text" class="form-control" name="fixprice" id="fixprice" placeholder="Enter fixprice" value="">
+                                    <label for="service_price">{{ __('adminstaticword.service') }} {{ __('adminstaticword.price') }}:<sup class="redstar">*</sup></label>
+                                    <input type="number" class="form-control" name="service_price" id="service_price" value="" readonly>
                                 </div>  
-
-                                <div class="col-md-6">
-                                    <label for="service_price">{{ __('adminstaticword.service') }}:<sup class="redstar">*</sup></label>
-                                    <input type="text" class="form-control" name="service_price" id="service_price"  value="">
-
-                                    
-                                </div>  
-                            </div>
-                            <br>        
-                            
-                            <div class="row">
                                 <div class="col-md-6">
                                     <label for="description">{{ __('adminstaticword.description') }} :<sup class="redstar">*</sup></label>
-                                    <input type="text" class="form-control" name="description" id="description" placeholder="Enter description" value="">
-                                </div>   
+                                    <input type="text" class="form-control" name="description" id="description" value="">
+                                </div>                                  
                             </div>
-                            <br>   
-                              
+                            <br>        
+   
                             <div class="row">
                                 <div class="col-md-6">
                                     <input type="submit" class="btn btn-info" value="Save">
@@ -144,7 +121,8 @@
                          $('#total_income').val(data['total_income']); 
                          $('#stock_items_sum').val(data['stock_items_sum']); 
                          $('#service_price').val(data['service_price']); 
-                         $('#charge').val(data['charge']); 
+                         $('#charge').val(data['charge']);
+                      
                       },
                       error: function(XMLHttpRequest, textStatus, errorThrown) {
                           console.log(XMLHttpRequest);

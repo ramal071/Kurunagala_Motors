@@ -27,6 +27,7 @@ return [
     'fixprice' => 'Fix Price',
 
     'employee' => 'Employee',
+    'employeeperformance' => 'Employee Performance ',
     'addemployee' => 'Add Employee',
     'name' =>'Name',
     'nickname' => 'Nick Name',
@@ -72,6 +73,7 @@ return [
     'sprice' => 'Seller Price(Rs)',
     'discount' => 'Discount',
     'color' => 'Color',
+    'sparepart' => 'Spare Part',
     'lowestlimit' => 'Lowerst Limit',
     'gnr' => 'Goods Recevied New',
     'supplier'=>'Supplier',
@@ -96,6 +98,7 @@ return [
     'servicetype' => 'Service Type',
     'pendingservice' =>'Pending Service',
     'pendingpayment' => 'Pending Payment',
+    'payment' => 'Payment',
     'nextdate' => 'Next Date',
     'whatareservices' => 'Next Service',
     'reminderdate' => 'Reminder Date',
