@@ -104,7 +104,7 @@ Route::get('contact/{id}','ContactController@show')->name('contact.show');
 Route::delete('contact/{id}','ContactController@destroy')->name('contact.destroy');
 
 // working hours
-Route::resource('workinghour', 'WorkinghourController')->middleware('can:isManager');  
+Route::resource('workinghour', 'WorkinghourController');  
 
 
 // quick update status

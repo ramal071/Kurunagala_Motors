@@ -13,20 +13,18 @@ class WorkinghourController extends Controller
     public function index()
     {
 
-      //  $workinghour = Workinghour::ORDERBY('day', 'ASC')->get();
         $workinghour = DB::table('workinghours')->get();
         return view('admin.workinghour.index', compact('workinghour'));
 
-       // return DB::table('workinghours')->get();
-        // $workinghour= DB::table('workinghours')
-        // ->where('day', '1')
-        // ->get();
-       // return view('admin.workinghour.index', ['workinghour' => $workinghour]);
+     
     }
 
     public function create(Request $request)
     {
         if(Gate::allows('isManager')){
+            return view('admin.workinghour.create');
+        }
+        elseif (Gate::allows('isCashier')){
             return view('admin.workinghour.create');
         }
         else{
@@ -51,14 +49,14 @@ class WorkinghourController extends Controller
         return redirect()->route('workinghour.index')->with('success', 'created successfully' );
     }
 
-    public function show(Workinghour $workinghour)
-    {
-        //
-    }
 
     public function edit($id)
     {
         if(Gate::allows('isManager')){
+        $workinghour = DB::table('workinghours')->where('id', $id)->first();        
+        return view('admin.workinghour.edit', compact('workinghour'));
+    }
+    elseif (Gate::allows('isCashier')){
         $workinghour = DB::table('workinghours')->where('id', $id)->first();        
         return view('admin.workinghour.edit', compact('workinghour'));
     }
@@ -81,6 +79,10 @@ class WorkinghourController extends Controller
     public function destroy($id)
     {
         if(Gate::allows('isManager')){
+            DB::table('workinghours')->where('id', $id)->delete();
+            return redirect()->route('workinghour.index')->with('delete', 'Delete successfully');
+        }
+        elseif (Gate::allows('isCashier')){
             DB::table('workinghours')->where('id', $id)->delete();
             return redirect()->route('workinghour.index')->with('delete', 'Delete successfully');
         }

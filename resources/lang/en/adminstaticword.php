@@ -207,4 +207,8 @@ return [
     'loan' => 'Loan',
     'full_leave' => 'Full Leave',
     'income' => 'Income', 
+
+    'viewallsparepart' => 'View All Spare Parts',
+    'viewallbike' => 'View All Models',
+    'viewallbrand' => 'View All Brands',
 ];

@@ -8,7 +8,6 @@
     <div class="container">
 
 
-
         <div class="row">
             <div class="col-lg-6">
                 <div class="section-title">
@@ -197,10 +196,12 @@
             </div>
         </div>
 
+
+        
         <div class="row">
             <div class="col-lg-12">
             
-            <table id="myTable" class="table table-bordered table-striped">
+            <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>                                       
                         <th>{{__('adminstaticword.brand') }}</th>
@@ -233,71 +234,77 @@
                     @endforeach
                 </tbody>
             </table>
-
-
 </div>
 
 
         </div>
        
-        <div class="row">
-            <!-- feaure box -->
-            <div class="col-sm-6 col-lg-4">
-                <div class="feature-box-1">
-                    <div class="icon">
-                        <i class="fa fa-product-hunt" aria-hidden="true"></i>
-                    </div>
-                    <div class="feature-content">
-                        <h5>Product</h5>
-                        <p>Here, you can view our products available </p>
-                    </div>
-                    @if(Auth::check())
-                    <a href="{{url('customerproduct')}}" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
-                    @else
-                    <a href="{{ route('login') }}">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a></li>
-                    @endif
-                </div>
+
+         {{--  --}}
+
+         <div class="row">
+            <div class="col-md-6">
+               <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+                  <div class="card-body d-flex flex-column align-items-start">
+                     <strong class="d-inline-block mb-2 text-primary">Brand</strong>
+                     <h6 class="mb-0">
+                        <a class="text-dark" href="#">Motor bike brands available</a>
+                     </h6>
+                     <div class="mb-1 text-muted small">Nov 12</div>
+                     <p class="card-text mb-auto">Here, you can see the motor bike brands we repair. </p>
+                     <a class="btn btn-outline-primary btn-sm" role="button" href="{{url('customerbrand')}}">{{ __('adminstaticword.viewallbrand') }}</a>
+                  </div>
+                  <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7l45tHgFDu2CU9Cg8KpqHo7ztUGjulJWY97l6oaTQSKsZVub409L2lC6oMkecGYBpWlU&usqp=CAU" style="width: 200px; height: 250px;">
+               </div>
             </div>
-       
-            
-            <!-- feaure box -->
-            <div class="col-sm-6 col-lg-4">
-                <div class="feature-box-1">
-                    <div class="icon">
-                        <i class="fa fa-motorcycle" aria-hidden="true"></i>
-                    </div>
-                    <div class="feature-content">
-                        <h5>Bike</h5>
-                        <p>Here, you can view our bike models we services </p>
-                    </div>
-                    @if(Auth::check())         
-                    <a href="{{url('customerbike')}}" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
-                    @else
-                    <a href="{{ route('login') }}">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a></li>
-                    @endif                   
-                </div>
+            <div class="col-md-6">
+               <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+                  <div class="card-body d-flex flex-column align-items-start">
+                     <strong class="d-inline-block mb-2 text-success">Product</strong>
+                     <h6 class="mb-0">
+                        <a class="text-dark" href="#">Spare parts available for all motor bike</a>
+                     </h6>
+                     <div class="mb-1 text-muted small">Nov 11</div>
+                     <p class="card-text mb-auto">Here, you can view our products available </p>
+                     <a class="btn btn-outline-success btn-sm" href="{{url('customerproduct')}}">{{ __('adminstaticword.viewallsparepart') }}</a>
+                  </div>
+                  <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="https://5.imimg.com/data5/CX/TB/MY-73743/tvs-bike-spare-parts-500x500.jpg" style="width: 200px; height: 250px;">
+               </div>
             </div>
-      
-            
-            <!-- feaure box -->
-            <div class="col-sm-6 col-lg-4">
-                <div class="feature-box-1">
-                    <div class="icon">
-                        <i class="fa fa-list-alt"></i>
-                    </div>
-                    <div class="feature-content">
-                        <h5>Brand</h5>
-                        <p>Here, you can view our bike brands we services </p>
-                    </div>
-                    @if(Auth::check())
-                    <a href="{{url('customerbrand')}}" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
-                    @else
-                    <a href="{{ route('login') }}">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a></li>
-                    @endif
-                    
-                </div>
+         </div>
+
+         <div class="row">
+            <div class="col-md-6">
+               <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+                  <div class="card-body d-flex flex-column align-items-start">
+                     <strong class="d-inline-block mb-2 text-secondary">Model</strong>
+                     <h6 class="mb-0">
+                        <a class="text-dark" href="#">Motor bike model available</a>
+                     </h6>
+                     <div class="mb-1 text-muted small">Nov 12</div>
+                     <p class="card-text mb-auto">Here, you can see the motor bike model we repair. </p>
+                     <a class="btn btn-outline-secondary btn-sm" role="button" href="{{url('customerbike')}}">{{ __('adminstaticword.viewallbike') }}</a>
+                  </div>
+                  <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="https://img1.cgtrader.com/items/1005123/f3512f3806/large/motorcycle-3d-models-collection-3d-model.jpg" style="width: 200px; height: 250px;">
+               </div>
             </div>
-        </div>
+            <div class="col-md-6">
+               <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+                  <div class="card-body d-flex flex-column align-items-start">
+                     <strong class="d-inline-block mb-2 text-danger">Honda</strong>
+                     <h6 class="mb-0">
+                        <a class="text-dark" href="#">Services available for all Honda motor bike</a>
+                     </h6>
+                     <div class="mb-1 text-muted small">Nov 11</div>
+                     <p class="card-text mb-auto">We are honda authorized dealer </p>
+                     <a class="btn btn-outline-danger btn-sm" href="{{url('http://www.honda.lk/bikes.php')}}">Continue reading</a>
+                  </div>
+                  <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Honda_Logo.svg/2552px-Honda_Logo.svg.png" style="width: 200px; height: 250px;">
+               </div>
+            </div>
+         </div>
+
+
 
      </br>
         

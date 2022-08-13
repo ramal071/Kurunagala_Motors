@@ -112,17 +112,17 @@
                  <i class="fa fa-angle-left pull-right"></i>
              </a> 
              <ul class="treeview-menu">            
-              @can('isManager')
+       
                <li class="{{ Nav::isRoute('workinghour.index') }}"><a href="{{route('workinghour.index')}}"><i class="flaticon-rec"></i>{{ __('adminstaticword.workinghour') }} </a></li>
-              @endcan
                <li class="{{ Nav::isRoute('calendar.index') }}"><a href="{{route('calendar.index')}}"><i class="flaticon-web-browser" aria-hidden="true"></i><span>{{ __('adminstaticword.calendar') }}</span></a></li>
                <li class="{{ Nav::isRoute('profile.show') }}"><a href="{{route('profile.show',Auth::User()->id)}}"><i class="flaticon-web-browser" aria-hidden="true"></i><span>{{ __('adminstaticword.userprofile') }}</span></a></li>
-               <li class="{{ Nav::isRoute('password.update') }}"><a href="{{route('password.update',Auth::User()->id)}}"><i class="flaticon-web-browser" aria-hidden="true"></i><span>{{ __('adminstaticword.passwordupdate') }}</span></a></li>     
+               <li class="{{ Nav::isRoute('password.update') }}"><a href="{{route('password.update',Auth::User()->id)}}"><i class="flaticon-web-browser" aria-hidden="true"></i><span>{{ __('adminstaticword.passwordupdate') }}</span></a></li> 
+               <li class="{{ Nav::isRoute('contact.index') }}"><a href="{{route('contact.index')}}"><i class="flaticon-web-browser" aria-hidden="true"></i><span>{{ __('adminstaticword.contact') }}</span></a></li>    
                 </ul>
            </li> 
   
       
-          <li class="{{ Nav::isRoute('contact.index') }}"><a href="{{route('contact.index')}}"><i class="flaticon-web-browser" aria-hidden="true"></i><span>{{ __('adminstaticword.contact') }}</span></a></li>
+          
 
         </ul>
     </section>

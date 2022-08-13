@@ -97,7 +97,7 @@ class CustomerController extends Controller
 
     public function Product()
     {
-        $arr['product'] = Product::all();
+        $arr['product'] = Product::all()->paginate(5);
         return view('customer.product')->with($arr);
     }
 

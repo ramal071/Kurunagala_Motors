@@ -13,7 +13,7 @@ class ProductController extends Controller
 
     public function index()
     {
-        $arr['product'] = Product::all();
+        $arr['product'] = Product::all()->paginate(5);
         return view('admin.product.index')->with($arr);
     }
 
