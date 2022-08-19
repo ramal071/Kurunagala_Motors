@@ -30,6 +30,7 @@ class EmployeeController extends Controller
             'name'=>'required|string|min:1|max:255',
             'nick_name'=>'required|string|min:1|max:255',
             'emp_image'=>'required',
+            'roles'=> 'required|array',
             'id_front'=>'required',
             'id_back'=>'required',
             'phone'=>'required|numeric',
@@ -85,11 +86,6 @@ class EmployeeController extends Controller
 
     $employee->roles()->attach($request->roles);        
     return redirect()->route('employee.index')->with('success', 'Employee created');
-    }
-
-    public function show(Employee $employee)
-    {
-        
     }
      
     public function edit(Employee $employee)

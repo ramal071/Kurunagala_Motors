@@ -18,10 +18,11 @@
               <thead>                
                 <tr>                 
                   <th>{{__('adminstaticword.code') }}</th>
+                  <th>{{ __('adminstaticword.registernumber') }}</th>
                   <th>{{__('adminstaticword.starttime') }}</th>
                   <th>{{ __('adminstaticword.product') }}</th>
                   <th>{{ __('adminstaticword.sprice') }}</th>
-                  <th>{{ __('adminstaticword.dprice') }}</th>
+                  <th>{{ __('adminstaticword.amount') }}</th>   
                 </tr>
               </thead>
               <tbody>
@@ -29,14 +30,15 @@
                 @foreach($servicerepair as $b)            
                     <tr>
                         <td>{{ $b->code}}</td>
-                        <td>{{ $b->created_at}}</td>
+                        <td>{{ $b->customervehicle->register_number}}</td>
+                        <td>{{ $b->created_at}}</td>  
                         <td>
                             @foreach ($b->stock as $s)
                             <li>
                                 {{$s->product->brand->name}} {{$s->product->bike->name}} {{$s->product->name}}
                             </li>
                             @endforeach
-                        </td>  
+                        </td>    
 
                         <td>
                           @foreach ($b->stock as $s)
@@ -46,13 +48,7 @@
                           @endforeach
                       </td>  
 
-                      <td>
-                        @foreach ($b->stock as $s)
-                        <li>
-                            {{$s->dealerprice}}
-                        </li>
-                        @endforeach
-                    </td>  
+                      <td>{{ $b->stock_items_sum}}</td>
                     </tr>      
                 @endforeach
               </tbody>

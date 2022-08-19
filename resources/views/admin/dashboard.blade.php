@@ -62,7 +62,7 @@
               <p>{{ __('adminstaticword.servicerepair') }}</p>
             </div>
             <div class="icon">
-            	<i class="flaticon-layout"></i>
+            	<i class="flaticon-tools"></i>
             </div>
             <a href="{{url('servicerepair')}}" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
           </div>
@@ -113,7 +113,7 @@
               <p>{{ __('adminstaticword.brand') }}</p>
             </div>
             <div class="icon">
-              <i class="flaticon-repair"></i>
+              <i class="flaticon-layout"></i>
             </div>
             <a href="{{url('brand')}}" class="small-box-footer">{{ __('adminstaticword.more') }} <i class="fa fa-arrow-circle-right"></i></a>
           </div>

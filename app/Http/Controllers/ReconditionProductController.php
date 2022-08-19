@@ -46,7 +46,7 @@ class ReconditionProductController extends Controller
 
         $data = $this->validate($request, [
             
-            'stock_id'=>'required',
+            'stock_id'=>'required|not_in:0',
             'quantity'=>'required',
         ]);
 
@@ -56,11 +56,6 @@ class ReconditionProductController extends Controller
         $recondition->save();
         return redirect()->route('recondition.index')->with('success', 'Created successfully.');
 
-    }
-
-    public function show(ReconditionProduct $reconditionProduct)
-    {
-        //
     }
 
     public function edit(ReconditionProduct $recondition)
@@ -80,7 +75,7 @@ class ReconditionProductController extends Controller
     {
         $data = $this->validate($request, [
             
-            'stock_id'=>'required',
+            'stock_id'=>'required|not_in:0',
             'quantity'=>'required',
         ]);
 

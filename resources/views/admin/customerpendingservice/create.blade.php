@@ -62,14 +62,14 @@
                                         <label for="next_date">{{ __('adminstaticword.nextdate') }}:<sup
                                                 class="redstar">*</sup></label>
                                         <input type="date" class="form-control" name="next_date" id="next_date"
-                                            placeholder="Enter next date" value="">
+                                            placeholder="Enter next date" value="" min="{{date('Y-m-d')}}" >
                                     </div>
                              
                                     <div class="col-md-6">
                                         <label for="reminder_date">{{ __('adminstaticword.reminderdate') }}:<sup
                                                 class="redstar">*</sup></label>
                                         <input type="date" class="form-control" name="reminder_date" id="reminder_date"
-                                            placeholder="Enter reminder date" value="">
+                                            placeholder="Enter reminder date" value=""  min="{{date('Y-m-d')}}" >
                                     </div>
                                 </div>
                                 <br>

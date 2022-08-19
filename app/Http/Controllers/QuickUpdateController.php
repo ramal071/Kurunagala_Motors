@@ -217,7 +217,6 @@ class QuickUpdateController extends Controller
             customerpendingservice::where('id', '=', $id)->update(['is_remind' => true]);
 
             //send reminder e-mail
-
             $user_email=$customerpendingservice->email;
             Mail::to($user_email)->send(new NextService($customerpendingservice));
 

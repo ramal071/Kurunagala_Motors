@@ -60,9 +60,12 @@
             <div class="col-md-6">
                 <label for="role">{{ __('adminstaticword.role') }}:<sup class="redstar">*</sup></label>
                 <select name="role_id" id="role_id" class="form-control" >
+                  @php
+                    $role = App\Role::all();
+                  @endphp  
                     <option value="0">{{ __('adminstaticword.pleaseselect') }}</option>
                     @foreach($role as $r)
-                  <option value="{{$r->id}}">{{$r->name}}</option>
+                    <option {{ $user->role_id == $r->id ? 'selected' : "" }} value="{{ $r->id }}">{{ $r->name }}</option>
                 @endforeach
                 </select>
             </div> 
@@ -84,10 +87,11 @@
           <div class="col-md-6">
             <li class="tg-list-item">              
               <input class="tgl tgl-skewed" id="status" type="checkbox" name="status"  {{ $user->status == '1' ? 'checked' : '' }} >
-              <label class="tgl-btn" data-tg-off="Disable" data-tg-on="Enable" for="status"></label>
+              <label class="tgl-btn" data-tg-off="Disable" data-tg-on="Active" for="status"></label>
             </li>
           </div>
-      
+        </div>
+      <br>
        
           <div class="col-md-6">
               <input class="btn btn-primary" type="submit" value="Submit">
@@ -102,12 +106,3 @@
 </section>
 @endsection
 
-
-@section('js_user_page')
-<script>
-$(document).ready(function() {
-    $('.permission').select2();
-  });
-</script>
-
-@endsection

@@ -8,10 +8,16 @@
 </head>
 <body>
 
-            <p> Your amount: {{ $customerpendingservice->service->name}}. </p>
-            <p> Your paid amunt: {{ $customerpendingservice->next_date}}. </p>
-            <p> Your pending payment: {{ $customerpendingservice->reminder_date }}. </p>
+
+        <h3>Welcome to Kurunagala Motors !!!</h4>
+    
+            <p>Dear custmer,</p>
+            <p>This is the remind email about your next service registered.
+            <ul> <p> Your next service : {{ $customerpendingservice->service->name}}. </p> </ul>
+            <ul>  <p> Your service date : {{ $customerpendingservice->next_date}}. </p></ul>
+            <ul>  <p> Your reminder date: {{ $customerpendingservice->reminder_date }}. </p></ul>
             
             <p> Thank you </p>
+            <p> Manager - Kurunagala Motors </p>
 </body>
 </html>

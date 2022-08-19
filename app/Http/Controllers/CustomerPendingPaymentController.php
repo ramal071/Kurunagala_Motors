@@ -14,7 +14,6 @@ class CustomerPendingPaymentController extends Controller
 {
     public function index()
     {
-       // $arr['customerpendingpayment'] = CustomerPendingPayment::all();
         $arr= DB::table('service_repairs As sr')
         ->leftJoin('users AS ur', 'ur.id', '=', 'sr.user_id')
         ->leftJoin('customer_vehicles AS cv', 'sr.customervehicle_id', '=', 'cv.id')

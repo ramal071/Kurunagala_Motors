@@ -27,7 +27,7 @@ class GnrController extends Controller
     {
         $data = $this->validate($request, [ 
             'supplier_name'=> 'required|string|min:1|max:255',
-            'product_id'=>'required',
+            'product_id'=>'required|not_in:0',
             'contact'=>'required',
             'email'=>'required',
             'address'=>'required|string|min:1|max:255',
@@ -54,11 +54,6 @@ class GnrController extends Controller
    
     }
 
-    public function show(Gnr $gnr)
-    {
-        //
-    }
-
     public function edit(Gnr $gnr)
     {
         $arr['gnr'] = $gnr;
@@ -70,7 +65,7 @@ class GnrController extends Controller
     {
         $data = $this->validate($request, [ 
             'supplier_name'=> 'required|string|min:1|max:255',
-            'product_id'=>'required',
+            'product_id'=>'required|not_in:0',
         ],
             [
             'supplier_name.required'=>'Please enter the supplier name !!!',

@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 
 class ContactController extends Controller
 {
+    // setting-> contact admin view
     public function index()
     {
         $contacts = Contact::all();

@@ -110,11 +110,7 @@
                                 <h4>About</h4>
                             </div>
                             <p>We are Sri Lanka’s best automobile care specialists – with state-of- the-art service centers located across the country. Each center is extremely committed to providing our clients with the very best services.</p>
-                            <ul class="social">
-                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                            </ul>
+                           
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-12">
@@ -123,11 +119,11 @@
                                 <h4>Links</h4>
                             </div>
                             <ul>
-                                <li><a href="#">About Us</a></li>
+                                <li><a href="{{ route('customer.aboutus') }}">About Us</a></li>
                                 <li><a href="/#services">Services</a></li>
-                                <li><a href="{{ route('product.index') }}">Product</a></li>
-                                <li><a href="">Forum</a></li>
-                                <li><a href="">FAQ's</a></li>
+                                <li><a href="{{ url('customerproduct') }}">Product</a></li>
+                                <li><a href="{{ route('customer.brand') }}">Brand</a></li>
+                                <li><a href="{{ route('customer.bike') }}">Model</a></li>
                                 <li><a href="{{ route('contact.view') }}">Contact Us</a></li>
                             </ul>
                         </div>

@@ -20,6 +20,7 @@
                   <div class="col-md-6">
                     <label for="exampleInputTit1e">{{ __('adminstaticword.brand') }}</label>
                     <select name="brand_id" class="form-control js-example-basic-single col-md-7 col-xs-12">
+                      <option value="0">--{{ __('adminstaticword.pleaseselect') }}-- </option>
                       @foreach($brand as $br)
                         <option value="{{$br->id}}"
                             @if ($br->id == $bike->brand_id)

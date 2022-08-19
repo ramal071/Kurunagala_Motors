@@ -30,7 +30,6 @@ class SalaryController extends Controller
                     ->latest()
                     ->get()
                     ->toArray();
-                 //   dd($recordes);
         return view('admin.salary.index',compact('recordes'))->with($arr);
     }
 
@@ -46,7 +45,7 @@ class SalaryController extends Controller
     public function store(Request $request, Salary $salary)
     {
         $data = $this->validate($request, [ 
-            'employee_id'=> 'required|numeric',
+            'employee_id'=> 'required|not_in:0',
             'workdays'=> 'required|numeric',
             'full_leave'=> 'required|numeric',
             'half_days'=> 'required|numeric',
@@ -81,20 +80,6 @@ class SalaryController extends Controller
         return redirect()->route('salary.index')->with('success', 'Salary Marked');
     }
 
-    // public function show($id)
-    // {
-    //       $salary = DB::table('employees')
-    //                 ->join('salaries', 'employees.id', '=', 'salaries.employee_id')
-    //                 ->join('service_repairs', 'employees.id', '=', 'service_repairs.employee_id')
-    //                 ->select('employees.*', 'salaries.*', 'service_repairs.*')
-    //                 ->get(); 
-
-    //               //  return dd($employee);
-
-    //     return view('admin.salary.show',compact('salary'));
-   
-    // }
-
     public function show(Salary $salary)
     {
         return view('admin.salary.show',['salary'=>$salary]);
@@ -105,12 +90,6 @@ class SalaryController extends Controller
         $arr['salary'] = $salary;
         $arr['employee'] = Employee::all(); 
         return view('admin.salary.edit')->with($arr);
-    }
-
-    public function update(Request $request, Salary $salary)
-    {
-
-
     }
 
     public function destroy(Salary $salary)
@@ -193,6 +172,11 @@ class SalaryController extends Controller
         $count = SUM($upload);
         return response()->json($count);
     }
+
+    // public function paysheet()
+    // {
+    //     return view('admin.salary.show');
+    // }
 
 
 }

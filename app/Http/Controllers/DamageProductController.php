@@ -27,17 +27,6 @@ class DamageProductController extends Controller
         else{
             abort(403);
         }
-        
-    //     $damages = DamageProduct::with('stock:id,quantity,product_id')
-    //     ->with('product')
-    //     ->with('brand:id,code,name')
-    //      ->with('bike:id,brand_id,code,name')
-    //     ->latest()
-    //     ->get()
-    //     ->toArray();
-    //   // dd($recordes);
-
-    //     return view('admin.damage.index',compact('damages'));
     }
 
     public function create()
@@ -56,7 +45,7 @@ class DamageProductController extends Controller
         $data = $this->validate($request, [ 
             'quantity'=> 'required',
            // 'is_return'=>'required',
-            'stock_id'=>'required'
+            'stock_id'=>'required|not_in:0'
         ]);
 
         $damage->stock_id = $request->stock_id;
@@ -66,11 +55,6 @@ class DamageProductController extends Controller
         $damage->save();
         return redirect()->route('damage.index')->with('success', 'Created successfully.');
 
-    }
-
-    public function show(Request $request, DamageProduct $damageProduct)
-    {
-        //
     }
 
     public function edit(DamageProduct $damage)
@@ -89,8 +73,7 @@ class DamageProductController extends Controller
     {
         $data = $this->validate($request, [ 
             'quantity'=> 'required',
-           // 'is_return'=>'required',
-            'stock_id'=>'required'
+            'stock_id'=>'required|not_in:0'
         ]);
 
         $damage->stock_id = $request->stock_id;

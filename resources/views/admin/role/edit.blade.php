@@ -25,7 +25,7 @@
 
               <div class="row">
                 <div class="col-md-6">
-                  <label for="role_slug">{{ __('adminstaticword.role') }}:<sup class="redstar">*</sup></label>
+                  <label for="role_slug">{{ __('adminstaticword.slug') }}:<sup class="redstar">*</sup></label>
                   <input type="text" class="form-control" name="role_slug" id="role_slug" value="{{ $role->slug }}">
                 </div>              
               </div>  
@@ -52,6 +52,7 @@
       </div>
     </div>
   </section>
+  @endsection
 
   @section('css_role_page')
     <link rel="stylesheet" href="/css/admin/bootstrap-tagsinput.css">

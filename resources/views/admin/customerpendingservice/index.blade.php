@@ -30,9 +30,10 @@
                                     <th>{{__('adminstaticword.email') }}</th> 
                                     <th>{{__('adminstaticword.nextdate') }}</th> 
                                     <th>{{__('adminstaticword.reminderdate') }}</th> 
+                                    <th>{{ __('adminstaticword.description') }}</th>      
                                     <th>{{ __('adminstaticword.remind') }}</th>                       
                                     <th>{{__('adminstaticword.edit') }}</th>
-                                    <th>{{__('adminstaticword.delete') }}</th>
+                                    <th>{{__('adminstaticword.delete') }}</th> 
                                 </tr>
                             </thead>
 
@@ -51,7 +52,7 @@
                                     <td>{{ $b->email }}</td>
                                     <td>{{ $b->next_date }}</td>
                                     <td>{{ $b->reminder_date }}</td>
-
+                                    <td>{{ $b->description }}</td>
                                     <td>
                                         <form action="{{ route('nextservice.quick',$b->id ) }}" method="POST">
                                             {{ csrf_field() }}

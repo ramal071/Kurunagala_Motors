@@ -29,7 +29,7 @@
                             </thead>
                             <tbody>
                               <?php $i=0;?>
-                              @foreach($services as $service)
+                              @foreach($service as $service)
                               <?php $i++;?>
                               <tr>
                                 <td><?php echo $i;?></td>

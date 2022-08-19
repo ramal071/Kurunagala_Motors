@@ -10,7 +10,7 @@
           <div class="box box-primary"> 
             <div class="box-header with-border">
                 <h3 class="box-title">{{__('adminstaticword.salary') }}</h3>
-                <a href="{{ route('salary.create') }}" class="btn btn-info btn-sm">+ {{__('adminstaticword.salary') }}</a>        
+                <a href="{{ url('generate-salary') }}" class="btn btn-info btn-sm">Download as report</a>        
                 </div>
 
             {{--  --}}
@@ -180,10 +180,16 @@
                             <p class="heading">{{__('adminstaticword.total_salary') }} (Rs.): {{ $salary->total_salary}} </p>
                         </div>     
                     </div>   
+                    {{-- <div class="row no-print">
+                        <div class="col-12">
+                            <a href="" @click.prevent="printme" target="_blank" class="btn btn-default"><i class="fa fa-print"></i>Print</a>
+                        </div>
+                  </div> --}}
                 </body>
              </html>
             {{--  --}}
-          </div>
+
+          
       </div>
   </div>
 </section>

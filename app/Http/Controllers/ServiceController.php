@@ -22,8 +22,6 @@ class ServiceController extends Controller
         else{
             abort(403);
         }
-
-       
     }
 
     public function create()
@@ -33,15 +31,13 @@ class ServiceController extends Controller
         }
         else{
             abort(403);
-        }
-     
+        }   
     }
 
     public function store(Request $request, service $service)
     {
         $data = $this->validate($request, [
-         //   'name'=> 'required|unique:services,name',
-            'name'=> 'required|string|min:1|max:255',
+            'name'=> 'required|string|min:1|max:255|unique:services,name',
             'code'=> 'required|unique:services,code',
             'price' => 'required|string|min:1|max:255',
              ],
@@ -60,11 +56,6 @@ class ServiceController extends Controller
     
     }
 
-    public function show(service $service)
-    {
-        //
-    }
-
     public function edit(service $service)
     {
         if(Gate::allows('isManager')){
@@ -74,8 +65,6 @@ class ServiceController extends Controller
         else{
             abort(403);
         }
-
-       
     }
 
     public function update(Request $request, service $service)

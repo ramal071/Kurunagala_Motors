@@ -12,7 +12,6 @@ class AllowanceController extends Controller
     public function index()
     {
         $arr['allowance'] = Allowance::all();
-
         return view('admin.allowance.index')->with($arr);
     }
 
@@ -27,9 +26,9 @@ class AllowanceController extends Controller
     public function store(Request $request ,Allowance $allowance)
     {
         $data = $this->validate($request, [ 
-            'employee_id'=> 'required',
+            'employee_id'=> 'required|not_in:0',
             'allowance'=>'required|string|max:255',
-            'allowance_type'=>'required|string|max:255',
+            'allowance_type'=>'required|not_in:0',
         ],
             [
             'employee_id.required'=>'Please enter the employee !!!',
@@ -61,7 +60,7 @@ class AllowanceController extends Controller
     public function update(Request $request, Allowance $allowance)
     {
         $data = $this->validate($request, [ 
-            'employee_id'=> 'required',
+            'employee_id'=> 'required|not_in:0',
             'allowance'=>'required|max:255',
             'allowance_type'=>'required|string|max:255',
         ],

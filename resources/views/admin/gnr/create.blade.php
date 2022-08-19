@@ -61,7 +61,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <label for="date">{{ __('adminstaticword.date') }}:<sup class="redstar">*</sup></label>
-                    <input type="date" class="form-control" name="date" placeholder="Enter date...." id="date" value="">
+                    <input type="date" class="form-control" name="date" placeholder="Enter date...." max="{{date('Y-m-d')}}" id="date" value="">
                 </div>          
          
                 <div class="col-md-6">

@@ -22,12 +22,11 @@ class RoleController extends Controller
 
     public function store(Request $request, Role $role)
     {
-    // dd($request);
 
         $data = $this->validate($request, [
             'role_name'=> 'required|unique:roles,name',
             'role_slug'=>'required',
-            'status'=>'required',
+            'status'   =>'required',
         ],
     [
         'role_name.required'=>'Please Enter Role Name',

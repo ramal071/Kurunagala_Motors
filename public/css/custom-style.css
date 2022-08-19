@@ -166,7 +166,7 @@
   }
 }
 
-/*instructors card*/
+
 .card-box {
     border-radius: 3px;
     margin-bottom: 30px;
@@ -175,23 +175,11 @@
     padding: 1rem;
 }
 
-/*institute card*/
-.card-box-institute {
-    border-radius: 3px;
-    margin-bottom: 30px;
-    background-color: #eee;
-    height: 60Vh;
-    padding: 1rem;
-}
-
 .card-box:hover{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     transform:scale(1);
 }
-.card-box-institute:hover{
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    transform:scale(1);
-}
+
 .thumb-lg {
     height: 88px;
     width: 88px;
@@ -219,7 +207,7 @@
 ---------------------*/
 .feature-box-1 {
   padding: 32px;
-  box-shadow: 0 0 30px rgba(17, 26, 36, 0.125);
+  box-shadow: 0 0 30px rgba(21, 162, 21, 0.125);
   margin: 15px 0;
   position: relative;
   z-index: 1;
@@ -267,7 +255,7 @@
   right: 0;
   border-radius: 10px;
   width: 0;
-  background: #061f1c;
+  background: #09e0b1;
   z-index: -1;
   -moz-transition: ease all 0.35s;
   -o-transition: ease all 0.35s;

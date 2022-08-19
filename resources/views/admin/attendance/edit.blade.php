@@ -47,6 +47,12 @@
                 <div class="col-md-6">
                   <label for="time_end">{{ __('adminstaticword.timeend') }}:<sup class="redstar">*</sup></label>
                   <input type="datetime-local" class="form-control" name="time_end" id="time_end" value="{{ $attendance->time_end }}">
+                  <script>
+                    const etoday=(new Date()).toLocaleString("EN-CA").slice(0,10); // get local current date
+                    document.querySelectorAll('input[type="datetime-local"]').forEach(el=>{
+                    el.min=etoday+"T00:00"; el.max=etoday+"T23:59";
+                    })
+                    </script>
                 </div>          
             </div>
             <br>           

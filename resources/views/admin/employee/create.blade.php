@@ -22,7 +22,7 @@
                 </div>          
            
               <div class="col-md-6">
-                <label for="exampleInputTit1e">{{ __('adminstaticword.role') }}</label>
+                <label for="roles">{{ __('adminstaticword.role') }}</label>
                 <select name="roles[]" class="form-control js-example-basic-single col-md-7 col-xs-12">
                   <option value="0">{{ __('adminstaticword.pleaseselect') }}</option>
                   @foreach($roles as $r)

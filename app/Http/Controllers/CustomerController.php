@@ -10,6 +10,7 @@ use App\ServiceRepair;
 use App\bike;
 use App\Brand;
 use App\Product;
+use App\Service;
 use App\CompleteJob;
 use App\User;
 use Auth;
@@ -97,8 +98,14 @@ class CustomerController extends Controller
 
     public function Product()
     {
-        $arr['product'] = Product::all()->paginate(5);
+        $arr['product'] = Product::all();
         return view('customer.product')->with($arr);
+    }
+
+    public function service()
+    {
+        $arr['service'] = Service::all();
+        return view('customer.service')->with($arr);
     }
 
 }

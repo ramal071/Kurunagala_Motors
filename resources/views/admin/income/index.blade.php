@@ -20,12 +20,12 @@
                                         <th>{{__('adminstaticword.code') }}</th>         
                                         <th>{{__('adminstaticword.amount') }}</th>
                                         <th>{{__('adminstaticword.sprice') }}</th>                                        
-                                        <th>{{ __('adminstaticword.charge') }}</th>
+                                        <th>{{ __('adminstaticword.employee') }} {{ __('adminstaticword.charge') }}</th>
                                         <th>{{ __('adminstaticword.fixprice') }}</th>     
-                                        <th>{{ __('adminstaticword.price') }}</th>
-                                        <th>{{ __('adminstaticword.income') }}</th>
+                                        <th>{{ __('adminstaticword.service') }} {{ __('adminstaticword.price') }}</th>
                                         <th>{{__('adminstaticword.description') }}</th>
                                         <th>{{ __('adminstaticword.timestart') }}</th>     
+                                        <th>{{ __('adminstaticword.delete') }}</th>     
                                     </tr>
                                 </thead>
                                 <tbody>   
@@ -33,13 +33,20 @@
                                     <tr>   
                                         <td>{{ $record['code'] }}</td>     
                                         <td>{{ $record['amount'] }}</td> 
-                                        <td>{{ $record['sellingprice'] }}</td>   
+                                        <td>{{ $record['stock_items_sum'] }}</td>   
                                         <td>{{ $record['charge'] }}</td>  
                                         <td>{{ $record['fixprice'] }}</td>  
-                                        <td>{{ $record['price']  }}</td>          
-                                        <td>{{ $record['total_income'] }}</td>    
+                                        <td>{{ $record['service_price']  }}</td>   
                                         <td> {{$record['description']  }}</td>
                                         <td>{{ $record['created_at'] }}</td>  
+                                        <td>
+                                            <a href="javascript:void(0)"
+                                            onclick="$(this).parent().find('form').submit()"><i class="fa fa-fw fa-trash-o"></i></a>
+                                        <form action="{{ route('income.destroy', $record['id']) }}" method="post">
+                                            @method('DELETE')
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                        </form>
+                                            </td>     
                                     </tr>
                                 @endforeach
                                 </tbody> 

@@ -22,7 +22,6 @@
                         <table id="example2" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th>#</th>
                                     <th>{{__('adminstaticword.idno') }}</th>
                                     <th>{{__('adminstaticword.name') }}</th>
                                     <th>{{__('adminstaticword.email') }}</th>
@@ -40,7 +39,6 @@
                                 @foreach($customervehicle as $b)
                                 <?php $i++;?>
                                 <tr>
-                                  <td><?php echo $i;?></td>
                                     <td>{{ $b->users->idno}}</td>
                                     <td>{{ $b->users->fname}} {{ $b->users->lname}}</td>
                                     <td>{{ $b->users->email}}</td>
@@ -67,7 +65,6 @@
 
                               <tfoot>
                                 <tr>
-                                    <th></th>
                                     <th>idno</th>
                                     <th>name</th>
                                     <th>email</th>

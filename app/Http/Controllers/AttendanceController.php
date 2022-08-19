@@ -24,7 +24,7 @@ class AttendanceController extends Controller
     public function store(Request $request, Attendance $attendance)
     {
         $data = $this->validate($request, [ 
-            'employee_id'=> 'required',
+            'employee_id'=> 'required|not_in:0',
             'time_start'=>'required',
         ],
             [

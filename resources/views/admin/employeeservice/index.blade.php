@@ -12,19 +12,6 @@
                     <h3 class="box-title">{{__('adminstaticword.employeeservice') }}</h3>                   
                 </div>
 
-                {{-- <div class="row input-daterange">
-                    <div class="col-md-4">
-                        <input type="date" name="from_date" id="from_date" class="form-control" placeholder="From Date"  />
-                    </div>
-                    <div class="col-md-4">
-                        <input type="date" name="to_date" id="to_date" class="form-control" placeholder="To Date"  />
-                    </div>
-                    <div class="col-md-4">
-                        <button type="button" name="filter" id="filter" class="btn btn-primary">Filter</button>
-                        <button type="button" name="refresh" id="refresh" class="btn btn-default">Refresh</button>
-                    </div>
-                </div> --}}
-
                 <div class="box-body">
                     <div class="table responsive">
                     <table class="table table-bordered table-striped" id="example1"> 
@@ -56,7 +43,7 @@
                                     <td>
                                         @foreach ($b->stock as $s)
                                         <li>
-                                            {{$s->id}}:  {{$s->product->brand->name}} {{$s->product->bike->name}} {{$s->product->name}}
+                                            {{$s->product->code}}:  {{$s->product->brand->name}} {{$s->product->bike->name}} {{$s->product->name}}
                                         </li>
                                         @endforeach
                                     </td>

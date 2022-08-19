@@ -14,7 +14,6 @@ class CalendarController extends Controller
     {
         $events = array();
         $servicerepair = ServiceRepair::all();
-        //  return $servicerepair;
 
         foreach($servicerepair as $s) {
             $events[] = [
@@ -23,8 +22,6 @@ class CalendarController extends Controller
                 'end' => $s->updated_at,
             ];
         }
-  //      return $events;
-
         return view('admin.calendar.index', ['events' => $events]);
     }
 

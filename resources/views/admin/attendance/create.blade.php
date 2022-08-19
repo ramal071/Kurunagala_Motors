@@ -31,13 +31,14 @@
             <div class="row">
                 <div class="col-md-6">
                   <label for="time_start">{{ __('adminstaticword.timestart') }}:<sup class="redstar">*</sup></label>
-                  <input type="datetime-local" class="form-control" name="time_start" id="time_start" placeholder="Enter time_start" value="{{ old('time_start') }}" >
-                </div>          
-          
-                <div class="col-md-6">
-                  <label for="time_end">{{ __('adminstaticword.timeend') }}:<sup class="redstar">*</sup></label>
-                  <input type="datetime-local" class="form-control" name="time_end" id="time_end" placeholder="Enter time_end" value="{{ old('time_end') }}">
-                </div>          
+                  <input type="datetime-local" class="form-control" name="time_start" id="time_start" placeholder="Enter time_start"  min="{{date('Y-m-d')}}"  value="{{ old('time_start') }}" >
+                  <script>
+                    const stoday=(new Date()).toLocaleString("EN-CA").slice(0,10);
+                    document.querySelectorAll('input[type="datetime-local"]').forEach(el=>{
+                    el.min=stoday+"T00:00"; el.max=stoday+"T23:59";
+                    })
+                    </script>
+                </div>                   
             </div>
             <br>
 

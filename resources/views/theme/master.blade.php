@@ -5,8 +5,6 @@
 
 
 
-{{-- <div id="myButton"></div> --}}
-
 @include('theme.nav')
 <!-- top-nav bar end-->
 <!-- home start -->

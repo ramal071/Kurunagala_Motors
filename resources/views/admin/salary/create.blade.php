@@ -54,11 +54,6 @@
                                     <label for="allowance">{{ __('adminstaticword.allowance') }}:<sup class="redstar">*</sup></label>
                                     <input type="text" class="form-control" name="allowance" id="allowance" readonly value="">
                                 </div> 
-                                
-                                {{-- <div class="col-md-6">
-                                    <label for="total_salary">{{ __('adminstaticword.total_salary') }}:<sup class="redstar">*</sup></label>
-                                    <input type="number" class="form-control" name="total_salary" id="total_salary" placeholder="Enter total_salary" value="">
-                                </div>   --}}
                             </div>  
                             
                             <div class="row">

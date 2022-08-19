@@ -27,7 +27,8 @@ class BikeController extends Controller
         $data = $this->validate($request, [ 
             'name'=> 'required|string|min:1|max:255',
             'code'=>'required|unique:bikes,name',
-            'brand_id'=>'required'
+            'brand_id'=> 'required|not_in:0',
+       
         ],
             [
             'name.required'=>'Please enter the name !!!',
@@ -61,6 +62,7 @@ class BikeController extends Controller
     public function update(Request $request, Bike $bike)
     {
         $data = $this->validate($request, [ 
+            'brand_id'=> 'required|not_in:0',
             'name'=> 'required|string|min:1|max:255',
             'code'=>'required|string|min:1|max:255',
         ],

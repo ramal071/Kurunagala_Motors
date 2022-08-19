@@ -8,30 +8,6 @@
   <div class="box-header with-border">
     <h3 class="box-title">{{ __('adminstaticword.serviceforjob') }}</h3>
   </div>
-
-  {{-- <form action="{{ route('service_servicerepair/search') }}" method="POST">
-    @csrf
-    <br>
-    <div class="container">
-      <div class="row">
-        <div class="container-fluid">
-          
-          <div class="form-group row">
-            <div class="col-md-4">
-                <input type="date" name="fromDate" id="fromDate" class="form-control input-sm" placeholder="From Date"  />
-            </div>
-            <div class="col-md-4">
-                <input type="date" name="toDate" id="toDate" class="form-control input-sm" placeholder="To Date"  />
-            </div>
-            <div class="col-md-4">
-                <button type="submit" name="search" id="search" class="btn btn-primary">Search</button>
-            </div>
-        </div>
-
-        </div>
-      </div>
-    </div>
-  </form> --}}
   
 
   <div class="row">
@@ -45,6 +21,7 @@
                 <tr>
                   
                   <th>{{__('adminstaticword.code') }}</th>
+                  <th>{{ __('adminstaticword.registernumber') }}</th>
                   <th>{{__('adminstaticword.starttime') }}</th>
                   <th>{{ __('adminstaticword.service') }}</th>
                   <th>{{ __('adminstaticword.amount') }}</th>
@@ -56,6 +33,7 @@
                 @foreach($servicerepair as $b)            
                     <tr>
                         <td>{{ $b->code}}</td>
+                        <td>{{ $b->customervehicle->register_number}}</td>
                         <td>{{ $b->created_at}}</td>
                         <td>{{ $b->service->name}}</td>
                         <td>{{ $b->service->price}}</td>

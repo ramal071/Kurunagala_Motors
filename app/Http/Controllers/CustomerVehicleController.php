@@ -51,9 +51,9 @@ class CustomerVehicleController extends Controller
     {
 
         $data = $this->validate($request, [ 
+            'user_id'=> 'required|not_in:0',
+            'brand_id'=> 'required|not_in:0',
             'bike_id'=> 'required',
-            'brand_id'=>'required',
-            'user_id'=> 'required',
             'register_number'=>'required|unique:customer_vehicles,register_number',
         ]);
 
@@ -63,13 +63,6 @@ class CustomerVehicleController extends Controller
         $customervehicle->register_number = $request->register_number;
 
         $customervehicle->save();
-
-        // Mail::send('admin.emails.customerVehicleCreated', $customervehicle->toArray(),
-        // function($message){
-        //     $message
-        //     ->to('testramal071@gmail.com', 'Code Online')
-        //     ->subject('Your bike registered');
-        // });  Auth::user()->email;
         return redirect()->route('customervehicle.index')->with('success', 'Created successfully');
     }
 
@@ -98,6 +91,13 @@ class CustomerVehicleController extends Controller
 
     public function update(Request $request, CustomerVehicle $customervehicle)
     {
+        $data = $this->validate($request, [ 
+            'user_id'=> 'required|not_in:0',
+            'brand_id'=> 'required|not_in:0',
+            'bike_id'=> 'required',
+            'register_number'=>'required',
+        ]);
+
         $customervehicle->user_id = $request->user_id;
         $customervehicle->bike_id = $request->bike_id;
         $customervehicle->brand_id = $request->brand_id;

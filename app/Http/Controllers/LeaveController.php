@@ -28,13 +28,12 @@ class LeaveController extends Controller
     public function store(Request $request, Leave $leave)
     {
         $request->validate([
-            'employee_id'  => 'required',
+            'employee_id'=> 'required|not_in:0',
             'leave_type'   => 'required|string|max:255',
             'from_date'    => 'required|string|max:255',
             'to_date'      => 'required|string|max:255',
         ]);
 
-      
         try {
 
             $from_date = new DateTime($request->from_date);
@@ -60,11 +59,6 @@ class LeaveController extends Controller
 
     }
 
-    public function show(Leave $leave)
-    {
-        //
-    }
-
     public function edit(Leave $leave)
     {
         $arr['leave'] = $leave;
@@ -75,7 +69,7 @@ class LeaveController extends Controller
     public function update(Request $request, Leave $leave)
     {
         $request->validate([
-            'employee_id'   => 'required',
+            'employee_id'=> 'required|not_in:0',
             'leave_type'   => 'required|string|max:255',
             'from_date'    => 'required|string|max:255',
             'to_date'      => 'required|string|max:255',
@@ -86,10 +80,10 @@ class LeaveController extends Controller
             $day     = $from_date->diff($to_date);
             $days    = $day->d;
 
-            $leave->leave_type = $request->leave_type;
-            $leave->from_date = $request->from_date;
-            $leave->to_date = $request->to_date;
-            $leave->day = $request->day;
+            $leave->leave_type   = $request->leave_type;
+            $leave->from_date    = $request->from_date;
+            $leave->to_date      = $request->to_date;
+            $leave->day          = $days;
             $leave->leave_reason = $request->leave_reason;
             $leave->save();
             return redirect()->route('leave.index')->with('success', 'leave Marked');

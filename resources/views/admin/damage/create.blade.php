@@ -48,7 +48,7 @@
                   <label for="exampleInputDetails">{{ __('adminstaticword.isreturn') }}:</label>
                   <li class="tg-list-item">              
                     <input class="tgl tgl-skewed" id="is_return" type="checkbox" name="is_return" >
-                    <label class="tgl-btn" data-tg-off="Disable" data-tg-on="Enable" for="is_return"></label>
+                    <label class="tgl-btn" data-tg-off="No" data-tg-on="Yes" for="is_return"></label>
                   </li>
                 </div>
               </div>          

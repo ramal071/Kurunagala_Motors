@@ -64,15 +64,6 @@
                 </div>
             </div>
 
-            {{-- <div class="col-lg-5">
-                <div class="row">
-                    <div class="col-lg-8 col-md-12 col-sm-12">
-                        <div class="logo">  
-                            <span class="logo-lg"> <img title="{{ $project_title }}" width="100px" src="{{ url('images/logo/'.$gsetting->logo) }}" alt=""/></span>          
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
 
             <div class="col-lg-7">
                 @guest
@@ -116,13 +107,13 @@
                                 <a href="{{url('customerPending-payment/{id}')}}"><li ><i class="fa fa-user"></i>{{ __('frontstaticword.pendingpayment') }}</li></a>
                                 
                                 <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    <div id="notificationFooter">
+                                  <li>  <div id="user-detailss">
                                         {{ __('frontstaticword.logout') }}
                                         
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="display-none">
                                             @csrf
                                         </form>
-                                    </div>
+                                    </div> </li>
                                 </a>
                             </ul>
                           </div>

@@ -13,7 +13,7 @@ class ProductController extends Controller
 
     public function index()
     {
-        $arr['product'] = Product::all()->paginate(5);
+        $arr['product'] = Product::all();
         return view('admin.product.index')->with($arr);
     }
 
@@ -38,7 +38,7 @@ class ProductController extends Controller
             'product_image' => 'required',
             'status'=>'required',
             'bike_id'=>'required',
-            'brand_id'=>'required',
+            'brand_id'=> 'required|not_in:0',
 
         ]);
 
@@ -64,11 +64,6 @@ class ProductController extends Controller
         return redirect()->route('product.index')->with('success', 'Product created successfully');
     }
 
-    public function show(Product $product)
-    {
-        //
-    }
-
     public function edit(Product $product)
     {
     
@@ -87,11 +82,10 @@ class ProductController extends Controller
             'name'=>'required|string|min:1|max:255',
             'status'=>'required',
             'bike_id'=>'required',
-            'brand_id'=>'required',
+            'brand_id'=> 'required|not_in:0',
 
         ]);
 
-        // $file = $request->file('public/product/');
         if(isset($request->product_image) && $request->product_image->getClientOriginalName()){
             $ext =  $request->product_image->getClientOriginalExtension();
             $file = date('YmdHis').rand(1,99999).'.'.$ext;

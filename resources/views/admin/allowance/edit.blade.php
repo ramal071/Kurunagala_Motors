@@ -20,7 +20,7 @@
                   <div class="col-md-6">
                     <label for="employee">{{ __('adminstaticword.employee') }}</label>
                     <select name="employee_id" id="employee_id" class="form-control js-example-basic-single col-md-7 col-xs-12" >
-                      
+                      <option value="0">--{{ __('adminstaticword.pleaseselect') }}-- </option>
                       @foreach($employee as $br)
                         <option value="{{$br->id}} "
                             @if ($br->id == $allowance->employee_id)
@@ -32,14 +32,13 @@
                   </div>
                 
                     <div class="col-md-6">
-                      <div class="col-md-6">
                         <label for="allowance_type">{{ __('adminstaticword.allowance_type') }}:</label>
-                        <select name="allowance_type"  class="form-control" id="allowance_type"  value="{{ $allowance->allowance_type }}">
+                        <input type="text" class="form-control" name="allowance_type" id="allowance_type" value="{{ $allowance->allowance_type }}">
+                        {{-- <select name="allowance_type"  class="form-control" id="allowance_type"  value="{{ $allowance->allowance_type }}">
                           <option value="medical">Medical allowance</option>
                           <option value="transport">Transport allowance</option>
                           <option value="other">Other allowance</option>
-                        </select>
-                    </div>  
+                        </select> --}}
                     </div>           
                 </div>
                 <br>

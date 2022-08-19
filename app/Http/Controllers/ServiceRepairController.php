@@ -84,11 +84,11 @@ class ServiceRepairController extends Controller
     {
     
         $data = $this->validate($request, [ 
-            'user_id'=> 'required',
-            'customervehicle_id'=>'required',
-            'employee_id'=> 'required',
+            'user_id'=> 'required|not_in:0',   
+            'customervehicle_id'=>'required|not_in:0',
+            'employee_id'=> 'required|not_in:0',
             'email'=>'required',
-           
+            'service_id'=> 'required|not_in:0', 
         ],
             [
             'user_id.required'=>'Please enter the employee id !!!',
@@ -159,8 +159,8 @@ class ServiceRepairController extends Controller
 
         // send job start mail
 
-        // $user_email=$request->email;        
-        // Mail::to($user_email)->send(new SerRepair($record));
+        $user_email=$request->email;        
+        Mail::to($user_email)->send(new SerRepair($record));
 
         return redirect()->route('servicerepair.index')->with('success', 'Created successfully');
     }
@@ -241,20 +241,17 @@ class ServiceRepairController extends Controller
             'service_id' => $request->service_id,
             'stock_items_sum' => $stock_items_sum,
             'service_price' => $service_price['price'],
-        // 'employee_id' => $request->employee_id,
-        // 'email' => $request->email,
             'paid_amount' => $request->paid_amount,
-            'status' => ($request->status) ? 1:0,
-            'is_remind' => ($request->is_remind) ? 1:0,
-            'is_repaircomplete' => ($request->is_repaircomplete) ? 1:0,
-            'is_borrow' => ($request->is_borrow) ? 1:0,
-            'is_complete' => ($request->is_complete) ? 1:0,
-          //  'qty' => $request->qty,   
+            // 'status' => ($request->status) ? 1:0,
+            // 'is_remind' => ($request->is_remind) ? 1:0,
+            // 'is_repaircomplete' => ($request->is_repaircomplete) ? 1:0,
+            // 'is_borrow' => ($request->is_borrow) ? 1:0,
+            // 'is_complete' => ($request->is_complete) ? 1:0,
+     
         ];
         //dd($servicerepair);
 
-               $servicerepair->update($data);
-            //  $record = $servicerepair->create($data);
+        $servicerepair->update($data);
 
         $stock = $request->stock;
         $qty = $this->accept_quantity;

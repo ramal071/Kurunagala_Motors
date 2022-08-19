@@ -24,7 +24,7 @@ class LoanController extends Controller
     public function store(Request $request, Loan $loan)
     {
         $data = $this->validate($request, [ 
-            'employee_id'=> 'required',
+            'employee_id'=> 'required|not_in:0',
             'loan_amount'=>'required',
         ],
             [
@@ -40,11 +40,6 @@ class LoanController extends Controller
         return redirect()->route('loan.index')->with('success', 'Marked loan');
     }
 
-    public function show(Loan $loan)
-    {
-        //
-    }
-
     public function edit(Loan $loan)
     {
         $arr['employee'] = employee::all();
@@ -55,7 +50,7 @@ class LoanController extends Controller
     public function update(Request $request, Loan $loan)
     {
         $data = $this->validate($request, [ 
-            'employee_id'=> 'required',
+            'employee_id'=> 'required|not_in:0',
             'loan_amount'=>'required',
         ],
             [

@@ -35,7 +35,7 @@
                     }
                 });
                 var calendar = $('#calendar').fullCalendar({
-                    editable:true,
+                 //   editable:true,
                     header:{
                         left:'prev,next today',
                         center:'title',

@@ -22,12 +22,13 @@
                     <div class="row">
                         <div class="col-md-6">
                           <label for="user_id">{{ __('adminstaticword.user') }}</label>
-                          <select name="user_id" id="user_id" class="form-control js-example-basic-single">
+                          <select name="user_id" id="user_id" class="form-control js-example-basic-single" disabled>
                             @php
                               $user = App\User::all();
                             @endphp  
+                            <option value="0">--{{ __('adminstaticword.pleaseselect') }}-- </option>
                             @foreach($user as $caat)
-                              <option {{ $customerpendingservice->user_id == $caat->id ? 'selected' : "" }} value="{{ $caat->id }}">{{ $caat->idno }}</option>
+                              <option {{ $customerpendingservice->user_id == $caat->id ? 'selected' : "" }} value="{{ $caat->id }}">{{ $caat->idno }} | {{ $caat->fname }} {{ $caat->lname }}</option>
                             @endforeach 
                           </select>
                         </div>
@@ -53,6 +54,7 @@
                         @php
                           $service = App\Service::all();
                         @endphp  
+                        <option value="0">--{{ __('adminstaticword.pleaseselect') }}-- </option>
                         @foreach($service as $service)
                           <option {{ $customerpendingservice->service_id == $service->id ? 'selected' : "" }} value="{{ $service->id }}">{{ $service->name }}</option>
                         @endforeach 
@@ -69,12 +71,12 @@
                 <div class="row">
                   <div class="col-md-6">
                       <label for="next_date">{{ __('adminstaticword.nextdate') }}:<sup class="redstar">*</sup></label>
-                      <input type="text" class="form-control" name="next_date" id="next_date" value=" {{ $customerpendingservice->next_date }}">
+                      <input type="date" class="form-control" name="next_date" id="next_date" min="{{date('Y-m-d')}}" value="{{ $customerpendingservice->next_date }}">
                   </div>  
              
                   <div class="col-md-6">
                       <label for="reminder_date">{{ __('adminstaticword.reminderdate') }}:<sup class="redstar">*</sup></label>
-                      <input type="text" class="form-control" name="reminder_date" id="reminder_date" value=" {{ $customerpendingservice->reminder_date }}">
+                      <input type="date" class="form-control" name="reminder_date" id="reminder_date" min="{{date('Y-m-d')}}" value="{{ $customerpendingservice->reminder_date }}">
                   </div>  
               </div>
               <br>  

@@ -20,6 +20,7 @@
                   <div class="col-md-6">
                     <label for="employee">{{ __('adminstaticword.employee') }}</label>
                     <select name="employee_id" id="employee_id" class="form-control js-example-basic-single col-md-7 col-xs-12" >
+                      <option value="0">--{{ __('adminstaticword.pleaseselect') }}-- </option>
                       @foreach($employee as $br)
                         <option value="{{$br->id}} "
                             @if ($br->id == $leave->employee_id)
@@ -40,12 +41,12 @@
                 <div class="row">
                   <div class="col-md-6">
                       <label for="fromdate">{{ __('adminstaticword.fromdate') }}:<sup class="redstar">*</sup></label>
-                      <input type="text" class="form-control" name="fromdate" id="fromdate" value="{{ $leave->from_date }}" >
+                      <input type="date" class="form-control" name="from_date" id="from_date" required min="{{date('Y-m-d')}}"  value="{{ $leave->from_date }}" >
                   </div>          
               
                   <div class="col-md-6">
                       <label for="todate">{{ __('adminstaticword.todate') }}:<sup class="redstar">*</sup></label>
-                      <input type="text" class="form-control" name="todate" id="todate" value="{{ $leave->to_date }}">
+                      <input type="date" class="form-control" name="to_date" id="to_date" required min="{{date('Y-m-d')}}"  value="{{ $leave->to_date }}">
                   </div>          
                 </div>
                 <br>
@@ -53,11 +54,12 @@
                 <div class="row">
                   <div class="col-md-6">
                     <label for="leave_type">{{ __('adminstaticword.leave_type') }}:</label>
-                    <select name="leave_type"  class="form-control" id="leave_type"  value="{{ $leave->leave_type }}">
+                    <input type="text" class="form-control" name="leave_type" id="leave_type" value="{{ $leave->leave_type }}">
+                    {{-- <select name="leave_type"  class="form-control" id="leave_type"  value="{{ $leave->leave_type }}">
                         <option value="half day">half day</option>
                         <option value="full leave">full leave</option>
-                    </select>
-                    <br><br>
+                    </select> --}}
+                    <br>
                 </div>  
             </div>
             <br>  

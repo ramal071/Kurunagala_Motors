@@ -40,7 +40,7 @@ class StockController extends Controller
     public function store(Request $request, Stock $stock)
     {
         $data = $this->validate($request, [
-            'product_id'=> 'required',
+            'product_id'=> 'required|not_in:0',
             'dealerprice'=> 'required',
             'quantity'=> 'required',
             'sellingprice'=> 'required',
@@ -80,7 +80,7 @@ class StockController extends Controller
     public function update(Request $request, Stock $stock)
     {
         $data = $this->validate($request, [
-            'product_id'=> 'required',
+            'product_id'=> 'required|not_in:0',
             'dealerprice'=> 'required',
             'quantity'=> 'required',
             'sellingprice'=> 'required',

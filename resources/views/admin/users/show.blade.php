@@ -14,17 +14,6 @@
                             <h4> {{__('adminstaticword.contact') }}: {{$user->contact}}</h4>
                             <h4> {{__('adminstaticword.email') }}: {{$user->email}}</h4>
                         </div>  
-                        
-                        <h4> {{__('adminstaticword.permission') }}: 
-                            @if ($user->permissions->isNotEmpty())                                        
-                            @foreach ($user->permissions as $permission)
-                                <span class="badge badge-success">
-                                    {{ $permission->name }}                                    
-                                </span>
-                            @endforeach            
-                            @endif    
-                        </h4>
-                        
                     </div>
                     
                 </div>

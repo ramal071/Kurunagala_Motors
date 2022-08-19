@@ -34,7 +34,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="code">{{ __('adminstaticword.code') }}:<sup class="redstar">*</sup></label>
-                                    <select name="code" id="code" class="form-control js-example-basic-single col-md-7 col-xs-12" required>
+                                    <select name="code" id="code" class="form-control js-example-basic-single col-md-7 col-xs-12" >
                                         <option value="0">{{ __('adminstaticword.pleaseselect') }}</option>
                                         @foreach($servicerepair as $servicerepair)
                                         <option value="{{$servicerepair->code}}">{{$servicerepair->code}}</option>

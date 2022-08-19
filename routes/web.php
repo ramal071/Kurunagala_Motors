@@ -5,6 +5,7 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/aboutus', 'HomeController@aboutus')->name('customer.aboutus');
 Route::get('/home', 'HomeController@barchart')->name('barchart');
 Route::post('/home','HomeController@sendMessage')->name('home');
 
@@ -32,7 +33,7 @@ Route::get('completeJob/{id}', 'CustomerController@completeJob')->name('customer
 Route::get('customerbike', 'CustomerController@Bike')->name('customer.bike');
 Route::get('customerbrand', 'CustomerController@Brand')->name('customer.brand');
 Route::get('customerproduct', 'CustomerController@Product')->name('customer.product');
-
+Route::get('customerservice', 'CustomerController@service')->name('customer.service');
 
 Route::resource('customerjobdetail', 'CustomerJobDetailController');    
 Route::resource('customerpendingpayment', 'CustomerPendingPaymentController');
@@ -72,6 +73,7 @@ Route::resource('allowance', 'AllowanceController')->middleware('can:isManager')
 Route::resource('leave', 'LeaveController')->middleware('can:isManager');
 Route::get("salary-dropdown","SalaryController@upload_info")->name('salary-dropdown');
 Route::get("salarychild-dropdown","SalaryController@child_info")->name('salarychild-dropdown');
+//  Route::get('generate-salary', 'SalaryController@paysheet')->middleware('can:isManager');
 
 
 Route::resource('bike', 'BikeController')->middleware('can:isManager');

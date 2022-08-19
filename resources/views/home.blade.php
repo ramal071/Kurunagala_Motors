@@ -4,13 +4,100 @@
 
 
 <!-- services start-->
-<section class="section services-section" id="services">
+<section class="section services-section">
     <div class="container">
+        <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
+            <div class="carousel-inner">
+                
+                <div class="carousel-item">
+                    <img src="https://www.dirtbikeplanet.com/wp-content/uploads/2017/07/Changing-4-Stroke-Dirt-Bike-Oil-Large.jpg" width="100px;" height="500px;" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item active">
+                    <img src="https://cdni.autocarindia.com/Utils/ImageResizer.ashx?n=http%3A%2F%2Fcdni.autocarindia.com%2FFeatures%2F3---Spraying-Water-copy.jpg&c=0" width="100px;" height="500px;" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://i.pinimg.com/736x/0a/6a/90/0a6a90bd65bd978fda05aea353e7502b--motorcycle-shop-motorcycle-garage.jpg" width="100px;" height="500px;" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://4.imimg.com/data4/ET/SK/MY-12606593/bike-washing-service-500x500.jpg" width="100px;" height="500px;" class="d-block w-100" alt="...">
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+        <br>
 
+         <div class="row">
+            <div class="col-md-6">
+               <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+                  <div class="card-body d-flex flex-column align-items-start">
+                     <strong class="d-inline-block mb-2 text-primary">Brand</strong>
+                     <h6 class="mb-0">
+                        <a class="text-dark" href="#">Motor bike brands available</a>
+                     </h6>
+                     <div class="mb-1 text-muted small">Nov 12</div>
+                     <p class="card-text mb-auto">Here, you can see the motor bike brands we repair. </p>
+                     <a class="btn btn-outline-primary btn-sm" role="button" href="{{url('customerbrand')}}">{{ __('adminstaticword.viewallbrand') }}</a>
+                  </div>
+                  <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7l45tHgFDu2CU9Cg8KpqHo7ztUGjulJWY97l6oaTQSKsZVub409L2lC6oMkecGYBpWlU&usqp=CAU" style="width: 200px; height: 250px;">
+               </div>
+            </div>
+            <div class="col-md-6">
+               <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+                  <div class="card-body d-flex flex-column align-items-start">
+                     <strong class="d-inline-block mb-2 text-success">Product</strong>
+                     <h6 class="mb-0">
+                        <a class="text-dark" href="#">Spare parts available for all motor bike</a>
+                     </h6>
+                     <div class="mb-1 text-muted small">Nov 11</div>
+                     <p class="card-text mb-auto">Here, you can view our products available </p>
+                     <a class="btn btn-outline-success btn-sm" href="{{url('customerproduct')}}">{{ __('adminstaticword.viewallsparepart') }}</a>
+                  </div>
+                  <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="https://5.imimg.com/data5/CX/TB/MY-73743/tvs-bike-spare-parts-500x500.jpg" style="width: 200px; height: 250px;">
+               </div>
+            </div>
+         </div>
+
+         <div class="row">
+            <div class="col-md-6">
+               <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+                  <div class="card-body d-flex flex-column align-items-start">
+                     <strong class="d-inline-block mb-2 text-secondary">Model</strong>
+                     <h6 class="mb-0">
+                        <a class="text-dark" href="#">Motor bike model available</a>
+                     </h6>
+                     <div class="mb-1 text-muted small">Nov 12</div>
+                     <p class="card-text mb-auto">Here, you can see the motor bike model we repair. </p>
+                     <a class="btn btn-outline-secondary btn-sm" role="button" href="{{url('customerbike')}}">{{ __('adminstaticword.viewallbike') }}</a>
+                  </div>
+                  <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="https://img1.cgtrader.com/items/1005123/f3512f3806/large/motorcycle-3d-models-collection-3d-model.jpg" style="width: 200px; height: 250px;">
+               </div>
+            </div>
+            <div class="col-md-6">
+               <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+                  <div class="card-body d-flex flex-column align-items-start">
+                     <strong class="d-inline-block mb-2 text-danger">Service</strong>
+                     <h6 class="mb-0">
+                        <a class="text-dark" href="#">Services available for all motor bike</a>
+                     </h6>
+                     <div class="mb-1 text-muted small">Nov 11</div>
+                     <p class="card-text mb-auto">We are honda authorized dealer </p>
+                     <a class="btn btn-outline-danger btn-sm" href="{{url('customerservice')}}">Continue reading</a>
+                  </div>
+                  <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="https://5.imimg.com/data5/QN/HC/NK/SELLER-103746547/doorstep-bike-service-500x500.jpg" style="width: 200px; height: 250px;">
+               </div>
+            </div>
+         </div>
 
         <div class="row">
             <div class="col-lg-6">
-                <div class="section-title">
+                <div class="section-title" id="services">
                     <h2>Services </h2>
                 </div>
             </div>
@@ -187,6 +274,8 @@
     </div>
 
     @endauth      
+
+    
  
         <div class="row">
             <div class="col-lg-6">
@@ -234,77 +323,9 @@
                     @endforeach
                 </tbody>
             </table>
-</div>
-
-
+            <a class="btn btn-outline-success btn-sm" href="{{url('customerproduct')}}">{{ __('adminstaticword.viewallsparepart') }}</a>
         </div>
-       
-
-         {{--  --}}
-
-         <div class="row">
-            <div class="col-md-6">
-               <div class="card flex-md-row mb-4 shadow-sm h-md-250">
-                  <div class="card-body d-flex flex-column align-items-start">
-                     <strong class="d-inline-block mb-2 text-primary">Brand</strong>
-                     <h6 class="mb-0">
-                        <a class="text-dark" href="#">Motor bike brands available</a>
-                     </h6>
-                     <div class="mb-1 text-muted small">Nov 12</div>
-                     <p class="card-text mb-auto">Here, you can see the motor bike brands we repair. </p>
-                     <a class="btn btn-outline-primary btn-sm" role="button" href="{{url('customerbrand')}}">{{ __('adminstaticword.viewallbrand') }}</a>
-                  </div>
-                  <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7l45tHgFDu2CU9Cg8KpqHo7ztUGjulJWY97l6oaTQSKsZVub409L2lC6oMkecGYBpWlU&usqp=CAU" style="width: 200px; height: 250px;">
-               </div>
-            </div>
-            <div class="col-md-6">
-               <div class="card flex-md-row mb-4 shadow-sm h-md-250">
-                  <div class="card-body d-flex flex-column align-items-start">
-                     <strong class="d-inline-block mb-2 text-success">Product</strong>
-                     <h6 class="mb-0">
-                        <a class="text-dark" href="#">Spare parts available for all motor bike</a>
-                     </h6>
-                     <div class="mb-1 text-muted small">Nov 11</div>
-                     <p class="card-text mb-auto">Here, you can view our products available </p>
-                     <a class="btn btn-outline-success btn-sm" href="{{url('customerproduct')}}">{{ __('adminstaticword.viewallsparepart') }}</a>
-                  </div>
-                  <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="https://5.imimg.com/data5/CX/TB/MY-73743/tvs-bike-spare-parts-500x500.jpg" style="width: 200px; height: 250px;">
-               </div>
-            </div>
-         </div>
-
-         <div class="row">
-            <div class="col-md-6">
-               <div class="card flex-md-row mb-4 shadow-sm h-md-250">
-                  <div class="card-body d-flex flex-column align-items-start">
-                     <strong class="d-inline-block mb-2 text-secondary">Model</strong>
-                     <h6 class="mb-0">
-                        <a class="text-dark" href="#">Motor bike model available</a>
-                     </h6>
-                     <div class="mb-1 text-muted small">Nov 12</div>
-                     <p class="card-text mb-auto">Here, you can see the motor bike model we repair. </p>
-                     <a class="btn btn-outline-secondary btn-sm" role="button" href="{{url('customerbike')}}">{{ __('adminstaticword.viewallbike') }}</a>
-                  </div>
-                  <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="https://img1.cgtrader.com/items/1005123/f3512f3806/large/motorcycle-3d-models-collection-3d-model.jpg" style="width: 200px; height: 250px;">
-               </div>
-            </div>
-            <div class="col-md-6">
-               <div class="card flex-md-row mb-4 shadow-sm h-md-250">
-                  <div class="card-body d-flex flex-column align-items-start">
-                     <strong class="d-inline-block mb-2 text-danger">Honda</strong>
-                     <h6 class="mb-0">
-                        <a class="text-dark" href="#">Services available for all Honda motor bike</a>
-                     </h6>
-                     <div class="mb-1 text-muted small">Nov 11</div>
-                     <p class="card-text mb-auto">We are honda authorized dealer </p>
-                     <a class="btn btn-outline-danger btn-sm" href="{{url('http://www.honda.lk/bikes.php')}}">Continue reading</a>
-                  </div>
-                  <img class="card-img-right flex-auto d-none d-lg-block" alt="Thumbnail [200x250]" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Honda_Logo.svg/2552px-Honda_Logo.svg.png" style="width: 200px; height: 250px;">
-               </div>
-            </div>
-         </div>
-
-
+        </div>
 
      </br>
         
@@ -396,21 +417,6 @@
         </div>
         <br>  
 
-       
-         {{-- working hours --}}
-
-         {{-- 
-              @php
-              $stock = App\Stock::get();
-              if(count($stock)>0){
-                echo count($stock);
-              }
-              else
-              {
-                echo "0";
-              }
-          @endphp
-           --}}
          <div class="row">
             <div class="col-lg-6">
                 <div class="section-title">
@@ -467,7 +473,7 @@
         </div>
 
         <div class="container">
-            <form class="contact-form" method="post" action="{{ route('contact.send') }}">
+            <form class="contact-form" method="post" action="{{ route('contact.send') }}" id="contact">
                 @csrf                      
                     <div class="row">
                         <div class="col-md-6">
@@ -518,74 +524,59 @@
             </div>
         </div>
 
+        {{--  canvas js line chart--}}
+        <div class="col-lg-12">
+            <div class="box box-danger">
+            <div class="box-header with-border">
+                
+                <?php
+                $months = array();
+                $count = 0;
+                while ($count <= 3) {
+                    $months[] = date('M Y', strtotime("-".$count." month"));
+                $count++;
+                }
 
+                $dataPoints = array(
+                array("y" => $usersCount[3], "label" => $months[3]),
+                array("y" => $usersCount[2], "label" => $months[2]),
+                array("y" => $usersCount[1], "label" => $months[1]),
+                array("y" => $usersCount[0], "label" => $months[0]),
 
-{{--  canvas js line chart--}}
-<div class="col-lg-12">
-    <div class="box box-danger">
-      <div class="box-header with-border">
-          
-        <?php
-        $months = array();
-        $count = 0;
-        while ($count <= 3) {
-            $months[] = date('M Y', strtotime("-".$count." month"));
-        $count++;
-        }
+                );
 
-        $dataPoints = array(
-        // array("y" => $usersCount[7], "label" => $months[7]),
-        // array("y" => $usersCount[6], "label" => $months[6]),
-        // array("y" => $usersCount[5], "label" => $months[5]),
-        // array("y" => $usersCount[4], "label" => $months[4]),
-        array("y" => $usersCount[3], "label" => $months[3]),
-        array("y" => $usersCount[2], "label" => $months[2]),
-        array("y" => $usersCount[1], "label" => $months[1]),
-        array("y" => $usersCount[0], "label" => $months[0]),
+                ?>
 
-        );
+                <script>
+                window.onload = function () {
+                
+                var chart = new CanvasJS.Chart("chartContainer", {
+                    title: {
+                        text: "Monthly Service-Repair"
+                    },
+                    axisY: {
+                        title: "Number of Service-Repair"
+                    },
+                    data: [{
+                        type: "line",
+                        dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+                    }]
+                });
+                chart.render();
+                
+                }
+                </script>
 
-        ?>
+                <div id="chartContainer" style="height: 370px; width: 80%;"></div>
+                <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
-        <script>
-        window.onload = function () {
-        
-        var chart = new CanvasJS.Chart("chartContainer", {
-            title: {
-                text: "Monthly Service-Repair"
-            },
-            axisY: {
-                title: "Number of Service-Repair"
-            },
-            data: [{
-                type: "line",
-                dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
-            }]
-        });
-        chart.render();
-        
-        }
-        </script>
-
-        <div id="chartContainer" style="height: 370px; width: 80%;"></div>
-        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
-       <div style="height: 400px;width:900px; margin:auto;">
-        <canvas id="barChart"></canvas>
-       </div>
+            </div>
+            </div>
+        </div>
+        </div>
 
 
     </section>
     @endsection
  
- 
-
 
