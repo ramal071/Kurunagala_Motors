@@ -15,7 +15,6 @@
    
             <li class="{{ Nav::isRoute('admin.index') }}"><a href="{{route('admin.index')}}"><i class="flaticon-home" aria-hidden="true"></i><span>{{ __('adminstaticword.dashboard') }}</span></a></li>
       
-
           {{-- Employee = role/ employee --}}
           @if(Auth::User()->roles->slug == "manager")
 
@@ -115,7 +114,7 @@
                <li class="{{ Nav::isRoute('workinghour.index') }}"><a href="{{route('workinghour.index')}}"><i class="flaticon-rec"></i>{{ __('adminstaticword.workinghour') }} </a></li>
                <li class="{{ Nav::isRoute('calendar.index') }}"><a href="{{route('calendar.index')}}"><i class="flaticon-rec" aria-hidden="true"></i><span>{{ __('adminstaticword.calendar') }}</span></a></li>
                <li class="{{ Nav::isRoute('profile.show') }}"><a href="{{route('profile.show',Auth::User()->id)}}"><i class="flaticon-rec" aria-hidden="true"></i><span>{{ __('adminstaticword.userprofile') }}</span></a></li>
-               <li class="{{ Nav::isRoute('password.update') }}"><a href="{{route('password.update',Auth::User()->id)}}"><i class="flaticon-rec" aria-hidden="true"></i><span>{{ __('adminstaticword.passwordupdate') }}</span></a></li> 
+               {{-- <li class="{{ Nav::isRoute('password.update') }}"><a href="{{route('password.update',Auth::User()->id)}}"><i class="flaticon-rec" aria-hidden="true"></i><span>{{ __('adminstaticword.passwordupdate') }}</span></a></li>  --}}
                <li class="{{ Nav::isRoute('contact.index') }}"><a href="{{route('contact.index')}}"><i class="flaticon-rec" aria-hidden="true"></i><span>{{ __('adminstaticword.contact') }}</span></a></li>    
                 </ul>
            </li> 

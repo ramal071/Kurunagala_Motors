@@ -17,13 +17,13 @@ class CreateServiceRepairsTable extends Migration
             $table->bigIncrements('id');
             $table->string('code');
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;                 
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');                 
             $table->unsignedBigInteger('customervehicle_id');
-            $table->foreign('customervehicle_id')->references('id')->on('customer_vehicles')->onDelete('cascade');;
+            $table->foreign('customervehicle_id')->references('id')->on('customer_vehicles')->onDelete('cascade');
             $table->unsignedBigInteger('service_id');
-            $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');;
+            $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
             $table->unsignedBigInteger('employee_id');
-            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');;
+            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
             $table->string('email');
             $table->decimal('charge')->nullable();
             $table->decimal('fixprice')->nullable();

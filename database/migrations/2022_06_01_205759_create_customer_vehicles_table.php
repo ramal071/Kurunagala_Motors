@@ -16,11 +16,11 @@ class CreateCustomerVehiclesTable extends Migration
         Schema::create('customer_vehicles', function (Blueprint $table) {
             $table->bigIncrements('id');        
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('bike_id');
-            $table->foreign('bike_id')->references('id')->on('bikes');
+            $table->foreign('bike_id')->references('id')->on('bikes')->onDelete('cascade');
             $table->unsignedBigInteger('brand_id');
-            $table->foreign('brand_id')->references('id')->on('brands');
+            $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
             $table->string('register_number');    
             $table->timestamps();
         });

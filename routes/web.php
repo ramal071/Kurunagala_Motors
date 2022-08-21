@@ -6,7 +6,7 @@ Auth::routes();
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/aboutus', 'HomeController@aboutus')->name('customer.aboutus');
-Route::get('/home', 'HomeController@barchart')->name('barchart');
+
 Route::post('/home','HomeController@sendMessage')->name('home');
 
 
@@ -95,8 +95,8 @@ Route::resource('profile', 'UserProfileController');
 Route::get('profile-show/{id}', 'UserProfileController@userprofilepage')->name('profile.show');
 Route::put('profile-update','UserProfileController@userprofileUpdate')->name('user.profile_update');
 
-Route::get('password-update/{id}','UserProfileController@userpasswordpage')->name('password.update');
-Route::post('password-update','UserProfileController@userpasswordUpdate')->name('user.password_update');
+// Route::get('password-update/{id}','UserProfileController@userpasswordpage')->name('password.update');
+// Route::post('password-update','UserProfileController@userpasswordUpdate')->name('user.password_update');
 
 //contact
 Route::get('contactus','ContactUsController@contactView')->name('contact.view');

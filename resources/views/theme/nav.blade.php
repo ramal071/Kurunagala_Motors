@@ -40,7 +40,7 @@
                 @auth
                 <div class="sidebar-nav-icon">
                     <ul>
-                        <a href="{{route('password.update',Auth::User()->id)}}"><li><i class="fa fa-heart"></i>{{ __('frontstaticword.passwordupdate') }}</li></a>
+                        {{-- <a href="{{route('password.updated',Auth::User()->id)}}"><li><i class="fa fa-heart"></i>{{ __('frontstaticword.passwordupdate') }}</li></a> --}}
                         <a href="{{route('profile.show',Auth::User()->id)}}"><li ><i class="fa fa-user"></i>{{ __('frontstaticword.userprofile') }}</li></a>
                         <a href="{{url('customerPending-service/{id}')}}"><li ><i class="fa fa-user"></i>{{ __('frontstaticword.pendingservice') }}</li></a>
                         <a href="{{url('customerPending-payment/{id}')}}"><li ><i class="fa fa-user"></i>{{ __('frontstaticword.pendingpayment') }}</li></a>
@@ -72,7 +72,8 @@
                     </div>
           
                     <div class="col-lg-12">
-                        <div class="Login-btn">                            
+                        <div class="Login-btn">       
+                                                          
                             <a href="{{ route('login') }}" class="btn btn-secondary" title="login">{{ __('frontstaticword.login') }}</a>
                             <a href="{{ route('register') }}" class="btn btn-primary" title="register">{{ __('frontstaticword.signup') }}</a>                            
                         </div> 
@@ -81,7 +82,6 @@
                 @endguest
 
                 @auth
-       
                     {{-- Drop down --}}
                     <div class="col-lg-12 col-md-8 col-sm-8 col-8">
                         <div class="my-container">
@@ -100,9 +100,11 @@
                                         {{ Auth::User()->email }}
                                     </div>
                                 </div>
-                                 
+                                @canany(['isManager', 'isCashier'])
+                                <li class="{{ Nav::isRoute('admin.index') }}"><a href="{{route('admin.index')}}"><i class="flaticon-user" aria-hidden="true"></i><span>{{ __('adminstaticword.dashboard') }}</span></a></li>
+                                @endcanany
                                 <a href="{{route('profile.show',Auth::User()->id)}}"><li ><i class="fa fa-user"></i>{{ __('frontstaticword.userprofile') }}</li></a>    
-                                <a href="{{route('password.update',Auth::User()->id)}}"><li ><i class="fa fa-user"></i>{{ __('frontstaticword.passwordupdate') }}</li></a>                                   
+                                {{-- <a href="{{route('password.updated',Auth::User()->id)}}"><li ><i class="fa fa-user"></i>{{ __('frontstaticword.passwordupdate') }}</li></a> --}}
                                 <a href="{{url('customerPending-service/{id}')}}"><li ><i class="fa fa-user"></i>{{ __('frontstaticword.pendingservice') }}</li></a>
                                 <a href="{{url('customerPending-payment/{id}')}}"><li ><i class="fa fa-user"></i>{{ __('frontstaticword.pendingpayment') }}</li></a>
                                 

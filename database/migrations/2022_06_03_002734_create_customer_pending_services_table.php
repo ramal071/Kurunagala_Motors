@@ -16,12 +16,12 @@ class CreateCustomerPendingServicesTable extends Migration
         Schema::create('customer_pending_services', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('email');
             $table->unsignedBigInteger('customervehicle_id');
-            $table->foreign('customervehicle_id')->references('id')->on('customer_vehicles');
+            $table->foreign('customervehicle_id')->references('id')->on('customer_vehicles')->onDelete('cascade');
             $table->unsignedBigInteger('service_id');
-            $table->foreign('service_id')->references('id')->on('services');
+            $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
             $table->string('next_date'); 
             $table->string('reminder_date');     
             $table->boolean('is_remind')->default(false);  
