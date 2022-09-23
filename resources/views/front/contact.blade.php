@@ -33,7 +33,7 @@
                 
                 <div class="row">
                     <div class="col-md-6">
-                        <input name="phone" type="text" class="form-control" id="phone" placeholder="  phone">
+                        <input name="phone" type="tel" pattern="[0-9]{10}" class="form-control" id="phone" placeholder="  phone">
                     </div>
                     </div>
                 <br>

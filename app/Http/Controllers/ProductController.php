@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Gate;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        return $this->middleware('auth');
+    }
 
     public function index()
     {
@@ -125,7 +129,6 @@ class ProductController extends Controller
         $id = $request['prId'];
         $brand = Brand::findOrFail($id);
         $upload = $brand->bike->where('brand_id',$id)->pluck('name','id')->all();
-
         return response()->json($upload);
     }
 

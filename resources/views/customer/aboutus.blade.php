@@ -22,26 +22,26 @@
         <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
           <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
             A value added service package that is offered to meet all your hybrid demand, whatever it maybe. The basic service offering, it meets all your typical automotive needs effective.
-            </div>
+          </div>
           <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
             We are Sri Lanka’s best automobile care specialists  with state-of- the-art service centers located across the country. Each center is extremely committed to providing our clients with the very best services.
-        </div>
+          </div>
           <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-            Phone : 071 123 4567, +9471 987 6543 <br>
-            email : info@kmmoters.com, kmmoters@gmail.com <br>
-            Address : Kurunagala Motors, galenbidunuwewa, Anuradhapura. <br>
-        </div>
+            kurunagala motors is the Honda-powered marketing agency. Main service types are fiber, paint, body wash, spare parts and repair. <br>
+              Phone : 071 123 4567, +9471 987 6543 
+              <br>
+              email : info@kmmoters.com, kmmoters@gmail.com
+               <br>
+              Address : Kurunagala Motors, galenbidunuwewa, Anuradhapura.
+               <br>
+          </div>
           <div class="tab-pane fade" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
             Kurunegala Motors garage is located in Galenbidunuwewa, Anuradhapura area. Currently that garagehandles documents and information by manual system using papers. The garage which has only 12 
-employees. Main service types are fiber, paint, body wash, spare parts and repair. kurunagala motors is the Honda-powered marketing agency.
-              
-            </div>
+            employees. Main service types are fiber, paint, body wash, spare parts and repair. kurunagala motors is the Honda-powered marketing agency.
+          </div>
         </div>
-      
       </div>
     </div>
-</div>
-</div>
 </div>
 
 </section>

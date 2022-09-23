@@ -8,6 +8,10 @@ use App\Employee;
 
 class AllowanceController extends Controller
 {
+    public function __construct()
+    {
+        return $this->middleware('auth');
+    }
 
     public function index()
     {
@@ -26,8 +30,8 @@ class AllowanceController extends Controller
     public function store(Request $request ,Allowance $allowance)
     {
         $data = $this->validate($request, [ 
-            'employee_id'=> 'required|not_in:0',
-            'allowance'=>'required|string|max:255',
+            'employee_id'   => 'required|not_in:0',
+            'allowance'     =>'required|string|max:255',
             'allowance_type'=>'required|not_in:0',
         ],
             [
@@ -38,16 +42,11 @@ class AllowanceController extends Controller
 
         $allowance->employee_id = $request->employee_id;
         $allowance->allowance_type = $request->allowance_type;
-        $allowance->allowance = $request->allowance;
+        $allowance->allowance   = $request->allowance;
         $allowance->description = $request->description;
         $allowance->save();
         return redirect()->route('allowance.index')->with('success', 'Marked allowance');
   
-    }
-
-    public function show(Allowance $allowance)
-    {
-        //
     }
 
     public function edit(Allowance $allowance)
@@ -60,18 +59,9 @@ class AllowanceController extends Controller
     public function update(Request $request, Allowance $allowance)
     {
         $data = $this->validate($request, [ 
-            'employee_id'=> 'required|not_in:0',
             'allowance'=>'required|max:255',
-            'allowance_type'=>'required|string|max:255',
-        ],
-            [
-            'employee_id.required'=>'Please enter the employee !!!',
-            'allowance_type.required'=>'Please enter the allowance_type !!!',
-            ]
+        ]
         );
-
-        $allowance->employee_id = $request->employee_id;
-        $allowance->allowance_type = $request->allowance_type;
         $allowance->allowance = $request->allowance;
         $allowance->description = $request->description;
         $allowance->save();

@@ -8,6 +8,7 @@ use Brian2694\Toastr\Facades\Toastr;
 
 class ContactUsController extends Controller
 {
+    
     public function contactView(){
         return view('front.contact');
     }
@@ -18,17 +19,15 @@ class ContactUsController extends Controller
             'name' => 'required',
             'email' => 'required|email',
             'phone' => 'required|numeric',
-            'message' => 'required|max:255',
+            'message' => 'required',
         ],
         [
             'employee_id.required'=>'Please enter the name !!!',
             'email.required'=>'Please enter the email !!!',
             'email.email'=>'Please enter valid email !!!',
             'phone.required'=>'Please enter the contact !!!',
-            'phone.max'=>'phone number max limit = 11 !!!',
             'phone.numeric'=>'Please enter phone numeric !!!',
             'message.required'=>'Please enter the message !!!',
-            'message.max'=>'max limit 255!!!',
         ]
     );
 

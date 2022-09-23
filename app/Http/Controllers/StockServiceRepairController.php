@@ -9,6 +9,11 @@ use App\ServiceRepair;
 
 class StockServiceRepairController extends Controller
 {
+    public function __construct()
+    {
+        return $this->middleware('auth');
+    }
+    
     public function index()
     {
         $arr['servicerepair'] = ServiceRepair::all();  
@@ -16,11 +21,5 @@ class StockServiceRepairController extends Controller
 
         return view('admin.stock_servicerepair.index')->with($arr);  
     }
-
-    public function create()
-    {
-        //
-    }
-
 
 }

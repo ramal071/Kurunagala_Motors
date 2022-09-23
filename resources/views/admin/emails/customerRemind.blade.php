@@ -22,5 +22,6 @@
             <p> Your pending payment: {{ $servicerepair->amount - $servicerepair->paid_amount}}. </p>
             
             <p> Thank you </p>
+            <p> Manager - Kurunagala Motors </p>
 </body>
 </html>

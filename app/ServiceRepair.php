@@ -54,7 +54,6 @@ class ServiceRepair extends Model
         return $this->belongsTo(Employee::class, 'employee_id', 'id');
     }
 
-
     public function stock()
     {
         return $this->belongsToMany(Stock::class)->withTimestamps()->withPivot('qty','service_repair_id','stock_id');

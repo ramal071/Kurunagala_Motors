@@ -10,7 +10,6 @@
                 <div class="box-header with-border">
                     <h3 class="box-title">{{__('adminstaticword.salary') }}</h3>
                 </div>
-
                 <div class="box-body">
                     <div class="form-group">
                         <form id="demo-form2" method="POST" action="{{ route('salary.store')}}">

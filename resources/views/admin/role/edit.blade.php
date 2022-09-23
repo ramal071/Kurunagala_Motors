@@ -54,7 +54,7 @@
   </section>
   @endsection
 
-  @section('css_role_page')
+@section('css_role_page')
     <link rel="stylesheet" href="/css/admin/bootstrap-tagsinput.css">
 @endsection
 

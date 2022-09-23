@@ -18,5 +18,6 @@
             <ul><li> {{ $servicerepair->customervehicle->brand->name}} {{ $servicerepair->customervehicle->bike->name}}.</li> </ul> </p>
             
             <p> Thank you </p>
+            <p> Manager - Kurunagala Motors </p>
 </body>
 </html>

@@ -1,8 +1,8 @@
 @extends('admin/layouts.master')
-@section('title', 'View job detail')
+@section('title', 'View Service Repair')
 @section('body')
-    @include('admin.message')
-{{-- {{ dd($servicerepair) }} --}}
+@include('admin.message')
+    
     <section class="content">
         <div class="row">
             <div class="col-xs-12">
@@ -22,6 +22,7 @@
                                         <th>{{ __('adminstaticword.tool') }}</th>
                                         <th>{{__('adminstaticword.fname') }}</th>
                                         <th>{{ __('adminstaticword.registernumber') }}</th>
+                                        <th>{{ __('adminstaticword.timestart') }}</th>          
                                         <th>{{ __('adminstaticword.stock') }} {{ __('adminstaticword.product') }}</th>
                                         <th>{{ __('adminstaticword.service') }}</th>                                      
                                         <th>{{ __('adminstaticword.service') }} {{ __('adminstaticword.charge') }}</th>     
@@ -36,7 +37,8 @@
                                         <th>{{ __('adminstaticword.remind') }}</th>                                       
                                         <th>{{ __('adminstaticword.borrow') }}</th>
                                         <th>{{ __('adminstaticword.payment') }}</th>
-                                        <th>{{ __('adminstaticword.repaircomplete') }}</th>                                        
+                                        <th>{{ __('adminstaticword.repaircomplete') }}</th>      
+
                                     </tr>
                                 </thead>
 
@@ -62,7 +64,7 @@
                                             <td>{{ $record['user']['fname'] }}</td>
                                            
                                             <td>{{ $record['customervehicle']['register_number'] }}</td>
-
+                                            <td>{{ $record['created_at'] }}</td>
                                             <td>
                                                 @php
                                                 $selling_price = 0;
@@ -83,16 +85,13 @@
                                               
                                             </td>
                                             <td>{{ $record['service']['name'] }}</td>
-                                            
                                             <td>{{ $record['service']['price']  }}</td>
-
                                             <td>{{ $selling_price}}.00</td>
                                             <td>{{ $record['employee']['name']  }}</td>
                                             <td>{{ $record['fixprice'] }}</td>      
                                             <td>{{ $record['charge'] }}</td>                                           
                                             <td> {{$record['amount']  }}</td>
                                             <td>{{ $record['paid_amount'] }}</td>
-                                           
                                             <td>{{ $record['amount']-$record['paid_amount'] }}.00</td>
 
                                             <td>

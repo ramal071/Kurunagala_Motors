@@ -18,18 +18,15 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th>#</th>
-                                    <th>{{__('adminstaticword.employee') }} {{__('adminstaticword.id') }}</th>
+                                    <th>{{__('adminstaticword.employee') }}</th>
                                     <th>{{__('adminstaticword.loan_amount') }}</th> 
                                     <th>{{__('adminstaticword.description') }}</th>                                   
                                     <th>{{__('adminstaticword.tool') }}</th>
                                 </tr>
                             </thead>
 
-                            <?php $i=0;?>
                             @foreach($loan as $l)            
-                                <tr>      
-                                    <th>{{ $l->id}}</th>     
+                                <tr>          
                                     <td>{{ $l->employee->name}}</td>         
                                     <th>{{ $l->loan_amount}}</th>
                                     <th>{{ $l->description}}</th>                                          

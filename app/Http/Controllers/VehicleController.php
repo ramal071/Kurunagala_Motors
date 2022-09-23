@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class VehicleController extends Controller
 {
+    public function __construct()
+    {
+        return $this->middleware('auth');
+    }
 
     public function index()
     {
@@ -35,11 +39,6 @@ class VehicleController extends Controller
         $vehicle->description = $request->description;
         $vehicle->save();
         return redirect()->route('vehicle.index')->with('success', 'Vehicle model created successfully' );
-    }
-
-    public function show(vehicle $vehicle)
-    {
-        //
     }
 
     public function edit(vehicle $vehicle)

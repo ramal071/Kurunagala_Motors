@@ -73,7 +73,6 @@
                   <a href="{{route('stock.index')}}" class="btn btn-primary">Back</a>
               </div> 
             </div>
-
       </form>
     </div>
   </section>  

@@ -15,7 +15,7 @@
 
                 <div class="box-body">
                     <div class="table responsive">
-                        <table id="example1" class="table table-bordered table-striped">
+                        <table id="example" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th>{{__('adminstaticword.slip_id') }}</th>
@@ -53,7 +53,6 @@
                                     <td>{{ $sal['total_salary'] }}</td>      
                                                                
                                     <td>
-                                        {{-- <a href="{{route('salary.edit', $sal['id'])}}" ><i class="glyphicon glyphicon-pencil"></i></a> --}}
                                         <a href="{{route('salary.show', $sal['id'])}}" ><i class="fa fa-eye"></i></a>
                                         <a href="javascript:void(0)" onclick="$(this).parent().find('form').submit()"><i class="fa fa-fw fa-trash-o"></i></a>
                                         <form action="{{ route('salary.destroy', $sal['id']) }}" method="post">
@@ -64,21 +63,6 @@
                                 </tr>
                                 @endforeach
                             </tbody>
-
-                            {{-- <tfoot>
-                                <tr>
-                                    <th></th>
-                                    <th>idno</th>
-                                    <th>name</th>
-                                    <th>email</th>
-                                    <th>contact</th>
-                                    <th>registernumber</th>                                  
-                                    <th>brand</th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>                                  
-                                </tr>                              
-                            </tfoot>         --}}
 
                         </table>
                     </div>

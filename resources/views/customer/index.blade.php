@@ -16,7 +16,7 @@
                 <div class="profile-info-block">
                     <div class="row">
     
-                        <table id="example1" class="table table-bordered table-striped">
+                        <table id="example" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -43,8 +43,7 @@
                                     <td>{{ $b->register_number }}</td>
                                     <td>{{ $b->brand->name}}</td>
                                     <td>{{ $b->bike->name}}</td>       
-                                </tr>                        
-                            
+                                </tr>    
                                 @endforeach
                             </tbody>
                         </table>

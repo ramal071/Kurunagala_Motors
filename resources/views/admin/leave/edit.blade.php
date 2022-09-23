@@ -19,7 +19,8 @@
                 <div class="row">
                   <div class="col-md-6">
                     <label for="employee">{{ __('adminstaticword.employee') }}</label>
-                    <select name="employee_id" id="employee_id" class="form-control js-example-basic-single col-md-7 col-xs-12" >
+                    <input type="text" class="form-control" name="leave_type" id="leave_type" value="{{ $leave->employee->name }}" readonly>
+                    {{-- <select name="employee_id" id="employee_id" class="form-control js-example-basic-single col-md-7 col-xs-12" >
                       <option value="0">--{{ __('adminstaticword.pleaseselect') }}-- </option>
                       @foreach($employee as $br)
                         <option value="{{$br->id}} "
@@ -28,13 +29,18 @@
                         @endif
                             >{{$br->name}}</option>
                       @endforeach
-                    </select>
+                    </select> --}}
                   </div>
                 
-                    <div class="col-md-6">
-                      <label for="leave_reason">{{ __('adminstaticword.leavereason') }}:</label>
-                      <input type="text" class="form-control" name="leave_reason" id="allowance" value="{{ $leave->leave_reason }}">
-                    </div>           
+                  <div class="col-md-6">
+                    <label for="leave_type">{{ __('adminstaticword.leave_type') }}:</label>
+                    <input type="text" class="form-control" name="leave_type" id="leave_type" value="{{ $leave->leave_type }}" readonly>
+                    {{-- <select name="leave_type"  class="form-control" id="leave_type"  value="{{ $leave->leave_type }}">
+                        <option value="half day">half day</option>
+                        <option value="full leave">full leave</option>
+                    </select> --}}
+                    <br>
+                  </div>          
                 </div>
                 <br>
 
@@ -53,15 +59,10 @@
 
                 <div class="row">
                   <div class="col-md-6">
-                    <label for="leave_type">{{ __('adminstaticword.leave_type') }}:</label>
-                    <input type="text" class="form-control" name="leave_type" id="leave_type" value="{{ $leave->leave_type }}">
-                    {{-- <select name="leave_type"  class="form-control" id="leave_type"  value="{{ $leave->leave_type }}">
-                        <option value="half day">half day</option>
-                        <option value="full leave">full leave</option>
-                    </select> --}}
-                    <br>
-                </div>  
-            </div>
+                    <label for="leave_reason">{{ __('adminstaticword.leavereason') }}:</label>
+                    <input type="text" class="form-control" name="leave_reason" id="allowance" value="{{ $leave->leave_reason }}">
+                  </div>   
+                </div>
             <br>  
 
                 <div class="col-md-6">

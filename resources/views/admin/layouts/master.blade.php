@@ -72,15 +72,10 @@
                 <span class="hidden-xs">
 
                   @auth
-                  {{-- Hi..{{ Auth::user()->fname }}  {{ Auth::user()->role_id }} --}}
                   Hi..{{ Auth::user()->fname }}  {{ Auth::User()->roles->slug }}
                   @endauth
-                  {{-- Hi ! {{ Auth()->User()['fname'] }} --}}
-
-           
                 </span>
-
-              </a>            
+            </a>            
             </li>
             
             <li>
@@ -104,21 +99,15 @@
     <div class="content-wrapper">
       <!-- Main content -->
       @yield('body')
-      <!-- Main content end-->
+      <!--  end-->
     </div>
-    <!-- /.content-wrapper -->
-  
-    <!-- /.control-sidebar -->
     <div class="control-sidebar-bg"></div>
   </div>
-  <!-- ./wrapper -->
-  
-  <!-- jQuery 3 -->
+
   <script src="{{url('admin/bower_components/jquery/dist/jquery.min.js')}}"></script>
   <script src="{{ url('admin/js/select2.min.js')}}"></script>
   <script src="{{ url('https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js')}}"></script>
-  <!-- Bootstrap 3.3.7 -->
-  <script src="{{url('admin/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script> <!-- DataTables | id=example1 -->
+  <script src="{{url('admin/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script> <!-- DataTables -->
   <script src="{{url('admin/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
   <script src="{{url('admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script> <!-- SlimScroll -->
 
@@ -142,50 +131,6 @@
   {{-- calandar --}}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>
-  
-
-
-{{--  
-<script>
-var minDate, maxDate;
- 
-// Custom filtering function which will search data in column four between two values
-$.fn.dataTable.ext.search.push(
-    function( settings, data, dataIndex ) {
-        var min = minDate.val();
-        var max = maxDate.val();
-        var date = new Date( data[4] );
- 
-        if (
-            ( min === null && max === null ) ||
-            ( min === null && date <= max ) ||
-            ( min <= date   && max === null ) ||
-            ( min <= date   && date <= max )
-        ) {
-            return true;
-        }
-        return false;
-    }
-);
- 
-$(document).ready(function() {
-    // Create date inputs
-    minDate = new DateTime($('#min'), {
-        format: 'MMMM Do YYYY'
-    });
-    maxDate = new DateTime($('#max'), {
-        format: 'MMMM Do YYYY'
-    });
- 
-    // DataTables initialisation
-    var table = $('#example').DataTable();
- 
-    // Refilter the table
-    $('#min, #max').on('change', function () {
-        table.draw();
-    });
-});
-</script> --}}
 
 
 <script>
@@ -198,7 +143,6 @@ $(document).ready(function() {
   } );
 } );
 </script>
-
 
 
 <script>
@@ -247,9 +191,6 @@ $(document).ready(function () {
 });
 </script>
 
-
-
-
   {{-- <script> --}}
 @yield('js_post_page')
 @yield('js_user_page')
@@ -271,7 +212,6 @@ $(document).ready(function () {
   {{-- </script> --}} 
   
 </body>
-
 
 </html>
 

@@ -40,7 +40,7 @@
            
             <div class="col-md-6">
                 <label for="contact">{{ __('adminstaticword.contact') }}:<sup class="redstar">*</sup></label>
-                <input type="tel" class="form-control" name="contact" id="contact" value="{{ $gnr->contact }}">
+                <input type="number" pattern="[0-9]{10}" class="form-control" name="contact" id="contact" value="{{ $gnr->contact }}">
                 </div>          
             </div>
             <br>
@@ -48,7 +48,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <label for="email">{{ __('adminstaticword.email') }}:<sup class="redstar">*</sup></label>
-                    <input type="email" class="form-control" name="email" id="discount" value="{{ $gnr->email }}">
+                    <input type="email" class="form-control" name="email" id="email" value="{{ $gnr->email }}">
                 </div>          
            
                 <div class="col-md-6">

@@ -10,13 +10,15 @@ use Illuminate\Support\Facades\Gate;
 class WorkinghourController extends Controller
 {
 
+    public function __construct()
+    {
+        return $this->middleware('auth');
+    }
+    
     public function index()
     {
-
         $workinghour = DB::table('workinghours')->get();
-        return view('admin.workinghour.index', compact('workinghour'));
-
-     
+        return view('admin.workinghour.index', compact('workinghour'));     
     }
 
     public function create(Request $request)
@@ -48,7 +50,6 @@ class WorkinghourController extends Controller
         ]);
         return redirect()->route('workinghour.index')->with('success', 'created successfully' );
     }
-
 
     public function edit($id)
     {

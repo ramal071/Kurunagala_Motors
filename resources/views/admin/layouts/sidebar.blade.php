@@ -13,8 +13,7 @@
         <ul class="sidebar-menu" data-widget="tree">
           <li class="header">{{ __('adminstaticword.navigation') }}</li>
    
-            <li class="{{ Nav::isRoute('admin.index') }}"><a href="{{route('admin.index')}}"><i class="flaticon-home" aria-hidden="true"></i><span>{{ __('adminstaticword.dashboard') }}</span></a></li>
-      
+            <li class="{{ Nav::isRoute('admin.index') }}"><a href="{{route('admin.index')}}"><i class="flaticon-home" aria-hidden="true"></i><span>{{ __('adminstaticword.dashboard') }}</span></a></li>      
           {{-- Employee = role/ employee --}}
           @if(Auth::User()->roles->slug == "manager")
 
@@ -100,7 +99,6 @@
                 <li class="{{ Nav::isRoute('damage.index') }}"><a href="{{route('damage.index')}}"><i class="flaticon-rec"></i>{{__('adminstaticword.damage')}}</a></li>
                 <li class="{{ Nav::isRoute('recondition.index') }}"><a href="{{route('recondition.index')}}"><i class="flaticon-rec"></i>{{__('adminstaticword.recondition')}}</a></li>
                 <li class="{{ Nav::isRoute('gnr.index') }}"><a href="{{route('gnr.index')}}"><i class="flaticon-rec"></i>{{__('adminstaticword.gnr')}}</a></li>
-                {{-- <li class="{{ Nav::isRoute('limit.index') }}"><a href="{{route('limit.index')}}"><i class="flaticon-rec"></i>{{__('adminstaticword.limit')}}</a></li> --}}
              </ul>
             </li>      
             
@@ -118,10 +116,7 @@
                <li class="{{ Nav::isRoute('contact.index') }}"><a href="{{route('contact.index')}}"><i class="flaticon-rec" aria-hidden="true"></i><span>{{ __('adminstaticword.contact') }}</span></a></li>    
                 </ul>
            </li> 
-  
-      
-          
-
+           <li class="{{ Nav::isRoute('home') }}"><a href="{{route('home')}}"><i class="flaticon-flag" aria-hidden="true"></i><span>{{ __('adminstaticword.home') }}</span></a></li>
         </ul>
     </section>
 </aside>

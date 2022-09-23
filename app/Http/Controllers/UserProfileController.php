@@ -12,6 +12,11 @@ use Hash;
 
 class UserProfileController extends Controller
 {
+    public function __construct()
+    {
+        return $this->middleware('auth');
+    }
+    
     public function userprofilepage($id)
     {
         if(Auth::check()){
@@ -76,28 +81,4 @@ class UserProfileController extends Controller
           return redirect()->back()->with("success", 'Password Updated');
     }
 
-    public function store(Request $request)
-    {
-        //
-    }
-
-    public function show($id)
-    {
-        //
-    }
-
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    public function destroy($id)
-    {
-        //
-    }
 }

@@ -42,8 +42,8 @@
                     <ul>
                         {{-- <a href="{{route('password.updated',Auth::User()->id)}}"><li><i class="fa fa-heart"></i>{{ __('frontstaticword.passwordupdate') }}</li></a> --}}
                         <a href="{{route('profile.show',Auth::User()->id)}}"><li ><i class="fa fa-user"></i>{{ __('frontstaticword.userprofile') }}</li></a>
-                        <a href="{{url('customerPending-service/{id}')}}"><li ><i class="fa fa-user"></i>{{ __('frontstaticword.pendingservice') }}</li></a>
-                        <a href="{{url('customerPending-payment/{id}')}}"><li ><i class="fa fa-user"></i>{{ __('frontstaticword.pendingpayment') }}</li></a>
+                        <a href="{{url('customerPending-service/{id}')}}"><li ><i class="fa fa-cogs"></i>{{ __('frontstaticword.pendingservice') }}</li></a>
+                        <a href="{{url('customerPending-payment/{id}')}}"><li ><i class="fa fa-credit-card-alt"></i>{{ __('frontstaticword.pendingpayment') }}</li></a>
                      </ul>
                 </div>    
                 @endauth
@@ -105,8 +105,8 @@
                                 @endcanany
                                 <a href="{{route('profile.show',Auth::User()->id)}}"><li ><i class="fa fa-user"></i>{{ __('frontstaticword.userprofile') }}</li></a>    
                                 {{-- <a href="{{route('password.updated',Auth::User()->id)}}"><li ><i class="fa fa-user"></i>{{ __('frontstaticword.passwordupdate') }}</li></a> --}}
-                                <a href="{{url('customerPending-service/{id}')}}"><li ><i class="fa fa-user"></i>{{ __('frontstaticword.pendingservice') }}</li></a>
-                                <a href="{{url('customerPending-payment/{id}')}}"><li ><i class="fa fa-user"></i>{{ __('frontstaticword.pendingpayment') }}</li></a>
+                                <a href="{{url('customerPending-service/{id}')}}"><li ><i class="fa fa-cogs"></i>{{ __('frontstaticword.pendingservice') }}</li></a>
+                                <a href="{{url('customerPending-payment/{id}')}}"><li ><i class="fa fa-credit-card-alt"></i>{{ __('frontstaticword.pendingpayment') }}</li></a>
                                 
                                 <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                   <li>  <div id="user-detailss">

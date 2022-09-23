@@ -42,15 +42,5 @@ class AdminController extends Controller
         }
         
     }
-
-    public function userChart()
-    {
-        $current_month_users = User::whereYear('created_at', Carbon::now()->year)->whereMonth('created_at',Carbon::now()->month)->count(); 
-        $before_1_month_users = User::whereYear('created_at', Carbon::now()->year)->whereMonth('created_at',Carbon::now()->subMonth(1))->count(); 
-        $before_2_month_users = User::whereYear('created_at', Carbon::now()->year)->whereMonth('created_at',Carbon::now()->subMonth(2))->count(); 
-        $before_3_month_users = User::whereYear('created_at', Carbon::now()->year)->whereMonth('created_at',Carbon::now()->subMonth(3))->count(); 
-        $usersCount= array($current_month_users, $before_1_month_users, $before_2_month_users, $before_3_month_users);
-        return view('admin.dashboard')->with(compact('usersCount'));
-    }
     
 }

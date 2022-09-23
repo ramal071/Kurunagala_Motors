@@ -8,7 +8,7 @@
     <div class="col-xs-12">
       <div class="box box-primary">
         <div class="box-header with-border">
-          <h3 class="box-title">{{ __('adminstaticword.service ') }}</h3>
+          <h3 class="box-title">{{ __('adminstaticword.service') }}</h3>
         </div>
         <div class="box-body">
           <div class="form-group">
@@ -31,27 +31,11 @@
                       </div>          
                   </div>
                   <br>     
-                 
-                    {{-- <div class="row">
-                      <div class="col-md-6">
-                        <label for="exampleInputTit1e">{{ __('adminstaticword.servicetype') }}</label>
-                        <select name="servicetype_id" class="form-control js-example-basic-single col-md-7 col-xs-12">
-                          @foreach($servicetype as $servicetype)
-                            <option value="{{$servicetype->id}}"
-                                @if ($servicetype->id == $service->servicetype_id)
-                                selected
-                            @endif
-                                >{{$servicetype->name}}</option>
-                          @endforeach
-                        </select>
-                      </div>
-                    </div>
-                    <br> --}}
 
-                    <div class="row">
+                  <div class="row">
                       <div class="col-md-6">
                         <label for="price">{{ __('adminstaticword.price') }}:</label>
-                        <input type="text" class="form-control" name="price" id="price" value="{{ $service->price }}">
+                        <input type="number" class="form-control" name="price" id="price" value="{{ $service->price }}">
                       </div> 
                   </div>         
                     <br>

@@ -49,14 +49,20 @@
                       <td>
                         <a href="{{route('role.edit', $r->id)}}" class="btn btn-success btn-sm" ><i class="glyphicon glyphicon-pencil"></i></a>
                       </td>
+                      
                       <td>
-                        <a href="javascript:void(0)" onclick="$(this).parent().find('form').submit()" class="btn btn-danger"><i class="fa fa-fw fa-trash-o"></i></a>
-                              
-                        <form action="{{route('role.destroy', $r->id)}}" method="post">
-                          @method('DELETE')  
-                          <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <form id="delete-form-{{ $r->id }}" action="{{ route('role.destroy',$r->id) }}" style="display: none;" method="POST">
+                            @csrf
+                            @method('DELETE')
                         </form>
-                      </td>
+                        <button type="button" class="btn btn-danger btn-sm" onclick="if(confirm('Are you sure? You want to delete this?')){
+                            event.preventDefault();
+                            document.getElementById('delete-form-{{ $r->id }}').submit();
+                        }else {
+                            event.preventDefault();
+                              }"><i class="fa fa-fw fa-trash-o"></i>
+                        </button>
+                    </td>
                   </td>
                 </tr>               
                 @endforeach

@@ -19,6 +19,7 @@ use App\Mail\NextService;
 
 class QuickUpdateController extends Controller
 {
+    
     public function roleQuick($id)
     {
         $roles = Role::findorfail($id);

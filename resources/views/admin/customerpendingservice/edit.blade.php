@@ -17,32 +17,15 @@
                     {{ csrf_field() }}
                       @method('PUT')
 
-                     
-    
                     <div class="row">
                         <div class="col-md-6">
                           <label for="user_id">{{ __('adminstaticword.user') }}</label>
-                          <select name="user_id" id="user_id" class="form-control js-example-basic-single" disabled>
-                            @php
-                              $user = App\User::all();
-                            @endphp  
-                            <option value="0">--{{ __('adminstaticword.pleaseselect') }}-- </option>
-                            @foreach($user as $caat)
-                              <option {{ $customerpendingservice->user_id == $caat->id ? 'selected' : "" }} value="{{ $caat->id }}">{{ $caat->idno }} | {{ $caat->fname }} {{ $caat->lname }}</option>
-                            @endforeach 
-                          </select>
+                          <input type="text" class="form-control" value=" {{ $customerpendingservice->users->fname }}" readonly>
                         </div>
                    
                         <div class="col-md-6">
                         <label for="exampleInputTit1e1">{{ __('adminstaticword.registernumber') }}</label>
-                        <select name="customervehicle_id" id="upload_id" class="form-control js-example-basic-single">
-                            @php
-                            $customervehicle = App\CustomerVehicle::all();
-                            @endphp  
-                            @foreach($customervehicle as $caat)
-                            <option {{ $customerpendingservice->customervehicle_id == $caat->id ? 'selected' : "" }} value="{{ $caat->id }}">{{ $caat->register_number }}</option>
-                            @endforeach 
-                        </select>
+                        <input type="text" class="form-control" value=" {{ $customerpendingservice->customervehicle->register_number }}" readonly>
                         </div>
                     </div>
                     <br>
@@ -106,44 +89,4 @@
     </div>
   </section>
   @endsection
-
-  {{-- Dynamic Dropdown --}}
-  @section('scripts')
-
-  <script>
-  (function($) {
-    "use strict";
   
-    $(function() {
-      var urlLike = '{{ route('admin-dropdown1') }}';
-      $('#user_id').change(function() {
-        var up = $('#upload_id').empty();
-        var pr_id1 = $(this).val();    
-        if(pr_id1){
-          $.ajax({
-            headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            type:"GET",
-            url: urlLike,
-            data: {prId1: pr_id1},
-            success:function(data){   
-              console.log(data);
-              up.append('<option value="0">Please Choose</option>');
-              $.each(data, function(id, title) {
-                up.append($('<option>', {value:id, text:title}));
-              });
-            },
-            error: function(XMLHttpRequest, textStatus, errorThrown) {
-              console.log(XMLHttpRequest);
-            }
-          });
-        }
-      });
-    });
-  
-  })(jQuery);
-  </script> 
-  {{-- Dynamic Dropdown --}}
-  
-  @endsection

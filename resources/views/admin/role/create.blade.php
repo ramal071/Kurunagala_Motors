@@ -17,7 +17,7 @@
       <div class="col-xs-12">
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">{{ __('adminstaticword.service') }}</h3>
+                <h3 class="box-title">{{ __('adminstaticword.role') }}</h3>
             </div>
                 <div class="box-body">
                     <div class="form-group">

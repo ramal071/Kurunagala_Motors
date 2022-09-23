@@ -43,8 +43,6 @@ class LoginController extends Controller
 
         if(Auth::User()->status == 1)
         {
-          //  if(Auth::user()->role->first()->name  == "manager")
-        //   if(Auth::User()->role_id == "1")
         if(Auth::User()->roles->slug == "manager")
             {
                 return redirect()->route('admin.index');

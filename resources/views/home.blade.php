@@ -1,37 +1,37 @@
 @extends('theme.master')
 @section('title', 'Home')
 @section('content')
+@include('admin.message')
 
+<section>
+    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
+        <div class="carousel-inner">
+            
+            <div class="carousel-item">
+                <img src="https://www.dirtbikeplanet.com/wp-content/uploads/2017/07/Changing-4-Stroke-Dirt-Bike-Oil-Large.jpg" width="100px;" height="500px;" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item active">
+                <img src="https://cdni.autocarindia.com/Utils/ImageResizer.ashx?n=http%3A%2F%2Fcdni.autocarindia.com%2FFeatures%2F3---Spraying-Water-copy.jpg&c=0" width="100px;" height="500px;" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="https://images.squarespace-cdn.com/content/v1/5d53c2195ac1be00015a9a18/1612160236225-B8WKYKIYCICQXJKTP2KX/AMAC+Motorcycle+Mechanic+Workshop" width="100px;" height="500px;" class="d-block w-100" alt="...">
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</section>
 
 <!-- services start-->
 <section class="section services-section">
     <div class="container">
-        <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
-            <div class="carousel-inner">
-                
-                <div class="carousel-item">
-                    <img src="https://www.dirtbikeplanet.com/wp-content/uploads/2017/07/Changing-4-Stroke-Dirt-Bike-Oil-Large.jpg" width="100px;" height="500px;" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item active">
-                    <img src="https://cdni.autocarindia.com/Utils/ImageResizer.ashx?n=http%3A%2F%2Fcdni.autocarindia.com%2FFeatures%2F3---Spraying-Water-copy.jpg&c=0" width="100px;" height="500px;" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://i.pinimg.com/736x/0a/6a/90/0a6a90bd65bd978fda05aea353e7502b--motorcycle-shop-motorcycle-garage.jpg" width="100px;" height="500px;" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://4.imimg.com/data4/ET/SK/MY-12606593/bike-washing-service-500x500.jpg" width="100px;" height="500px;" class="d-block w-100" alt="...">
-                </div>
-            </div>
-            <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
-        <br>
+  
 
          <div class="row">
             <div class="col-md-6">
@@ -41,7 +41,6 @@
                      <h6 class="mb-0">
                         <a class="text-dark" href="#">Motor bike brands available</a>
                      </h6>
-                     <div class="mb-1 text-muted small">Nov 12</div>
                      <p class="card-text mb-auto">Here, you can see the motor bike brands we repair. </p>
                      <a class="btn btn-outline-primary btn-sm" role="button" href="{{url('customerbrand')}}">{{ __('adminstaticword.viewallbrand') }}</a>
                   </div>
@@ -55,7 +54,6 @@
                      <h6 class="mb-0">
                         <a class="text-dark" href="#">Spare parts available for all motor bike</a>
                      </h6>
-                     <div class="mb-1 text-muted small">Nov 11</div>
                      <p class="card-text mb-auto">Here, you can view our products available </p>
                      <a class="btn btn-outline-success btn-sm" href="{{url('customerproduct')}}">{{ __('adminstaticword.viewallsparepart') }}</a>
                   </div>
@@ -72,7 +70,6 @@
                      <h6 class="mb-0">
                         <a class="text-dark" href="#">Motor bike model available</a>
                      </h6>
-                     <div class="mb-1 text-muted small">Nov 12</div>
                      <p class="card-text mb-auto">Here, you can see the motor bike model we repair. </p>
                      <a class="btn btn-outline-secondary btn-sm" role="button" href="{{url('customerbike')}}">{{ __('adminstaticword.viewallbike') }}</a>
                   </div>
@@ -86,7 +83,6 @@
                      <h6 class="mb-0">
                         <a class="text-dark" href="#">Services available for all motor bike</a>
                      </h6>
-                     <div class="mb-1 text-muted small">Nov 11</div>
                      <p class="card-text mb-auto">We are honda authorized dealer </p>
                      <a class="btn btn-outline-danger btn-sm" href="{{url('customerservice')}}">Continue reading</a>
                   </div>
@@ -189,7 +185,7 @@
                         <i class="fa fa-product-hunt" aria-hidden="true"></i>
                     </div>
                     <div class="feature-content">
-                        <h5>Pending Payment</h5>
+                        <h5>Payment Details</h5>
                 
                     </div>
                     @if(Auth::check())         
@@ -473,32 +469,33 @@
         </div>
 
         <div class="container">
+         
             <form class="contact-form" method="post" action="{{ route('contact.send') }}" id="contact">
                 @csrf                      
                     <div class="row">
                         <div class="col-md-6">
-                            <input  name="name" type="text" class="form-control" id="name" placeholder="  Name">
+                            <input  name="name" type="text" class="form-control" id="name" placeholder="Name..." required>
                         </div>
                         </div>
                     <br>
     
                     <div class="row">
                         <div class="col-md-6">
-                            <input name="email" type="email" class="form-control" id="email" placeholder="  Email">
+                            <input name="email" type="email" class="form-control" id="email" placeholder="Email..." required>
                         </div>
                         </div>
                     <br>
                     
                     <div class="row">
                         <div class="col-md-6">
-                            <input name="phone" type="text" class="form-control" id="phone" placeholder="  phone">
+                            <input name="phone" type="text" class="form-control" id="phone" placeholder="phone..." required>
                         </div>
                         </div>
                     <br>
     
                     <div class="row">
                         <div class="col-md-6">
-                            <textarea name="message" type="text" class="form-control" id="message" rows="7" placeholder="  Message"></textarea>
+                            <textarea name="message" type="text" class="form-control" id="message" rows="7" placeholder="Message..." required></textarea>
                         </div>
                         </div>
                     <br>

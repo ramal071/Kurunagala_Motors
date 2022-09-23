@@ -12,6 +12,11 @@ use App\Mail\Registerd;
 
 class UsersController extends Controller
 {
+    public function __construct()
+    {
+        return $this->middleware('auth');
+    }
+    
     public function index()
     {
         
@@ -56,13 +61,12 @@ class UsersController extends Controller
             'fname'=>'required|max:255',
             'lname'=>'required|max:255',
             'email'=>'required|unique:users|email',
-            'idno'=>'required|unique:users,idno',
+            'idno'=>'required|unique:users',
             'contact'=>'required',
             'status' => 'required',
             'password'=>'required|confirmed|between:3,255',
             'password_confirmation'=>'required',
         ]);
-       //  dd($request);
 
         $user = new User;
         $user->fname = $request->fname;
@@ -149,6 +153,4 @@ class UsersController extends Controller
             abort(403);
         }
     }
-
-
 }

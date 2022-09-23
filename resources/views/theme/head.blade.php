@@ -18,29 +18,11 @@
     <link href="https://fonts.googleapis.com/css?family=Muli&display=swap:400,500,600,700" rel="stylesheet"><!-- google fonts -->
     <link rel="stylesheet" href="{{ url('vendor/fontawesome/css/all.css') }}" /> <!--  fontawesome css -->
     <link rel="stylesheet" href="{{ url('vendor/font/flaticon.css') }}" /> <!-- fontawesome css -->
-    {{-- <link rel="stylesheet" href="{{ url('vendor/navigation/menumaker.css') }}" /> <!-- navigation css --> --}}
-    {{-- <link rel="stylesheet" href="{{ url('vendor/owl/css/owl.carousel.min.css') }}" /> <!-- owl carousel css --> --}}
-    {{-- <link rel="stylesheet" href="{{ url('vendor/protip/protip.css') }}" /> <!-- menu css --> --}}
-    
     <link href="{{ url('css/style.css') }}" rel="stylesheet" type="text/css"/> <!-- custom css -->
     <link rel="stylesheet" href="{{url('admin/bower_components/font-awesome/css/font-awesome.min.css')}}"><!-- fontawesome css -->
     <link rel="stylesheet" href="{{ url('css/select2.min.css') }}"> <!-- select2 css -->
-    {{-- <link rel="stylesheet" href="{{ URL::asset('css/pace.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url('css/protip.css') }}" /> <!-- protip css --> --}}
-    
     <link rel="stylesheet" href="{{ asset('css/custom-style.css') }}"/>
-    
-    {{-- <link rel="stylesheet" href="{{ asset('css/venom-button.min.css') }}" /> --}}
-    {{-- <link rel="stylesheet" href="{{ asset('css/forum.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/dropzone.css') }}" /> --}}
-    {{-- <link rel="stylesheet" href="{{ asset('css/perfect-scrollbar.css') }}" /> --}}
-    
- 
-    
-    
     <!-- end theme styles -->
-  
-
     
     <style type="text/css">
      :root {

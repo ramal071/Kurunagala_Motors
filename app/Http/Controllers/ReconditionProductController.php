@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Gate;
 
 class ReconditionProductController extends Controller
 {
+    public function __construct()
+    {
+        return $this->middleware('auth');
+    }
+    
     public function index()
     {
         if(Gate::allows('isManager')){
@@ -64,10 +69,10 @@ class ReconditionProductController extends Controller
         $arr['recondition']= $recondition;
         $arr['stock'] = Stock::all();
         return view('admin.recondition.edit')->with($arr);
-    }
-    else{
-        abort(403);
-    }
+        }
+        else{
+            abort(403);
+        }
 
     }
 

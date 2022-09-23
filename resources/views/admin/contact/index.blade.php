@@ -48,7 +48,8 @@
                                     document.getElementById('delete-form-{{ $contact->id }}').submit();
                                 }else {
                                     event.preventDefault();
-                                        }"><i class="material-icons">delete</i></button>
+                                      }"><i class="material-icons">delete</i>
+                                </button>
                             </td>
                         </tr>
                     @endforeach

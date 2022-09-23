@@ -45,11 +45,6 @@ class BrandController extends Controller
         return redirect()->route('brand.index')->with('success', 'Brand created succcess');
     }
 
-    public function show(brand $brand)
-    {
-        //
-    }
-
     public function edit(brand $brand)
     {
         $arr['brand'] = $brand;

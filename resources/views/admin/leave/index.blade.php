@@ -18,8 +18,7 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th>#</th>
-                                    <th>{{__('adminstaticword.employee') }} {{__('adminstaticword.id') }}</th>
+                                    <th>{{__('adminstaticword.employee') }}</th>
                                     <th>{{__('adminstaticword.leave_type') }}</th> 
                                     <th>{{__('adminstaticword.fromdate') }}</th>  
                                     <th>{{__('adminstaticword.todate') }}</th>
@@ -29,11 +28,9 @@
                                     <th>{{__('adminstaticword.tool') }}</th>
                                 </tr>
                             </thead>
-
-                            <?php $i=0;?>
+                            <tbody
                             @foreach($leaves as $lev)            
-                                <tr>      
-                                    <th>{{ $lev->id}}</th>     
+                                <tr>         
                                     <td>{{ $lev->employee->name}}</td>         
                                     <th>{{ $lev->leave_type}}</th>
                                     <th>{{ $lev->from_date}}</th>

@@ -12,6 +12,10 @@ use Illuminate\Support\Facades\Gate;
 
 class CustomerPendingServiceController extends Controller
 {
+    public function __construct()
+    {
+        return $this->middleware('auth');
+    }
 
     public function index()
     {
@@ -49,7 +53,7 @@ class CustomerPendingServiceController extends Controller
     {
         $data = $this->validate($request, [ 
             'user_id'           => 'required|not_in:0',
-            'customervehicle_id'=> 'required|not_in:0',
+            'customervehicle_id'=> 'required|not_in:0|unique:customer_pending_services',
             'next_date'    => 'required|string|min:1|max:255',
             'email'        =>'required',
             'service_id'   => 'required|not_in:0',
@@ -97,8 +101,7 @@ class CustomerPendingServiceController extends Controller
     public function update(Request $request, CustomerPendingService $customerpendingservice)
     {
         $data = $this->validate($request, [ 
-           
-            'customervehicle_id'=> 'required|not_in:0',
+            
             'next_date'=> 'required|string|min:1|max:255',
             'email'=>'required',
             'service_id'=> 'required|not_in:0',
@@ -111,8 +114,6 @@ class CustomerPendingServiceController extends Controller
             ]
         );
 
-      
-        $customerpendingservice->customervehicle_id = $request->customervehicle_id;
         $customerpendingservice->service_id     = $request->service_id;
         $customerpendingservice->next_date      = $request->next_date;
         $customerpendingservice->email          = $request->email;

@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Gate;
 
 class StockController extends Controller
 {
+    public function __construct()
+    {
+        return $this->middleware('auth');
+    }
 
     public function index()
     {       
@@ -40,11 +44,10 @@ class StockController extends Controller
     public function store(Request $request, Stock $stock)
     {
         $data = $this->validate($request, [
-            'product_id'=> 'required|not_in:0',
+            'product_id'=> 'required|not_in:0|unique:stocks',
             'dealerprice'=> 'required',
             'quantity'=> 'required',
             'sellingprice'=> 'required',
-            'color'=> 'required',
             'lowestlimit'=> 'required',
         ]);
 
@@ -59,11 +62,6 @@ class StockController extends Controller
         return redirect()->route('stock.index')->with('success', 'Stock created successfully');
     }
 
-    public function show(Stock $stock)
-    {
-        
-    }
-
     public function edit(Stock $stock)
     {
         if(Gate::allows('isManager')){
@@ -76,19 +74,15 @@ class StockController extends Controller
         }
     }
 
-
     public function update(Request $request, Stock $stock)
     {
         $data = $this->validate($request, [
-            'product_id'=> 'required|not_in:0',
             'dealerprice'=> 'required',
             'quantity'=> 'required',
             'sellingprice'=> 'required',
-            'color'=> 'required',
             'lowestlimit'=> 'required',
         ]);
 
-        $stock->product_id = $request->product_id;
         $stock->quantity = $request->quantity;
         $stock->dealerprice = $request->dealerprice;
         $stock->sellingprice = $request->sellingprice;

@@ -9,99 +9,46 @@
     </div>
 </section>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-* {
-  box-sizing: border-box;
-}
-
-#myInput {
-  background-image: url('/css/searchicon.png');
-  background-position: 10px 10px;
-  background-repeat: no-repeat;
-  width: 100%;
-  font-size: 16px;
-  padding: 12px 20px 12px 40px;
-  border: 1px solid #ddd;
-  margin-bottom: 12px;
-}
-
-#myTable {
-  border-collapse: collapse;
-  width: 100%;
-  border: 1px solid #ddd;
-  font-size: 18px;
-}
-
-#myTable th, #myTable td {
-  text-align: left;
-  padding: 12px;
-}
-
-#myTable tr {
-  border-bottom: 1px solid #ddd;
-}
-
-#myTable tr.header, #myTable tr:hover {
-  background-color: #f1f1f1;
-}
-</style>
-</head>
-<body>
-
-
-<section id="profile-item" class="profile-item-block">
+<section class="profile-item-block">
     <div class="container"> 
         <div class="row">
             <div class="col-xl-40 col-lg-35">
-                <div class="profile-info-block">
-                    <div class="row">
-                        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search Brand..." title="Type in a name">                   
-                            <table id="myTable" class="table table-bordered table-striped">
-                                <thead>
-                                    <tr>                                       
-                                        <th>{{__('adminstaticword.brand') }}</th>
-                                        <th>{{__('adminstaticword.bike') }}</th>
-                                        <th>{{__('adminstaticword.code') }}</th>
-                                        <th>{{__('adminstaticword.name') }}</th>
-                                        <th>{{__('adminstaticword.slug') }}</th>                                       
-                                        <th>{{__('adminstaticword.productimage') }}</th>                                       
-                                        <th>{{__('adminstaticword.description') }}</th>
-                                        <th>{{__('adminstaticword.status') }}</th>    
-                                    </tr>
-                                </thead>
-                                <tbody>                                
-                                    @foreach($product as $pr)
-                                    <tr>                                    
-                                        <td>{{ $pr->brand->name}}</td>
-                                        <td>{{ $pr->bike->name}}</td>
-                                        <td>{{ $pr->code }}</td>
-                                        <td>{{ $pr->name }}</td>
-                                        <td>{{ $pr->slug }}</td>
-                                        <td> <img src="{{ asset('storage/product/' .  $pr->product_image) }}" width="100px;" height="100px;" alt="Image"></td>
-                                        <td>{{ $pr->description }}</td>                                    
-                                        <td>                                    
-                                            <button type="Submit" class="btn btn-xs {{ $pr->status ==1 ? 'btn-success' : 'btn-danger' }} "> 
-                                                @if ($pr->status ==1)
-                                            {{__('adminstaticword.active') }}         
-                                            @else
-                                            {{__('adminstaticword.deactive') }} 
-                                            @endif
-                                            </button>        
-                                        </td>   
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                    </div>
-                </div>
+              <div class="row">
+                  <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search Brand..." title="Type in a Brand name">                   
+                    <table id="myTable" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>                                       
+                                <th>{{__('adminstaticword.brand') }}</th>
+                                <th>{{__('adminstaticword.bike') }}</th>
+                                <th>{{__('adminstaticword.code') }}</th>
+                                <th>{{__('adminstaticword.name') }}</th>
+                                <th>{{__('adminstaticword.slug') }}</th>  
+                                <th>{{__('adminstaticword.price') }}</th>                                       
+                                <th>{{__('adminstaticword.productimage') }}</th>                                       
+                                <th>{{__('adminstaticword.description') }}</th>
+                                <th>{{__('adminstaticword.qty') }}</th>    
+                            </tr>
+                        </thead>
+                        <tbody>                                
+                            @foreach($stock as $pr)
+                            <tr>                                    
+                                <td>{{ $pr->product->brand->name}}</td>
+                                <td>{{ $pr->product->bike->name}}</td>
+                                <td>{{ $pr->product->code }}</td>
+                                <td>{{ $pr->product->name }}</td>
+                                <td>{{ $pr->product->slug }}</td>
+                                  <td>{{ $pr->sellingprice}}</td>
+                                <td> <img src="{{ asset('storage/product/' .  $pr->product->product_image) }}" width="100px;" height="100px;" alt="Image"></td>
+                                <td>{{ $pr->description }}</td>                                    
+                                <td>{{ $pr->quantity}}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+              </div>
             </div>
         </div>
     </div>
-</section>
 
 <script>
 function myFunction() {
@@ -123,9 +70,6 @@ function myFunction() {
   }
 }
 </script>
-
-</body>
-</html>
 
 </section>
 @endsection

@@ -9,86 +9,86 @@
     </div>
 </section>
 
-<section id="profile-item" class="profile-item-block">
+<section class="profile-item-block">
     <div class="container"> 
-        <div class="row">
-            <div class="col-xl-40 col-lg-35">
-                <div class="profile-info-block">
-                    <div class="row">
-                        <table class="table">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th>{{__('adminstaticword.job') }}</th>
-                                    <th>{{__('adminstaticword.fname') }}</th>
-                                    <th>{{__('adminstaticword.registernumber') }}</th>                                  
-                                    <th>{{__('adminstaticword.stock') }}</th>                                    
-                                    <th>{{__('adminstaticword.service') }}</th>  
-                                    <th>{{__('adminstaticword.amount') }}</th>   
-                                    <th>{{__('adminstaticword.paidamount') }}</th>     
-                                    <th>{{__('adminstaticword.borrow') }}</th>      
-                                    <th>{{__('adminstaticword.complete') }}</th>    
-                                    <th>{{__('adminstaticword.repaircomplete') }}</th>        
-                                </tr>
-                            </thead>
+            <div class="row">
+                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search Job Number..." title="Type in a Job Number">                   
+                    <table id="myTable" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                            <th>{{__('adminstaticword.job') }}</th>
+                            <th>{{__('adminstaticword.registernumber') }}</th>                                  
+                            <th>{{__('adminstaticword.email') }}</th>                                    
+                            <th>{{__('adminstaticword.service') }}</th> 
+                            <th>{{__('adminstaticword.employee') }}</th>  
+                            <th>{{__('adminstaticword.paidamount') }}</th> 
+                            <th>{{__('adminstaticword.amount') }}</th>       
+                            <th>{{__('adminstaticword.timestart') }}</th>  
+                            <th>{{__('adminstaticword.lastupdate') }}</th>       
+                            <th>{{__('adminstaticword.repaircomplete') }}</th>        
+                        </tr>
+                    </thead>
 
-                            <tbody>
-                                <?php $i=0;?>
-                                @foreach($recordes as $b)
-                                <?php $i++;?>
-                                <tr>
-                                    
-                                    <td>{{ $b['code']}}</td>
-                                    <td>{{ $b['user']['fname']}}</td>
-                                    <td>{{ $b['customervehicle']['register_number']}}</td>
-                                    <td>
-                                      @foreach ($b->stock as $s)
-                                      <ul>  <li>
-                                        {{$s->product->brand->name}} {{$s->product->bike->name}} {{$s->product->name}}
-                                      
-                                      </li> </ul>
-                                      @endforeach
-                                    </td>                               
-                                    <td>{{ $b->service->name}}</td>                                  
-                                    <td>{{ $b->service->price}}</td>
-                                    <td>{{ $b->paid_amount}}</td>
-
-                                     <td>                                      
-                                          <button type="Submit" class="btn btn-xs {{ $b->is_borrow ==1 ? 'btn-success' : 'btn-danger' }} "> 
-                                            @if ($b->is_borrow ==1)
-                                            {{__('adminstaticword.borrow') }}         
-                                            @else
-                                            {{__('adminstaticword.notborrow') }} 
-                                            @endif
-                                        </button>    
-                                      </td>  
-                                      <td>
-                                          <button type="Submit" class="btn btn-xs {{ $b->is_complete ==1 ? 'btn-success' : 'btn-danger' }} "> 
-                                            @if ($b->is_complete ==1)
-                                            {{__('adminstaticword.fullpayment') }}         
-                                            @else
-                                            {{__('adminstaticword.halfpayment') }} 
-                                            @endif
-                                        </button>    
-                                      </td>  
-
-                                      <td>                                
-                                          <button type="Submit" class="btn btn-xs {{ $b->is_repaircomplete ==1 ? 'btn-success' : 'btn-danger' }} "> 
-                                            @if ($b->is_repaircomplete ==1)
-                                            {{__('adminstaticword.complete') }}         
-                                            @else
-                                            {{__('adminstaticword.notcomplete') }}                                          
-                                            @endif
-                                        </button>    
-                                    </td>   
-                                    </tr>      
-                                    @endforeach
-                                  </tbody>
-                            </table>
-                    </div>
-                </div>
+                    <tbody>
+                        <?php $i=0;?>
+                        @foreach($recordes as $b)
+                        <?php $i++;?>
+                        <tr>
+                            
+                            <td>{{ $b['code']}}</td>
+                            <td>{{ $b['customervehicle']['register_number']}}</td>
+                            <td>{{ $b['email']}}</td>
+                            {{-- <td> 
+                                @foreach ($b->stock as $s)
+                                <li>
+                                {{$s->product->brand->name}} {{$s->product->bike->name}} {{$s->product->name}}
+                                </li>
+                                @endforeach
+                            </td>  --}}
+                            <td>{{ $b->service->name}}</td> 
+                            <td>{{ $b->employee->name}}</td> 
+                            <td>{{ $b->paid_amount}}</td>                                  
+                            <td>{{ $b->amount}}</td>
+                            <td>{{ $b->created_at}}</td>   
+                            <td>{{ $b->updated_at}}</td>   
+                            <td>                                
+                                <button type="Submit" class="btn btn-xs {{ $b->is_repaircomplete ==1 ? 'btn-success' : 'btn-danger' }} "> 
+                                @if ($b->is_repaircomplete ==1)
+                                {{__('adminstaticword.complete') }}         
+                                @else
+                                {{__('adminstaticword.notcomplete') }}                                          
+                                @endif
+                            </button>    
+                            </td>   
+                            </tr>      
+                            @endforeach
+                            </tbody>
+                    </table>
             </div>
         </div>
     </div>
+
+<script>
+    function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+            } else {
+            tr[i].style.display = "none";
+            }
+        }       
+        }
+    }
+</script>
+
 </section>
 
 @endsection

@@ -7,6 +7,8 @@ return [
     'id' => 'ID',
     'create'=> 'Create',
     'my' => 'My',
+    'work' => 'Work',
+    'resign' => 'Resign',
 
     'role' => 'Role',
     'permission' => 'Permission',
@@ -44,6 +46,7 @@ return [
     'timestart' => 'Time Start',
     'timeend' => 'Time End',
     'attendancereport' => 'Attendance Report',
+    'datetime' => 'Create Date/Time',
 
     'salary' => 'Salary',
     'employeeservice' => 'Employee-Service',
@@ -147,7 +150,7 @@ return [
     'passwordupdate' => 'Password Update',
     'lastupdate' => 'Last Update',
 
-    'ServiceBills' => 'Service Bills',
+    'ServiceBill' => 'Service Bill',
     'Comments' => 'Comments',
     'navigation' => 'MAIN NAVIGATION',
     'dashboard' => 'Dashboard',

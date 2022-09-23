@@ -17,7 +17,7 @@ class CreateServiceRepairsTable extends Migration
             $table->bigIncrements('id');
             $table->string('code');
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');                 
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');           
             $table->unsignedBigInteger('customervehicle_id');
             $table->foreign('customervehicle_id')->references('id')->on('customer_vehicles')->onDelete('cascade');
             $table->unsignedBigInteger('service_id');
@@ -25,10 +25,10 @@ class CreateServiceRepairsTable extends Migration
             $table->unsignedBigInteger('employee_id');
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
             $table->string('email');
-            $table->decimal('charge')->nullable();
-            $table->decimal('fixprice')->nullable();
             $table->decimal('stock_items_sum')->nullable();
             $table->decimal('service_price')->nullable();
+            $table->decimal('charge')->nullable();
+            $table->decimal('fixprice')->nullable();
             $table->decimal('amount')->nullable();
             $table->string('description')->nullable();
             $table->boolean('is_repaircomplete')->default(false);

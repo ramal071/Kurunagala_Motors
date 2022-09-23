@@ -8,12 +8,17 @@
 </head>
 <body>
     <h3>Welcome to Kurunagala Motors !!!</h4>
+        <p>Dear custmer,</p>
+        <p>You are now our registered customer.</p>
+    <br>
+        <p><ul><li>First Name: {{ $user->fname }} </li></ul> </p>
+        <p><ul><li>Last Name: {{ $user->lname }}  </li></ul></p>
+        <p><ul><li>ID Number: {{ $user->idno }}  </li></ul></p>
+        <p><ul><li>Email: {{ $user->email }}  </li></ul></p>
+        <p><ul><li>Contact: {{ $user->contact }}  </li></ul></p>
+        <p><ul><li>Password: password  </li></ul></p>
 
-    <h4>First Name: {{ $user->fname }} </h4>
-    <h4>Last Name: {{ $user->lname }} </h4>
-    <h4>ID Number: {{ $user->idno }} </h4>
-    <h4>Email: {{ $user->email }} </h4>
-    <h4>Contact: {{ $user->contact }} </h4>
-    <h4>Password: password </h4>
+        <p> Thank you </p>
+        <p> Manager - Kurunagala Motors </p>
 </body>
 </html>

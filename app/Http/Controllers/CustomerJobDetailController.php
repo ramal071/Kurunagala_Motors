@@ -9,6 +9,10 @@ use App\Product;
 
 class CustomerJobDetailController extends Controller
 {
+    public function __construct()
+    {
+        return $this->middleware('auth');
+    }
 
     public function index()
     {

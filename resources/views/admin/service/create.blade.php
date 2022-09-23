@@ -18,7 +18,7 @@
               <div class="row">
                 <div class="col-md-6">
                   <label for="code">{{ __('adminstaticword.code') }}:<sup class="redstar">*</sup></label>
-                  <input type="text" class="form-control" name="code" id="code" placeholder="Enter service code" value="">
+                  <input type="text" class="form-control" name="code" id="code" placeholder="Enter service code" value="{{ old('code') }}">
                 </div>          
               </div>
               <br>
@@ -26,28 +26,15 @@
               <div class="row">
                   <div class="col-md-6">
                     <label for="name">{{ __('adminstaticword.name') }}:<sup class="redstar">*</sup></label>
-                    <input type="text" class="form-control" name="name" id="name" placeholder="Enter Service name" value="">
+                    <input type="text" class="form-control" name="name" id="name" placeholder="Enter Service name" value="{{ old('name') }}">
                   </div>          
               </div>
               <br>
-{{-- 
-              <div class="row">
-                <div class="col-md-6">
-                  <label for="servicetype">{{ __('adminstaticword.brand') }}</label>
-                  <select name="servicetype_id" class="form-control js-example-basic-single col-md-7 col-xs-12">
-                    <option value="0">{{ __('adminstaticword.pleaseselect') }}</option>
-                    @foreach($servicetype as $servicetype)
-                      <option value="{{$servicetype->id}}">{{$servicetype->name}}</option>
-                    @endforeach
-                  </select>
-                </div>
-              </div>
-              <br> --}}
 
               <div class="row">
                 <div class="col-md-6">
                   <label for="price">{{ __('adminstaticword.price') }}:</label>
-                  <input type="text" class="form-control" name="price" id="price" placeholder="Enter service price" value="">
+                  <input type="number" class="form-control" name="price" id="price" placeholder="Enter service price" value="{{ old('price') }}">
                 </div> 
             </div>
             <br>    
@@ -55,7 +42,7 @@
               <div class="row">
                   <div class="col-md-6">
                     <label for="description">{{ __('adminstaticword.description') }}:</label>
-                    <input type="text" class="form-control" name="description" id="description" placeholder="Enter service Description" value="">
+                    <input type="text" class="form-control" name="description" id="description" placeholder="Enter service Description" value="{{ old('description') }}">
                   </div> 
               </div>
               <br>         

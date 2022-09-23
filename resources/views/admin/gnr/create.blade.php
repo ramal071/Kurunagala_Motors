@@ -27,20 +27,19 @@
                 </div>
              
                 <div class="col-md-6">
-               
                 </div>          
             </div>
             <br>
 
             <div class="row">
                 <div class="col-md-6">
-                <label for="supplier_name">{{ __('adminstaticword.suppliername') }}:<sup class="redstar">*</sup></label>
-                <input type="text" class="form-control" name="supplier_name" id="supplier_name" placeholder="Enter supplier name...." value="">
+                  <label for="supplier_name">{{ __('adminstaticword.suppliername') }}:<sup class="redstar">*</sup></label>
+                  <input type="text" class="form-control" name="supplier_name" id="supplier_name" placeholder="Enter supplier name...." value="{{ old('supplier_name') }}">
                 </div>          
            
             <div class="col-md-6">
-                <label for="contact">{{ __('adminstaticword.contact') }}:<sup class="redstar">*</sup></label>
-                <input type="tel" class="form-control" name="contact" placeholder="Enter contact...." id="contact" value="">
+                  <label for="contact">{{ __('adminstaticword.contact') }}:<sup class="redstar">*</sup></label>
+                  <input type="number" pattern="[0-9]{10}" class="form-control" name="contact" placeholder="Enter contact...." id="contact" value="{{ old('contact') }}">
                 </div>          
             </div>
             <br>
@@ -48,12 +47,12 @@
             <div class="row">
                 <div class="col-md-6">
                     <label for="email">{{ __('adminstaticword.email') }}:<sup class="redstar">*</sup></label>
-                    <input type="email" class="form-control" name="email" placeholder="Enter email...." id="discount" value="">
+                    <input type="email" class="form-control" name="email" placeholder="Enter email...." id="email" value="{{ old('email') }}">
                 </div>          
            
                 <div class="col-md-6">
                     <label for="address">{{ __('adminstaticword.address') }}:</label>
-                    <input type="text" class="form-control" name="address" placeholder="Enter address...." id="color" value="">
+                    <input type="text" class="form-control" name="address" placeholder="Enter address...." id="address" value="{{ old('address') }}">
                 </div>          
             </div>
             <br>
@@ -65,8 +64,8 @@
                 </div>          
          
                 <div class="col-md-6">
-                <label for="description">{{ __('adminstaticword.description') }}:</label>
-                <input type="text" class="form-control" name="description" id="description" placeholder="Enter description ..." value="">
+                  <label for="description">{{ __('adminstaticword.description') }}:</label>
+                  <input type="text" class="form-control" name="description" id="description" placeholder="Enter description ..." value="">
                 </div> 
             </div>
             <br>         
@@ -80,6 +79,5 @@
       </form>
     </div>
   </section>  
-
   
   @endsection

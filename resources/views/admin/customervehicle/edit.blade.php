@@ -20,7 +20,7 @@
                   <div class="row">
                     <div class="col-md-6">
                         <label for="user">{{ __('adminstaticword.idno') }}:<sup class="redstar">*</sup></label>
-                        <select name="user_id" class="form-control js-example-basic-single col-md-7 col-xs-12">
+                        <select name="user_id" class="form-control js-example-basic-single col-md-7 col-xs-12" disabled>
                           <option value="0">--{{ __('adminstaticword.pleaseselect') }}-- </option>
                             @foreach($user as $cou)
                              <option value="{{ $cou->id }}" {{$customervehicle->user_id == $cou->id  ? 'selected' : ''}}>{{ $cou->idno}} - {{$cou->fname}} {{$cou->lname}}</option>
@@ -33,7 +33,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label for="register_number">{{ __('adminstaticword.registernumber') }}:<sup class="redstar">*</sup></label>
-                        <input type="text" class="form-control" name="register_number" id="register_number" value=" {{ $customervehicle->register_number }}">
+                        <input type="text" class="form-control" name="register_number" id="register_number" value=" {{ $customervehicle->register_number }}" disabled>
                     </div> 
                 </div>
                 <br>

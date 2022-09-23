@@ -16,7 +16,7 @@
           <!-- /.box-header -->
           <div class="box-body">
             <div class="table-responsive">
-              <table id="example1" class="table table-bordered table-striped">
+              <table id="example" class="table table-bordered table-striped">
                 <thead>                  
                   <tr>                    
                     <th>#</th>
@@ -63,9 +63,9 @@
                         {{ csrf_field() }}
                         <button type="Submit" class="btn btn-xs {{ $e->status ==1 ? 'btn-success' : 'btn-danger' }} "> 
                           @if ($e->status ==1)
-                          {{__('adminstaticword.active') }}         
+                          {{__('adminstaticword.work') }}         
                           @else
-                          {{__('adminstaticword.deactive') }} 
+                          {{__('adminstaticword.resign') }} 
                           @endif
                         </button>
                       </form>

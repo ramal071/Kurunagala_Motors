@@ -1,5 +1,5 @@
 @extends('theme.master')
-@section('title', 'Bike')
+@section('title', 'Bike Models')
 @section('content')
 
 
@@ -9,47 +9,58 @@
     </div>
 </section>
 
-<section id="profile-item" class="profile-item-block">
+<section class="profile-item-block">
     <div class="container"> 
         <div class="row">
-            <div class="col-xs-12">
-                <div class="profile-info-block">
-                    <div class="row">
-
-                        <table id="example1" class="table table-bordered table-striped">
-                         <thead>
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search Bike Name..." title="Type in bike name">                   
+                <table id="myTable" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>{{ __('adminstaticword.brand') }}</th>
+                            <th>{{ __('adminstaticword.code') }}</th>
+                            <th>{{ __('adminstaticword.name') }}</th>
+                            <th>{{__('adminstaticword.slug') }}</th>
+                            <th>{{ __('adminstaticword.description') }}</th>
+                            </tr>
+                        </thead>
+            
+                        <tbody>
+                            @foreach($bike as $b)
                             <tr>
-                                <th>#</th>
-                                <th>{{ __('adminstaticword.brand') }}</th>
-                                <th>{{ __('adminstaticword.code') }}</th>
-                                <th>{{ __('adminstaticword.name') }}</th>
-                                <th>{{__('adminstaticword.slug') }}</th>
-                                <th>{{ __('adminstaticword.description') }}</th>
-                   
-                                </tr>
-                            </thead>
-                
-                            <tbody>
-                                <?php $i=0;?>
-                                @foreach($bike as $b)
-                                <?php $i++;?>
-                                <tr>
-                                <td><?php echo $i;?></td>
-                                        <td>{{ $b->brand->name}}</td>
-                                        <td>{{ $b->code }}</td>
-                                        <td>{{ $b->name }}</td>
-                                        <td>{{ $b->slug }}</td>
-                                        <td>{{ $b->description }}</td>
-                                </tr>                        
-                            
-                                @endforeach
-                            </tbody>
-                        </table>
-
-                    </div>
-                </div>
-            </div>
+                                <td>{{ $b->brand->name}}</td>
+                                <td>{{ $b->code }}</td>
+                                <td>{{ $b->name }}</td>
+                                <td>{{ $b->slug }}</td>
+                                <td>{{ $b->description }}</td>
+                            </tr>                        
+                        
+                            @endforeach
+                        </tbody>
+                </table>
+     
         </div>
     </div>
+
+<script>
+    function myFunction() {
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[2];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }       
+      }
+    }
+</script>
+    
 </section>
 @endsection

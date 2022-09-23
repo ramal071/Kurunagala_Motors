@@ -55,16 +55,16 @@ class WorkinghourSeeder extends Seeder
             ],
 
             [
-                'from' => '08:00',
-                'to' => '17:30',
+                'from' => '08:30',
+                'to' => '18:30',
                 'day' => 'Saturday',
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ],
 
             [
-                'from' => '08:00',
-                'to' => '17:30',
+                'from' => '08:30',
+                'to' => '18:30',
                 'day' => 'Sunday',
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')

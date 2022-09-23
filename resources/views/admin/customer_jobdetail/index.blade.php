@@ -18,7 +18,6 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th>#</th>
                                     <th>{{__('adminstaticword.idno') }}</th>
                                     <th>{{__('adminstaticword.name') }}</th>
                                     <th>{{__('adminstaticword.registernumber') }}</th>
@@ -34,11 +33,8 @@
                             </thead>
 
                             <tbody>
-                                <?php $i=0;?>
                                 @foreach($servicerepair as $b)
-                                <?php $i++;?>
                                 <tr>
-                                    <td>{{ $b->id}}</td>
                                     <td>{{ $b->user->idno}}</td>
                                     <td>{{ $b->user->fname}} {{ $b->user->lname}}</td>
                                     <td>{{ $b->customervehicle->register_number }}</td>

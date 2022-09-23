@@ -45,7 +45,7 @@
                                             class="form-control js-example-basic-single col-md-7 col-xs-12">
                                             <option value="0">{{ __('adminstaticword.pleaseselect') }}</option>
                                             @foreach ($service as $service)
-                                                <option value="{{ $service->id }}">{{ $service->name }}</option>
+                                                <option value="{{ $service->id }}">{{ $service->name }} | {{ $service->price }}</option>
                                             @endforeach
                                         </select>
                                     </div>

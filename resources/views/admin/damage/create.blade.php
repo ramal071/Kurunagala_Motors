@@ -30,7 +30,7 @@
               <div class="row">
                   <div class="col-md-6">
                     <label for="quantity">{{ __('adminstaticword.qty') }}:<sup class="redstar">*</sup></label>
-                    <input type="number" class="form-control" name="quantity" id="quantity" placeholder="Enter quantity....." value="">
+                    <input type="number" class="form-control" name="quantity" id="quantity" placeholder="Enter quantity....." value="{{ old('quantity') }}">
                   </div>          
               </div>
               <br>
@@ -38,7 +38,7 @@
               <div class="row">
                 <div class="col-md-6">
                   <label for="reason">{{ __('adminstaticword.reason') }}:</sup></label>
-                  <input type="text" class="form-control" name="reason" placeholder="reason......" id="reason" value="">
+                  <input type="text" class="form-control" name="reason" placeholder="reason......" id="reason" value="{{ old('reason') }}">
                   </div>          
               </div>
               <br>

@@ -15,6 +15,11 @@ use Illuminate\Support\Facades\Gate;
 
 class CustomerVehicleController extends Controller
 {
+    public function __construct()
+    {
+        return $this->middleware('auth');
+    }
+    
     public function index()
     {
         $arr['customervehicle'] = CustomerVehicle::all();
@@ -51,10 +56,10 @@ class CustomerVehicleController extends Controller
     {
 
         $data = $this->validate($request, [ 
-            'user_id'=> 'required|not_in:0',
+            'user_id' => 'required|not_in:0',
             'brand_id'=> 'required|not_in:0',
-            'bike_id'=> 'required',
-            'register_number'=>'required|unique:customer_vehicles,register_number',
+            'bike_id' => 'required',
+            'register_number'=>'required|unique:customer_vehicles',
         ]);
 
         $customervehicle->user_id = $request->user_id;
@@ -66,17 +71,12 @@ class CustomerVehicleController extends Controller
         return redirect()->route('customervehicle.index')->with('success', 'Created successfully');
     }
 
-    public function show(CustomerVehicle $customervehicle)
-    {
-        //
-    }
-
     public function edit(CustomerVehicle $customervehicle)
     {
         $arr['customervehicle'] = $customervehicle;
-        $arr['bike'] = Bike::all();
+        $arr['bike']  = Bike::all();
         $arr['brand'] = brand::all();
-        $arr['user'] = User::all();
+        $arr['user']  = User::all();
 
         if(Gate::allows('isManager')){
             return view('admin.customervehicle.edit')->with($arr);
@@ -92,16 +92,12 @@ class CustomerVehicleController extends Controller
     public function update(Request $request, CustomerVehicle $customervehicle)
     {
         $data = $this->validate($request, [ 
-            'user_id'=> 'required|not_in:0',
             'brand_id'=> 'required|not_in:0',
-            'bike_id'=> 'required',
-            'register_number'=>'required',
+            'bike_id' => 'required',
         ]);
-
-        $customervehicle->user_id = $request->user_id;
+        
         $customervehicle->bike_id = $request->bike_id;
         $customervehicle->brand_id = $request->brand_id;
-        $customervehicle->register_number = $request->register_number;
         $customervehicle->save();
         return redirect()->route('customervehicle.index');
     }
@@ -134,7 +130,6 @@ class CustomerVehicleController extends Controller
 
     public function child_info(Request $request) 
     {
-
         $id = $request['prId'];
         $bike = Bike::findOrFail($id);
         $upload = $bike->product->where('bike_id',$id)->where('status',true)->pluck('name','id')->all();

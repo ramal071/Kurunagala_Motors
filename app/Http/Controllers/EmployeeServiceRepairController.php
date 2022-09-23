@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\DB;
 
 class EmployeeServiceRepairController extends Controller
 {
+    public function __construct()
+    {
+        return $this->middleware('auth');
+    }
 
     public function index()
     {

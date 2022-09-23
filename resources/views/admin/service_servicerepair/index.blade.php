@@ -22,6 +22,7 @@
                   
                   <th>{{__('adminstaticword.code') }}</th>
                   <th>{{ __('adminstaticword.registernumber') }}</th>
+                  <th>{{ __('adminstaticword.bike') }}</th>
                   <th>{{__('adminstaticword.starttime') }}</th>
                   <th>{{ __('adminstaticword.service') }}</th>
                   <th>{{ __('adminstaticword.amount') }}</th>
@@ -34,6 +35,7 @@
                     <tr>
                         <td>{{ $b->code}}</td>
                         <td>{{ $b->customervehicle->register_number}}</td>
+                        <td>{{ $b->customervehicle->brand->name}} {{ $b->customervehicle->bike->name}}</td>
                         <td>{{ $b->created_at}}</td>
                         <td>{{ $b->service->name}}</td>
                         <td>{{ $b->service->price}}</td>

@@ -8,6 +8,11 @@ use App\employee;
 
 class AttendanceController extends Controller
 {
+    public function __construct()
+    {
+        return $this->middleware('auth');
+    }
+    
     public function index()
     {
         $arr['employee'] = Employee::all();
@@ -25,17 +30,17 @@ class AttendanceController extends Controller
     {
         $data = $this->validate($request, [ 
             'employee_id'=> 'required|not_in:0',
-            'time_start'=>'required',
+            'time_start' =>'required',
         ],
             [
             'employee_id.required'=>'Please enter the employee id !!!',
-            'time_start.required'=>'Please enter the time start !!!',
+            'time_start.required' =>'Please enter the time start !!!',
             ]
         );
 
         $attendance->employee_id = $request->employee_id;
-        $attendance->time_start = $request->time_start;
-        $attendance->time_end = $request->time_end;
+        $attendance->time_start  = $request->time_start;
+        $attendance->time_end    = $request->time_end;
         $attendance->save();
         return redirect()->route('attendance.index')->with('success', 'Marked');
     }

@@ -9,6 +9,10 @@ use App\ServiceRepair;
 
 class CalendarController extends Controller
 {
+    public function __construct()
+    {
+        return $this->middleware('auth');
+    }
 
     public function index()
     {
@@ -19,10 +23,9 @@ class CalendarController extends Controller
             $events[] = [
                 'title' => $s->code,
                 'start' => $s->created_at,
-                'end' => $s->updated_at,
+                'end'  => $s->updated_at,
             ];
         }
         return view('admin.calendar.index', ['events' => $events]);
     }
-
 }

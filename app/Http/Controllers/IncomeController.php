@@ -13,6 +13,11 @@ use App\Stock;
 
 class IncomeController extends Controller
 {
+    public function __construct()
+    {
+        return $this->middleware('auth');
+    }
+    
     public function index()
     {
         $recordes['servicerepair'] = ServiceRepair::all();
@@ -80,7 +85,7 @@ class IncomeController extends Controller
 
         $sellingprice = Stock::where('sellingprice',$id)
                                 
-                                ->sum('sellingprice'); 
+                            ->sum('sellingprice'); 
 
         $dealerprice = Stock::where('dealerprice',$id)
                             
@@ -90,16 +95,17 @@ class IncomeController extends Controller
 
         return response()->json(['amount'=>$amount, 'charge'=>$charge, 'price'=>$price, 'service_price'=>$service_price, 'stock_items_sum'=>$stock_items_sum, 'fixprice'=>$fixprice, 'total_income'=>$total_income]);
     }
-    public function getJobsperDate(Request $request)
-    {
-        $date = new DateTime($request->date);
 
-        $givenDate= $date->format('Y-m-d');
+    // public function getJobsperDate(Request $request)
+    // {
+    //     $date = new DateTime($request->date);
 
-         $totalRepairs = ServiceRepair::whereBetween('created_at', [$givenDate." 00:00:00", $givenDate." 23:59:59"])->get();
+    //     $givenDate= $date->format('Y-m-d');
 
-        return response()->json(['totalRepairs'=>$totalRepairs]);             
-    }
+    //     $totalRepairs = ServiceRepair::whereBetween('created_at', [$givenDate." 00:00:00", $givenDate." 23:59:59"])->get();
+
+    //     return response()->json(['totalRepairs'=>$totalRepairs]);             
+    // }
 
     public function child_info(Request $request) 
     {

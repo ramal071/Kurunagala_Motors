@@ -13,6 +13,7 @@ use App\Helpers\Helper;
 use DateTime;
 use App\Allowance;
 use App\Loan;
+use Dompdf\Dompdf;
 
 class SalaryController extends Controller
 {
@@ -38,8 +39,6 @@ class SalaryController extends Controller
         $arr['employee'] = Employee::all();
 
         return view('admin.salary.create')->with($arr);
-
-      
     }
 
     public function store(Request $request, Salary $salary)
@@ -172,11 +171,4 @@ class SalaryController extends Controller
         $count = SUM($upload);
         return response()->json($count);
     }
-
-    // public function paysheet()
-    // {
-    //     return view('admin.salary.show');
-    // }
-
-
 }

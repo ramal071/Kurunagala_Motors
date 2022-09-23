@@ -5,10 +5,8 @@ use App\Stock;
 class StockService{
 
     public function getPriceById($id){
-
         $record = Stock::select('sellingprice','quantity')->where('id',$id)->first();
         return $record;
-
     }
     public function reduceQuontity($array){
         foreach ($array as $key => $value) {

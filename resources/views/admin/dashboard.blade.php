@@ -224,7 +224,8 @@
         </div>
         <!-- ./col -->
     </div>
-
+    
+  
 
     <!-- user table -->
     <div class="row">
@@ -326,7 +327,354 @@
       </div>
     </div>
   </div>
+
+  {{-- employee monthly details --}}
+
+@if(Auth::User()->roles->slug == "manager")
+<div class="row">
+      <div class="col-md-8">
+        <div class="box box-danger">
+          <div class="box-header with-border">
+            <h3 class="box-title">Employee Monthly Performance</h3>
+          </div>
+
+          <div class="box-body no-padding">
+                  <div class="col-md-6">
+                      <label for="">Month</label>
+                      <input type="date" id="calender" class="form-control" value="" required>
+                  </div>
+                
+                  <div class="col-md-6">
+                      <label for="total_salary">{{ __('adminstaticword.total_salary') }}:<sup class="redstar">*</sup></label>
+                      <input type="number" class="form-control" name="total_salary" id="total_salary" readonly value="">
+                  </div>  
+        
+                  <div class="col-md-6">
+                      <label for="employee">{{ __('adminstaticword.employee') }} {{ __('adminstaticword.name') }}:<sup class="redstar">*</sup></label>
+                      <select name="employee_id" id="employee_id" class="form-control js-example-basic-single col-md-7 col-xs-12" required>
+                          <option value="0">{{ __('adminstaticword.pleaseselect') }}</option>
+                          @foreach($employee as $employee)
+                          <option value="{{$employee->id}}">{{$employee->name}}</option>
+                          @endforeach
+                      </select>
+                    </div>  
+            
+                  <div class="col-md-6">
+                    <label for="attendance">{{ __('adminstaticword.attendance') }}</label>
+                    <input type="text" class="form-control" name="workdays" id="upload_id" readonly> 
+                  </div>           
+                  <br>  
+
+                  <div class="col-md-6">
+                      <label for="half_days">{{ __('adminstaticword.half_days') }}:<sup class="redstar">*</sup></label>
+                      <input type="text" class="form-control" name="half_days" id="half_days" readonly value="">
+                  </div> 
+                  
+                  <div class="col-md-6">
+                      <label for="full_leave">{{ __('adminstaticword.full_leave') }}:<sup class="redstar">*</sup></label>
+                      <input type="number" class="form-control" name="full_leave" id="full_leave" readonly value="">
+                  </div>  
+
+                  <div class="col-md-6">
+                      <label for="job">{{ __('adminstaticword.job_amount') }} :<sup class="redstar">*</sup></label>
+                      <input type="text" class="form-control" name="job_amount" id="servicerepair_id" value="" readonly>
+                  </div>  
+
+                  <div class="col-md-6">
+                      <label for="loan_amount">{{ __('adminstaticword.loan_amount') }}:<sup class="redstar">*</sup></label>
+                      <input type="text" class="form-control" name="loan_amount" id="loan_amount" value="" readonly>
+                  </div>  
+                  <div class="col-md-6">
+                      <label for="allowance">{{ __('adminstaticword.allowance') }}:<sup class="redstar">*</sup></label>
+                      <input type="text" class="form-control" name="allowance" id="allowance" readonly value="">
+                  </div> 
+                  
+
+            </div>
+              <div class="box-footer text-center">
+                <a href="{{route('salary.index')}}" class="uppercase">{{ __('adminstaticword.more') }}</a>
+              </div> 
+            </div>
+        </div>
+
+
+<div class="col-md-4">
+        <div class="box box-danger">
+          <div class="box-header with-border">
+            <h3 class="box-title">{{ __('adminstaticword.product') }}</h3>
+
+            <div class="box-tools pull-right">
+              <span class="label label-danger">
+                @php
+                    $product = App\Product::get();
+                    if(count($product)>0){
+
+                      echo count($product);
+                    }
+                    else{
+
+                      echo "0";
+                    }
+                  @endphp
+                {{ __('adminstaticword.product') }}
+            </span>
+              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+              </button>
+              <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="box-body no-padding">
+            @php
+              $product = App\product::limit(6)->orderBy('id', 'DESC')->get();
+            @endphp
+           
+           <div class="box-body">
+                    <div class="table responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>                                        
+                                    <th>{{__('adminstaticword.brand') }}</th>
+                                    <th>{{__('adminstaticword.bike') }}</th>
+                                    <th>{{__('adminstaticword.code') }}</th>
+                                    <th>{{__('adminstaticword.name') }}</th>
+                                    <th>{{__('adminstaticword.slug') }}</th>                                       
+                                 
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach($product as $pr)
+                                 
+                                <tr>
+                            
+                                    <td>{{ $pr->brand->name}}</td>
+                                    <td>{{ $pr->bike->name}}</td>
+                                    <td>{{ $pr->code }}</td>
+                                    <td>{{ $pr->name }}</td>
+                                    <td>{{ $pr->slug }}</td>
+                              </tr>
+                                @endforeach
+                            </tbody>
+                        </table></div>
+          </div>
+          <div class="box-footer text-center">
+            <a href="{{route('product.index')}}" class="uppercase">{{ __('adminstaticword.more') }}</a>
+          </div> 
+        </div>
+      </div>
+</div></div>
+@endif
+                        
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="box box-danger">
+          <div class="box-header with-border">
+            <h3 class="box-title">{{ __('adminstaticword.servicerepair') }}</h3>
+
+            <div class="box-tools pull-right">
+              <span class="label label-danger">
+                @php
+                    $servicerepair = App\servicerepair::get();
+                    if(count($servicerepair)>0){
+
+                      echo count($servicerepair);
+                    }
+                    else{
+
+                      echo "0";
+                    }
+                  @endphp
+                {{ __('adminstaticword.servicerepair') }}
+            </span>
+              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+              </button>
+              <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="box-body no-padding">
+            @php
+              $servicerepair = App\servicerepair::limit(8)->orderBy('id', 'DESC')->get();
+            @endphp
+            <ul class="users-list clearfix">
+              @foreach($servicerepair as $sr)
+              <li>
+                  
+                  <a class="users-list-name" href="#">{{ $sr['code'] }} {{ $sr['fname'] }}</a>
+                  <span class="users-list-date">{{ ($sr['customervehicle'] ['register_number']) }}</span>
+                  <span class="users-list-date">{{ ($sr['service'] ['name']) }}</span>
+                  <span class="users-list-date">{{ date('d F', strtotime($sr['created_at'])) }}</span>
+              </li>
+              @endforeach
+              
+            </ul>
+          </div>
+          <div class="box-footer text-center">
+            <a href="{{route('servicerepair.index')}}" class="uppercase">{{ __('adminstaticword.more') }}</a>
+          </div> 
+
+          </div>
+          </div>
+  
+
+
+          @if(Auth::User()->roles->slug == "manager")
+          <div class="col-md-4">
+            <div class="box box-danger">
+              <div class="box-header with-border">
+                <h3 class="box-title">{{ __('adminstaticword.leave') }}</h3>
+
+                <div class="box-tools pull-right">
+                  <span class="label label-danger">
+                    @php
+                        $leaves = App\leave::get();
+                        if(count($leaves)>0){
+
+                          echo count($leaves);
+                        }
+                        else{
+
+                          echo "0";
+                        }
+                      @endphp
+                    {{ __('adminstaticword.leave') }}
+                </span>
+                  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="box-body no-padding">
+                @php
+                  $leaves = App\leave::limit(8)->orderBy('id', 'DESC')->get();
+                @endphp
+                <ul class="users-list clearfix">
+                  @foreach($leaves as $lev)
+                  <li>
+                      <a class="users-list-name" href="#">{{ $lev['employee'] ['nick_name'] }}</a>
+                      <span class="users-list-date">{{ date('d F', strtotime($lev['from_date'])) }}</span>
+                      <span class="users-list-date">{{ date('d F', strtotime($lev['to_date'])) }}</span>
+                      <span class="users-list-date">{{ ($lev ['day']) }}</span>
+                      <span class="users-list-date">{{ ($lev ['leave_reason']) }}</span>
+                  </li>
+                  @endforeach
+                  
+                </ul>
+              </div>
+              <div class="box-footer text-center">
+                <a href="{{route('leave.index')}}" class="uppercase">{{ __('adminstaticword.more') }}</a>
+              </div> 
+            </div>
+          </div>
+          @endif
+
+
+          <div class="col-md-4">
+        <div class="box box-danger">
+          <div class="box-header with-border">
+            <h3 class="box-title">{{ __('adminstaticword.pendingservice') }}</h3>
+
+            <div class="box-tools pull-right">
+              <span class="label label-danger">
+                @php
+                    $customerpendingservice = App\customerpendingservice::get();
+                    if(count($customerpendingservice)>0){
+
+                      echo count($customerpendingservice);
+                    }
+                    else{
+
+                      echo "0";
+                    }
+                  @endphp
+                {{ __('adminstaticword.pendingservice') }}
+            </span>
+              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+              </button>
+              <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="box-body no-padding">
+            @php
+              $customerpendingservice = App\customerpendingservice::limit(8)->orderBy('id', 'DESC')->get();
+            @endphp
+            <ul class="users-list clearfix">
+              @foreach($customerpendingservice as $b)
+              <li>
+                <a class="users-list-name" href="#">{{($b['users'] ['fname'])}}</a>
+                  <span class="users-list-date">{{ ($b['customervehicle'] ['register_number']) }}</span>
+                  <span class="users-list-date">{{$b['service'] ['name'] }}</span>
+                  <span class="users-list-date">{{ date('d F', strtotime($b['next_date'])) }}</span>
+              </li>
+              @endforeach
+              
+            </ul>
+          </div>
+          <div class="box-footer text-center">
+            <a href="{{route('customerpendingservice.index')}}" class="uppercase">{{ __('adminstaticword.more') }}</a>
+          </div> 
+
+          </div>
+          </div>
+      </div>
+
+
+    </div>
 </section>
 
 @endsection
 
+
+
+@section('salary')
+<script>
+  (function($) {
+      "use strict";
+
+      $(function() {
+          var urlLike = '{{ route('salary-dropdown') }}';
+          $('#employee_id').change(function() {
+              var up = $('#upload_id').empty();
+              var pr_ids = $(this).val();
+              let prev_month = $('#calender').val();
+              if (pr_ids) {
+                  $.ajax({
+                      headers: {
+                          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                      },
+                      type: "GET",
+                      url: urlLike,
+                      data: {
+                          prIds: pr_ids,prev_month:prev_month
+                      },
+                      success: function(data) {
+                        console.log(data);
+                         $('#upload_id').val(data['days']);
+                         $('#total_salary').val(data['basic']);
+                         $('#servicerepair_id').val(data['job_amount']);
+                         $('#loan_amount').val(data['loan_amount']);
+                         $('#half_days').val(data['halfday']);
+                         $('#full_leave').val(data['full_leave']);  
+                         $('#allowance').val(data['allowance']);
+                      },
+                      error: function(XMLHttpRequest, textStatus, errorThrown) {
+                          console.log(XMLHttpRequest);
+                      }
+                  });
+              }
+          });
+      });
+
+  })(jQuery);
+</script>
+
+@endsection
+ 

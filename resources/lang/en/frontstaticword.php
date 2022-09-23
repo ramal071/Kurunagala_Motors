@@ -20,8 +20,10 @@ return [
     'Searchforfindcashier'=> 'Search For Find Cashier',
     'CashierDashboard' => 'Cashier Dashboard',
     'service' => 'Service',
+    'createat' => 'Create Time',
 
-
+    'details' => 'Details',
+    'payment' => 'Payment',
     'userprofile' => 'User Profile',
     'search' =>'Search',
     'product' => 'Product',

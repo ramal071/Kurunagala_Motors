@@ -90,7 +90,7 @@
                 <label for="exampleInputDetails">{{ __('adminstaticword.status') }}:</label>
                 <li class="tg-list-item">              
                   <input class="tgl tgl-skewed" id="status" type="checkbox" name="status" >
-                  <label class="tgl-btn" data-tg-off="Disable" data-tg-on="Enable" for="status"></label>
+                  <label class="tgl-btn" data-tg-off="Resign" data-tg-on="Work" for="status"></label>
                 </li>
               </div>
             </div>          

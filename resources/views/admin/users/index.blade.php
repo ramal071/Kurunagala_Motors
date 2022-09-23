@@ -32,10 +32,7 @@
                                 <tbody>
                                     <?php $i=0;?>
                                     @foreach ($users as $user)
-                                    {{--   @if(!\Auth::user()->hasRole('manager') && $user->hasRole('manager')) @continue; @endif  --}}
 
-                                    @if(!\Auth::User()->roles->slug == "manager" && $user->role_id =="1" ) @continue; @endif 
-                                   
                                     <?php $i++;?>
                                         <tr>
                                             <td> <?php echo $i;?> </td>

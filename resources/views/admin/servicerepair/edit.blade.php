@@ -226,15 +226,13 @@
       let length = $('.select_dropdown').length+1;
    var html='';
    html+="<tr>";
-    html+='<td><select name="stock[]" id="stock_id" class="form-control js-example-basic-single col-md-7 col-xs-12 select_dropdown" ><option value="empty">--{{ __('adminstaticword.pleaseselect') }}--</option>@foreach($stock as $s)<option value="{{$s->id}}">{{$s->product->code}}: {{ $s->product->brand->name }} {{ $s->product->bike->name }} {{$s->product->name}} price: Rs.{{$s->sellingprice}} qty: {{$s->quantity}} </option> @endforeach</select></td>';
+   html+='<td><select name="stock[]" id="stock_id" class="form-control js-example-basic-single col-md-7 col-xs-12 select_dropdown" ><option value="empty">--{{ __('adminstaticword.pleaseselect') }}--</option>@foreach($stock as $s)<option value="{{$s->id}}">{{$s->product->code}}: {{ $s->product->brand->name }} {{ $s->product->bike->name }} {{$s->product->name}} price: Rs.{{$s->sellingprice}} qty: {{$s->quantity}} </option> @endforeach</select></td>';
    html+='<td><input type="number" class="form-control" name="qty[]" placeholder="Enter qty"></td>';
    html+='<td><button type="button" class="btn btn-primary" id="remove"> <i class="glyphicon glyphicon-remove"></i></button></td>';
    html+="</tr>";
    $('tbody').append(html);
     });
   });
-
-
 
 
   $(document).on('click','#remove', function(){

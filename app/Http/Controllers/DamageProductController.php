@@ -10,16 +10,21 @@ use Illuminate\Support\Facades\Gate;
 
 class DamageProductController extends Controller
 {
+    public function __construct()
+    {
+        return $this->middleware('auth');
+    }
+    
     public function index()
     {
         if(Gate::allows('isManager')){
-            $arr['stock'] = Stock::all();
+            $arr['stock']   = Stock::all();
             $arr['product'] = Product::all();
             $arr['damages'] = DamageProduct::all();            
             return view('admin.damage.index')->with($arr);
         }
         elseif (Gate::allows('isCashier')){
-            $arr['stock'] = Stock::all();
+            $arr['stock']   = Stock::all();
             $arr['product'] = Product::all();
             $arr['damages'] = DamageProduct::all();            
             return view('admin.damage.index')->with($arr);
@@ -44,7 +49,6 @@ class DamageProductController extends Controller
     {
         $data = $this->validate($request, [ 
             'quantity'=> 'required',
-           // 'is_return'=>'required',
             'stock_id'=>'required|not_in:0'
         ]);
 
@@ -61,7 +65,7 @@ class DamageProductController extends Controller
     {
         if(Gate::allows('isManager')){
             $arr['damage'] = $damage;
-            $arr['stock'] = Stock::all();
+            $arr['stock']  = Stock::all();
             return view('admin.damage.edit')->with($arr); 
         }
         else{

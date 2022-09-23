@@ -50,6 +50,15 @@ class ServiceSeeder extends Seeder
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ],
 
+            [
+                'code' => 'ser5',
+                'name' => 'Touch up',
+                'price' => '500',
+                'description' => 'ddbg gfbg ',
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+            ],
+
         ]);
     }
 }

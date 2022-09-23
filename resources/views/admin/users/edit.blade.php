@@ -55,8 +55,9 @@
           </div>
           </div>
 
-          @if(Auth::User()->roles->slug == "manager")
+         
           <div class="row">
+            @if(Auth::User()->roles->slug == "manager")
             <div class="col-md-6">
                 <label for="role">{{ __('adminstaticword.role') }}:<sup class="redstar">*</sup></label>
                 <select name="role_id" id="role_id" class="form-control" >
@@ -79,7 +80,6 @@
             </select>
            </div>  
           </div>
-          <br>
           @endif
         <br>    
 

@@ -13,15 +13,16 @@ use App\Product;
 use App\Service;
 use App\CompleteJob;
 use App\User;
+use App\Stock;
 use Auth;
 use Redirect;
 
 class CustomerController extends Controller
 {
+    
     public function customerVehiclePage($id)
     {
         if(Auth::check()){
-          
             $user = User::where('id', Auth::User()->id)->first();
             $customervehicle =  customervehicle::where('user_id', $user->id)->orderBy('id', 'desc')->get();   
             return view('customer.index',compact('user', 'customervehicle'));
@@ -99,6 +100,7 @@ class CustomerController extends Controller
     public function Product()
     {
         $arr['product'] = Product::all();
+        $arr['stock'] = Stock::all();
         return view('customer.product')->with($arr);
     }
 

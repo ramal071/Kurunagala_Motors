@@ -25,7 +25,7 @@
                                     <select name="user_id" id="user_id" class="form-control js-example-basic-single col-md-7 col-xs-12" >
                                         <option value="0">{{ __('adminstaticword.pleaseselect') }}</option>
                                         @foreach($user as $user)
-                                        <option value="{{$user->id}}">{{$user->idno}}: {{$user->fname}} {{$user->lname}}</option>
+                                        <option value="{{$user->id}}">{{$user->idno}} | {{$user->fname}} {{$user->lname}} </option>
                                         @endforeach
                                     </select>
                                  </div>  
@@ -36,10 +36,10 @@
                                 </select>
                               </div>
                             </div>
-                          <br>
+                            <br>
 
-                          <div class="row">
-                            <div class="col-md-6">
+                            <div class="row">
+                              <div class="col-md-6">
                                 <label for="employee">{{ __('adminstaticword.employee') }}:<sup class="redstar">*</sup></label>
                                 <select name="employee_id" id="employee_id" class="form-control js-example-basic-single col-md-7 col-xs-12" >
                                     <option value="0">--{{ __('adminstaticword.pleaseselect') }}--</option>
@@ -53,13 +53,6 @@
                             <div class="col-md-6">
                               <label for="email">{{ __('adminstaticword.email') }}:</sup></label>
                               <input type="email" class="form-control" name="email" id="email" placeholder=" email" value="">
-                              {{--    fix login user email
-                                  @if (auth()->user())
-                                      <input type="email" class="form-control" id="email" name="email" value="{{ auth()->user()->email }}" readonly>
-                                  @else
-                                      <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required>
-                                  @endif
-                                --}}
                             </div>          
                           </div>
                           <br>
@@ -83,7 +76,6 @@
                             <br>
 
                             <div class="box box-primary">
-
                               <table class="table table_bordered">
                                 <thead>
                                   <tr>
@@ -111,7 +103,6 @@
                                     <button type="button" class="btn btn-primary" id="add_btn"> <i class="glyphicon glyphicon-plus"></i></button>
                                   </td>
                                 </tbody>
-
                               </table>
   
 
@@ -133,7 +124,7 @@
                                   <label for="exampleInputDetails">{{ __('adminstaticword.status') }}:</label>
                                   <li class="tg-list-item">              
                                     <input class="tgl tgl-skewed" id="status" type="checkbox" name="status" >
-                                    <label class="tgl-btn" data-tg-off="Disable" data-tg-on="Enable" for="status"></label>
+                                    <label class="tgl-btn" data-tg-on="Enable" data-tg-off="Disable" for="status"></label>
                                   </li>
                                 </div>
                             </div>          
@@ -145,7 +136,7 @@
                                   <label for="exampleInputDetails">{{ __('adminstaticword.repaircomplete') }}:</label>
                                   <li class="tg-list-item">              
                                     <input class="tgl tgl-skewed" id="is_repaircomplete" type="checkbox" name="is_repaircomplete" >
-                                    <label class="tgl-btn" data-tg-off="Disable" data-tg-on="Enable" for="is_repaircomplete"></label>
+                                    <label class="tgl-btn" data-tg-off="Pending" data-tg-on="Complete" for="is_repaircomplete"></label>
                                   </li>
                                 </div>
                             </div>          
@@ -156,7 +147,7 @@
                                   <label for="exampleInputDetails">{{ __('adminstaticword.borrow') }}:</label>
                                   <li class="tg-list-item">              
                                     <input class="tgl tgl-skewed" id="is_borrow" type="checkbox" name="is_borrow" >
-                                    <label class="tgl-btn" data-tg-off="Disable" data-tg-on="Enable" for="is_borrow"></label>
+                                    <label class="tgl-btn" data-tg-off="No borrow" data-tg-on="Borrow" for="is_borrow"></label>
                                   </li>
                                 </div>
                             </div>          
@@ -165,10 +156,10 @@
                             
                             <div class="col-md-6">
                                 <div class="col-md-6">
-                                  <label for="exampleInputDetails">{{ __('adminstaticword.complete') }}:</label>
+                                  <label for="exampleInputDetails">{{ __('adminstaticword.payment') }} {{ __('adminstaticword.complete') }}:</label>
                                   <li class="tg-list-item">              
                                     <input class="tgl tgl-skewed" id="is_complete" type="checkbox" name="is_complete" >
-                                    <label class="tgl-btn" data-tg-off="Disable" data-tg-on="Enable" for="is_complete"></label>
+                                    <label class="tgl-btn" data-tg-off="No Paid" data-tg-on="Paid" for="is_complete"></label>
                                   </li>
                                 </div>
                             </div>          

@@ -24,7 +24,6 @@
 
 @section('calandar')
 
- 
             <script>
             $(document).ready(function () {
             var servicerepair = @json($events);

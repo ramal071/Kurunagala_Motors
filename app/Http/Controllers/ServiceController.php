@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Gate;
 
 class ServiceController extends Controller
 {
+    public function __construct()
+    {
+        return $this->middleware('auth');
+    }
 
     public function index()
     {
@@ -37,8 +41,8 @@ class ServiceController extends Controller
     public function store(Request $request, service $service)
     {
         $data = $this->validate($request, [
-            'name'=> 'required|string|min:1|max:255|unique:services,name',
-            'code'=> 'required|unique:services,code',
+            'name'=> 'required|string|min:1|max:255|unique:services',
+            'code'=> 'required|unique:services',
             'price' => 'required|string|min:1|max:255',
              ],
     [

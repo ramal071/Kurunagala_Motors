@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 
 class BikeController extends Controller
 {
+    public function __construct()
+    {
+        return $this->middleware('auth');
+    }
 
     public function index()
     {
@@ -26,7 +30,7 @@ class BikeController extends Controller
     {
         $data = $this->validate($request, [ 
             'name'=> 'required|string|min:1|max:255',
-            'code'=>'required|unique:bikes,name',
+            'code'=>'required|unique:bikes',
             'brand_id'=> 'required|not_in:0',
        
         ],
@@ -46,14 +50,8 @@ class BikeController extends Controller
         return redirect()->route('bike.index')->with('success', 'Bike model created');
     }
 
-    public function show($id)
-    {
-        //
-    }
-
     public function edit(Bike $bike)
     {
-
         $arr['bike'] = $bike;
         $arr['brand'] = brand::all();
         return view('admin.bike.edit')->with($arr);
@@ -85,7 +83,5 @@ class BikeController extends Controller
     {
         Bike::destroy($id);
         return redirect()->route('bike.index')->with('delete', 'Bike model deleted');
-    }
-
-    
+    }    
 }

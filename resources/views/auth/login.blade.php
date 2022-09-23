@@ -1,8 +1,6 @@
 @section('title', 'Login')
 @include('theme.head')
 
-<!-- end head -->
-<!-- body start-->
 <body>
 <!-- top-nav bar start-->
 <section id="nav-bar" class="nav-bar-main-block nav-bar-main-block-one">
@@ -20,20 +18,19 @@
                         $logo = App\Setting::first();
                     @endphp
                         <a href="{{ url('/') }}"><b><div class="logotext">{{ $logo->project_title }}</div></b></a>
-                  
                 </div>
             </div>
             <div class="col-lg-4 col-4">
                 <div class="Login-btn txt-rgt">
                     <a href="{{ route('register') }}" class="btn btn-primary" title="signup">{{ __('frontstaticword.signup') }}</a>
                 </div> 
-            </div>
-            
+            </div>            
         </div>
     </div>
 </section>
 
 <!-- top-nav bar end-->
+
 <!-- Signup start-->
 <section id="signup" class="signup-block-main-block">
     <div class="container">
@@ -41,14 +38,11 @@
             <div class="signup-heading">
                 {{ __('frontstaticword.LogIntoYour') }} {{ __('frontstaticword.Account') }}!
             </div>
-
             <div class="signup-block">
 
                 <div class="signin-link btm-10">
                     <div class="row">
-                     
                     </div>
-                    
 
                 <form method="POST" class="signup-form" action="{{ route('login') }}">
                     @csrf
@@ -85,11 +79,8 @@
 
                         <div class="forgot-password text-center btm-20"><a href="{{ 'password/reset' }}" title="sign-up">{{ __('frontstaticword.ForgotPassword') }}</a>
                         </div>
-
                     </div>
-
                     <hr>
-                    
                     <div class="sign-up text-center">{{ __('frontstaticword.Donothaveanaccount') }}?<a href="{{ route('register') }}" title="sign-up"> {{ __('frontstaticword.signup') }}</a>
                     </div>
                             
@@ -97,14 +88,13 @@
             </div>
         </div>
     </div>
-
 </section>
 <!--  Signup end-->
+
 <!-- jquery -->
 @include('theme.scripts')
 <!-- end jquery -->
 </body>
-<!-- body end -->
 </html> 
 
 

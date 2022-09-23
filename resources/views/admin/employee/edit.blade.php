@@ -134,7 +134,7 @@
                                     <li class="tg-list-item">
                                         <input class="tgl tgl-skewed" id="status" type="checkbox" name="status"
                                             {{ $employee->status == '1' ? 'checked' : '' }}>
-                                        <label class="tgl-btn" data-tg-off="Disable" data-tg-on="Enable"
+                                        <label class="tgl-btn" data-tg-off="Resign" data-tg-on="Work"
                                             for="status"></label>
                                     </li>
                                 </div>

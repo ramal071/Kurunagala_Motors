@@ -5,10 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Role;
-use App\Permission;
+
 
 class RoleController extends Controller
 {
+    public function __construct()
+    {
+        return $this->middleware('auth');
+    }
+    
     public function index()
     {
         $arr['roles'] = Role::all();
@@ -25,7 +30,6 @@ class RoleController extends Controller
 
         $data = $this->validate($request, [
             'role_name'=> 'required|unique:roles,name',
-            'role_slug'=>'required',
             'status'   =>'required',
         ],
     [
@@ -62,7 +66,6 @@ class RoleController extends Controller
         $role->slug = $request->role_slug;
         $role->status = ($request->status) ? 1:0 ;
         $role->save();
-
         return redirect()->route('role.index');
     }
 

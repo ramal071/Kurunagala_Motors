@@ -31,9 +31,9 @@
                                     <label for="allowance_type">{{ __('adminstaticword.allowance_type') }}:</label>
                                     <select name="allowance_type"  class="form-control" id="allowance_type">
                                         <option value="0">--{{ __('adminstaticword.pleaseselect') }}-- </option>
-                                        <option value="medical">Medical allowance</option>
-                                        <option value="transport">Transport allowance</option>
-                                        <option value="other">Other allowance</option>
+                                        <option value="Medical">Medical allowance</option>
+                                        <option value="Transport">Transport allowance</option>
+                                        <option value="Other">Other allowance</option>
                                     </select>
                             
                                 </div>  

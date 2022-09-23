@@ -37,6 +37,7 @@
     </div>
 </section>
 <!-- top-nav bar end-->
+
 <section id="signup" class="signup-block-main-block">
     <div class="container">
         <div class="row justify-content-center">
@@ -84,7 +85,7 @@
 </section>
 
 @include('theme.scripts')
-<!-- end jquery -->
+
 </body>
 <!-- body end -->
 </html> 

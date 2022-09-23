@@ -16,11 +16,10 @@
               {{ csrf_field() }}
                 @method('PUT')
 
-
                 <div class="row">
                   <div class="col-md-6">
                     <label for="exampleInputTit1e">{{ __('adminstaticword.product') }}</label>
-                    <select name="product_id" class="form-control js-example-basic-single col-md-7 col-xs-12">
+                    <select name="product_id" class="form-control js-example-basic-single col-md-7 col-xs-12" disabled>
                       @foreach($product as $pr)
                       <option value="{{ $pr->id }}" {{$stock->product_id == $pr->id  ? 'selected' : ''}}>{{ $pr->brand->name }} {{ $pr->bike->name }} {{$pr->name}}</option>
                      @endforeach
@@ -31,7 +30,7 @@
                     <label for="quantity">{{ __('adminstaticword.qty') }}:<sup class="redstar">*</sup></label>
                     <input type="number" class="form-control" name="quantity" id="quantity" value="{{ $stock->quantity }}">
                   </div>          
-              </div>
+               </div>
               <br>
       
               <div class="row">
